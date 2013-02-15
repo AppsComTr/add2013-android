@@ -4,5 +4,6 @@
     <string name="app_name">Android Developer Days 2013</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="title_activity_tweet_wall">TweetWallActivity</string>
 
 </resources>

@@ -14,9 +14,10 @@ public class TweetWallPrepare {
 
 	static Twitter twitter;
 
-	public static void getTweets(String searchParam) {
+	public static String getTweets(String searchParam) {
 
 		int i = 0;
+		String totalWall = "";
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true).setOAuthConsumerKey(Constants.CONSUMER_KEY)
 				.setOAuthConsumerSecret(Constants.CONSUMER_SECRET)
@@ -25,26 +26,23 @@ public class TweetWallPrepare {
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		twitter = tf.getInstance();
 		try {
-			Query query = new Query("@orhunmertsimsek");
+			Query query = new Query(searchParam);
 			QueryResult result;
 			do {
 				result = twitter.search(query);
 				List<Status> tweets = result.getTweets();
 				for (Status tweet : tweets) {
-					System.out.println(tweet.getUser()
-							.getBiggerProfileImageURL()
-							+ " @"
+					totalWall += "\t@"
 							+ tweet.getUser().getScreenName()
 							+ " - "
-							+ tweet.getText());
+							+ tweet.getText() + "\n\n";
 				}
 				i++;
 			} while ((query = result.nextQuery()) != null || i == 20);
-			System.exit(0);
 		} catch (TwitterException te) {
 			te.printStackTrace();
 			System.out.println("Failed to search tweets: " + te.getMessage());
-			System.exit(-1);
 		}
+		return totalWall;
 	}
 }
