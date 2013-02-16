@@ -3,6 +3,7 @@ package org.gdgankara.app;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.Window;
 import android.widget.TextView;
 
 public class TweetWallActivity extends Activity {
@@ -13,6 +14,8 @@ public class TweetWallActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		overridePendingTransition(0, 0);
 		setContentView(R.layout.activity_tweet_wall);
 
 		wallView = (TextView) findViewById(R.id.wall);

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+<LinearLayout
+        android:id="@+id/tab_paneli"
+        android:layout_width="match_parent"
+        android:layout_height="60dip"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:background="#ccc">
+    
+    <TextView 
+        android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:text="Ust Tab"
+            android:gravity="center"/>
+    
+    <ImageView 
+        android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/update_icon"/>
+    
+    <ImageView 
+        android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/search_icon"/>
+    
+</LinearLayout>
+
+</merge>

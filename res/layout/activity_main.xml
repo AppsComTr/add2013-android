@@ -4,13 +4,79 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-    <Button
-        android:id="@+id/tweetWall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="119dp"
-        android:text="TweetWall" />
+    
+    <include
+        android:id="@+id/ust_tab" 
+        layout="@layout/usttab"
+        />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginBottom="50dp"
+        android:orientation="horizontal">
+        
+        <LinearLayout 
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            
+            <Button 
+                android:id="@+id/program_button"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:text="Program"/>
+            
+            <Button 
+                android:id="@+id/favori_button"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:text="Favori"/>
+            
+            <Button 
+                android:id="@+id/tweetWall"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:text="TWall"/>
+            
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            
+            <Button 
+                android:id="@+id/oturum_button"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:text="Oturum"/>
+            
+            <Button 
+                android:id="@+id/sponsor_button"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:text="Sponsor"/>
+            
+            <Button 
+                android:id="@+id/harita_button"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:text="Harita"/>
+            
+        </LinearLayout>
+        
+    </LinearLayout>
 
 </RelativeLayout>
