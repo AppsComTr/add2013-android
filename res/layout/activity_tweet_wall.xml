@@ -9,18 +9,12 @@
         android:id="@+id/ust_tab" 
         layout="@layout/usttab"
         />
-    
-    <ScrollView
+
+    <WebView
+        android:id="@+id/webEngine"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="61dp"
-      >
-
-        <TextView
-            android:id="@+id/wall"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hello_world" />
-    </ScrollView>
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 
 </RelativeLayout>

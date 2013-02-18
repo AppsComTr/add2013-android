@@ -1,28 +1,27 @@
 package org.gdgankara.app;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.Menu;
-import android.view.Window;
-import android.widget.TextView;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class TweetWallActivity extends Activity {
 
-	private String totalWall = "";
-	private TextView wallView;
-
+	WebView tweetWallViewer;
+	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		overridePendingTransition(0, 0);
 		setContentView(R.layout.activity_tweet_wall);
-
-		wallView = (TextView) findViewById(R.id.wall);
-		wallView.setLinksClickable(true);
-		totalWall += TweetWallPrepare.getTweets("#AndroidDevDays");
-
-		wallView.setText(totalWall);
+		
+		tweetWallViewer = (WebView) findViewById(R.id.webEngine);
+		
+		tweetWallViewer.setWebViewClient(new WebViewClient());
+		tweetWallViewer.getSettings().setJavaScriptEnabled(true);
+		tweetWallViewer.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+		tweetWallViewer.loadUrl("http://mertsimsek.net/twall.html");
 	}
 
 	@Override
