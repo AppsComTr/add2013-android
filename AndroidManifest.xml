@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="org.gdgankara.app.MainActivity"
+            android:name="org.gdgankara.app.activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.gdgankara.app.TweetWallActivity"
+            android:name="org.gdgankara.app.activities.TweetWallActivity"
             android:label="@string/title_activity_tweet_wall" >
         </activity>
     </application>
