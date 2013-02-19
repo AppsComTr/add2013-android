@@ -1,4 +1,6 @@
-package org.gdgankara.app;
+package org.gdgankara.app.activities;
+
+import org.gdgankara.app.R;
 
 import android.os.Bundle;
 import android.annotation.SuppressLint;
