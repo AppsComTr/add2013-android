@@ -13,12 +13,12 @@ public class Session {
 	private String hall; // eg : A
 	private int language; // Eðer türkçe ise 1,ingilizde ise 2 set edilecek
 	private String title; // eg : Android Uygulamaya Giriþ Çalýþtayý 4
+	private int sessionOrbreak;
 	private ArrayList<Speaker> speakers;
-	
 	
 	public Session(int id, String date, int day, String description,
 			String start_hour, String end_hour, String hall, int language,
-			String title, ArrayList<Speaker> speakers) {
+			String title, int sessionOrbreak, ArrayList<Speaker> speakers) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -29,65 +29,94 @@ public class Session {
 		this.hall = hall;
 		this.language = language;
 		this.title = title;
+		this.sessionOrbreak = sessionOrbreak;
 		this.speakers = speakers;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getDate() {
 		return date;
 	}
+
 	public void setDate(String date) {
 		this.date = date;
 	}
+
 	public int getDay() {
 		return day;
 	}
+
 	public void setDay(int day) {
 		this.day = day;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getStart_hour() {
 		return start_hour;
 	}
+
 	public void setStart_hour(String start_hour) {
 		this.start_hour = start_hour;
 	}
+
 	public String getEnd_hour() {
 		return end_hour;
 	}
+
 	public void setEnd_hour(String end_hour) {
 		this.end_hour = end_hour;
 	}
+
 	public String getHall() {
 		return hall;
 	}
+
 	public void setHall(String hall) {
 		this.hall = hall;
 	}
+
 	public int getLanguage() {
 		return language;
 	}
+
 	public void setLanguage(int language) {
 		this.language = language;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+	public int getSessionOrbreak() {
+		return sessionOrbreak;
+	}
+
+	public void setSessionOrbreak(int sessionOrbreak) {
+		this.sessionOrbreak = sessionOrbreak;
+	}
+
 	public ArrayList<Speaker> getSpeakers() {
 		return speakers;
 	}
+
 	public void setSpeakers(ArrayList<Speaker> speakers) {
 		this.speakers = speakers;
 	}
