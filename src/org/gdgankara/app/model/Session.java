@@ -1,36 +1,68 @@
 package org.gdgankara.app.model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Session {
+public class Session implements Serializable {
+	private static final long serialVersionUID = 1L;
+	public static final String LANG_TR = "tr";
+	public static final String LANG_EN = "en";
+	public static final int DAY_FRIDAY = 14;
+	public static final int DAY_SATURDAY = 15;
+
+	protected int day;
+	protected String language;
 
 	private int id; // eg : 3006
+	private boolean isBreak;
 	private String date; // eg : 15 Haziran 2013 Cuma
-	private int day; // Eðer Cuma ise 1 , Cumartesi ise 2 set edilecek.
-	private String description; // eg : Android geliþtirme ortamýnýn..........anlatýlacaktýr.
+	private String description; // eg : Android geliÅŸtirme
+								// ortamÄ±nÄ±n..........anlatÄ±lacaktÄ±r.
 	private String start_hour; // eg : 15:30
 	private String end_hour; // eg : 16:45
 	private String hall; // eg : A
-	private int language; // Eðer türkçe ise 1,ingilizde ise 2 set edilecek
-	private String title; // eg : Android Uygulamaya Giriþ Çalýþtayý 4
-	private int sessionOrbreak;
-	private ArrayList<Speaker> speakers;
-	
-	public Session(int id, String date, int day, String description,
-			String start_hour, String end_hour, String hall, int language,
-			String title, int sessionOrbreak, ArrayList<Speaker> speakers) {
+	private String title; // eg : Android Uygulamaya GiriÅŸ Ã‡alÄ±ÅŸtayÄ± 4
+	private Speaker speaker1;
+	private Speaker speaker2;
+	private Speaker speaker3;
+
+	public Session() {
 		super();
-		this.id = id;
-		this.date = date;
+	}
+
+	public Session(int day, String language, int id, boolean isBreak,
+			String date, String description, String start_hour,
+			String end_hour, String hall, String title, Speaker speaker1,
+			Speaker speaker2, Speaker speaker3) {
+		super();
 		this.day = day;
+		this.language = language;
+		this.id = id;
+		this.isBreak = isBreak;
+		this.date = date;
 		this.description = description;
 		this.start_hour = start_hour;
 		this.end_hour = end_hour;
 		this.hall = hall;
-		this.language = language;
 		this.title = title;
-		this.sessionOrbreak = sessionOrbreak;
-		this.speakers = speakers;
+		this.speaker1 = speaker1;
+		this.speaker2 = speaker2;
+		this.speaker3 = speaker3;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
 	public int getId() {
@@ -41,20 +73,20 @@ public class Session {
 		this.id = id;
 	}
 
+	public boolean isBreak() {
+		return isBreak;
+	}
+
+	public void setBreak(boolean isBreak) {
+		this.isBreak = isBreak;
+	}
+
 	public String getDate() {
 		return date;
 	}
 
 	public void setDate(String date) {
 		this.date = date;
-	}
-
-	public int getDay() {
-		return day;
-	}
-
-	public void setDay(int day) {
-		this.day = day;
 	}
 
 	public String getDescription() {
@@ -89,14 +121,6 @@ public class Session {
 		this.hall = hall;
 	}
 
-	public int getLanguage() {
-		return language;
-	}
-
-	public void setLanguage(int language) {
-		this.language = language;
-	}
-
 	public String getTitle() {
 		return title;
 	}
@@ -105,24 +129,28 @@ public class Session {
 		this.title = title;
 	}
 
-	public int getSessionOrbreak() {
-		return sessionOrbreak;
+	public Speaker getSpeaker1() {
+		return speaker1;
 	}
 
-	public void setSessionOrbreak(int sessionOrbreak) {
-		this.sessionOrbreak = sessionOrbreak;
+	public void setSpeaker1(Speaker speaker1) {
+		this.speaker1 = speaker1;
 	}
 
-	public ArrayList<Speaker> getSpeakers() {
-		return speakers;
+	public Speaker getSpeaker2() {
+		return speaker2;
 	}
 
-	public void setSpeakers(ArrayList<Speaker> speakers) {
-		this.speakers = speakers;
+	public void setSpeaker2(Speaker speaker2) {
+		this.speaker2 = speaker2;
 	}
-	
-	
-	
-	
-	
+
+	public Speaker getSpeaker3() {
+		return speaker3;
+	}
+
+	public void setSpeaker3(Speaker speaker3) {
+		this.speaker3 = speaker3;
+	}
+
 }
