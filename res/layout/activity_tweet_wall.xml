@@ -3,9 +3,21 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <!--
     <ListView
         android:id="@+id/ListViewId"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
+    -->
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/tweetList"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fadingEdge="none"
+        android:fastScrollEnabled="false"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:smoothScrollbar="true" />
 
 </LinearLayout>

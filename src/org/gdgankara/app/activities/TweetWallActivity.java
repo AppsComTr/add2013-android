@@ -1,9 +1,5 @@
 package org.gdgankara.app.activities;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -15,14 +11,13 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.gdgankara.app.R;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,17 +28,52 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class TweetWallActivity extends Activity {
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
+public class TweetWallActivity extends ListActivity {
+
+	private PullToRefreshListView pullToRefreshView;
+	private ArrayList<Tweet> tweets;
+	private ListView listView;
+	
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tweet_wall);
         
-        ArrayList<Tweet> tweets = getTweets("AndroidDevDays", 1);
+        tweets = getTweets("AndroidDevDays", 1);
+        pullToRefreshView = (PullToRefreshListView) findViewById(R.id.tweetList);
+//        listView = (ListView) findViewById(R.id.tweetList);
+        pullToRefreshView.setAdapter(new UserItemAdapter(this, R.layout.list1, tweets));
         
-        ListView listView = (ListView) findViewById(R.id.ListViewId);
-        listView.setAdapter(new UserItemAdapter(this, R.layout.list1, tweets));
+        
+        pullToRefreshView.setOnRefreshListener(new OnRefreshListener<ListView>() {
+            @Override
+            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+            	
+            	tweets=getTweets("AndroidDevDays", 1);
+                // Do work to refresh the list here.
+                new GetDataTask().execute();
+            }
+        });
+    }
+	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
+        @Override
+        protected void onPostExecute(String[] result) {
+            // Call onRefreshComplete when the list has been refreshed.
+        	pullToRefreshView.setAdapter(new UserItemAdapter(TweetWallActivity.this, R.layout.list1, tweets));
+            pullToRefreshView.onRefreshComplete();
+            super.onPostExecute(result);
+        }
+
+		@Override
+		protected String[] doInBackground(Void... arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
     }
 
 	public class UserItemAdapter extends ArrayAdapter<Tweet> {
