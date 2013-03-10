@@ -54,7 +54,7 @@ public class TweetWallActivity extends ListActivity {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
             	
-            	tweets=getTweets("AndroidDevDays", 1);
+            	
                 // Do work to refresh the list here.
                 new GetDataTask().execute();
             }
@@ -72,6 +72,7 @@ public class TweetWallActivity extends ListActivity {
 		@Override
 		protected String[] doInBackground(Void... arg0) {
 			// TODO Auto-generated method stub
+			tweets=getTweets("AndroidDevDays", 1);
 			return null;
 		}
     }
