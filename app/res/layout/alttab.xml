@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+	<LinearLayout
+	        android:id="@+id/tab_paneli"
+	        android:layout_width="match_parent"
+	        android:layout_height="50dip"
+	        android:orientation="horizontal"
+	        android:layout_alignParentBottom="true"
+	        android:gravity="center_horizontal|center_vertical"
+	        android:background="#3b3b3b">
+	        
+	    <TextView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textColor="#94a839"
+	        android:text="Android Developer Days 13"/>
+	        
+	</LinearLayout>
+</merge>

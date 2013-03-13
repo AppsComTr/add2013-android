@@ -7,13 +7,14 @@
         android:layout_height="60dip"
         android:orientation="horizontal"
         android:layout_alignParentTop="true"
-        android:background="#ccc">
+        android:background="#3b3b3b">
     
     <TextView 
         android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:text="Ust Tab"
+            android:textColor="#94a839"
             android:gravity="center"/>
     
     <ImageView 
