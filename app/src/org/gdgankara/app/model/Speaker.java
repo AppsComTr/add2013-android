@@ -1,6 +1,7 @@
 package org.gdgankara.app.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Speaker implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -12,13 +13,14 @@ public class Speaker implements Serializable {
 	private String name;
 	private String photo;
 	private String twitter;
+	private List<Long> sessionIDList;
 
 	public Speaker() {
 		super();
 	}
 
 	public Speaker(int id, String biography, String blog, String facebook,
-			String gplus, String name, String photo, String twitter) {
+			String gplus, String name, String photo, String twitter, List<Long> sessionIDList) {
 		super();
 		this.id = id;
 		this.biography = biography;
@@ -28,6 +30,7 @@ public class Speaker implements Serializable {
 		this.name = name;
 		this.photo = photo;
 		this.twitter = twitter;
+		this.sessionIDList = sessionIDList;
 	}
 
 	public int getId() {
@@ -92,6 +95,14 @@ public class Speaker implements Serializable {
 
 	public void setTwitter(String twitter) {
 		this.twitter = twitter;
+	}
+
+	public List<Long> getSessionIDList() {
+		return sessionIDList;
+	}
+
+	public void setSessionIDList(List<Long> sessionIDList) {
+		this.sessionIDList = sessionIDList;
 	}
 
 }
