@@ -1,34 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android" >
     
-<LinearLayout
+<RelativeLayout
         android:id="@+id/tab_paneli"
         android:layout_width="match_parent"
         android:layout_height="60dip"
-        android:orientation="horizontal"
         android:layout_alignParentTop="true"
         android:background="#3b3b3b">
     
-    <TextView 
-        android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:text="Ust Tab"
-            android:textColor="#94a839"
-            android:gravity="center"/>
-    
     <ImageView 
-        android:layout_width="0dip"
+        	android:id="@+id/update_button"
+        	android:layout_width="60dip"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_toLeftOf="@+id/search_button"
             android:background="@drawable/update_icon"/>
     
     <ImageView 
-        android:layout_width="0dip"
+        	android:id="@+id/search_button"
+        	android:layout_width="60dip"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_alignParentRight="true"
             android:background="@drawable/search_icon"/>
     
-</LinearLayout>
+</RelativeLayout>
 
 </merge>
