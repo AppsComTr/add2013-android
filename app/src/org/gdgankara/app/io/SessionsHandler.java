@@ -1,10 +1,7 @@
 package org.gdgankara.app.io;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
@@ -55,27 +52,11 @@ public class SessionsHandler extends BaseHandler {
 			} else {
 				sessionsList = (ArrayList<Session>) readCacheFile();
 			}
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			System.out.println("Error: " + e.getLocalizedMessage());
-			Log.w(TAG, "Error: " + e.getLocalizedMessage());
+			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
-		} catch (InterruptedException e) {
-			System.out.println("Error: " + e.getLocalizedMessage());
-			Log.w(TAG, e.getLocalizedMessage());
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			System.out.println("Error: " + e.getLocalizedMessage());
-			Log.w(TAG, e.getLocalizedMessage());
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("Error: " + e.getLocalizedMessage());
-			Log.w(TAG, e.getLocalizedMessage());
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			System.out.println("Error: " + e.getLocalizedMessage());
-			Log.w(TAG, e.getLocalizedMessage());
-			e.printStackTrace();
-		}
+		} 
 		return sessionsList;
 	}
 

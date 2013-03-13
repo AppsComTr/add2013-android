@@ -1,16 +1,15 @@
 package org.gdgankara.app.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Tag implements Serializable{
 	private static final long serialVersionUID = 1L;
-	public static final String LANG_TR = "tr";
-	public static final String LANG_EN = "en";
-	public static final String TAGS = "tags";
 	
 	private long id;
 	private String tags;
 	private String lang;
+	private ArrayList<String> tagList;
 	
 	public Tag() {
 		super();
@@ -24,10 +23,6 @@ public class Tag implements Serializable{
 	
 	public Tag(long id, String tags) {
 		this.id = id;
-		this.tags = tags;
-	}
-	
-	public Tag(String tags) {
 		this.tags = tags;
 	}
 
@@ -51,5 +46,15 @@ public class Tag implements Serializable{
 	public void setLang(String lang) {
 		this.lang = lang;
 	}
+
+	public ArrayList<String> getTagList() {
+		return tagList;
+	}
+
+	public void setTagList(ArrayList<String> tagList) {
+		this.tagList = tagList;
+	}
+	
+	
 	
 }
