@@ -2,6 +2,8 @@ package org.gdgankara.app.io;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.gdgankara.app.model.Session;
@@ -30,9 +32,11 @@ public class SessionsHandler extends BaseHandler {
 
 	/**
 	 * API iletişim kurarak verilerde değişiklik olup olmadığını kontrol eder.
-	 * Değişiklik var ise parse ederek verileri dosyada saklar.
-	 * Değişiklik yok ise dosyadan okur.
-	 * @param lang Session.LANG_TR yada Session.LANG_EN değeri alır
+	 * Değişiklik var ise parse ederek verileri dosyada saklar. Değişiklik yok
+	 * ise dosyadan okur.
+	 * 
+	 * @param lang
+	 *            Session.LANG_TR yada Session.LANG_EN değeri alır
 	 * @return ArrayList
 	 */
 	@SuppressWarnings("unchecked")
@@ -95,6 +99,7 @@ public class SessionsHandler extends BaseHandler {
 				session.setStart_hour(sessionObject.getString("startHour"));
 				session.setHall(sessionObject.getString("hall"));
 				session.setTitle(sessionObject.getString("title"));
+				session.setTags(sessionObject.getString("tags"));
 
 				if (sessionObject.getString("lang").equals(Session.LANG_EN)) {
 					session.setLanguage(Session.LANG_EN);
@@ -109,31 +114,13 @@ public class SessionsHandler extends BaseHandler {
 					session.setDay(Session.DAY_SATURDAY);
 				}
 
-				Speaker speaker;
-				if (!sessionObject.isNull("speaker1")) {
-					speaker = new Speaker();
-					speaker = jsonObjectToSpeaker(sessionObject
-							.getJSONObject("speaker1"));
-					session.setSpeaker1(speaker);
-				} else {
-					session.setSpeaker1(null);
-				}
-				if (!sessionObject.isNull("speaker2")) {
-					speaker = new Speaker();
-					speaker = jsonObjectToSpeaker(sessionObject
-							.getJSONObject("speaker2"));
-					session.setSpeaker2(speaker);
-				} else {
-					session.setSpeaker2(null);
-				}
-				if (!sessionObject.isNull("speaker3")) {
-					speaker = new Speaker();
-					speaker = jsonObjectToSpeaker(sessionObject
-							.getJSONObject("speaker3"));
-					session.setSpeaker3(speaker);
-				} else {
-					session.setSpeaker3(null);
-				}
+				session.setSpeaker1(jsonObjectToSpeaker("speaker1",
+						sessionObject));
+				session.setSpeaker2(jsonObjectToSpeaker("speaker2",
+						sessionObject));
+				session.setSpeaker3(jsonObjectToSpeaker("speaker3",
+						sessionObject));
+
 				sessionsList.add(session);
 			}
 		} catch (JSONException e) {
@@ -149,17 +136,29 @@ public class SessionsHandler extends BaseHandler {
 		return CACHE_FILE + "_" + lang;
 	}
 
-	private Speaker jsonObjectToSpeaker(JSONObject jsonSpeaker)
-			throws JSONException {
-		Speaker speaker = new Speaker();
-		speaker.setId(jsonSpeaker.getInt("id"));
-		speaker.setBiography(jsonSpeaker.getString("bio"));
-		speaker.setBlog(jsonSpeaker.getString("blog"));
-		speaker.setFacebook(jsonSpeaker.getString("facebook"));
-		speaker.setGplus(jsonSpeaker.getString("gplus"));
-		speaker.setName(jsonSpeaker.getString("name"));
-		speaker.setPhoto(jsonSpeaker.getString("photo"));
-		speaker.setTwitter(jsonSpeaker.getString("twitter"));
-		return speaker;
+	private Speaker jsonObjectToSpeaker(String speakerKey,
+			JSONObject sessionObject) throws JSONException {
+		if (!sessionObject.isNull(speakerKey)) {
+			JSONObject jsonSpeaker = sessionObject.getJSONObject(speakerKey);
+			Speaker speaker = new Speaker();
+			speaker.setId(jsonSpeaker.getInt("id"));
+			speaker.setBiography(jsonSpeaker.getString("bio"));
+			speaker.setBlog(jsonSpeaker.getString("blog"));
+			speaker.setFacebook(jsonSpeaker.getString("facebook"));
+			speaker.setGplus(jsonSpeaker.getString("gplus"));
+			speaker.setName(jsonSpeaker.getString("name"));
+			speaker.setPhoto(jsonSpeaker.getString("photo"));
+			speaker.setTwitter(jsonSpeaker.getString("twitter"));
+			JSONArray sessionIDArray = jsonSpeaker
+					.getJSONArray("sessionIDList");
+			List<Long> sessionIDList = new ArrayList<Long>();
+			for (int i = 0; i < sessionIDArray.length(); i++) {
+				sessionIDList.add(sessionIDArray.getLong(i));
+			}
+			speaker.setSessionIDList(sessionIDList);
+			return speaker;
+		} else {
+			return null;
+		}
 	}
 }

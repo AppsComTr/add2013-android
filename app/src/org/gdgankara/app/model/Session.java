@@ -1,6 +1,7 @@
 package org.gdgankara.app.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Session implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -11,7 +12,6 @@ public class Session implements Serializable {
 
 	protected int day;
 	protected String language;
-
 	private int id; // eg : 3006
 	private boolean isBreak;
 	private String date; // eg : 15 Haziran 2013 Cuma
@@ -24,6 +24,8 @@ public class Session implements Serializable {
 	private Speaker speaker1;
 	private Speaker speaker2;
 	private Speaker speaker3;
+	private List<Long> speakerIDList;
+	private String tags;
 
 	public Session() {
 		super();
@@ -32,7 +34,8 @@ public class Session implements Serializable {
 	public Session(int day, String language, int id, boolean isBreak,
 			String date, String description, String start_hour,
 			String end_hour, String hall, String title, Speaker speaker1,
-			Speaker speaker2, Speaker speaker3) {
+			Speaker speaker2, Speaker speaker3, List<Long> speakerIDList,
+			String tags) {
 		super();
 		this.day = day;
 		this.language = language;
@@ -47,6 +50,8 @@ public class Session implements Serializable {
 		this.speaker1 = speaker1;
 		this.speaker2 = speaker2;
 		this.speaker3 = speaker3;
+		this.speakerIDList = speakerIDList;
+		this.tags = tags;
 	}
 
 	public int getDay() {
@@ -151,6 +156,22 @@ public class Session implements Serializable {
 
 	public void setSpeaker3(Speaker speaker3) {
 		this.speaker3 = speaker3;
+	}
+
+	public List<Long> getSpeakerIDList() {
+		return speakerIDList;
+	}
+
+	public void setSpeakerIDList(List<Long> speakerIDList) {
+		this.speakerIDList = speakerIDList;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
 	}
 
 }
