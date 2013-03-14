@@ -31,9 +31,7 @@ public class TagHandler extends BaseHandler {
 		ArrayList<String> tagList = new ArrayList<String>();
 		try {
 			jsonObject = doGet(BASE_URL + lang);
-			long version = jsonObject.getJSONObject("version")
-					.getLong("number");
-			boolean isVersionUpdated = Util.isVersionUpdated(context, version);
+			boolean isVersionUpdated = Util.isVersionUpdated(context, jsonObject);
 			if (isVersionUpdated) {
 				tagList = parseJSONObject(jsonObject);
 				writeListToFile(tagList);

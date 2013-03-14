@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -19,8 +22,11 @@ public class Util {
 	 * @param context
 	 * @param number
 	 * @return Boolean
+	 * @throws JSONException 
 	 */
-	public static Boolean isVersionUpdated(Context context, long number) {
+	public static Boolean isVersionUpdated(Context context,  JSONObject jsonObject) throws JSONException {
+		long number = jsonObject.getJSONObject("version")
+				.getLong("number");
 		Boolean state = false;
 		SharedPreferences settings = context.getSharedPreferences(TAG, 0);
 		long mNumber = settings.getLong("version", 0);

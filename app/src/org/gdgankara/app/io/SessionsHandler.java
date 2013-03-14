@@ -43,9 +43,7 @@ public class SessionsHandler extends BaseHandler {
 		ArrayList<Session> sessionsList = new ArrayList<Session>();
 		try {
 			jsonObject = doGet(BASE_URL + lang);
-			long version = jsonObject.getJSONObject("version")
-					.getLong("number");
-			boolean isVersionUpdated = Util.isVersionUpdated(context, version);
+			boolean isVersionUpdated = Util.isVersionUpdated(context, jsonObject);
 			if (isVersionUpdated) {
 				sessionsList = parseJSONObject(jsonObject);
 				writeListToFile(sessionsList);
@@ -106,6 +104,7 @@ public class SessionsHandler extends BaseHandler {
 			}
 		} catch (JSONException e) {
 			System.out.println("Error: " + e.getLocalizedMessage());
+			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}
 
