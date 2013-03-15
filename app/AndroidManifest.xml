@@ -28,6 +28,10 @@
             android:name="org.gdgankara.app.activities.TweetWallActivity"
             android:label="@string/title_activity_tweet_wall" >
         </activity>
+        <activity
+            android:name="org.gdgankara.app.activities.TagListActivity"
+            android:label="@string/title_activity_taglist" >
+        </activity>
     </application>
 
 </manifest>

@@ -30,7 +30,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 	private String[] tags = {
 			  "html5", "android", "google", "gwt",
 			  "chrome", "nfc", "arduino", "game",
-			  "java", "javascript", "payment", "ux"
+			  "java", "javascript", "payment", "ux",
 			};
 	
 	@Override
@@ -93,6 +93,8 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 			break;
 			
 		case R.id.oturum_button:
+			i = new Intent(MainActivity.this ,TagListActivity.class);
+			startActivity(i);
 			break;
 			
 		case R.id.favori_button:
