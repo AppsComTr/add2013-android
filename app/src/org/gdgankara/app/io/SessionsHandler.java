@@ -17,7 +17,7 @@ public class SessionsHandler extends BaseHandler {
 	public static final String TAG = SessionsHandler.class.getSimpleName();
 
 	private static final String CACHE_FILE = "SessionsJSON";
-	private static final String BASE_URL = "http://10.0.2.2:8888/api/sessions/";
+	private static final String BASE_URL = "http://add-2013.appspot.com/api/sessions/";
 
 	protected Context context;
 	protected String lang;

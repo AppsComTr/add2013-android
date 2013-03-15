@@ -15,7 +15,7 @@ public class AnnouncementHandler extends BaseHandler {
 	public static final String TAG = AnnouncementHandler.class.getSimpleName();
 
 	private static final String CACHE_FILE = "AnnouncementJSON";
-	private static final String BASE_URL = "http://10.0.2.2:8888/api/announcements/";
+	private static final String BASE_URL = "http://add-2013.appspot.com/api/announcements/";
 
 	private Context context;
 	private String lang;

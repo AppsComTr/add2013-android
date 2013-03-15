@@ -14,7 +14,7 @@ public class TagHandler extends BaseHandler {
 	public static final String TAG = TagHandler.class.getSimpleName();
 
 	private static final String CACHE_FILE = "TagsJSON";
-	private static final String BASE_URL = "http://10.0.2.2:8888/api/tags/";
+	private static final String BASE_URL = "http://add-2013.appspot.com/api/tags/";
 
 	private Context context;
 	private String lang;
