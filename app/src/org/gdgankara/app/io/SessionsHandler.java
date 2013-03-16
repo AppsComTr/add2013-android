@@ -44,7 +44,7 @@ public class SessionsHandler extends BaseHandler {
 		try {
 			jsonObject = doGet(BASE_URL + lang);
 			boolean isVersionUpdated = Util.isVersionUpdated(context, jsonObject);
-			if (!isVersionUpdated) {
+			if (isVersionUpdated) {
 				sessionsList = parseJSONObject(jsonObject);
 				writeListToFile(sessionsList);
 			} else {
