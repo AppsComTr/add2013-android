@@ -30,6 +30,26 @@ public class TagHandler extends BaseHandler {
 		JSONObject jsonObject;
 		ArrayList<String> tagList = new ArrayList<String>();
 		try {
+			tagList = (ArrayList<String>) readCacheFile();
+			if (tagList == null) {
+				jsonObject = doGet(BASE_URL + lang);
+				tagList = parseJSONObject(jsonObject);
+				writeListToFile(tagList);
+			}
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getLocalizedMessage());
+			Log.e(TAG, "Error: " + e.getLocalizedMessage());
+			e.printStackTrace();
+		}
+		return tagList;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<String> updateTagList(String lang) {
+		this.lang = lang;
+		JSONObject jsonObject;
+		ArrayList<String> tagList = new ArrayList<String>();
+		try {
 			jsonObject = doGet(BASE_URL + lang);
 			boolean isVersionUpdated = Util.isVersionUpdated(context, jsonObject);
 			if (isVersionUpdated) {
