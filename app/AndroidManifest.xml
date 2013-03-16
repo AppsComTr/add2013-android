@@ -32,6 +32,10 @@
             android:name="org.gdgankara.app.activities.TagListActivity"
             android:label="@string/title_activity_taglist" >
         </activity>
+        <activity
+            android:name="org.gdgankara.app.activities.SessionListActivity"
+            android:label="@string/title_activity_sessionlist" >
+        </activity>
     </application>
 
 </manifest>
