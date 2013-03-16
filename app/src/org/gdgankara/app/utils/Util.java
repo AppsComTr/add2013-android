@@ -3,7 +3,12 @@ package org.gdgankara.app.utils;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Locale;
 
+import org.gdgankara.app.io.SessionsHandler;
+import org.gdgankara.app.io.TagHandler;
+import org.gdgankara.app.model.Session;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,7 +19,12 @@ import android.util.Log;
 
 public class Util {
 	public static final String TAG = Util.class.getSimpleName();
-
+	
+	public static ArrayList<Session> SessionList = new ArrayList<Session>();
+	public static ArrayList<String> TagList = new ArrayList<String>();
+//	public static final ArrayList<Speaker> SessionList = new ArrayList<Speaker>();
+//	public static final ArrayList<Announcement> SessionList = new ArrayList<Announcement>();
+	
 	/**
 	 * Shared Preferences'ta tutulan versiyon numarasını verilen numara ile
 	 * karşılaştırır.
@@ -39,6 +49,21 @@ public class Util {
 			state = true;
 		}
 		return state;
+	}
+	
+	public static void prepareStaticLists(Context context){
+		SessionsHandler sessionsHandler = new SessionsHandler(context);
+		TagHandler tagHandler = new TagHandler(context);
+		
+		if(Locale.getDefault().getLanguage().equals("tr")){
+			SessionList = sessionsHandler.getSessionsList("tr");
+			TagList = tagHandler.getTagList("tr");
+		}
+		else{
+			SessionList = sessionsHandler.getSessionsList("en");
+			TagList = tagHandler.getTagList("en");
+		}
+		
 	}
 
 	/**
