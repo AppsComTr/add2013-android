@@ -42,6 +42,26 @@ public class SessionsHandler extends BaseHandler {
 		JSONObject jsonObject;
 		ArrayList<Session> sessionsList = new ArrayList<Session>();
 		try {
+			sessionsList = (ArrayList<Session>) readCacheFile();
+			if (sessionsList == null) {
+				jsonObject = doGet(BASE_URL + lang);
+				sessionsList = parseJSONObject(jsonObject);
+				writeListToFile(sessionsList);
+			}
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getLocalizedMessage());
+			Log.e(TAG, "Error: " + e.getLocalizedMessage());
+			e.printStackTrace();
+		} 
+		return sessionsList;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Session> updateSessionsList(String lang) {
+		this.lang = lang;
+		JSONObject jsonObject;
+		ArrayList<Session> sessionsList = new ArrayList<Session>();
+		try {
 			jsonObject = doGet(BASE_URL + lang);
 			boolean isVersionUpdated = Util.isVersionUpdated(context, jsonObject);
 			if (isVersionUpdated) {
