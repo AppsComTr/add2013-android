@@ -2,29 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
-    <RelativeLayout 
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
-        
-        <ImageView 
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <ImageView
             android:id="@+id/list_indicator"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/list_indicator"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/list_indicator" />
         
         <TextView 
             android:id="@+id/tag_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/list_indicator"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:text="Android işteeee"/>
         
     </RelativeLayout>
+
     
 
 </RelativeLayout>
