@@ -5,8 +5,14 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_tweet_wall">TweetWallActivity</string>
+<<<<<<< HEAD
     <string name="title_activity_taglist">TagListActivity</string>
     <string name="title_activity_sessionlist">SessionListActivity</string>
     <string name="title_activity_search">SearchActivity</string>
+=======
+    <string name="title_activity_taglist">TagListActivity</string>
+    <string name="title_activity_sessionlist">SessionListActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+>>>>>>> 21ce6b58736547a980e315944b9ee8bf114dd468
 
 </resources>
