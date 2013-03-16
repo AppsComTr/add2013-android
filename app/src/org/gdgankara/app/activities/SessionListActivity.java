@@ -7,6 +7,7 @@ import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.SessionListAdapter;
 import org.gdgankara.app.io.SessionsHandler;
 import org.gdgankara.app.model.Session;
+import org.gdgankara.app.utils.Util;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -20,7 +21,6 @@ import android.widget.Toast;
 public class SessionListActivity extends Activity{
 	
 	private ArrayList<Session> total_session_list,filtered_session_list;
-	private SessionsHandler session_handler;
 	private ListView session_listview;
 	private ArrayAdapter<Session> sessionlist_adapter;
 	private String aranan_tag;
@@ -34,7 +34,7 @@ public class SessionListActivity extends Activity{
 		setActivityTheme(height);
 		setContentView(R.layout.sessionlist);
 		aranan_tag=this.getIntent().getExtras().getString("tag");
-		getSessionList();
+		total_session_list=Util.SessionList;
 		sessionListFilter();
 		setUpView();
 	}
@@ -48,18 +48,6 @@ public class SessionListActivity extends Activity{
 		session_listview.setAdapter(sessionlist_adapter);
 	}
 
-	private void getSessionList() {
-		session_handler=new SessionsHandler(this);
-		if(Locale.getDefault().getLanguage().equals("tr")){
-			total_session_list=session_handler.getSessionsList("tr");
-		}
-		else{
-			total_session_list=session_handler.getSessionsList("en");
-		}
-		
-		
-	}
-
 	private int getDimensionsOfScreen(){
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -68,11 +56,18 @@ public class SessionListActivity extends Activity{
 	}
 	
 	private void sessionListFilter() {
+		int i,j;
+		String[] tags;
 		filtered_session_list=new ArrayList<Session>();
 		int size=total_session_list.size();
-		for(int i=0;i<size;i++){
-			if(total_session_list.get(i).getTags().indexOf(aranan_tag)>=0){
-				filtered_session_list.add(total_session_list.get(i));
+		int size2;
+		for(i=0;i<size;i++){
+			tags=total_session_list.get(i).getTags().split(",");
+			size2=tags.length;
+			for(j=0;j<size2;j++){
+				if(tags[j].equals(aranan_tag)){
+					filtered_session_list.add(total_session_list.get(i));
+				}
 			}
 		}
 	}
