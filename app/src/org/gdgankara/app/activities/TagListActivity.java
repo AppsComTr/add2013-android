@@ -2,17 +2,21 @@ package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
 import java.util.Locale;
-
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.TagListAdapter;
 import org.gdgankara.app.io.TagHandler;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+import android.widget.TextView;
 
 public class TagListActivity extends Activity{
 	
@@ -30,9 +34,10 @@ public class TagListActivity extends Activity{
 		
 		getTagList();
 		setUpView();
-		
+		childItemsActive();
 		
 	}
+	
 	
 	private void getTagList(){
 		tag_handler=new TagHandler(this);
@@ -49,6 +54,29 @@ public class TagListActivity extends Activity{
 		taglist_adapter=new TagListAdapter(this, tag_list);
 		tag_listview.setAdapter(taglist_adapter);
 	}
+	
+	private void childItemsActive() {
+		tag_listview.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				
+				startSessionList(arg1);
+			}
+			
+		});
+	}
+	
+	private void startSessionList(View view){
+		Intent intent=new Intent(this,SessionListActivity.class);
+		Bundle b=new Bundle();
+		String tag_name=(String)((TextView)view.findViewById(R.id.tag_name)).getText();
+		b.putString("tag", tag_name);
+		intent.putExtras(b);
+		this.startActivity(intent);
+	}
+
 	
 	private int getDimensionsOfScreen(){
 		DisplayMetrics metrics = new DisplayMetrics();
