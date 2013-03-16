@@ -1,17 +1,13 @@
 package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
-
 import org.gdgankara.app.R;
-import org.gdgankara.app.adapeters.SessionListAdapter;
 import org.gdgankara.app.adapeters.SpeakerListAdapter;
 import org.gdgankara.app.model.Speaker;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Window;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class SpeakerListActivity extends Activity{

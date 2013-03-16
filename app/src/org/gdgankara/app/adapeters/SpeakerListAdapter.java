@@ -1,11 +1,8 @@
 package org.gdgankara.app.adapeters;
 
 import java.util.List;
-
 import org.gdgankara.app.R;
-import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

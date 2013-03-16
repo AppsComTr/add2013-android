@@ -3,12 +3,9 @@ package org.gdgankara.app.adapeters;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
 import org.gdgankara.app.R;
 import org.gdgankara.app.model.Session;
-
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
