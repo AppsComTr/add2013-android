@@ -34,22 +34,13 @@
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.SessionListActivity"
-<<<<<<< HEAD
-            android:label="@string/title_activity_taglist" >
+            android:label="@string/title_activity_sessionlist" >
         </activity>  
         <activity
             android:theme="@android:style/Theme.Light.NoTitleBar"
             android:name="org.gdgankara.app.activities.SearchActivity"
             android:label="@string/title_activity_search" >
-=======
-            android:label="@string/title_activity_sessionlist" >
             </activity>
-            <activity
-            android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:name="org.gdgankara.app.activities.SearchActivity"
-            android:label="@string/title_activity_search" >
->>>>>>> 21ce6b58736547a980e315944b9ee8bf114dd468
-        </activity>
     </application>
 
 </manifest>
