@@ -48,7 +48,7 @@ public class SessionListAdapter extends ArrayAdapter<Session>{
 		text.setText(session.getTitle());
 		text=(TextView)view.findViewById(R.id.session_features);
 		temp=session.getDay()==14?lang==1?"Cuma":"Friday":lang==1?"Cumartesi":"Saturday";
-		temp+=" "+session.getStart_hour()+"-"+session.getEnd_hour();
+		temp+=" "+session.getStart_hour()+" - "+session.getEnd_hour()+" | "+session.getHall()+" Salonu";
 		text.setText(temp);
 		text.setTextSize(textSize);
 		return view;

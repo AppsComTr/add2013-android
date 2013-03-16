@@ -4,7 +4,7 @@
 	<LinearLayout
 	        android:id="@+id/tab_paneli"
 	        android:layout_width="match_parent"
-	        android:layout_height="50dip"
+	        android:layout_height="30dip"
 	        android:orientation="horizontal"
 	        android:layout_alignParentBottom="true"
 	        android:gravity="center_horizontal|center_vertical"
