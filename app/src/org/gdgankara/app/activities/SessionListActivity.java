@@ -22,7 +22,7 @@ public class SessionListActivity extends Activity{
 	
 	private ArrayList<Session> total_session_list,filtered_session_list;
 	private ListView session_listview;
-	private ArrayAdapter<Session> sessionlist_adapter;
+	private SessionListAdapter sessionlist_adapter;
 	private String aranan_tag;
 	private int height;
 

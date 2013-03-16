@@ -1,5 +1,6 @@
 package org.gdgankara.app.adapeters;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -54,6 +55,10 @@ public class SessionListAdapter extends ArrayAdapter<Session>{
 		text.setText(temp);
 		text.setTextSize(textSize);
 		return view;
+	}
+	
+	public void setList(ArrayList<Session> list){
+		sessionlist=list;
 	}
 	
 	private void setFeaturesTextSize(int height){
