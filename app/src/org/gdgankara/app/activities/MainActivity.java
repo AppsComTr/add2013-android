@@ -17,7 +17,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 
-public class MainActivity extends Activity implements OnClickListener, TextWatcher{
+public class MainActivity extends Activity implements OnClickListener{
 
 	private Button tweetWallButton;
 	private Button programButton;
@@ -26,12 +26,6 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 	private Button sponsorButton;
 	private Button favoriButton;
 	private ImageView araButton;
-	private AutoCompleteTextView searchText;
-	private String[] tags = {
-			  "html5", "android", "google", "gwt",
-			  "chrome", "nfc", "arduino", "game",
-			  "java", "javascript", "payment", "ux",
-			};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +34,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		setContentView(R.layout.activity_main);
 		setUpButtons();
 		buttonsActive();
-		searchText = (AutoCompleteTextView) findViewById(R.id.searchText);
-		searchText.addTextChangedListener(this);
-		searchText.setThreshold(1);
-		searchText.setAdapter(new ArrayAdapter<String>(this, android.R.layout.select_dialog_item, tags));
+		
 	}
 	private void setUpButtons(){
 		tweetWallButton = (Button) findViewById(R.id.tweetWall);
@@ -101,29 +92,14 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 			break;
 			
 		case R.id.search_button:
-			searchText.setVisibility(View.VISIBLE);
+			i = new Intent(MainActivity.this , SearchActivity.class);
+			startActivity(i);
 			break;
 		
 		}
 		
 		
 //		startActivity(i);
-		
-	}
-	@Override
-	public void afterTextChanged(Editable arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-			int arg3) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-		// TODO Auto-generated method stub
 		
 	}
 
