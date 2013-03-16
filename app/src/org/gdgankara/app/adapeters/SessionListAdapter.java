@@ -53,10 +53,6 @@ public class SessionListAdapter extends ArrayAdapter<Session>{
 		return view;
 	}
 	
-	
-	
-	
-	
 	private void setFeaturesTextSize(int height){
 		
 		
