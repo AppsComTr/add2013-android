@@ -22,18 +22,6 @@
             android:layout_alignParentRight="true"
             android:background="@drawable/search_icon"/>
 
-    <AutoCompleteTextView
-        android:id="@+id/searchText"
-        android:layout_width="wrap_content"
-        android:textColor="@android:color/black"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/update_button"
-        android:ems="10"
-        android:visibility="invisible" />
-    
 </RelativeLayout>
 
 </merge>
