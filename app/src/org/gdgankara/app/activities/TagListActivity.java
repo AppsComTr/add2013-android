@@ -5,6 +5,8 @@ import java.util.Locale;
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.TagListAdapter;
 import org.gdgankara.app.io.TagHandler;
+import org.gdgankara.app.utils.Util;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +22,6 @@ import android.widget.TextView;
 
 public class TagListActivity extends Activity{
 	
-	private TagHandler tag_handler;
 	private ArrayList<String> tag_list;
 	private ListView tag_listview;
 	private ArrayAdapter<String> taglist_adapter;
@@ -31,24 +32,12 @@ public class TagListActivity extends Activity{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setActivityTheme(getDimensionsOfScreen());
 		setContentView(R.layout.taglist);
-		
-		getTagList();
+		tag_list=Util.TagList;
 		setUpView();
 		childItemsActive();
 		
 	}
-	
-	
-	private void getTagList(){
-		tag_handler=new TagHandler(this);
-		if(Locale.getDefault().getLanguage().equals("tr")){
-			tag_list=tag_handler.getTagList("tr");
-		}
-		else{
-			tag_list=tag_handler.getTagList("en");
-		}
-	}
-	
+
 	private void setUpView(){
 		tag_listview=(ListView)findViewById(R.id.taglist);
 		taglist_adapter=new TagListAdapter(this, tag_list);

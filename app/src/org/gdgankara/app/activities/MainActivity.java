@@ -1,6 +1,7 @@
 package org.gdgankara.app.activities;
 
 import org.gdgankara.app.R;
+import org.gdgankara.app.utils.Util;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -29,6 +30,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Util.prepareStaticLists(this);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		setUpButtons();
