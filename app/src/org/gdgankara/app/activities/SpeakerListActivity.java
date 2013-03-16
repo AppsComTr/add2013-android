@@ -19,7 +19,7 @@ public class SpeakerListActivity extends Activity{
 	private int height;
 	private ListView speaker_listview;
 	private ArrayList<Speaker> speaker_list;
-	private ArrayAdapter<Speaker> speakerlist_adapter;
+	private SpeakerListAdapter speakerlist_adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

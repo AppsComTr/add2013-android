@@ -24,7 +24,7 @@ public class TagListActivity extends Activity{
 	
 	private ArrayList<String> tag_list;
 	private ListView tag_listview;
-	private ArrayAdapter<String> taglist_adapter;
+	private TagListAdapter taglist_adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
