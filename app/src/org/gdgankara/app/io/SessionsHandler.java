@@ -44,7 +44,7 @@ public class SessionsHandler extends BaseHandler {
 		try {
 			jsonObject = doGet(BASE_URL + lang);
 			boolean isVersionUpdated = Util.isVersionUpdated(context, jsonObject);
-			if (isVersionUpdated) {
+			if (!isVersionUpdated) {
 				sessionsList = parseJSONObject(jsonObject);
 				writeListToFile(sessionsList);
 			} else {
@@ -78,7 +78,11 @@ public class SessionsHandler extends BaseHandler {
 				session.setStart_hour(sessionObject.getString("startHour"));
 				session.setHall(sessionObject.getString("hall"));
 				session.setTitle(sessionObject.getString("title"));
-				session.setTags(sessionObject.getString("tags"));
+				if (!session.isBreak()) {
+					session.setTags(sessionObject.getString("tags"));
+				}else {
+					session.setTags("");
+				}
 
 				if (sessionObject.getString("lang").equals(Session.LANG_EN)) {
 					session.setLanguage(Session.LANG_EN);
@@ -92,7 +96,10 @@ public class SessionsHandler extends BaseHandler {
 				} else {
 					session.setDay(Session.DAY_SATURDAY);
 				}
-
+				
+//				if (jsonObjectToSpeaker("speaker1",sessionObject)) {
+//					
+//				}
 				session.setSpeaker1(jsonObjectToSpeaker("speaker1",
 						sessionObject));
 				session.setSpeaker2(jsonObjectToSpeaker("speaker2",
@@ -117,24 +124,41 @@ public class SessionsHandler extends BaseHandler {
 	}
 
 	private Speaker jsonObjectToSpeaker(String speakerKey,
-			JSONObject sessionObject) throws JSONException {
+			JSONObject sessionObject){
 		if (!sessionObject.isNull(speakerKey)) {
-			JSONObject jsonSpeaker = sessionObject.getJSONObject(speakerKey);
+			JSONObject jsonSpeaker = null;
 			Speaker speaker = new Speaker();
-			speaker.setId(jsonSpeaker.getInt("id"));
-			speaker.setBiography(jsonSpeaker.getString("bio"));
-			speaker.setBlog(jsonSpeaker.getString("blog"));
-			speaker.setFacebook(jsonSpeaker.getString("facebook"));
-			speaker.setGplus(jsonSpeaker.getString("gplus"));
-			speaker.setName(jsonSpeaker.getString("name"));
-			speaker.setPhoto(jsonSpeaker.getString("photo"));
-			speaker.setTwitter(jsonSpeaker.getString("twitter"));
-			JSONArray sessionIDArray = jsonSpeaker
-					.getJSONArray("sessionIDList");
-			List<Long> sessionIDList = new ArrayList<Long>();
-			for (int i = 0; i < sessionIDArray.length(); i++) {
-				sessionIDList.add(sessionIDArray.getLong(i));
+			try {
+				jsonSpeaker = sessionObject.getJSONObject(speakerKey);
+				speaker.setId(jsonSpeaker.getInt("id"));
+				speaker.setBiography(jsonSpeaker.getString("bio"));
+				speaker.setBlog(jsonSpeaker.getString("blog"));
+				speaker.setFacebook(jsonSpeaker.getString("facebook"));
+				speaker.setGplus(jsonSpeaker.getString("gplus"));
+				speaker.setName(jsonSpeaker.getString("name"));
+				speaker.setPhoto(jsonSpeaker.getString("photo"));
+				speaker.setTwitter(jsonSpeaker.getString("twitter"));
+			} catch (JSONException e1) {
+				e1.printStackTrace();
 			}
+			JSONArray sessionIDArray;
+			List<Long> sessionIDList = new ArrayList<Long>();
+			try {
+				sessionIDArray = jsonSpeaker.getJSONArray("sessionIDList");
+				
+				for (int i = 0; i < sessionIDArray.length(); i++) {
+					sessionIDList.add(sessionIDArray.getLong(i));
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			} finally{
+				try {
+					sessionIDList.add(jsonSpeaker.getLong("sessionIDList"));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+			
 			speaker.setSessionIDList(sessionIDList);
 			return speaker;
 		} else {
