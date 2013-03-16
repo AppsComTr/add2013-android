@@ -1,28 +1,30 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".SearchActivity" >
-
-    <LinearLayout
+    android:background="#fff">
+    
+    <include
+        android:id="@+id/ust_tab2" 
+        layout="@layout/usttab2"
+        />
+    
+    <ListView 
+        android:id="@+id/searchListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:cacheColorHint="@android:color/transparent"
+        android:groupIndicator="@android:color/transparent"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="50dp">
+        
+    </ListView>
+    
+    <include
+        android:id="@+id/alt_tab" 
+        layout="@layout/alttab"
+    />
 
-        <AutoCompleteTextView
-            android:id="@+id/searchText"
-            android:layout_width="0dip"
-            android:layout_height="60dip"
-            android:layout_weight="4"
-            android:ems="10" />
-
-        <ImageView
-            android:id="@+id/searchActivityButton"
-            android:layout_width="0dip"
-            android:layout_height="60dip"
-            android:layout_weight="1"
-            android:background="@drawable/search_icon" />
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
