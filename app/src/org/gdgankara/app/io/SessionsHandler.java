@@ -44,7 +44,7 @@ public class SessionsHandler extends BaseHandler {
 	@SuppressWarnings("unchecked")
 	public void initializeLists(String lang) {
 		this.lang = lang;
-		JSONObject jsonObject;
+		JSONObject jsonObject = null;
 		try {
 			sessionList = (ArrayList<Session>) readCacheFile(getSessionCacheFileName(lang));
 			if (sessionList == null) {
@@ -54,12 +54,12 @@ public class SessionsHandler extends BaseHandler {
 				writeListToFile(sessionList, getSessionCacheFileName(lang));
 			}
 
-			speakerList = (ArrayList<Speaker>) readCacheFile(getSpeakerCacheFileName());
+			speakerList = (ArrayList<Speaker>) readCacheFile(getSpeakerCacheFileName(lang));
 			if (speakerList == null) {
-				jsonObject = doGet(BASE_URL_SPEAKER);
+//				jsonObject = doGet(BASE_URL_SPEAKER);
 				speakerList = parseJSONObjectToSpeakerList(jsonObject,
 						"speakers");
-				writeListToFile(speakerList, getSpeakerCacheFileName());
+				writeListToFile(speakerList, getSpeakerCacheFileName(lang));
 			}
 
 			setSessionList(sessionList);
@@ -97,19 +97,20 @@ public class SessionsHandler extends BaseHandler {
 	}
 
 	@SuppressWarnings("unchecked")
-	public ArrayList<Speaker> updateSpeakerList() {
+	public ArrayList<Speaker> updateSpeakerList(String lang) {
+		this.lang = lang;
 		JSONObject jsonObject;
 		ArrayList<Speaker> speakerList = new ArrayList<Speaker>();
 		try {
-			jsonObject = doGet(BASE_URL_SPEAKER);
+			jsonObject = doGet(BASE_URL_SPEAKER + lang);
 			boolean isVersionUpdated = Util.isVersionUpdated(context,
 					jsonObject);
 			if (isVersionUpdated) {
 				speakerList = parseJSONObjectToSpeakerList(jsonObject,
 						"speakers");
-				writeListToFile(speakerList, getSpeakerCacheFileName());
+				writeListToFile(speakerList, getSpeakerCacheFileName(lang));
 			} else {
-				speakerList = (ArrayList<Speaker>) readCacheFile(getSpeakerCacheFileName());
+				speakerList = (ArrayList<Speaker>) readCacheFile(getSpeakerCacheFileName(lang));
 			}
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getLocalizedMessage());
@@ -137,9 +138,11 @@ public class SessionsHandler extends BaseHandler {
 				speaker.setBlog(speakerObject.getString("blog"));
 				speaker.setFacebook(speakerObject.getString("facebook"));
 				speaker.setGplus(speakerObject.getString("gplus"));
+				speaker.setLanguage(speakerObject.getString("lang"));
 				speaker.setName(speakerObject.getString("name"));
 				speaker.setPhoto(speakerObject.getString("photo"));
 				speaker.setTwitter(speakerObject.getString("twitter"));
+				
 
 				JSONArray sessionIDArray;
 				List<Long> sessionIDList = new ArrayList<Long>();
@@ -252,8 +255,8 @@ public class SessionsHandler extends BaseHandler {
 		return CACHE_FILE_SESSION + "_" + lang;
 	}
 
-	private String getSpeakerCacheFileName() {
-		return CACHE_FILE_SPEAKER;
+	private String getSpeakerCacheFileName(String lang) {
+		return CACHE_FILE_SPEAKER + "_" + lang;
 	}
 
 	public ArrayList<Session> getSessionList() {

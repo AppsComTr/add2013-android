@@ -10,6 +10,7 @@ public class Speaker implements Serializable {
 	private String blog;
 	private String facebook;
 	private String gplus;
+	private String language;
 	private String name;
 	private String photo;
 	private String twitter;
@@ -103,6 +104,14 @@ public class Speaker implements Serializable {
 
 	public void setSessionIDList(List<Long> sessionIDList) {
 		this.sessionIDList = sessionIDList;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
 }
