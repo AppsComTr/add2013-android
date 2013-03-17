@@ -9,6 +9,7 @@ import java.util.Locale;
 import org.gdgankara.app.io.SessionsHandler;
 import org.gdgankara.app.io.TagHandler;
 import org.gdgankara.app.model.Session;
+import org.gdgankara.app.model.Speaker;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,9 +22,8 @@ public class Util {
 	public static final String TAG = Util.class.getSimpleName();
 	
 	public static ArrayList<Session> SessionList = new ArrayList<Session>();
+	public static ArrayList<Speaker> SpeakerList = new ArrayList<Speaker>();
 	public static ArrayList<String> TagList = new ArrayList<String>();
-//	public static final ArrayList<Speaker> SessionList = new ArrayList<Speaker>();
-//	public static final ArrayList<Announcement> SessionList = new ArrayList<Announcement>();
 	
 	/**
 	 * Shared Preferences'ta tutulan versiyon numarasını verilen numara ile
@@ -56,14 +56,13 @@ public class Util {
 		TagHandler tagHandler = new TagHandler(context);
 		
 		if(Locale.getDefault().getLanguage().equals("tr")){
-			SessionList = sessionsHandler.getSessionsList("tr");
+			sessionsHandler.initializeLists("tr");
 			TagList = tagHandler.getTagList("tr");
 		}
 		else{
-			SessionList = sessionsHandler.getSessionsList("en");
+			sessionsHandler.initializeLists("en");
 			TagList = tagHandler.getTagList("en");
 		}
-		
 	}
 
 	/**

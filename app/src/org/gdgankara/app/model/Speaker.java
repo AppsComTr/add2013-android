@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Speaker implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int id;
+	private long id;
 	private String biography;
 	private String blog;
 	private String facebook;
@@ -19,7 +19,7 @@ public class Speaker implements Serializable {
 		super();
 	}
 
-	public Speaker(int id, String biography, String blog, String facebook,
+	public Speaker(long id, String biography, String blog, String facebook,
 			String gplus, String name, String photo, String twitter, List<Long> sessionIDList) {
 		super();
 		this.id = id;
@@ -33,11 +33,11 @@ public class Speaker implements Serializable {
 		this.sessionIDList = sessionIDList;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

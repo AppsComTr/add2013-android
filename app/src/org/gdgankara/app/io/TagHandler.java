@@ -2,7 +2,6 @@ package org.gdgankara.app.io;
 
 import java.util.ArrayList;
 
-import org.gdgankara.app.model.Tag;
 import org.gdgankara.app.utils.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,7 +12,7 @@ import android.util.Log;
 public class TagHandler extends BaseHandler {
 	public static final String TAG = TagHandler.class.getSimpleName();
 
-	private static final String CACHE_FILE = "TagsJSON";
+	private static final String CACHE_FILE_TAG = "TagsJSON";
 	private static final String BASE_URL = "http://add-2013.appspot.com/api/tags/";
 
 	private Context context;
@@ -30,11 +29,11 @@ public class TagHandler extends BaseHandler {
 		JSONObject jsonObject;
 		ArrayList<String> tagList = new ArrayList<String>();
 		try {
-			tagList = (ArrayList<String>) readCacheFile();
+			tagList = (ArrayList<String>) readCacheFile(getCacheFileName(lang));
 			if (tagList == null) {
 				jsonObject = doGet(BASE_URL + lang);
-				tagList = parseJSONObject(jsonObject);
-				writeListToFile(tagList);
+				tagList = parseJSONObject(jsonObject, "tag");
+				writeListToFile(tagList, getCacheFileName(lang));
 			}
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getLocalizedMessage());
@@ -53,10 +52,10 @@ public class TagHandler extends BaseHandler {
 			jsonObject = doGet(BASE_URL + lang);
 			boolean isVersionUpdated = Util.isVersionUpdated(context, jsonObject);
 			if (isVersionUpdated) {
-				tagList = parseJSONObject(jsonObject);
-				writeListToFile(tagList);
+				tagList = parseJSONObject(jsonObject, "tag");
+				writeListToFile(tagList, getCacheFileName(lang));
 			} else {
-				tagList = (ArrayList<String>) readCacheFile();
+				tagList = (ArrayList<String>) readCacheFile(getCacheFileName(lang));
 			}
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getLocalizedMessage());
@@ -67,9 +66,9 @@ public class TagHandler extends BaseHandler {
 	}
 
 	@Override
-	public ArrayList<String> parseJSONObject(JSONObject jsonObject)
+	public ArrayList<String> parseJSONObject(JSONObject jsonObject, String objectName)
 			throws JSONException {
-		JSONObject tagObject = jsonObject.getJSONObject("tag");
+		JSONObject tagObject = jsonObject.getJSONObject(objectName);
 		String[] tags = tagObject.getString("tags").split(",");
 		ArrayList<String> tagList = new ArrayList<String>();
 		for (String string : tags) {
@@ -78,8 +77,7 @@ public class TagHandler extends BaseHandler {
 		return tagList;
 	}
 
-	@Override
-	public String getCacheFileName() {
-		return CACHE_FILE + "_" + lang;
+	private String getCacheFileName(String lang){
+		return CACHE_FILE_TAG + "_" + lang; 
 	}
 }
