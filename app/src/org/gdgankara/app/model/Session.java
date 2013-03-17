@@ -12,18 +12,14 @@ public class Session implements Serializable {
 
 	protected int day;
 	protected String language;
-	private int id; // eg : 3006
+	private long id;
 	private boolean isBreak;
-	private String date; // eg : 15 Haziran 2013 Cuma
-	private String description; // eg : Android geliştirme
-								// ortamının..........anlatılacaktır.
-	private String start_hour; // eg : 15:30
-	private String end_hour; // eg : 16:45
-	private String hall; // eg : A
-	private String title; // eg : Android Uygulamaya Giriş Çalıştayı 4
-	private Speaker speaker1;
-	private Speaker speaker2;
-	private Speaker speaker3;
+	private String date;
+	private String description;
+	private String start_hour;
+	private String end_hour;
+	private String hall; 
+	private String title; 
 	private List<Long> speakerIDList;
 	private String tags;
 
@@ -31,10 +27,9 @@ public class Session implements Serializable {
 		super();
 	}
 
-	public Session(int day, String language, int id, boolean isBreak,
+	public Session(int day, String language, long id, boolean isBreak,
 			String date, String description, String start_hour,
-			String end_hour, String hall, String title, Speaker speaker1,
-			Speaker speaker2, Speaker speaker3, List<Long> speakerIDList,
+			String end_hour, String hall, String title, List<Long> speakerIDList,
 			String tags) {
 		super();
 		this.day = day;
@@ -47,9 +42,6 @@ public class Session implements Serializable {
 		this.end_hour = end_hour;
 		this.hall = hall;
 		this.title = title;
-		this.speaker1 = speaker1;
-		this.speaker2 = speaker2;
-		this.speaker3 = speaker3;
 		this.speakerIDList = speakerIDList;
 		this.tags = tags;
 	}
@@ -70,11 +62,11 @@ public class Session implements Serializable {
 		this.language = language;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -134,30 +126,6 @@ public class Session implements Serializable {
 		this.title = title;
 	}
 
-	public Speaker getSpeaker1() {
-		return speaker1;
-	}
-
-	public void setSpeaker1(Speaker speaker1) {
-		this.speaker1 = speaker1;
-	}
-
-	public Speaker getSpeaker2() {
-		return speaker2;
-	}
-
-	public void setSpeaker2(Speaker speaker2) {
-		this.speaker2 = speaker2;
-	}
-
-	public Speaker getSpeaker3() {
-		return speaker3;
-	}
-
-	public void setSpeaker3(Speaker speaker3) {
-		this.speaker3 = speaker3;
-	}
-
 	public List<Long> getSpeakerIDList() {
 		return speakerIDList;
 	}
@@ -165,7 +133,7 @@ public class Session implements Serializable {
 	public void setSpeakerIDList(List<Long> speakerIDList) {
 		this.speakerIDList = speakerIDList;
 	}
-
+	
 	public String getTags() {
 		return tags;
 	}

@@ -16,11 +16,16 @@ import android.util.Log;
 public class SessionsHandler extends BaseHandler {
 	public static final String TAG = SessionsHandler.class.getSimpleName();
 
-	private static final String CACHE_FILE = "SessionsJSON";
-	private static final String BASE_URL = "http://add-2013.appspot.com/api/sessions/";
+	private static final String CACHE_FILE_SESSION = "SessionsJSON";
+	private static final String CACHE_FILE_SPEAKER = "SpeakersJSON";
+
+	private static final String BASE_URL_SESSION = "http://add-2013.appspot.com/api/sessions/";
+	private static final String BASE_URL_SPEAKER = "http://add-2013.appspot.com/api/speakers/";
 
 	protected Context context;
 	protected String lang;
+	protected ArrayList<Session> sessionList;
+	protected ArrayList<Speaker> speakerList;
 
 	public SessionsHandler(Context context) {
 		super(context);
@@ -37,60 +42,148 @@ public class SessionsHandler extends BaseHandler {
 	 * @return ArrayList
 	 */
 	@SuppressWarnings("unchecked")
-	public ArrayList<Session> getSessionsList(String lang) {
+	public void initializeLists(String lang) {
 		this.lang = lang;
 		JSONObject jsonObject;
-		ArrayList<Session> sessionsList = new ArrayList<Session>();
 		try {
-			sessionsList = (ArrayList<Session>) readCacheFile();
-			if (sessionsList == null) {
-				jsonObject = doGet(BASE_URL + lang);
-				sessionsList = parseJSONObject(jsonObject);
-				writeListToFile(sessionsList);
+			sessionList = (ArrayList<Session>) readCacheFile(getSessionCacheFileName(lang));
+			if (sessionList == null) {
+				jsonObject = doGet(BASE_URL_SESSION + lang);
+				sessionList = parseJSONObjectToSessionList(jsonObject,
+						"sessions");
+				writeListToFile(sessionList, getSessionCacheFileName(lang));
 			}
+
+			speakerList = (ArrayList<Speaker>) readCacheFile(getSpeakerCacheFileName());
+			if (speakerList == null) {
+				jsonObject = doGet(BASE_URL_SPEAKER);
+				speakerList = parseJSONObjectToSpeakerList(jsonObject,
+						"speakers");
+				writeListToFile(speakerList, getSpeakerCacheFileName());
+			}
+
+			setSessionList(sessionList);
+			setSpeakerList(speakerList);
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getLocalizedMessage());
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
-		} 
-		return sessionsList;
+		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public ArrayList<Session> updateSessionsList(String lang) {
+	public ArrayList<Session> updateSessionList(String lang) {
 		this.lang = lang;
 		JSONObject jsonObject;
 		ArrayList<Session> sessionsList = new ArrayList<Session>();
 		try {
-			jsonObject = doGet(BASE_URL + lang);
-			boolean isVersionUpdated = Util.isVersionUpdated(context, jsonObject);
+			jsonObject = doGet(BASE_URL_SESSION + lang);
+			boolean isVersionUpdated = Util.isVersionUpdated(context,
+					jsonObject);
 			if (isVersionUpdated) {
-				sessionsList = parseJSONObject(jsonObject);
-				writeListToFile(sessionsList);
+				sessionsList = parseJSONObjectToSessionList(jsonObject,
+						"sessions");
+				writeListToFile(sessionsList, getSessionCacheFileName(lang));
 			} else {
-				sessionsList = (ArrayList<Session>) readCacheFile();
+				sessionsList = (ArrayList<Session>) readCacheFile(getSessionCacheFileName(lang));
 			}
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getLocalizedMessage());
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
-		} 
+		}
+		setSessionList(sessionsList);
 		return sessionsList;
 	}
 
-	@Override
-	public ArrayList<Session> parseJSONObject(JSONObject jsonObject) {
+	@SuppressWarnings("unchecked")
+	public ArrayList<Speaker> updateSpeakerList() {
+		JSONObject jsonObject;
+		ArrayList<Speaker> speakerList = new ArrayList<Speaker>();
+		try {
+			jsonObject = doGet(BASE_URL_SPEAKER);
+			boolean isVersionUpdated = Util.isVersionUpdated(context,
+					jsonObject);
+			if (isVersionUpdated) {
+				speakerList = parseJSONObjectToSpeakerList(jsonObject,
+						"speakers");
+				writeListToFile(speakerList, getSpeakerCacheFileName());
+			} else {
+				speakerList = (ArrayList<Speaker>) readCacheFile(getSpeakerCacheFileName());
+			}
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getLocalizedMessage());
+			Log.e(TAG, "Error: " + e.getLocalizedMessage());
+			e.printStackTrace();
+		}
+		setSpeakerList(speakerList);
+		return speakerList;
+	}
+
+	private ArrayList<Speaker> parseJSONObjectToSpeakerList(
+			JSONObject jsonObject, String objectName) {
+		JSONArray speakerArray;
+		ArrayList<Speaker> speakerList = new ArrayList<Speaker>();
+		try {
+			speakerArray = jsonObject.getJSONArray(objectName);
+			int length = speakerArray.length();
+			Speaker speaker;
+
+			for (int i = 0; i < length; i++) {
+				JSONObject speakerObject = (JSONObject) speakerArray.get(i);
+				speaker = new Speaker();
+				speaker.setId(speakerObject.getLong("id"));
+				speaker.setBiography(speakerObject.getString("bio"));
+				speaker.setBlog(speakerObject.getString("blog"));
+				speaker.setFacebook(speakerObject.getString("facebook"));
+				speaker.setGplus(speakerObject.getString("gplus"));
+				speaker.setName(speakerObject.getString("name"));
+				speaker.setPhoto(speakerObject.getString("photo"));
+				speaker.setTwitter(speakerObject.getString("twitter"));
+
+				JSONArray sessionIDArray;
+				List<Long> sessionIDList = new ArrayList<Long>();
+				try {
+					sessionIDArray = speakerObject
+							.getJSONArray("sessionIDList");
+					for (int k = 0; k < sessionIDArray.length(); k++) {
+						sessionIDList.add(sessionIDArray.getLong(k));
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				} finally {
+					try {
+						sessionIDList.add(speakerObject
+								.getLong("sessionIDList"));
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+
+				speaker.setSessionIDList(sessionIDList);
+				speakerList.add(speaker);
+			}
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getLocalizedMessage());
+			Log.e(TAG, "Error: " + e.getLocalizedMessage());
+			e.printStackTrace();
+		}
+		return speakerList;
+	}
+
+	public ArrayList<Session> parseJSONObjectToSessionList(
+			JSONObject jsonObject, String objectName) {
 		JSONArray sessionArray;
 		ArrayList<Session> sessionsList = new ArrayList<Session>();
 		try {
-			sessionArray = jsonObject.getJSONArray("sessions");
+			sessionArray = jsonObject.getJSONArray(objectName);
 			int length = sessionArray.length();
 			Session session;
 
 			for (int i = 0; i < length; i++) {
 				JSONObject sessionObject = (JSONObject) sessionArray.get(i);
 				session = new Session();
-				session.setId(sessionObject.getInt("id"));
+				session.setId(sessionObject.getLong("id"));
 				session.setBreak(sessionObject.getBoolean("break"));
 				session.setDate(sessionObject.getString("day"));
 				session.setDescription(sessionObject.getString("description"));
@@ -100,7 +193,7 @@ public class SessionsHandler extends BaseHandler {
 				session.setTitle(sessionObject.getString("title"));
 				if (!session.isBreak()) {
 					session.setTags(sessionObject.getString("tags"));
-				}else {
+				} else {
 					session.setTags("");
 				}
 
@@ -116,17 +209,34 @@ public class SessionsHandler extends BaseHandler {
 				} else {
 					session.setDay(Session.DAY_SATURDAY);
 				}
-				
-//				if (jsonObjectToSpeaker("speaker1",sessionObject)) {
-//					
-//				}
-				session.setSpeaker1(jsonObjectToSpeaker("speaker1",
-						sessionObject));
-				session.setSpeaker2(jsonObjectToSpeaker("speaker2",
-						sessionObject));
-				session.setSpeaker3(jsonObjectToSpeaker("speaker3",
-						sessionObject));
 
+				// TODO REFACTOR
+				JSONArray speakerIDArray;
+				List<Long> speakerIDList = new ArrayList<Long>();
+				try {
+					speakerIDArray = sessionObject
+							.getJSONArray("speakerIDList");
+					if (!speakerIDArray.get(1).toString().contains("nil")) {
+						for (int k = 0; k < speakerIDArray.length(); k++) {
+							speakerIDList.add(speakerIDArray.getLong(k));
+						}
+					} else {
+						for (int k = 0; k < speakerIDArray.length(); k++) {
+							speakerIDList.add((long) 0);
+						}
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				} finally {
+					try {
+						speakerIDList.add(sessionObject
+								.getLong("speakerIDList"));
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+
+				session.setSpeakerIDList(speakerIDList);
 				sessionsList.add(session);
 			}
 		} catch (JSONException e) {
@@ -138,51 +248,35 @@ public class SessionsHandler extends BaseHandler {
 		return sessionsList;
 	}
 
-	@Override
-	public String getCacheFileName() {
-		return CACHE_FILE + "_" + lang;
+	private String getSessionCacheFileName(String lang) {
+		return CACHE_FILE_SESSION + "_" + lang;
 	}
 
-	private Speaker jsonObjectToSpeaker(String speakerKey,
-			JSONObject sessionObject){
-		if (!sessionObject.isNull(speakerKey)) {
-			JSONObject jsonSpeaker = null;
-			Speaker speaker = new Speaker();
-			try {
-				jsonSpeaker = sessionObject.getJSONObject(speakerKey);
-				speaker.setId(jsonSpeaker.getInt("id"));
-				speaker.setBiography(jsonSpeaker.getString("bio"));
-				speaker.setBlog(jsonSpeaker.getString("blog"));
-				speaker.setFacebook(jsonSpeaker.getString("facebook"));
-				speaker.setGplus(jsonSpeaker.getString("gplus"));
-				speaker.setName(jsonSpeaker.getString("name"));
-				speaker.setPhoto(jsonSpeaker.getString("photo"));
-				speaker.setTwitter(jsonSpeaker.getString("twitter"));
-			} catch (JSONException e1) {
-				e1.printStackTrace();
-			}
-			JSONArray sessionIDArray;
-			List<Long> sessionIDList = new ArrayList<Long>();
-			try {
-				sessionIDArray = jsonSpeaker.getJSONArray("sessionIDList");
-				
-				for (int i = 0; i < sessionIDArray.length(); i++) {
-					sessionIDList.add(sessionIDArray.getLong(i));
-				}
-			} catch (JSONException e) {
-				e.printStackTrace();
-			} finally{
-				try {
-					sessionIDList.add(jsonSpeaker.getLong("sessionIDList"));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-			
-			speaker.setSessionIDList(sessionIDList);
-			return speaker;
-		} else {
-			return null;
-		}
+	private String getSpeakerCacheFileName() {
+		return CACHE_FILE_SPEAKER;
+	}
+
+	public ArrayList<Session> getSessionList() {
+		return sessionList;
+	}
+
+	public void setSessionList(ArrayList<Session> sessionList) {
+		this.sessionList = sessionList;
+		Util.SessionList = sessionList;
+	}
+
+	public ArrayList<Speaker> getSpeakerList() {
+		return speakerList;
+	}
+
+	public void setSpeakerList(ArrayList<Speaker> speakerList) {
+		this.speakerList = speakerList;
+		Util.SpeakerList = speakerList;
+	}
+
+	@Override
+	public ArrayList<?> parseJSONObject(JSONObject jsonObject, String objectName)
+			throws JSONException {
+		return null;
 	}
 }

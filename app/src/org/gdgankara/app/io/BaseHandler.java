@@ -50,9 +50,9 @@ public abstract class BaseHandler {
 	 * @param ArrayList list
 	 * @throws IOException
 	 */
-	public void writeListToFile(ArrayList<?> list) throws IOException{
+	public void writeListToFile(ArrayList<?> list, String cacheFileName) throws IOException{
 		FileOutputStream fileOutputStream;
-		fileOutputStream = context.openFileOutput(getCacheFileName(), Context.MODE_PRIVATE);
+		fileOutputStream = context.openFileOutput(cacheFileName, Context.MODE_PRIVATE);
 		ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
 		outputStream.writeObject(list);
 		outputStream.close();
@@ -65,24 +65,17 @@ public abstract class BaseHandler {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public ArrayList<?> readCacheFile() throws IOException, ClassNotFoundException{
-		File cacheFile = new File(context.getFilesDir().toString() + "/" + getCacheFileName());
+	public ArrayList<?> readCacheFile(String cacheFileName) throws IOException, ClassNotFoundException{
+		File cacheFile = new File(context.getFilesDir().toString() + "/" + cacheFileName);
 		ArrayList<?> list = null;
 		if (cacheFile.exists()) {
-			FileInputStream fileInputStream = context.openFileInput(getCacheFileName());
+			FileInputStream fileInputStream = context.openFileInput(cacheFileName);
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 			list = (ArrayList<?>)objectInputStream.readObject();
 			objectInputStream.close();
 		}
 		return list;
 	}
-
-	/**
-	 * Extend edildiği sınıfa ait cache dosyasının ismini döner.
-	 * 
-	 * @return String
-	 */
-	public abstract String getCacheFileName();
 	
 	/**
 	 * Verilen json nesnesini işleyerek arraylist döner
@@ -91,6 +84,6 @@ public abstract class BaseHandler {
 	 * @return ArrayList
 	 * @throws JSONException
 	 */
-	public abstract ArrayList<?> parseJSONObject(JSONObject jsonObject) throws JSONException;
+	public abstract ArrayList<?> parseJSONObject(JSONObject jsonObject, String objectName) throws JSONException;
 
 }
