@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+    
+    <include
+        android:id="@+id/ust_tab" 
+        layout="@layout/usttab"
+        />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="vertical">
+        
+        <RelativeLayout 
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:background="#cfcfcf">
+        
+        <TextView 
+            android:id="@+id/session_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="#1c1c1c"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="3dp"
+            android:layout_toLeftOf="@+id/favorite_session"/>
+        
+        <TextView 
+            android:id="@+id/session_features"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/session_title"
+            android:layout_marginTop="3dp"
+            android:textColor="#636363"/>
+        
+        <ImageView 
+            android:id="@+id/favorite_session"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignTop="@+id/session_title"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/favorite_button_passive"/>
+        
+    </RelativeLayout>
+    
+   <ScrollView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:orientation="vertical">
+        
+        <TextView 
+            android:id="@+id/session_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"/>
+        
+        <TextView 
+            android:id="@+id/speaker_title"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="#135800"
+            android:textStyle="bold"/>
+        
+        <ImageView 
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@drawable/sessionpage_divider"/>
+        
+        <LinearLayout 
+            android:id="@+id/sessionpage_speakerlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+        </LinearLayout>
+        
+        <TextView 
+            android:id="@+id/requirement_title"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="7dp"
+            android:textColor="#135800"
+            android:textStyle="bold"/>
+        
+        <ImageView 
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@drawable/sessionpage_divider"/>
+        
+        <TextView 
+            android:id="@+id/requirement_description"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="#000"/>
+        
+        
+        
+    </LinearLayout>
+        
+    
+   </ScrollView>
+    
+   </LinearLayout>
+    
+    <include
+        android:id="@+id/alt_tab" 
+        layout="@layout/alttab"
+    />
+    
+
+</RelativeLayout>

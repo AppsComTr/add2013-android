@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+    
+     <include
+        android:id="@+id/ust_tab" 
+        layout="@layout/usttab"
+        />
+     
+     
+     <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="45dp"
+         android:layout_marginBottom="30dp"
+         android:padding="15dp"
+         android:orientation="vertical">
+         
+     
+     
+     <RelativeLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+         
+        <ImageView 
+	        android:id="@+id/speakerpage_image"
+	        android:layout_width="50dp"
+	        android:layout_height="50dp"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentTop="true"
+	        android:background="@drawable/speaker_image"/>
+        
+        <TextView 
+            android:id="@+id/speakerpage_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/speakerpage_image"
+            android:layout_above="@+id/speakerpage_job"
+            android:layout_marginLeft="10dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="#000"
+            android:textStyle="bold"/>
+        
+        <TextView 
+            android:id="@+id/speakerpage_job"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/speakerpage_image"
+            android:layout_alignLeft="@+id/speakerpage_name"
+            android:textColor="#505050"/>       
+         
+     </RelativeLayout>
+     
+     <ScrollView 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+        
+         <LinearLayout 
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical">
+     
+     <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sessionpage_divider"
+            android:layout_marginTop="5dp"/>
+        
+        <TextView 
+            android:id="@+id/speakerpage_bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"/>
+        
+        
+        <TextView 
+            android:id="@+id/speakerpage_sessiontitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#135800"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sessionpage_divider"
+            android:layout_marginTop="5dp"/>
+        
+        <LinearLayout 
+            android:id="@+id/speakerpage_sessionlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            
+        </LinearLayout>
+        
+        
+        <TextView 
+            android:id="@+id/speakerpage_profiletitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#135800"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sessionpage_divider"
+            android:layout_marginTop="5dp"/>
+        
+        </LinearLayout>
+        
+        </ScrollView>
+    
+    </LinearLayout>
+    
+    <include
+        android:id="@+id/alt_tab" 
+        layout="@layout/alttab"
+    />
+    
+
+</RelativeLayout>

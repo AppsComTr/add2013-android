@@ -14,12 +14,7 @@ import android.widget.ImageView;
 
 public class MainActivity extends Activity implements OnClickListener{
 
-	private Button tweetWallButton;
-	private Button programButton;
-	private Button haritaButton;
-	private Button oturumButton;
-	private Button sponsorButton;
-	private Button favoriButton;
+	private Button tweetWallButton,programButton,haritaButton,oturumButton,sponsorButton,favoriButton,konusmaciButton;
 	private ImageView araButton;
 	
 	@Override
@@ -40,6 +35,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		oturumButton=(Button) findViewById(R.id.oturum_button);
 		programButton=(Button) findViewById(R.id.program_button);
 		araButton = (ImageView)findViewById(R.id.search_button);
+		konusmaciButton=(Button)findViewById(R.id.speakers_button);
 	}
 	
 	private void buttonsActive(){
@@ -49,6 +45,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		sponsorButton.setOnClickListener(this);
 		oturumButton.setOnClickListener(this);
 		programButton.setOnClickListener(this);
+		konusmaciButton.setOnClickListener(this);
 		araButton.setOnClickListener(this);
 	}
 
@@ -87,6 +84,10 @@ public class MainActivity extends Activity implements OnClickListener{
 		case R.id.favori_button:
 			break;
 			
+		case R.id.speakers_button:
+			i = new Intent(MainActivity.this ,SpeakerListActivity.class);
+			startActivity(i);
+			break;
 		case R.id.search_button:
 			i = new Intent(MainActivity.this , SearchActivity.class);
 			startActivity(i);

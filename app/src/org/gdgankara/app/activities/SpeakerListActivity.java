@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.SpeakerListAdapter;
 import org.gdgankara.app.model.Speaker;
+import org.gdgankara.app.utils.Util;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class SpeakerListActivity extends Activity{
 
@@ -26,17 +32,18 @@ public class SpeakerListActivity extends Activity{
 		setContentView(R.layout.speakerlist);
 		getSpeakerList();
 		setUpView();
+		childItemsActive();
 	}
 	
 	private void setUpView() {
 		
-		speaker_listview=(ListView)findViewById(R.id.sessionlist);
+		speaker_listview=(ListView)findViewById(R.id.speakerlist);
 		speakerlist_adapter=new SpeakerListAdapter(this, speaker_list, height);
 		speaker_listview.setAdapter(speakerlist_adapter);
 	}
 	
 	private void getSpeakerList() {
-		
+		speaker_list=Util.SpeakerList;
 	}
 	
 	private int getDimensionsOfScreen(){
@@ -44,6 +51,28 @@ public class SpeakerListActivity extends Activity{
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		return metrics.heightPixels;
 
+	}
+	
+	private void childItemsActive() {
+		speaker_listview.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				
+				startSpeakerPage(arg2);
+			}		
+			
+		});
+	}
+	
+	private void startSpeakerPage(int index) {
+		Intent intent=new Intent(this,SpeakerPageActivity.class);
+		Bundle b=new Bundle();
+		Long id=speaker_list.get(index).getId();
+		b.putLong("id", id);
+		intent.putExtras(b);
+		this.startActivity(intent);
 	}
 	
 	private void setActivityTheme(int height){

@@ -4,6 +4,7 @@ import java.util.List;
 import org.gdgankara.app.R;
 import org.gdgankara.app.model.Speaker;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,7 @@ public class SpeakerListAdapter extends ArrayAdapter<Speaker>{
 		text=(TextView)view.findViewById(R.id.speaker_name);
 		text.setText(speaker.getName());
 		text=(TextView)view.findViewById(R.id.speaker_bio);
-		text.setText(speaker.getBiography().subSequence(0, 20)+"...");
+		text.setText(speaker.getBiography());
 		text.setTextSize(textSize);
 		return view;
 	}
@@ -41,16 +42,16 @@ public class SpeakerListAdapter extends ArrayAdapter<Speaker>{
 		
 		
 		if(height<=320){
-			textSize=8;
-		}
-		else if(height<=480){
 			textSize=9;
 		}
-		else if(height<=800){
+		else if(height<=480){
 			textSize=10;
 		}
-		else{
+		else if(height<=800){
 			textSize=11;
+		}
+		else{
+			textSize=12;
 		}
 		
 	}

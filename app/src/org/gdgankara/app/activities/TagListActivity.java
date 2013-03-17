@@ -46,16 +46,16 @@ public class TagListActivity extends Activity{
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				
-				startSessionList(arg1);
+				startSessionList(arg2);
 			}
 			
 		});
 	}
 	
-	private void startSessionList(View view){
+	private void startSessionList(int index){
 		Intent intent=new Intent(this,SessionListActivity.class);
 		Bundle b=new Bundle();
-		String tag_name=(String)((TextView)view.findViewById(R.id.tag_name)).getText();
+		String tag_name=tag_list.get(index);
 		b.putString("tag", tag_name);
 		intent.putExtras(b);
 		this.startActivity(intent);

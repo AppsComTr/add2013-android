@@ -15,23 +15,30 @@
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/speaker_image"/>
         
         <TextView 
             android:id="@+id/speaker_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/speaker_image"
             android:layout_toRightOf="@+id/speaker_image"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/speaker_bio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"           
             android:layout_alignLeft="@+id/speaker_name"
             android:layout_below="@+id/speaker_name"
+            android:layout_marginRight="20dp"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="#505050"/>
         
     </RelativeLayout>

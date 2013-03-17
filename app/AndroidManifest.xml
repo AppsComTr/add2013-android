@@ -41,6 +41,19 @@
             android:name="org.gdgankara.app.activities.SearchActivity"
             android:label="@string/title_activity_search" >
             </activity>
+            
+        <activity
+            android:name="org.gdgankara.app.activities.SpeakerListActivity"
+            android:label="@string/title_activity_sessionlist" >
+        </activity> 
+        <activity
+            android:name="org.gdgankara.app.activities.SessionPageActivity"
+            android:label="@string/title_activity_sessionlist" >
+        </activity> 
+        <activity
+            android:name="org.gdgankara.app.activities.SpeakerPageActivity"
+            android:label="@string/title_activity_sessionlist" >
+        </activity> 
     </application>
 
 </manifest>

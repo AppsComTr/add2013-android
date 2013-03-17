@@ -10,13 +10,17 @@ import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class SessionListActivity extends Activity{
 	
@@ -37,6 +41,7 @@ public class SessionListActivity extends Activity{
 		total_session_list=Util.SessionList;
 		sessionListFilter();
 		setUpView();
+		childItemsActive();
 	}
 	
 	
@@ -46,6 +51,28 @@ public class SessionListActivity extends Activity{
 		session_listview=(ListView)findViewById(R.id.sessionlist);
 		sessionlist_adapter=new SessionListAdapter(this, filtered_session_list, height);
 		session_listview.setAdapter(sessionlist_adapter);
+	}
+	
+	private void childItemsActive() {
+		session_listview.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				
+				startSessionPage(arg2);
+			}
+			
+		});
+	}
+	
+	private void startSessionPage(int index){
+		Intent intent=new Intent(this,SessionPageActivity.class);
+		Bundle b=new Bundle();
+		Long id=filtered_session_list.get(index).getId();
+		b.putLong("id", id);
+		intent.putExtras(b);
+		this.startActivity(intent);
 	}
 
 	private int getDimensionsOfScreen(){

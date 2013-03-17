@@ -5,14 +5,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Locale;
-
 import org.gdgankara.app.io.SessionsHandler;
 import org.gdgankara.app.io.TagHandler;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
