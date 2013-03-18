@@ -1,20 +1,23 @@
 package org.gdgankara.app.io;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
+import org.gdgankara.app.services.ImageCacheService;
 import org.gdgankara.app.utils.Util;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 public class SessionsHandler extends BaseHandler {
-	public static final String TAG = SessionsHandler.class.getSimpleName();
+	private static final String TAG = SessionsHandler.class.getSimpleName();
 
 	private static final String CACHE_FILE_SESSION = "SessionsJSON";
 	private static final String CACHE_FILE_SPEAKER = "SpeakersJSON";
@@ -56,9 +59,11 @@ public class SessionsHandler extends BaseHandler {
 
 			speakerList = (ArrayList<Speaker>) readCacheFile(getSpeakerCacheFileName(lang));
 			if (speakerList == null) {
-//				jsonObject = doGet(BASE_URL_SPEAKER);
+				// jsonObject = doGet(BASE_URL_SPEAKER);
 				speakerList = parseJSONObjectToSpeakerList(jsonObject,
 						"speakers");
+				setSpeakerList(speakerList);
+				startImageCacheService(ImageCacheService.CACHE_SPEAKER_IMAGES);
 				writeListToFile(speakerList, getSpeakerCacheFileName(lang));
 			}
 
@@ -108,6 +113,7 @@ public class SessionsHandler extends BaseHandler {
 			if (isVersionUpdated) {
 				speakerList = parseJSONObjectToSpeakerList(jsonObject,
 						"speakers");
+				startImageCacheService(ImageCacheService.CACHE_SPEAKER_IMAGES);
 				writeListToFile(speakerList, getSpeakerCacheFileName(lang));
 			} else {
 				speakerList = (ArrayList<Speaker>) readCacheFile(getSpeakerCacheFileName(lang));
@@ -119,6 +125,16 @@ public class SessionsHandler extends BaseHandler {
 		}
 		setSpeakerList(speakerList);
 		return speakerList;
+	}
+
+	public void updateSpeakerListCacheFile(String lang) {
+		try {
+			writeListToFile(Util.SpeakerList, getSpeakerCacheFileName(lang));
+		} catch (IOException e) {
+			System.out.println("Error: " + e.getLocalizedMessage());
+			Log.e(TAG, "Error: " + e.getLocalizedMessage());
+			e.printStackTrace();
+		}
 	}
 
 	private ArrayList<Speaker> parseJSONObjectToSpeakerList(
@@ -142,27 +158,20 @@ public class SessionsHandler extends BaseHandler {
 				speaker.setName(speakerObject.getString("name"));
 				speaker.setPhoto(speakerObject.getString("photo"));
 				speaker.setTwitter(speakerObject.getString("twitter"));
-				
 
 				JSONArray sessionIDArray;
 				List<Long> sessionIDList = new ArrayList<Long>();
 				try {
+					sessionIDList.add(speakerObject.getLong("sessionIDList"));
+				} catch (JSONException e) {
+//					e.printStackTrace();
 					sessionIDArray = speakerObject
 							.getJSONArray("sessionIDList");
 					for (int k = 0; k < sessionIDArray.length(); k++) {
 						sessionIDList.add(sessionIDArray.getLong(k));
 					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-				} finally {
-					try {
-						sessionIDList.add(speakerObject
-								.getLong("sessionIDList"));
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
 				}
-
+				
 				speaker.setSessionIDList(sessionIDList);
 				speakerList.add(speaker);
 			}
@@ -196,6 +205,29 @@ public class SessionsHandler extends BaseHandler {
 				session.setTitle(sessionObject.getString("title"));
 				if (!session.isBreak()) {
 					session.setTags(sessionObject.getString("tags"));
+
+					// TODO REFACTOR
+					JSONArray speakerIDArray;
+					List<Long> speakerIDList = new ArrayList<Long>();
+					try {
+						speakerIDList.add(sessionObject
+								.getLong("speakerIDList"));
+					} catch (JSONException e) {
+//						e.printStackTrace();
+						speakerIDArray = sessionObject
+								.getJSONArray("speakerIDList");
+						if (speakerIDArray.get(0) != null) {
+							for (int k = 0; k < speakerIDArray.length(); k++) {
+								speakerIDList.add(speakerIDArray.getLong(k));
+							}
+						} else {
+							for (int k = 0; k < speakerIDArray.length(); k++) {
+								speakerIDList.add((long) 0);
+							}
+						}
+					}
+					
+					session.setSpeakerIDList(speakerIDList);
 				} else {
 					session.setTags("");
 				}
@@ -213,33 +245,6 @@ public class SessionsHandler extends BaseHandler {
 					session.setDay(Session.DAY_SATURDAY);
 				}
 
-				// TODO REFACTOR
-				JSONArray speakerIDArray;
-				List<Long> speakerIDList = new ArrayList<Long>();
-				try {
-					speakerIDArray = sessionObject
-							.getJSONArray("speakerIDList");
-					if (!speakerIDArray.get(1).toString().contains("nil")) {
-						for (int k = 0; k < speakerIDArray.length(); k++) {
-							speakerIDList.add(speakerIDArray.getLong(k));
-						}
-					} else {
-						for (int k = 0; k < speakerIDArray.length(); k++) {
-							speakerIDList.add((long) 0);
-						}
-					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-				} finally {
-					try {
-						speakerIDList.add(sessionObject
-								.getLong("speakerIDList"));
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-				}
-
-				session.setSpeakerIDList(speakerIDList);
 				sessionsList.add(session);
 			}
 		} catch (JSONException e) {
@@ -247,8 +252,14 @@ public class SessionsHandler extends BaseHandler {
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}
-
 		return sessionsList;
+	}
+
+	private void startImageCacheService(String type) {
+		Intent imageCacheIntent = new Intent(context, ImageCacheService.class);
+		imageCacheIntent.setAction(ImageCacheService.CACHE_STARTED);
+		imageCacheIntent.putExtra(ImageCacheService.CACHE_TYPE, type);
+		context.startService(imageCacheIntent);
 	}
 
 	private String getSessionCacheFileName(String lang) {
