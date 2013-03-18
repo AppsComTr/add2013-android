@@ -1,6 +1,8 @@
 package org.gdgankara.app.utils;
 
 import java.io.BufferedReader;
+import java.io.FilterInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -32,19 +34,25 @@ public class Util {
 	 * @return Boolean
 	 * @throws JSONException 
 	 */
-	public static Boolean isVersionUpdated(Context context,  JSONObject jsonObject) throws JSONException {
-		long number = jsonObject.getJSONObject("version")
-				.getLong("number");
+	public static Boolean isVersionUpdated(Context context,  JSONObject jsonObject) {
+		long number;
 		Boolean state = false;
-		SharedPreferences settings = context.getSharedPreferences(TAG, 0);
-		long mNumber = settings.getLong("version", 0);
-		if (mNumber == number) {
+		try {
+			number = jsonObject.getJSONObject("version")
+					.getLong("number");
+			SharedPreferences settings = context.getSharedPreferences(TAG, 0);
+			long mNumber = settings.getLong("version", 0);
+			if (mNumber == number) {
+				state = false;
+			} else if (mNumber != number || mNumber == 0) {
+				Editor editor = settings.edit();
+				editor.putLong("version", number);
+				editor.commit();
+				state = true;
+			}
+		} catch (JSONException e) {
 			state = false;
-		} else if (mNumber != number || mNumber == 0) {
-			Editor editor = settings.edit();
-			editor.putLong("version", number);
-			editor.commit();
-			state = true;
+			e.printStackTrace();
 		}
 		return state;
 	}
@@ -60,6 +68,15 @@ public class Util {
 		else{
 			sessionsHandler.initializeLists("en");
 			TagList = tagHandler.getTagList("en");
+		}
+	}
+	
+	public static String getDefaultLanguage(){
+		if(Locale.getDefault().getLanguage().equals("tr")){
+			return "tr";
+		}
+		else{
+			return "en";
 		}
 	}
 
@@ -88,5 +105,32 @@ public class Util {
 		}
 		return result;
 	}
+	
+	/*
+     * An InputStream that skips the exact number of bytes provided, unless it reaches EOF.
+     */
+    public static class FlushedInputStream extends FilterInputStream {
+        public FlushedInputStream(InputStream inputStream) {
+            super(inputStream);
+        }
+
+        @Override
+        public long skip(long n) throws IOException {
+            long totalBytesSkipped = 0L;
+            while (totalBytesSkipped < n) {
+                long bytesSkipped = in.skip(n - totalBytesSkipped);
+                if (bytesSkipped == 0L) {
+                    int b = read();
+                    if (b < 0) {
+                        break;  // we reached EOF
+                    } else {
+                        bytesSkipped = 1; // we read one byte
+                    }
+                }
+                totalBytesSkipped += bytesSkipped;
+            }
+            return totalBytesSkipped;
+        }
+    }
 
 }
