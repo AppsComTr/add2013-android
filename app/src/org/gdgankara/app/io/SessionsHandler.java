@@ -59,7 +59,9 @@ public class SessionsHandler extends BaseHandler {
 
 			speakerList = (ArrayList<Speaker>) readCacheFile(getSpeakerCacheFileName(lang));
 			if (speakerList == null) {
-				// jsonObject = doGet(BASE_URL_SPEAKER);
+				if (jsonObject == null) {
+					jsonObject = doGet(BASE_URL_SPEAKER + lang);
+				}
 				speakerList = parseJSONObjectToSpeakerList(jsonObject,
 						"speakers");
 				setSpeakerList(speakerList);
@@ -70,7 +72,6 @@ public class SessionsHandler extends BaseHandler {
 			setSessionList(sessionList);
 			setSpeakerList(speakerList);
 		} catch (Exception e) {
-			System.out.println("Error: " + e.getLocalizedMessage());
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}
@@ -93,7 +94,6 @@ public class SessionsHandler extends BaseHandler {
 				sessionsList = (ArrayList<Session>) readCacheFile(getSessionCacheFileName(lang));
 			}
 		} catch (Exception e) {
-			System.out.println("Error: " + e.getLocalizedMessage());
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}
@@ -119,7 +119,6 @@ public class SessionsHandler extends BaseHandler {
 				speakerList = (ArrayList<Speaker>) readCacheFile(getSpeakerCacheFileName(lang));
 			}
 		} catch (Exception e) {
-			System.out.println("Error: " + e.getLocalizedMessage());
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}
@@ -131,7 +130,6 @@ public class SessionsHandler extends BaseHandler {
 		try {
 			writeListToFile(Util.SpeakerList, getSpeakerCacheFileName(lang));
 		} catch (IOException e) {
-			System.out.println("Error: " + e.getLocalizedMessage());
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}
@@ -164,19 +162,17 @@ public class SessionsHandler extends BaseHandler {
 				try {
 					sessionIDList.add(speakerObject.getLong("sessionIDList"));
 				} catch (JSONException e) {
-//					e.printStackTrace();
 					sessionIDArray = speakerObject
 							.getJSONArray("sessionIDList");
 					for (int k = 0; k < sessionIDArray.length(); k++) {
 						sessionIDList.add(sessionIDArray.getLong(k));
 					}
 				}
-				
+
 				speaker.setSessionIDList(sessionIDList);
 				speakerList.add(speaker);
 			}
 		} catch (Exception e) {
-			System.out.println("Error: " + e.getLocalizedMessage());
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}
@@ -203,6 +199,8 @@ public class SessionsHandler extends BaseHandler {
 				session.setStart_hour(sessionObject.getString("startHour"));
 				session.setHall(sessionObject.getString("hall"));
 				session.setTitle(sessionObject.getString("title"));
+				session.setFavorite(false);
+
 				if (!session.isBreak()) {
 					session.setTags(sessionObject.getString("tags"));
 
@@ -213,7 +211,7 @@ public class SessionsHandler extends BaseHandler {
 						speakerIDList.add(sessionObject
 								.getLong("speakerIDList"));
 					} catch (JSONException e) {
-//						e.printStackTrace();
+						// e.printStackTrace();
 						speakerIDArray = sessionObject
 								.getJSONArray("speakerIDList");
 						if (speakerIDArray.get(0) != null) {
@@ -226,7 +224,7 @@ public class SessionsHandler extends BaseHandler {
 							}
 						}
 					}
-					
+
 					session.setSpeakerIDList(speakerIDList);
 				} else {
 					session.setTags("");
@@ -248,7 +246,6 @@ public class SessionsHandler extends BaseHandler {
 				sessionsList.add(session);
 			}
 		} catch (JSONException e) {
-			System.out.println("Error: " + e.getLocalizedMessage());
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}
@@ -260,6 +257,19 @@ public class SessionsHandler extends BaseHandler {
 		imageCacheIntent.setAction(ImageCacheService.CACHE_STARTED);
 		imageCacheIntent.putExtra(ImageCacheService.CACHE_TYPE, type);
 		context.startService(imageCacheIntent);
+	}
+	
+	private void updateFavoriteSessions(ArrayList<Session> sessionList) {
+		if (Util.FavoritesList != null) {
+			for (Session session : sessionList) {
+				for (Long favoriteSessionId : Util.FavoritesList) {
+					if (session.getId() == favoriteSessionId) {
+						session.setFavorite(true);
+					}
+				}
+			}
+		}
+
 	}
 
 	private String getSessionCacheFileName(String lang) {
@@ -275,6 +285,7 @@ public class SessionsHandler extends BaseHandler {
 	}
 
 	public void setSessionList(ArrayList<Session> sessionList) {
+		updateFavoriteSessions(sessionList);
 		this.sessionList = sessionList;
 		Util.SessionList = sessionList;
 	}

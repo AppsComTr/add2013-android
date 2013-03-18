@@ -38,7 +38,6 @@ public class AnnouncementHandler extends BaseHandler {
 				writeListToFile(announcementList, getCacheFileName(lang));
 			}
 		} catch (Exception e) {
-			System.out.println("Error: " + e.getLocalizedMessage());
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}
@@ -61,7 +60,6 @@ public class AnnouncementHandler extends BaseHandler {
 				announcementList = (ArrayList<Announcement>) readCacheFile(getCacheFileName(lang));
 			}
 		} catch (Exception e) {
-			System.out.println("Error: " + e.getLocalizedMessage());
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}
@@ -96,7 +94,6 @@ public class AnnouncementHandler extends BaseHandler {
 				announcementList.add(announcement);
 			}
 		} catch (Exception e) {
-			System.out.println("Error: " + e.getLocalizedMessage());
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}

@@ -14,6 +14,7 @@ public class Session implements Serializable {
 	protected String language;
 	private long id;
 	private boolean isBreak;
+	private boolean isFavorite;
 	private String date;
 	private String description;
 	private String start_hour;
@@ -140,6 +141,14 @@ public class Session implements Serializable {
 
 	public void setTags(String tags) {
 		this.tags = tags;
+	}
+
+	public boolean isFavorite() {
+		return isFavorite;
+	}
+
+	public void setFavorite(boolean isFavorite) {
+		this.isFavorite = isFavorite;
 	}
 
 }
