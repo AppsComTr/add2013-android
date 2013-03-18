@@ -36,7 +36,6 @@ public class TagHandler extends BaseHandler {
 				writeListToFile(tagList, getCacheFileName(lang));
 			}
 		} catch (Exception e) {
-			System.out.println("Error: " + e.getLocalizedMessage());
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}
@@ -58,7 +57,6 @@ public class TagHandler extends BaseHandler {
 				tagList = (ArrayList<String>) readCacheFile(getCacheFileName(lang));
 			}
 		} catch (Exception e) {
-			System.out.println("Error: " + e.getLocalizedMessage());
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}

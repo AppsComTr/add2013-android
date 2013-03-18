@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import org.gdgankara.app.io.FavoritesHandler;
 import org.gdgankara.app.io.SessionsHandler;
 import org.gdgankara.app.io.TagHandler;
 import org.gdgankara.app.model.Session;
@@ -26,6 +27,7 @@ public class Util {
 	public static ArrayList<Session> SessionList = new ArrayList<Session>();
 	public static ArrayList<Speaker> SpeakerList = new ArrayList<Speaker>();
 	public static ArrayList<String> TagList = new ArrayList<String>();
+	public static ArrayList<Long> FavoritesList = new ArrayList<Long>();
 	
 	/**
 	 * Shared Preferences'ta tutulan versiyon numarasını verilen numara ile
@@ -60,19 +62,37 @@ public class Util {
 	}
 	
 	public static void prepareStaticLists(Context context){
+		String lang = getDefaultLanguage();
 		SessionsHandler sessionsHandler = new SessionsHandler(context);
 		TagHandler tagHandler = new TagHandler(context);
+		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
 		
-		if(Locale.getDefault().getLanguage().equals("tr")){
-			sessionsHandler.initializeLists("tr");
-			TagList = tagHandler.getTagList("tr");
-		}
-		else{
-			sessionsHandler.initializeLists("en");
-			TagList = tagHandler.getTagList("en");
-		}
+		FavoritesList = favoritesHandler.getFavoritesList(lang);
+		sessionsHandler.initializeLists(lang);
+		TagList = tagHandler.getTagList(lang);
 	}
 	
+	public static ArrayList<Long> addSessionFavorites(ArrayList<Long> favoritesList, Context context, Long sessionID){
+		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
+		if (FavoritesList == null) {
+			FavoritesList = new ArrayList<Long>();
+		}
+		if (!FavoritesList.contains(sessionID)) {
+			FavoritesList.add(sessionID);
+		}
+		favoritesHandler.updateFavoritesList(favoritesList, getDefaultLanguage());
+		return FavoritesList;
+	}
+	
+	public static ArrayList<Long> removeSessionFavorites(ArrayList<Long> favoritesList, Context context, Long sessionID){
+		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
+		if (FavoritesList.contains(sessionID)) {
+			FavoritesList.remove(sessionID);
+		}
+		favoritesHandler.updateFavoritesList(favoritesList, getDefaultLanguage());
+		return FavoritesList;
+	}
+		
 	public static String getDefaultLanguage(){
 		if(Locale.getDefault().getLanguage().equals("tr")){
 			return "tr";

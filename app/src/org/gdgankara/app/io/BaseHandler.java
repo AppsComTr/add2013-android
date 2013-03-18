@@ -9,7 +9,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-import org.gdgankara.app.model.Session;
 import org.gdgankara.app.tasks.GetJSONObjectTask;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -66,7 +65,7 @@ public abstract class BaseHandler {
 	 * @throws ClassNotFoundException
 	 */
 	public ArrayList<?> readCacheFile(String cacheFileName) throws IOException, ClassNotFoundException{
-		File cacheFile = new File(context.getFilesDir().toString() + "/" + cacheFileName);
+		File cacheFile = new File(context.getFilesDir().toString(), cacheFileName);
 		ArrayList<?> list = null;
 		if (cacheFile.exists()) {
 			FileInputStream fileInputStream = context.openFileInput(cacheFileName);

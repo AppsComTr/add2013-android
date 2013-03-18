@@ -62,7 +62,6 @@ public class ImageCacheService extends IntentService {
 				Intent imageCacheReceiverIntent = new Intent(CACHE_COMPLETED);
 				imageCacheReceiverIntent.putExtra(CACHE_TYPE, CACHE_SPEAKER_IMAGES);
 				sendBroadcast(imageCacheReceiverIntent);
-				Log.i(TAG,"Broadcast tetiklendi");
 			}
 			if (cacheType.equals(CACHE_ANNOUNCEMENT_IMAGES)) {
 				
