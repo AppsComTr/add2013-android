@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.gdgankara.app"
     android:versionCode="1"
     android:versionName="1.0" >
@@ -35,12 +36,27 @@
         <activity
             android:name="org.gdgankara.app.activities.SessionListActivity"
             android:label="@string/title_activity_sessionlist" >
-        </activity>  
+        </activity>
         <activity
-            android:theme="@android:style/Theme.Light.NoTitleBar"
             android:name="org.gdgankara.app.activities.SearchActivity"
-            android:label="@string/title_activity_search" >
-            </activity>
+            android:label="@string/title_activity_search"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
+
+        <service
+            android:name="org.gdgankara.app.services.ImageCacheService"
+            android:enabled="true"
+            android:exported="false" >
+        </service>
+
+        <receiver
+            android:name=".ImageCacheReceiver"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name=".ImageCacheService.CACHE_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
