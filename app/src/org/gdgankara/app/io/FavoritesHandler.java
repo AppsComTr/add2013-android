@@ -32,14 +32,13 @@ public class FavoritesHandler extends BaseHandler {
 		return favoritesList;
 	}
 	
-	public ArrayList<Long> updateFavoritesList(ArrayList<Long> favoritesList, String lang){
+	public void updateFavoritesList(ArrayList<Long> favoritesList, String lang){
 		try {
 			writeListToFile(favoritesList, getCacheFileName(lang));
 		} catch (Exception e) {
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}
-		return favoritesList;
 	}
 
 	private String getCacheFileName(String lang){

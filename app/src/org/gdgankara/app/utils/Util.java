@@ -71,7 +71,7 @@ public class Util {
 		TagList = tagHandler.getTagList(lang);
 	}
 	
-	public static ArrayList<Long> addSessionFavorites(ArrayList<Long> favoritesList, Context context, Long sessionID){
+	public static void addSessionFavorites(Context context, Long sessionID){
 		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
 		if (FavoritesList == null) {
 			FavoritesList = new ArrayList<Long>();
@@ -79,17 +79,15 @@ public class Util {
 		if (!FavoritesList.contains(sessionID)) {
 			FavoritesList.add(sessionID);
 		}
-		favoritesHandler.updateFavoritesList(favoritesList, getDefaultLanguage());
-		return FavoritesList;
+		favoritesHandler.updateFavoritesList(FavoritesList, getDefaultLanguage());
 	}
 	
-	public static ArrayList<Long> removeSessionFavorites(ArrayList<Long> favoritesList, Context context, Long sessionID){
+	public static void removeSessionFavorites(Context context, Long sessionID){
 		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
 		if (FavoritesList.contains(sessionID)) {
 			FavoritesList.remove(sessionID);
 		}
-		favoritesHandler.updateFavoritesList(favoritesList, getDefaultLanguage());
-		return FavoritesList;
+		favoritesHandler.updateFavoritesList(FavoritesList, getDefaultLanguage());
 	}
 		
 	public static String getDefaultLanguage(){
