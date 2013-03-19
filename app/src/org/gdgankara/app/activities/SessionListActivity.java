@@ -10,15 +10,18 @@ import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -28,7 +31,7 @@ public class SessionListActivity extends Activity{
 	private ListView session_listview;
 	private SessionListAdapter sessionlist_adapter;
 	private String aranan_tag;
-	private int height;
+	private int height,pressed_back_button;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +45,18 @@ public class SessionListActivity extends Activity{
 		sessionListFilter();
 		setUpView();
 		childItemsActive();
+		pressed_back_button=0;
 	}
 	
-	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		if(pressed_back_button==1){
+			sessionlist_adapter=new SessionListAdapter(this, filtered_session_list, height);
+			session_listview.setAdapter(sessionlist_adapter);
+		}
+		
+	}
 
 	private void setUpView() {
 		
@@ -72,6 +84,7 @@ public class SessionListActivity extends Activity{
 		Long id=filtered_session_list.get(index).getId();
 		b.putLong("id", id);
 		intent.putExtras(b);
+		pressed_back_button=1;
 		this.startActivity(intent);
 	}
 

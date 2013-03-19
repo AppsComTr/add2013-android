@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,7 +33,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 	private View view;
 	private LayoutInflater inflater;
 	private Speaker speaker;
-	private int height,lang,features_text_size,size;
+	private int height,lang,features_text_size,size,pressed_back_button;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,6 +48,22 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		findSpeaker();
 		findSessions();
 		setUpView();
+		pressed_back_button=0;
+	}
+	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		if(pressed_back_button==1){
+			for(int i=0;i<size;i++){
+				if(filtered_session_list.get(i).isFavorite()){
+					session_viewlist[i].findViewById(R.id.isfavorite).setVisibility(View.VISIBLE);
+				}
+				else{
+					session_viewlist[i].findViewById(R.id.isfavorite).setVisibility(View.GONE);
+				}
+			}
+		}
 	}
 	
 	private void setUpView() {
@@ -95,6 +112,9 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 			temp+=lang==1?filtered_session_list.get(i).getHall()+" Salonu":"Hall "+ filtered_session_list.get(i).getHall();
 			text.setText(temp);
 			text.setTextSize(features_text_size);
+			if(filtered_session_list.get(i).isFavorite()){
+				view.findViewById(R.id.isfavorite).setVisibility(View.VISIBLE);
+			}
 			sessions_layout.addView(view);
 			session_viewlist[i]=view;
 			view.setOnClickListener(this);
@@ -211,6 +231,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 				Long id=filtered_session_list.get(i).getId();
 				b.putLong("id", id);
 				intent.putExtras(b);
+				pressed_back_button=1;
 				this.startActivity(intent);
 				break;
 			}

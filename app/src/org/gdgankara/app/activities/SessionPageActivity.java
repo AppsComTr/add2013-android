@@ -38,7 +38,8 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 	private TextView text;
 	private Long session_id;
 	private Session session;
-	private int height,lang,features_text_size,size;
+	private int height,lang,features_text_size,size,pressed_back_button;
+	private ImageView favorite_star;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,20 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 		findSession();
 		findSpeakers();
 		setUpView();
+		pressed_back_button=0;
+	}
+	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		if(pressed_back_button==1){
+			if(session.isFavorite()){
+				((ImageView)findViewById(R.id.favorite_session)).setImageDrawable(getResources().getDrawable(R.drawable.favorite_button_active));
+			}
+			else{
+				((ImageView)findViewById(R.id.favorite_session)).setImageDrawable(getResources().getDrawable(R.drawable.favorite_button_passive));
+			}
+		}
 	}
 	
 	private void setLang() {
@@ -106,9 +121,17 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 		text=(TextView)findViewById(R.id.requirement_title);
 		text.setText(lang==1?"Gereksinimler":"Requirements");
 		
+		//favori yýldýzý butonu
+		favorite_star=(ImageView)findViewById(R.id.favorite_session);
+		if(session.isFavorite()){
+			favorite_star.setImageDrawable(getResources().getDrawable(R.drawable.favorite_button_active));
+		}
+		favorite_star.setOnClickListener(this);
+		
 		//Oturum konusmacilari
 		speakerlist_layout=(LinearLayout)findViewById(R.id.sessionpage_speakerlist);
 		addSpeakersToLayout();
+		
 		
 	}
 
@@ -206,16 +229,34 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		int i;
-		for(i=0;i<size;i++){
-			if(speaker_viewlist[i]==v){
-				Intent intent=new Intent(this,SpeakerPageActivity.class);
-				Bundle b=new Bundle();
-				Long id=filtered_speaker_list.get(i).getId();
-				b.putLong("id", id);
-				intent.putExtras(b);
-				this.startActivity(intent);
-				break;
+
+		if(v.getId()==R.id.favorite_session){
+			if(session.isFavorite()){
+				session.setFavorite(false);
+				favorite_star.setImageDrawable(getResources().getDrawable(R.drawable.favorite_button_passive));
+				Util.removeSessionFavorites(this,session_id);
+			}
+			else{
+				session.setFavorite(true);
+				favorite_star.setImageDrawable(getResources().getDrawable(R.drawable.favorite_button_active));
+				Util.addSessionFavorites(this,session_id);
+			}
+		}
+		
+		else{
+		
+			int i;
+			for(i=0;i<size;i++){
+				if(speaker_viewlist[i]==v){
+					Intent intent=new Intent(this,SpeakerPageActivity.class);
+					Bundle b=new Bundle();
+					Long id=filtered_speaker_list.get(i).getId();
+					b.putLong("id", id);
+					intent.putExtras(b);
+					pressed_back_button=1;
+					this.startActivity(intent);
+					break;
+				}
 			}
 		}
 		

@@ -6,6 +6,7 @@ import java.util.Locale;
 import org.gdgankara.app.R;
 import org.gdgankara.app.model.Session;
 import android.content.Context;
+import android.opengl.Visibility;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,9 @@ public class SessionListAdapter extends ArrayAdapter<Session>{
 		temp+=lang==1?session.getHall()+" Salonu":"Hall "+ session.getHall();
 		text.setText(temp);
 		text.setTextSize(textSize);
+		if(session.isFavorite()){
+			view.findViewById(R.id.isfavorite).setVisibility(View.VISIBLE);
+		}
 		return view;
 	}
 	

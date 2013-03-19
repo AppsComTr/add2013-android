@@ -47,6 +47,10 @@
             android:label="@string/title_activity_sessionlist" >
         </activity>
         <activity
+            android:name="org.gdgankara.app.activities.FavoriteListActivity"
+            android:label="@string/title_activity_sessionlist" >
+        </activity>
+        <activity
             android:name="org.gdgankara.app.activities.SessionPageActivity"
             android:label="@string/title_activity_sessionlist" >
         </activity>

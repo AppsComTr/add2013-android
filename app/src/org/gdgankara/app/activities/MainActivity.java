@@ -82,6 +82,8 @@ public class MainActivity extends Activity implements OnClickListener{
 			break;
 			
 		case R.id.favori_button:
+			i = new Intent(MainActivity.this , FavoriteListActivity.class);
+			startActivity(i);
 			break;
 			
 		case R.id.speakers_button:
