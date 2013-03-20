@@ -7,7 +7,7 @@ import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.SessionListAdapter;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;
-
+import org.gdgankara.app.listeners.TabListener;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -17,10 +17,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class FavoriteListActivity extends Activity{
@@ -32,6 +35,7 @@ public class FavoriteListActivity extends Activity{
 	private LayoutInflater inflater ;
 	private View view;
 	private int height,lang,pressed_back_button;
+	private org.gdgankara.app.listeners.TabListener tabListener;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class FavoriteListActivity extends Activity{
 		total_session_list=Util.SessionList;
 		findFavorites();
 		setUpView();
+		tabAktif();
 		pressed_back_button=0;
 	}
 	
@@ -64,6 +69,12 @@ public class FavoriteListActivity extends Activity{
 				sessionlist_layout.addView(view);
 			}
 		}
+		
+	}
+	
+	public void tabAktif(){
+		tabListener=new TabListener(this);
+		((ImageView)findViewById(R.id.search_button)).setOnClickListener(tabListener);	
 		
 	}
 	

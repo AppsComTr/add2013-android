@@ -8,16 +8,19 @@ import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class SearchActivity extends Activity implements TextWatcher {
 
@@ -28,7 +31,7 @@ public class SearchActivity extends Activity implements TextWatcher {
 	private String search;
 	private ListView search_listview;
 	private SessionListAdapter searchlist_adapter;
-	private int height;
+	private int height,pressed_back_button;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,8 @@ public class SearchActivity extends Activity implements TextWatcher {
 		total_session_list = Util.SessionList;
 		filtered_session_list = new ArrayList<Session>();
 		setUpView();
-
+		pressed_back_button=0;
+		childItemsActive();
 		searchButton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -67,6 +71,41 @@ public class SearchActivity extends Activity implements TextWatcher {
 
 			}
 		});
+		
+		
+	}
+	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		if(pressed_back_button==1){
+			searchlist_adapter=new SessionListAdapter(this, filtered_session_list, height);
+			search_listview.setAdapter(searchlist_adapter);
+		}
+		
+	}
+	
+	private void childItemsActive() {
+		search_listview.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				
+				startSessionPage(arg2);
+			}
+			
+		});
+	}
+	
+	private void startSessionPage(int index){
+		Intent intent=new Intent(this,SessionPageActivity.class);
+		Bundle b=new Bundle();
+		Long id=filtered_session_list.get(index).getId();
+		b.putLong("id", id);
+		intent.putExtras(b);
+		pressed_back_button=1;
+		this.startActivity(intent);
 	}
 
 	private void setUpView() {

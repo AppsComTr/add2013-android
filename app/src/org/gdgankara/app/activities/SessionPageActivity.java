@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.SpeakerListAdapter;
+import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
 import org.gdgankara.app.utils.Util;
@@ -40,6 +41,7 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 	private Session session;
 	private int height,lang,features_text_size,size,pressed_back_button;
 	private ImageView favorite_star;
+	private TabListener tabListener;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 		findSession();
 		findSpeakers();
 		setUpView();
+		tabAktif();
 		pressed_back_button=0;
 	}
 	
@@ -69,6 +72,12 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 				((ImageView)findViewById(R.id.favorite_session)).setImageDrawable(getResources().getDrawable(R.drawable.favorite_button_passive));
 			}
 		}
+	}
+	
+	public void tabAktif(){
+		tabListener=new TabListener(this);
+		((ImageView)findViewById(R.id.search_button)).setOnClickListener(tabListener);	
+		
 	}
 	
 	private void setLang() {

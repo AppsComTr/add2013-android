@@ -9,6 +9,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.gdgankara.app.R;
+import org.gdgankara.app.listeners.TabListener;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -37,13 +38,14 @@ public class TweetWallActivity extends ListActivity {
 	private PullToRefreshListView pullToRefreshView;
 	private ArrayList<Tweet> tweets;
 	private ListView listView;
+	private TabListener tabListener;
 	
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tweet_wall);
-        
+        tabAktif();
         tweets = getTweets("AndroidDevDays", 1);
         pullToRefreshView = (PullToRefreshListView) findViewById(R.id.tweetList);
 //        listView = (ListView) findViewById(R.id.tweetList);
@@ -60,6 +62,13 @@ public class TweetWallActivity extends ListActivity {
             }
         });
     }
+	
+	public void tabAktif(){
+		tabListener=new TabListener(this);
+		((ImageView)findViewById(R.id.search_button)).setOnClickListener(tabListener);	
+		
+	}
+	
 	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
         @Override
         protected void onPostExecute(String[] result) {

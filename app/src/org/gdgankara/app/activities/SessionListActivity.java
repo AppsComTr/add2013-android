@@ -6,6 +6,7 @@ import java.util.Locale;
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.SessionListAdapter;
 import org.gdgankara.app.io.SessionsHandler;
+import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;
 
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +34,7 @@ public class SessionListActivity extends Activity{
 	private SessionListAdapter sessionlist_adapter;
 	private String aranan_tag;
 	private int height,pressed_back_button;
+	private TabListener tabListener;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class SessionListActivity extends Activity{
 		sessionListFilter();
 		setUpView();
 		childItemsActive();
+		tabAktif();
 		pressed_back_button=0;
 	}
 	
@@ -55,6 +59,12 @@ public class SessionListActivity extends Activity{
 			sessionlist_adapter=new SessionListAdapter(this, filtered_session_list, height);
 			session_listview.setAdapter(sessionlist_adapter);
 		}
+		
+	}
+	
+	public void tabAktif(){
+		tabListener=new TabListener(this);
+		((ImageView)findViewById(R.id.search_button)).setOnClickListener(tabListener);	
 		
 	}
 

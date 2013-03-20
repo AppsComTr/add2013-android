@@ -3,6 +3,7 @@ package org.gdgankara.app.activities;
 import java.util.ArrayList;
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.SpeakerListAdapter;
+import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Speaker;
 import org.gdgankara.app.utils.Util;
 
@@ -13,6 +14,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -22,6 +24,7 @@ public class SpeakerListActivity extends Activity{
 	private ListView speaker_listview;
 	private ArrayList<Speaker> speaker_list;
 	private SpeakerListAdapter speakerlist_adapter;
+	private TabListener tabListener;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class SpeakerListActivity extends Activity{
 		getSpeakerList();
 		setUpView();
 		childItemsActive();
+		tabAktif();
 	}
 	
 	private void setUpView() {
@@ -40,6 +44,12 @@ public class SpeakerListActivity extends Activity{
 		speaker_listview=(ListView)findViewById(R.id.speakerlist);
 		speakerlist_adapter=new SpeakerListAdapter(this, speaker_list, height);
 		speaker_listview.setAdapter(speakerlist_adapter);
+	}
+	
+	public void tabAktif(){
+		tabListener=new TabListener(this);
+		((ImageView)findViewById(R.id.search_button)).setOnClickListener(tabListener);	
+		
 	}
 	
 	private void getSpeakerList() {
