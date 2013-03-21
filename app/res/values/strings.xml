@@ -11,5 +11,6 @@
     <string name="title_activity_taglist">TagListActivity</string>
     <string name="title_activity_sessionlist">SessionListActivity</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_my_map_activity">MyMapActivity</string>
 
 </resources>

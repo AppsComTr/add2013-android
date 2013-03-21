@@ -71,6 +71,8 @@ public class MainActivity extends Activity implements OnClickListener{
 			break;
 			
 		case R.id.harita_button:
+			i = new Intent(MainActivity.this, MyMapActivity.class);
+			startActivity(i);
 			break;
 			
 		case R.id.sponsor_button:
