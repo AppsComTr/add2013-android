@@ -15,11 +15,14 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,25 +36,22 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
-public class TweetWallActivity extends ListActivity {
+public class TweetWallActivity extends ListActivity implements Runnable {
 
 	private PullToRefreshListView pullToRefreshView;
 	private ArrayList<Tweet> tweets;
-	private ListView listView;
 	private TabListener tabListener;
-	
+	private ProgressDialog pd;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tweet_wall);
         tabAktif();
-        tweets = getTweets("AndroidDevDays", 1);
         pullToRefreshView = (PullToRefreshListView) findViewById(R.id.tweetList);
-//        listView = (ListView) findViewById(R.id.tweetList);
-        pullToRefreshView.setAdapter(new UserItemAdapter(this, R.layout.list1, tweets));
-        
-        
+        pd = ProgressDialog.show(this,"Please Wait" , "Getting tweets from Twitter",true,false);
+        Thread thread = new Thread(this);
+        thread.start();
         pullToRefreshView.setOnRefreshListener(new OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -193,4 +193,17 @@ public class TweetWallActivity extends ListActivity {
 			this.image_url = url;
 		}
 	}
+
+	@Override
+	public void run() {
+        tweets = getTweets("AndroidDevDays", 1);
+        handler.sendEmptyMessage(0);
+	}
+	private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+                pd.dismiss();
+                pullToRefreshView.setAdapter(new UserItemAdapter(TweetWallActivity.this, R.layout.list1, tweets));
+        }
+};
 }
