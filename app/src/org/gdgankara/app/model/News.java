@@ -7,8 +7,8 @@ public class News implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private long id;
-	private String photo; //Haberin resmi.Duruma göre bu drawable id(int) olabilir bunun türü.
-	private String description; //Haberin özeti
+	private String photo; //Haberin resmi.Duruma göre bunun türü int(drawable id)olabilir .
+	private String description; //Haberin özeti (Eðer isSession true olacaksa bu description boþ olacak)
 	private List<String> linkList; //Haber içerisinde bir veya birden fazla link baðlantý adresi kullanacaksak
 	private boolean isSession; // Eðer haber bir oturumsa true olacak
 	private Long session_id; // Eðer haber bir oturumsa o oturumun id'si buna eþlenecek
