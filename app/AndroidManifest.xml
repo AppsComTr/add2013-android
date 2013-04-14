@@ -65,6 +65,10 @@
             android:name="org.gdgankara.app.activities.MyMapActivity"
             android:label="@string/title_activity_my_map_activity" >
         </activity>
+        <activity
+            android:name="org.gdgankara.app.activities.SponsorListActivity"
+            android:label="@string/title_activity_sessionlist" >
+        </activity>
 
         <service
             android:name="org.gdgankara.app.services.ImageCacheService"

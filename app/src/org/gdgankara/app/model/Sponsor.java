@@ -7,19 +7,23 @@ public class Sponsor implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private long id;
+	private String name;
 	private String logo; //Sponsorun logosu.Duruma göre bunun türü int(drawable id) olabilir.
 	private String description; //Sponsorun tanýtým yazýsý
 	private List<String> linkList; //Sponsorun baðlantý linki veya linkleri
 	
 	
-	public Sponsor(long id, String logo, String description,
+	public Sponsor(long id,String name, String logo, String description,
 			List<String> linkList) {
 		super();
 		this.id = id;
+		this.name=name;
 		this.logo = logo;
 		this.description = description;
 		this.linkList = linkList;
 	}
+	
+	
 
 
 	public long getId() {
@@ -30,6 +34,17 @@ public class Sponsor implements Serializable{
 	public void setId(long id) {
 		this.id = id;
 	}
+
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 
 
 	public String getLogo() {

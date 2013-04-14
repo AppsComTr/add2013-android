@@ -24,7 +24,7 @@ public class SessionListAdapter extends ArrayAdapter<Session>{
 	private String temp;
 	
 	public SessionListAdapter(Context context, List<Session> objects,int height) {
-		super(context,R.layout.child_of_taglist,objects);
+		super(context,R.layout.child_of_sessionlist,objects);
 		sessionlist=objects;
 		inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		setFeaturesTextSize(height);
