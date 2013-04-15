@@ -38,7 +38,22 @@ public class MainActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_main);
 		setUpButtons();
 		buttonsActive();
-		refreshView();
+		Thread thread = new Thread()
+		{
+		    @Override
+		    public void run() {
+		        try {
+		            while(true) {
+		                sleep(1000);
+		                refreshView();
+		            }
+		        } catch (InterruptedException e) {
+		            e.printStackTrace();
+		        }
+		    }
+		};
+
+		thread.start();
 		
 	}
 	private void setUpButtons(){
@@ -53,7 +68,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	}
 	private void refreshView(){
 		imagePaths = new ArrayList<String>();
-		imagePaths.add(getImagesFromWeb("http://i1.wp.com/www.mertsimsek.net/wp-content/uploads/2013/01/4.png"));
+		imagePaths.add(getImagesFromWeb("https://twitter.com/images/resources/twitter-bird-light-bgs.png","downloadedFile.png"));
 		Log.i("image path", imagePaths.get(0));
 	}
 	private void buttonsActive(){
@@ -122,7 +137,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		
 	}
 	
-	private String getImagesFromWeb(String urlString){
+	private String getImagesFromWeb(String urlString,String filename){
 		try
 		{   
 		  URL url = new URL(urlString);
@@ -131,7 +146,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		  urlConnection.setDoOutput(true);                   
 		  urlConnection.connect();                  
 		  File SDCardRoot = Environment.getExternalStorageDirectory().getAbsoluteFile();
-		  String filename="downloadedFile.png";   
+		  Log.i("Yol",SDCardRoot.getAbsolutePath());
 		  Log.i("Local filename:",""+filename);
 		  File file = new File(SDCardRoot,filename);
 		  if(file.createNewFile())

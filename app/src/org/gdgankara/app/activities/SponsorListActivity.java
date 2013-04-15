@@ -56,20 +56,20 @@ public class SponsorListActivity extends Activity{
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				
-				startSponsorPage(arg2);
+//				startSponsorPage(arg2);
 			}
 			
 		});
 	}
 	
-	private void startSponsorPage(int index){
-		Intent intent=new Intent(this,SponsorPageActivity.class);
-		Bundle b=new Bundle();
-		String tag_name=sponsor_list.get(index);
-		b.putString("tag", tag_name);
-		intent.putExtras(b);
-		this.startActivity(intent);
-	}
+//	private void startSponsorPage(int index){
+//		Intent intent=new Intent(this,SponsorPageActivity.class);
+//		Bundle b=new Bundle();
+//		String tag_name=sponsor_list.get(index);
+//		b.putString("tag", tag_name);
+//		intent.putExtras(b);
+//		this.startActivity(intent);
+//	}
 	
 	private int getDimensionsOfScreen(){
 		DisplayMetrics metrics = new DisplayMetrics();
