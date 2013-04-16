@@ -14,7 +14,7 @@ import android.util.Log;
 public class AnnouncementHandler extends BaseHandler {
 	public static final String TAG = AnnouncementHandler.class.getSimpleName();
 
-	private static final String CACHE_FILE_ANNOUNCEMENT = "AnnouncementJSON";
+	private static final String CACHE_FILE_ANNOUNCEMENT = "AnnouncementsJSON";
 	private static final String BASE_URL = "http://add-2013.appspot.com/api/announcements/";
 
 	private Context context;
@@ -84,6 +84,10 @@ public class AnnouncementHandler extends BaseHandler {
 				announcement.setDescription(announcementObject.getString("description"));
 				announcement.setImage(announcementObject.getString("image"));
 				announcement.setLink(announcementObject.getString("link"));
+				announcement.setSession(announcementObject.getBoolean("session"));
+				if (announcement.isSession()) {
+					announcement.setSessionId(announcementObject.getLong("sessionId"));
+				}
 				
 				if (announcementObject.getString("lang").equals(Announcement.LANG_EN)) {
 					announcement.setLang(Announcement.LANG_EN);
