@@ -8,9 +8,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import org.gdgankara.app.io.AnnouncementHandler;
 import org.gdgankara.app.io.FavoritesHandler;
 import org.gdgankara.app.io.SessionsHandler;
 import org.gdgankara.app.io.TagHandler;
+import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
 import org.json.JSONException;
@@ -25,6 +27,7 @@ public class Util {
 	
 	public static ArrayList<Session> SessionList = new ArrayList<Session>();
 	public static ArrayList<Speaker> SpeakerList = new ArrayList<Speaker>();
+	public static ArrayList<Announcement> AnnouncementList = new ArrayList<Announcement>();
 	public static ArrayList<String> TagList = new ArrayList<String>();
 	public static ArrayList<Long> FavoritesList = new ArrayList<Long>();
 	
@@ -65,10 +68,12 @@ public class Util {
 		SessionsHandler sessionsHandler = new SessionsHandler(context);
 		TagHandler tagHandler = new TagHandler(context);
 		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
+		AnnouncementHandler announcementHandler = new AnnouncementHandler(context);
 		
 		FavoritesList = favoritesHandler.getFavoritesList(lang);
 		sessionsHandler.initializeLists(lang);
 		TagList = tagHandler.getTagList(lang);
+		AnnouncementList = announcementHandler.getAnnouncementList(lang);
 	}
 	
 	public static void addSessionFavorites(Context context, Long sessionID){

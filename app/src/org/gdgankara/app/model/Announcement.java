@@ -12,21 +12,36 @@ public class Announcement implements Serializable{
 	private long id;
 	private String description;
 	private String image;
+	private boolean isSession;
 	private String lang;
 	private String link;
+	private Long sessionId;
 
 	public Announcement() {
 		super();
 	}
 
-	public Announcement(long id, String description, String image, String lang,
+	public Announcement(long id, String description, String image, boolean isSession, String lang,
 			String link) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.image = image;
+		this.isSession = isSession;
+		this.lang = lang;
+		this.link = link;		
+	}
+	
+	public Announcement(long id, String description, String image, boolean isSession, String lang,
+			String link, Long sessionId) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.image = image;
+		this.isSession = isSession;
 		this.lang = lang;
 		this.link = link;
+		this.sessionId = sessionId;
 	}
 
 	public long getId() {
@@ -67,6 +82,22 @@ public class Announcement implements Serializable{
 
 	public void setLink(String link) {
 		this.link = link;
+	}
+
+	public boolean isSession() {
+		return isSession;
+	}
+
+	public void setSession(boolean isSession) {
+		this.isSession = isSession;
+	}
+
+	public Long getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(Long sessionId) {
+		this.sessionId = sessionId;
 	}
 
 }
