@@ -11,10 +11,12 @@ import java.util.Locale;
 import org.gdgankara.app.io.AnnouncementHandler;
 import org.gdgankara.app.io.FavoritesHandler;
 import org.gdgankara.app.io.SessionsHandler;
+import org.gdgankara.app.io.SponsorHandler;
 import org.gdgankara.app.io.TagHandler;
 import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
+import org.gdgankara.app.model.Sponsor;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.content.Context;
@@ -28,6 +30,7 @@ public class Util {
 	public static ArrayList<Session> SessionList = new ArrayList<Session>();
 	public static ArrayList<Speaker> SpeakerList = new ArrayList<Speaker>();
 	public static ArrayList<Announcement> AnnouncementList = new ArrayList<Announcement>();
+	public static ArrayList<Sponsor> SponsorList = new ArrayList<Sponsor>();
 	public static ArrayList<String> TagList = new ArrayList<String>();
 	public static ArrayList<Long> FavoritesList = new ArrayList<Long>();
 	
@@ -69,11 +72,13 @@ public class Util {
 		TagHandler tagHandler = new TagHandler(context);
 		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
 		AnnouncementHandler announcementHandler = new AnnouncementHandler(context);
+		SponsorHandler sponsorHandler = new SponsorHandler(context);
 		
 		FavoritesList = favoritesHandler.getFavoritesList(lang);
 		sessionsHandler.initializeLists(lang);
 		TagList = tagHandler.getTagList(lang);
 		AnnouncementList = announcementHandler.getAnnouncementList(lang);
+		SponsorList = sponsorHandler.getSponsorList(lang);
 	}
 	
 	public static void addSessionFavorites(Context context, Long sessionID){

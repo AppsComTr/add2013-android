@@ -67,9 +67,9 @@ public class MainActivity extends Activity implements OnClickListener{
 		konusmaciButton=(Button)findViewById(R.id.speakers_button);
 	}
 	private void refreshView(){
-		imagePaths = new ArrayList<String>();
-		imagePaths.add(getImagesFromWeb("https://twitter.com/images/resources/twitter-bird-light-bgs.png","downloadedFile.png"));
-		Log.i("image path", imagePaths.get(0));
+//		imagePaths = new ArrayList<String>();
+//		imagePaths.add(getImagesFromWeb("https://twitter.com/images/resources/twitter-bird-light-bgs.png","downloadedFile.png"));
+//		Log.i("image path", imagePaths.get(0));
 	}
 	private void buttonsActive(){
 		tweetWallButton.setOnClickListener(this);
