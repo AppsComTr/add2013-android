@@ -3,8 +3,10 @@ package org.gdgankara.app.activities;
 import java.util.ArrayList;
 
 import org.gdgankara.app.R;
+import org.gdgankara.app.adapeters.SponsorListAdapter;
 import org.gdgankara.app.adapeters.TagListAdapter;
 import org.gdgankara.app.listeners.TabListener;
+import org.gdgankara.app.model.Sponsor;
 import org.gdgankara.app.utils.Util;
 
 import android.app.Activity;
@@ -20,9 +22,9 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class SponsorListActivity extends Activity{
 
-	private ArrayList<String> sponsor_list;
+	private ArrayList<Sponsor> sponsor_list;
 	private ListView sponsor_listview;
-	private TagListAdapter sponsorlist_adapter;
+	private SponsorListAdapter sponsorlist_adapter;
 	private TabListener tabListener;
 	
 	@Override
@@ -39,7 +41,7 @@ public class SponsorListActivity extends Activity{
 	
 	private void setUpView(){
 		sponsor_listview=(ListView)findViewById(R.id.sponsorlist);
-		sponsorlist_adapter=new TagListAdapter(this, sponsor_list);
+		sponsorlist_adapter=new SponsorListAdapter(this, sponsor_list);
 		sponsor_listview.setAdapter(sponsorlist_adapter);
 	}
 	
@@ -56,20 +58,20 @@ public class SponsorListActivity extends Activity{
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				
-//				startSponsorPage(arg2);
+				startSponsorPage(arg2);
 			}
 			
 		});
 	}
 	
-//	private void startSponsorPage(int index){
-//		Intent intent=new Intent(this,SponsorPageActivity.class);
-//		Bundle b=new Bundle();
-//		String tag_name=sponsor_list.get(index);
-//		b.putString("tag", tag_name);
-//		intent.putExtras(b);
-//		this.startActivity(intent);
-//	}
+	private void startSponsorPage(int index){
+		Intent intent=new Intent(this,SponsorPageActivity.class);
+		Bundle b=new Bundle();
+		Long id=sponsor_list.get(index).getId();
+		b.putLong("id", id);
+		intent.putExtras(b);
+		this.startActivity(intent);
+	}
 	
 	private int getDimensionsOfScreen(){
 		DisplayMetrics metrics = new DisplayMetrics();

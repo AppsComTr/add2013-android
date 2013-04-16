@@ -18,7 +18,7 @@ public class SponsorListAdapter extends ArrayAdapter<Sponsor>{
 	private TextView text;
 	private Sponsor sponsor;
 	
-	public SponsorListAdapter(Context context, List<Sponsor> objects,int height) {
+	public SponsorListAdapter(Context context, List<Sponsor> objects) {
 		super(context,R.layout.child_of_sponsorlist,objects);
 		sponsorlist=objects;
 		inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
