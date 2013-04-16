@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dip"
         android:layout_alignParentTop="true"
-        android:background="#3b3b3b">
+        android:background="@drawable/ust_tab_background">
     <AutoCompleteTextView
             android:id="@+id/searchText"
             android:layout_width="match_parent"

@@ -8,7 +8,7 @@
 	        android:orientation="horizontal"
 	        android:layout_alignParentBottom="true"
 	        android:gravity="center_horizontal|center_vertical"
-	        android:background="#3b3b3b">
+	        android:background="@drawable/alt_tab_background">
 	        
 	    <TextView 
 	        android:layout_width="wrap_content"
