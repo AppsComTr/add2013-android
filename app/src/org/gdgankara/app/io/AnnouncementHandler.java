@@ -85,6 +85,8 @@ public class AnnouncementHandler extends BaseHandler {
 				announcement.setImage(announcementObject.getString("image"));
 				announcement.setLink(announcementObject.getString("link"));
 				announcement.setSession(announcementObject.getBoolean("session"));
+				announcement.setTitle(announcementObject.getString("title"));
+				
 				if (announcement.isSession()) {
 					announcement.setSessionId(announcementObject.getLong("sessionId"));
 				}

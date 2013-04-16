@@ -16,24 +16,26 @@ public class Announcement implements Serializable{
 	private String lang;
 	private String link;
 	private Long sessionId;
+	private String title;
 
 	public Announcement() {
 		super();
 	}
 
 	public Announcement(long id, String description, String image, boolean isSession, String lang,
-			String link) {
+			String link, String title) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.image = image;
 		this.isSession = isSession;
 		this.lang = lang;
-		this.link = link;		
+		this.link = link;	
+		this.title = title;
 	}
 	
 	public Announcement(long id, String description, String image, boolean isSession, String lang,
-			String link, Long sessionId) {
+			String link, Long sessionId, String title) {
 		super();
 		this.id = id;
 		this.description = description;
@@ -42,6 +44,7 @@ public class Announcement implements Serializable{
 		this.lang = lang;
 		this.link = link;
 		this.sessionId = sessionId;
+		this.title = title;
 	}
 
 	public long getId() {
@@ -98,6 +101,14 @@ public class Announcement implements Serializable{
 
 	public void setSessionId(Long sessionId) {
 		this.sessionId = sessionId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }
