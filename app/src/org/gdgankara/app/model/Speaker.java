@@ -15,13 +15,14 @@ public class Speaker implements Serializable {
 	private String photo;
 	private String twitter;
 	private List<Long> sessionIDList;
+	private String title;
 
 	public Speaker() {
 		super();
 	}
 
 	public Speaker(long id, String biography, String blog, String facebook,
-			String gplus, String name, String photo, String twitter, List<Long> sessionIDList) {
+			String gplus, String name, String photo, String twitter, List<Long> sessionIDList, String title) {
 		super();
 		this.id = id;
 		this.biography = biography;
@@ -32,6 +33,7 @@ public class Speaker implements Serializable {
 		this.photo = photo;
 		this.twitter = twitter;
 		this.sessionIDList = sessionIDList;
+		this.title = title;
 	}
 
 	public long getId() {
@@ -112,6 +114,14 @@ public class Speaker implements Serializable {
 
 	public void setLanguage(String language) {
 		this.language = language;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }

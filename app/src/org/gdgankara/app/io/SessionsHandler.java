@@ -156,6 +156,7 @@ public class SessionsHandler extends BaseHandler {
 				speaker.setName(speakerObject.getString("name"));
 				speaker.setPhoto(speakerObject.getString("photo"));
 				speaker.setTwitter(speakerObject.getString("twitter"));
+				speaker.setTitle(speakerObject.getString("title"));
 
 				JSONArray sessionIDArray;
 				List<Long> sessionIDList = new ArrayList<Long>();
