@@ -23,11 +23,13 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ViewFlipper;
 
 public class MainActivity extends Activity implements OnClickListener{
 
 	private Button tweetWallButton,programButton,haritaButton,oturumButton,sponsorButton,favoriButton,konusmaciButton;
-	private ImageView araButton;
+	private ViewFlipper newsFlipper;
+	private ImageView araButton,tempImg;
 	private String filepath;
 	private ArrayList<String> imagePaths;
 	
@@ -40,6 +42,9 @@ public class MainActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_main);
 		setUpButtons();
 		buttonsActive();
+		
+		
+		
 		Thread thread = new Thread()
 		{
 		    @Override
@@ -67,7 +72,14 @@ public class MainActivity extends Activity implements OnClickListener{
 		programButton=(Button) findViewById(R.id.program_button);
 		araButton = (ImageView)findViewById(R.id.search_button);
 		konusmaciButton=(Button)findViewById(R.id.speakers_button);
+		newsFlipper = (ViewFlipper)findViewById(R.id.highlights);
 	}
+	
+	private void setHighligths()
+	{
+		
+	}
+	
 	private void refreshView(){
 //		imagePaths = new ArrayList<String>();
 //		imagePaths.add(getImagesFromWeb("https://twitter.com/images/resources/twitter-bird-light-bgs.png","downloadedFile.png"));
@@ -111,6 +123,8 @@ public class MainActivity extends Activity implements OnClickListener{
 			break;
 			
 		case R.id.sponsor_button:
+			i = new Intent(MainActivity.this,SponsorListActivity.class);
+			startActivity(i);
 			break;
 			
 		case R.id.oturum_button:

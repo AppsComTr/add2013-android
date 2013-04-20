@@ -25,22 +25,27 @@
             android:padding="4dp"
             >
             
-            <ImageView 
+            <ViewFlipper
 	            android:id="@+id/highlights"
 	            android:layout_width="match_parent"
-	            android:layout_height="match_parent"
-	            android:background="#fff"/>
+        		android:layout_height="match_parent"
+        		android:flipInterval="3000"
+        		android:inAnimation="@android:anim/slide_in_left"
+        		android:outAnimation="@android:anim/slide_out_right">
+	            
+                
+                </ViewFlipper>
         
-        	<TextView 
-        	    android:layout_width="wrap_content"
-        	    android:layout_height="wrap_content"
-        	    android:background="#3b3b3b"
-        	    android:padding="3dp"
-        	    android:text="AnaEkran Resimleri"
-        	    android:layout_alignParentBottom="true"
-        	    android:layout_alignParentRight="true"
-        	    android:layout_marginBottom="15dp"
-        	    android:textColor="#94a839"/>
+<!--         	<TextView  -->
+<!--         	    android:layout_width="wrap_content" -->
+<!--         	    android:layout_height="wrap_content" -->
+<!--         	    android:background="#3b3b3b" -->
+<!--         	    android:padding="3dp" -->
+<!--         	    android:text="AnaEkran Resimleri" -->
+<!--         	    android:layout_alignParentBottom="true" -->
+<!--         	    android:layout_alignParentRight="true" -->
+<!--         	    android:layout_marginBottom="15dp" -->
+<!--         	    android:textColor="#94a839"/> -->
         	
             </RelativeLayout>
             
