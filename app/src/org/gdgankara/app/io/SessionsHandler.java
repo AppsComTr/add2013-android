@@ -148,15 +148,15 @@ public class SessionsHandler extends BaseHandler {
 				JSONObject speakerObject = (JSONObject) speakerArray.get(i);
 				speaker = new Speaker();
 				speaker.setId(speakerObject.getLong("id"));
-				speaker.setBiography(speakerObject.getString("bio"));
-				speaker.setBlog(speakerObject.getString("blog"));
-				speaker.setFacebook(speakerObject.getString("facebook"));
-				speaker.setGplus(speakerObject.getString("gplus"));
-				speaker.setLanguage(speakerObject.getString("lang"));
-				speaker.setName(speakerObject.getString("name"));
-				speaker.setPhoto(speakerObject.getString("photo"));
-				speaker.setTwitter(speakerObject.getString("twitter"));
-				speaker.setTitle(speakerObject.getString("title"));
+				speaker.setBiography(isObjectNull(speakerObject.getString("bio")));
+				speaker.setBlog(isObjectNull(speakerObject.getString("blog")));
+				speaker.setFacebook((speakerObject.getString("facebook")));
+				speaker.setGplus(isObjectNull(speakerObject.getString("gplus")));
+				speaker.setLanguage(isObjectNull(speakerObject.getString("lang")));
+				speaker.setName(isObjectNull(speakerObject.getString("name")));
+				speaker.setPhoto(isObjectNull(speakerObject.getString("photo")));
+				speaker.setTwitter(isObjectNull(speakerObject.getString("twitter")));
+				speaker.setTitle(isObjectNull(speakerObject.getString("title")));
 
 				JSONArray sessionIDArray;
 				List<Long> sessionIDList = new ArrayList<Long>();
@@ -194,12 +194,13 @@ public class SessionsHandler extends BaseHandler {
 				session = new Session();
 				session.setId(sessionObject.getLong("id"));
 				session.setBreak(sessionObject.getBoolean("break"));
-				session.setDate(sessionObject.getString("day"));
-				session.setDescription(sessionObject.getString("description"));
-				session.setEnd_hour(sessionObject.getString("endHour"));
-				session.setStart_hour(sessionObject.getString("startHour"));
-				session.setHall(sessionObject.getString("hall"));
-				session.setTitle(sessionObject.getString("title"));
+				
+				session.setDate(isObjectNull(sessionObject.getString("day")));
+				session.setDescription(isObjectNull(sessionObject.getString("description")));
+				session.setEnd_hour(isObjectNull(sessionObject.getString("endHour")));
+				session.setStart_hour(isObjectNull(sessionObject.getString("startHour")));
+				session.setHall(isObjectNull(sessionObject.getString("hall")));
+				session.setTitle(isObjectNull(sessionObject.getString("title")));
 				session.setFavorite(false);
 
 				if (!session.isBreak()) {
@@ -271,6 +272,14 @@ public class SessionsHandler extends BaseHandler {
 			}
 		}
 
+	}
+	
+	private String isObjectNull(String value){
+		if (value == null || value == "" || value.equals(null) || value.equals("")) {
+			return null;
+		}else {
+			return value;
+		}
 	}
 
 	private String getSessionCacheFileName(String lang) {
