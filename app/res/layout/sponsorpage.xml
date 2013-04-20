@@ -81,17 +81,12 @@
             		android:layout_width="match_parent"
             		android:background="@drawable/sessionpage_divider"/>
         		
-        		<LinearLayout 
-        		    android:id="@+id/sponsorpage_links_layout"
-        		    android:layout_width="match_parent"
+        		<TextView 
+        		    android:id="@+id/sponsorpage_link"
         		    android:layout_height="wrap_content"
-        		    android:paddingLeft="2dp"
-        		    android:paddingRight="2dp"
-        		    android:paddingTop="3dp"
-        		    android:paddingBottom="3dp"
-        		    android:orientation="vertical">
-        		    
-        		</LinearLayout>
+        		    android:layout_width="wrap_content"
+        		    android:layout_marginTop="5dp"
+        		    android:layout_marginLeft="3dp"/>
                 
             </LinearLayout>
         

@@ -16,7 +16,6 @@ public class Sponsor implements Serializable {
 	private String link;
 	private String lang;
 	private String description; // Sponsorun tan�t�m yaz�s�
-	private List<String> linkList; // Sponsorun ba�lant� linki veya linkleri
 
 	public Sponsor() {
 		super();
@@ -29,7 +28,6 @@ public class Sponsor implements Serializable {
 		this.name = name;
 		this.logo = logo;
 		this.description = description;
-		this.linkList = linkList;
 		this.link = link;
 	}
 
@@ -65,13 +63,6 @@ public class Sponsor implements Serializable {
 		this.description = description;
 	}
 
-	public List<String> getLinkList() {
-		return linkList;
-	}
-
-	public void setLinkList(List<String> linkList) {
-		this.linkList = linkList;
-	}
 
 	public String getLink() {
 		return link;

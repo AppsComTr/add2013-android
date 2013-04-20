@@ -54,7 +54,7 @@ public class SponsorPageActivity  extends Activity{
 		/*Sponsor logosu : view deðiþkeni ile ulaþ ve logoyu set et */
 		
 		/*Sponsor adý*/
-		text=(TextView)findViewById(R.id.session_title);
+		text=(TextView)findViewById(R.id.sponsorpage_name);
 		text.setText(sponsor.getName());
 		setSponsorNameTextSize(text);
 		
@@ -66,16 +66,10 @@ public class SponsorPageActivity  extends Activity{
 		text=(TextView)findViewById(R.id.sponsor_link_title);
 		text.setText(lang==1?"Ayrýntýlý bilgi için":"Fore more details");
 		
-		List<String> linklist=sponsor.getLinkList();
-		int size=linklist.size();
-		layout=(LinearLayout)findViewById(R.id.sponsorpage_links_layout);
-		
-		for(String temp:linklist){
-			text=new TextView(this);
-			text.setText(Html.fromHtml("- <a href=\""+temp+"\">" +temp+ "</a>"));
-			text.setMovementMethod(LinkMovementMethod.getInstance());
-			layout.addView(text);
-		}
+		/*Sponsor web sitesi*/
+		text=(TextView)findViewById(R.id.sponsorpage_link);
+		text.setText(Html.fromHtml("<a href=\""+sponsor.getLink()+"\">" +sponsor.getLink()+ "</a>"));
+		text.setMovementMethod(LinkMovementMethod.getInstance());
 		
 	}
 
