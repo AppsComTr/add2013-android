@@ -1,6 +1,7 @@
 package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
@@ -8,8 +9,11 @@ import org.gdgankara.app.model.Sponsor;
 import org.gdgankara.app.utils.Util;
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class SponsorPageActivity  extends Activity{
@@ -20,6 +24,7 @@ public class SponsorPageActivity  extends Activity{
 	private Long sponsor_id;
 	private TabListener tabListener;
 	private int height,lang;
+	private LinearLayout layout;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +34,7 @@ public class SponsorPageActivity  extends Activity{
 		setActivityTheme();
 		setContentView(R.layout.sponsorpage);
 		sponsor_id=this.getIntent().getExtras().getLong("id");
-		setLang();
+		lang=Util.getDefaultLanguage().equals("tr")?1:0;
 		getSponsorList();
 		findSponsor();
 		setUpView();
@@ -61,16 +66,19 @@ public class SponsorPageActivity  extends Activity{
 		text=(TextView)findViewById(R.id.sponsor_link_title);
 		text.setText(lang==1?"Ayrýntýlý bilgi için":"Fore more details");
 		
-	}
-	
-	private void setLang() {
-		if(Locale.getDefault().getLanguage().equals("tr")){
-			lang=1;
+		List<String> linklist=sponsor.getLinkList();
+		int size=linklist.size();
+		layout=(LinearLayout)findViewById(R.id.sponsorpage_links_layout);
+		
+		for(String temp:linklist){
+			text=new TextView(this);
+			text.setText(Html.fromHtml("- <a href=\""+temp+"\">" +temp+ "</a>"));
+			text.setMovementMethod(LinkMovementMethod.getInstance());
+			layout.addView(text);
 		}
-		else{
-			lang=0;
-		}
+		
 	}
+
 	
 	private void findSponsor(){
 		for(Sponsor temp:total_sponsor_list){

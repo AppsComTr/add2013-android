@@ -29,7 +29,7 @@ public class SponsorListActivity extends Activity{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setActivityTheme(Util.device_height);
 		setContentView(R.layout.sponsorlist);
-		//tag_list=Util.TagList; Tam burada sponsor listesini iste
+		sponsor_list=Util.SponsorList;
 		setUpView();
 		childItemsActive();
 		tabAktif();

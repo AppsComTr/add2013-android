@@ -111,6 +111,8 @@ public class MainActivity extends Activity implements OnClickListener{
 			break;
 			
 		case R.id.sponsor_button:
+			i = new Intent(MainActivity.this,SponsorListActivity.class);
+			startActivity(i);
 			break;
 			
 		case R.id.oturum_button:

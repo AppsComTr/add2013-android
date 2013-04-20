@@ -43,7 +43,7 @@ public class FavoriteListActivity extends Activity{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setActivityTheme(Util.device_height);
 		setContentView(R.layout.sessionlist);
-		setLang();
+		lang=Util.getDefaultLanguage().equals("tr")?1:0;
 		total_session_list=Util.SessionList;
 		findFavorites();
 		setUpView();
@@ -77,14 +77,7 @@ public class FavoriteListActivity extends Activity{
 		
 	}
 	
-	private void setLang() {
-		if(Locale.getDefault().getLanguage().equals("tr")){
-			lang=1;
-		}
-		else{
-			lang=0;
-		}
-	}
+
 	
 	private void childItemsActive() {
 		session_listview.setOnItemClickListener(new OnItemClickListener() {

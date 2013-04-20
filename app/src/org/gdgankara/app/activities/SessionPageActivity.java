@@ -44,7 +44,7 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 		setFeaturesTextSize();
 		setContentView(R.layout.sessionpage);
 		session_id=this.getIntent().getExtras().getLong("id");
-		setLang();
+		lang=Util.getDefaultLanguage().equals("tr")?1:0;
 		getLists();
 		findSession();
 		findSpeakers();
@@ -72,14 +72,6 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 		
 	}
 	
-	private void setLang() {
-		if(Locale.getDefault().getLanguage().equals("tr")){
-			lang=1;
-		}
-		else{
-			lang=0;
-		}
-	}
 	
 	private void findSpeakers() {
 		filtered_speaker_list=new ArrayList<Speaker>();
