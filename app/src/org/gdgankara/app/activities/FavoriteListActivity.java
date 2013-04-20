@@ -34,15 +34,14 @@ public class FavoriteListActivity extends Activity{
 	private LinearLayout sessionlist_layout;
 	private LayoutInflater inflater ;
 	private View view;
-	private int height,lang,pressed_back_button;
+	private int lang,pressed_back_button;
 	private org.gdgankara.app.listeners.TabListener tabListener;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		height=getDimensionsOfScreen();
-		setActivityTheme(height);
+		setActivityTheme(Util.device_height);
 		setContentView(R.layout.sessionlist);
 		setLang();
 		total_session_list=Util.SessionList;
@@ -58,7 +57,7 @@ public class FavoriteListActivity extends Activity{
 		if(pressed_back_button==1){
 			findFavorites();
 			if(favorite_session_list.size()!=0){
-				sessionlist_adapter=new SessionListAdapter(this, favorite_session_list, height);
+				sessionlist_adapter=new SessionListAdapter(this, favorite_session_list, Util.device_height);
 				session_listview.setAdapter(sessionlist_adapter);
 			}
 			else{
@@ -121,7 +120,7 @@ public class FavoriteListActivity extends Activity{
 			sessionlist_layout.addView(view);
 		}
 		else{
-			sessionlist_adapter=new SessionListAdapter(this, favorite_session_list, height);
+			sessionlist_adapter=new SessionListAdapter(this, favorite_session_list, Util.device_height);
 			session_listview.setAdapter(sessionlist_adapter);
 			childItemsActive();
 		}
@@ -137,12 +136,6 @@ public class FavoriteListActivity extends Activity{
 			}
 	}
 
-	private int getDimensionsOfScreen(){
-		DisplayMetrics metrics = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		return metrics.heightPixels;
-
-	}
 	
 	private void setActivityTheme(int height){
 		

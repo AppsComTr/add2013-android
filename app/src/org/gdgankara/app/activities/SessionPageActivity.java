@@ -3,30 +3,22 @@ package org.gdgankara.app.activities;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
 import org.gdgankara.app.R;
-import org.gdgankara.app.adapeters.SpeakerListAdapter;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
 import org.gdgankara.app.utils.Util;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SessionPageActivity extends Activity implements OnClickListener{
 	
@@ -47,7 +39,7 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		height=getDimensionsOfScreen();
+		height=Util.device_height;
 		setActivityTheme();
 		setFeaturesTextSize();
 		setContentView(R.layout.sessionpage);
@@ -152,7 +144,7 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 			view=inflater.inflate(R.layout.child_of_speakerlist, null, false);
 			text=(TextView)view.findViewById(R.id.speaker_name);
 			text.setText(filtered_speaker_list.get(i).getName());
-			text=(TextView)view.findViewById(R.id.speaker_bio);
+			text=(TextView)view.findViewById(R.id.speaker_title);
 			text.setText(filtered_speaker_list.get(i).getBiography());
 			text.setTextSize(features_text_size);
 			speakerlist_layout.addView(view);
@@ -165,7 +157,6 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 	}
 
 	private void setFeaturesTextSize() {
-		
 		if(height<=320){
 			features_text_size=9;
 		}
@@ -181,7 +172,6 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 	}
 
 	private void setSessionTitleTextSize(TextView text) {		
-			
 			if(height<=320){
 				text.setTextSize(15);
 			}
@@ -213,7 +203,6 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 	
 	private void setActivityTheme(){
 		
-		
 		if(height<=320){
 			setTheme(R.style.tagList_low);
 		}
@@ -229,12 +218,6 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 		
 	}
 	
-	private int getDimensionsOfScreen(){
-		DisplayMetrics metrics = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		return metrics.heightPixels;
-
-	}
 
 	@Override
 	public void onClick(View v) {

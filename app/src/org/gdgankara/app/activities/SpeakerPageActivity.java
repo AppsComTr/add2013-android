@@ -3,18 +3,15 @@ package org.gdgankara.app.activities;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
 import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
 import org.gdgankara.app.utils.Util;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -40,7 +37,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		height=getDimensionsOfScreen();
+		height=Util.device_height;
 		setActivityTheme();
 		setFeaturesTextSize();
 		setContentView(R.layout.speakerpage);
@@ -85,7 +82,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		
 		//Konusmaci unvan
 		text=(TextView)findViewById(R.id.speakerpage_job);
-		text.setText("Engineer at ... Company");
+		text.setText(speaker.getTitle());
 		text.setTextSize(features_text_size);
 		
 		//Konusmaci biografi
@@ -174,7 +171,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 	
 	private void setActivityTheme(){
 		
-		
+
 		if(height<=320){
 			setTheme(R.style.tagList_low);
 		}
@@ -190,15 +187,9 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		
 	}
 	
-	private int getDimensionsOfScreen(){
-		DisplayMetrics metrics = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		return metrics.heightPixels;
-
-	}
 	
 	private void setSpeakerNameTextSize(TextView text) {		
-		
+
 		if(height<=320){
 			text.setTextSize(15);
 		}
@@ -215,7 +206,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 	}
 	
 	private void setFeaturesTextSize() {
-		
+
 		if(height<=320){
 			features_text_size=9;
 		}

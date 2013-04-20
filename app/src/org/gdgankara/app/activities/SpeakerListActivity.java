@@ -6,11 +6,9 @@ import org.gdgankara.app.adapeters.SpeakerListAdapter;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Speaker;
 import org.gdgankara.app.utils.Util;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -20,7 +18,6 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class SpeakerListActivity extends Activity{
 
-	private int height;
 	private ListView speaker_listview;
 	private ArrayList<Speaker> speaker_list;
 	private SpeakerListAdapter speakerlist_adapter;
@@ -30,8 +27,7 @@ public class SpeakerListActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		height=getDimensionsOfScreen();
-		setActivityTheme(height);
+		setActivityTheme(Util.device_height);
 		setContentView(R.layout.speakerlist);
 		getSpeakerList();
 		setUpView();
@@ -42,7 +38,7 @@ public class SpeakerListActivity extends Activity{
 	private void setUpView() {
 		
 		speaker_listview=(ListView)findViewById(R.id.speakerlist);
-		speakerlist_adapter=new SpeakerListAdapter(this, speaker_list, height);
+		speakerlist_adapter=new SpeakerListAdapter(this, speaker_list, Util.device_height);
 		speaker_listview.setAdapter(speakerlist_adapter);
 	}
 	
@@ -56,12 +52,6 @@ public class SpeakerListActivity extends Activity{
 		speaker_list=Util.SpeakerList;
 	}
 	
-	private int getDimensionsOfScreen(){
-		DisplayMetrics metrics = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		return metrics.heightPixels;
-
-	}
 	
 	private void childItemsActive() {
 		speaker_listview.setOnItemClickListener(new OnItemClickListener() {

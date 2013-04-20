@@ -1,18 +1,15 @@
 package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
-
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.SessionListAdapter;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -31,7 +28,7 @@ public class SearchActivity extends Activity implements TextWatcher {
 	private String search;
 	private ListView search_listview;
 	private SessionListAdapter searchlist_adapter;
-	private int height,pressed_back_button;
+	private int pressed_back_button;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +40,7 @@ public class SearchActivity extends Activity implements TextWatcher {
 
 		tags = Util.TagList;
 
-		height = getDimensionsOfScreen();
-		setActivityTheme(height);
+		setActivityTheme(Util.device_height);
 
 		searchText.addTextChangedListener(this);
 		searchText.setThreshold(0);
@@ -79,7 +75,7 @@ public class SearchActivity extends Activity implements TextWatcher {
 	protected void onResume(){
 		super.onResume();
 		if(pressed_back_button==1){
-			searchlist_adapter=new SessionListAdapter(this, filtered_session_list, height);
+			searchlist_adapter=new SessionListAdapter(this, filtered_session_list, Util.device_height);
 			search_listview.setAdapter(searchlist_adapter);
 		}
 		
@@ -112,16 +108,10 @@ public class SearchActivity extends Activity implements TextWatcher {
 
 		search_listview = (ListView) findViewById(R.id.searchListView);
 		searchlist_adapter = new SessionListAdapter(this,
-				filtered_session_list, height);
+				filtered_session_list, Util.device_height);
 		search_listview.setAdapter(searchlist_adapter);
 	}
 
-	private int getDimensionsOfScreen() {
-		DisplayMetrics metrics = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		return metrics.heightPixels;
-
-	}
 
 	private void sessionListFilter() {
 		int i, j;

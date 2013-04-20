@@ -8,14 +8,12 @@ import org.gdgankara.app.utils.Util;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class TagListActivity extends Activity{
 	
@@ -28,7 +26,7 @@ public class TagListActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setActivityTheme(getDimensionsOfScreen());
+		setActivityTheme(Util.device_height);
 		setContentView(R.layout.taglist);
 		tag_list=Util.TagList;
 		setUpView();
@@ -70,13 +68,6 @@ public class TagListActivity extends Activity{
 		this.startActivity(intent);
 	}
 
-	
-	private int getDimensionsOfScreen(){
-		DisplayMetrics metrics = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		return metrics.heightPixels;
-
-	}
 	
 	private void setActivityTheme(int height){
 		

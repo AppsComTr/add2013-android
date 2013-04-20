@@ -15,6 +15,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -34,6 +35,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Util.prepareStaticLists(this);
+		Util.setDeviceHeight(getDimensionsOfScreen());
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		setUpButtons();
@@ -179,6 +181,13 @@ public class MainActivity extends Activity implements OnClickListener{
 		}
 		Log.i("filepath:"," "+filepath) ;
 		return filepath;
+	}
+	
+	private int getDimensionsOfScreen() {
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		return metrics.heightPixels;
+
 	}
 
 }

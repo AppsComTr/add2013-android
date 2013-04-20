@@ -32,8 +32,8 @@ public class SpeakerListAdapter extends ArrayAdapter<Speaker>{
 		view=inflater.inflate(R.layout.child_of_speakerlist, null, false);
 		text=(TextView)view.findViewById(R.id.speaker_name);
 		text.setText(speaker.getName());
-		text=(TextView)view.findViewById(R.id.speaker_bio);
-		text.setText(speaker.getBiography());
+		text=(TextView)view.findViewById(R.id.speaker_title);
+		text.setText(speaker.getTitle());
 		text.setTextSize(textSize);
 		return view;
 	}

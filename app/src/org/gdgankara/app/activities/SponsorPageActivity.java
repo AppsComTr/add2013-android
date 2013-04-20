@@ -2,16 +2,12 @@ package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
 import java.util.Locale;
-
 import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Sponsor;
 import org.gdgankara.app.utils.Util;
-
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,7 +17,6 @@ public class SponsorPageActivity  extends Activity{
 	private Sponsor sponsor;
 	private ArrayList<Sponsor> total_sponsor_list;
 	private TextView text;
-	private ImageView view;
 	private Long sponsor_id;
 	private TabListener tabListener;
 	private int height,lang;
@@ -30,7 +25,7 @@ public class SponsorPageActivity  extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		height=getDimensionsOfScreen();
+		height=Util.device_height;
 		setActivityTheme();
 		setContentView(R.layout.sponsorpage);
 		sponsor_id=this.getIntent().getExtras().getLong("id");
@@ -90,12 +85,6 @@ public class SponsorPageActivity  extends Activity{
 		total_sponsor_list=Util.SponsorList;
 	}
 	
-	private int getDimensionsOfScreen(){
-		DisplayMetrics metrics = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		return metrics.heightPixels;
-
-	}
 	
 	private void setSponsorNameTextSize(TextView text) {		
 		

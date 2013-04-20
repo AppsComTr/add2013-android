@@ -1,18 +1,14 @@
 package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
-
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.SponsorListAdapter;
-import org.gdgankara.app.adapeters.TagListAdapter;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Sponsor;
 import org.gdgankara.app.utils.Util;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -31,7 +27,7 @@ public class SponsorListActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setActivityTheme(getDimensionsOfScreen());
+		setActivityTheme(Util.device_height);
 		setContentView(R.layout.sponsorlist);
 		//tag_list=Util.TagList; Tam burada sponsor listesini iste
 		setUpView();
@@ -72,13 +68,7 @@ public class SponsorListActivity extends Activity{
 		intent.putExtras(b);
 		this.startActivity(intent);
 	}
-	
-	private int getDimensionsOfScreen(){
-		DisplayMetrics metrics = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		return metrics.heightPixels;
 
-	}
 	
 	private void setActivityTheme(int height){
 		

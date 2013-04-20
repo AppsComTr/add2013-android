@@ -33,15 +33,14 @@ public class SessionListActivity extends Activity{
 	private ListView session_listview;
 	private SessionListAdapter sessionlist_adapter;
 	private String aranan_tag;
-	private int height,pressed_back_button;
+	private int pressed_back_button;
 	private TabListener tabListener;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		height=getDimensionsOfScreen();
-		setActivityTheme(height);
+		setActivityTheme(Util.device_height);
 		setContentView(R.layout.sessionlist);
 		aranan_tag=this.getIntent().getExtras().getString("tag");
 		total_session_list=Util.SessionList;
@@ -56,7 +55,7 @@ public class SessionListActivity extends Activity{
 	protected void onResume(){
 		super.onResume();
 		if(pressed_back_button==1){
-			sessionlist_adapter=new SessionListAdapter(this, filtered_session_list, height);
+			sessionlist_adapter=new SessionListAdapter(this, filtered_session_list, Util.device_height);
 			session_listview.setAdapter(sessionlist_adapter);
 		}
 		
@@ -71,7 +70,7 @@ public class SessionListActivity extends Activity{
 	private void setUpView() {
 		
 		session_listview=(ListView)findViewById(R.id.sessionlist);
-		sessionlist_adapter=new SessionListAdapter(this, filtered_session_list, height);
+		sessionlist_adapter=new SessionListAdapter(this, filtered_session_list, Util.device_height);
 		session_listview.setAdapter(sessionlist_adapter);
 	}
 	
@@ -98,12 +97,6 @@ public class SessionListActivity extends Activity{
 		this.startActivity(intent);
 	}
 
-	private int getDimensionsOfScreen(){
-		DisplayMetrics metrics = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		return metrics.heightPixels;
-
-	}
 	
 	private void sessionListFilter() {
 		int i,j;

@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 public class Util {
@@ -33,6 +34,7 @@ public class Util {
 	public static ArrayList<Sponsor> SponsorList = new ArrayList<Sponsor>();
 	public static ArrayList<String> TagList = new ArrayList<String>();
 	public static ArrayList<Long> FavoritesList = new ArrayList<Long>();
+	public static int device_height;
 	
 	/**
 	 * Shared Preferences'ta tutulan versiyon numarasını verilen numara ile
@@ -79,6 +81,10 @@ public class Util {
 		TagList = tagHandler.getTagList(lang);
 		AnnouncementList = announcementHandler.getAnnouncementList(lang);
 		SponsorList = sponsorHandler.getSponsorList(lang);
+	}
+	
+	public static void setDeviceHeight(int height){
+		device_height=height;
 	}
 	
 	public static void addSessionFavorites(Context context, Long sessionID){
