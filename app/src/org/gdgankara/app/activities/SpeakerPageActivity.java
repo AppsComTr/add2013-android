@@ -44,7 +44,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		setFeaturesTextSize();
 		setContentView(R.layout.speakerpage);
 		speaker_id=this.getIntent().getExtras().getLong("id");
-		setLang();
+		lang=Util.getDefaultLanguage().equals("tr")?1:0;
 		getLists();
 		findSpeaker();
 		findSessions();
@@ -112,7 +112,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 			text.setMovementMethod(LinkMovementMethod.getInstance());
 		}
 		else{
-			text.setText(lang==1?"Yok...":"Not exist...");
+			text.setText("---");
 		}
 		
 		
@@ -123,7 +123,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 			text.setMovementMethod(LinkMovementMethod.getInstance());
 		}
 		else{
-			text.setText(lang==1?"Yok...":"Not exist...");
+			text.setText("---");
 		}
 		
 		text=(TextView)findViewById(R.id.speakerpage_facebooksite_link);
@@ -133,7 +133,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 			text.setMovementMethod(LinkMovementMethod.getInstance());
 		}
 		else{
-			text.setText(lang==1?"Yok...":"Not exist...");
+			text.setText("---");
 		}
 		
 		text=(TextView)findViewById(R.id.speakerpage_twittersite_link);
@@ -143,7 +143,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 			text.setMovementMethod(LinkMovementMethod.getInstance());
 		}
 		else{
-			text.setText(lang==1?"Yok...":"Not exist...");
+			text.setText("---");
 		}
 		
 	}
@@ -205,14 +205,6 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		total_speaker_list=Util.SpeakerList;
 	}
 	
-	private void setLang() {
-		if(Locale.getDefault().getLanguage().equals("tr")){
-			lang=1;
-		}
-		else{
-			lang=0;
-		}
-	}
 	
 	private void setActivityTheme(){
 		
