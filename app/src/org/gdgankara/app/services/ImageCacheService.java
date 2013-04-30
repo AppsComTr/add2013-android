@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-import org.gdgankara.app.io.SessionsHandler;
+import org.gdgankara.app.io.ProgramHandler;
 import org.gdgankara.app.model.Speaker;
 import org.gdgankara.app.receivers.ImageCacheReceiver;
 import org.gdgankara.app.tasks.BitmapDownloaderTask;

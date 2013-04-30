@@ -1,6 +1,6 @@
 package org.gdgankara.app.receivers;
 
-import org.gdgankara.app.io.SessionsHandler;
+import org.gdgankara.app.io.ProgramHandler;
 import org.gdgankara.app.services.ImageCacheService;
 import org.gdgankara.app.utils.Util;
 
@@ -16,7 +16,7 @@ public class ImageCacheReceiver extends BroadcastReceiver {
 		String cacheType = intent.getStringExtra(ImageCacheService.CACHE_TYPE);
 		if (action.equals(ImageCacheService.CACHE_COMPLETED)) {
 			if (cacheType.equals(ImageCacheService.CACHE_SPEAKER_IMAGES)) {
-				SessionsHandler sessionsHandler = new SessionsHandler(context);
+				ProgramHandler sessionsHandler = new ProgramHandler(context);
 				sessionsHandler.updateSpeakerListCacheFile(Util.getDefaultLanguage());
 			}
 		}

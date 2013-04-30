@@ -10,7 +10,7 @@ import java.util.Locale;
 
 import org.gdgankara.app.io.AnnouncementHandler;
 import org.gdgankara.app.io.FavoritesHandler;
-import org.gdgankara.app.io.SessionsHandler;
+import org.gdgankara.app.io.ProgramHandler;
 import org.gdgankara.app.io.SponsorHandler;
 import org.gdgankara.app.io.TagHandler;
 import org.gdgankara.app.model.Announcement;
@@ -70,7 +70,7 @@ public class Util {
 	
 	public static void prepareStaticLists(Context context){
 		String lang = getDefaultLanguage();
-		SessionsHandler sessionsHandler = new SessionsHandler(context);
+		ProgramHandler sessionsHandler = new ProgramHandler(context);
 		TagHandler tagHandler = new TagHandler(context);
 		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
 		AnnouncementHandler announcementHandler = new AnnouncementHandler(context);

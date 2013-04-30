@@ -84,7 +84,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		
 		//Konusmaci unvan
 		text=(TextView)findViewById(R.id.speakerpage_job);
-		text.setText(speaker.getTitle());
+//		text.setText(speaker.getTitle());
 		text.setTextSize(features_text_size);
 		
 		//Konusmaci biografi
@@ -101,12 +101,12 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		
 		//Profil basligi
 		text=(TextView)findViewById(R.id.speakerpage_profiletitle);
-		text.setText(lang==1?"Baðlantý":"Contact");
+		text.setText(lang==1?"Baï¿½lantï¿½":"Contact");
 		
-		//Baðlatýlar
-		String temp;
+		//Baï¿½latï¿½lar
+		String temp = "---";
 		text=(TextView)findViewById(R.id.speakerpage_personalsite_link);
-		temp=speaker.getBlog();
+//		temp=speaker.getBlog();
 		if(!temp.equals("null")){
 			text.setText(Html.fromHtml("<a href=\""+temp+"\">" +temp+ "</a>"));
 			text.setMovementMethod(LinkMovementMethod.getInstance());
@@ -117,7 +117,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		
 		
 		text=(TextView)findViewById(R.id.speakerpage_gplussite_link);
-		temp=speaker.getGplus();
+//		temp=speaker.getGplus();
 		if(!temp.equals("null")){
 			text.setText(Html.fromHtml("<a href=\""+temp+"\">" +temp+ "</a>"));
 			text.setMovementMethod(LinkMovementMethod.getInstance());
@@ -127,7 +127,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		}
 		
 		text=(TextView)findViewById(R.id.speakerpage_facebooksite_link);
-		temp=speaker.getFacebook();
+//		temp=speaker.getFacebook();
 		if(!temp.equals("null")){
 			text.setText(Html.fromHtml("<a href=\""+temp+"\">" +temp+ "</a>"));
 			text.setMovementMethod(LinkMovementMethod.getInstance());
@@ -137,7 +137,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		}
 		
 		text=(TextView)findViewById(R.id.speakerpage_twittersite_link);
-		temp=speaker.getTwitter();
+//		temp=speaker.getTwitter();
 		if(!temp.equals("null")){
 			text.setText(Html.fromHtml("<a href=\""+temp+"\">" +temp+ "</a>"));
 			text.setMovementMethod(LinkMovementMethod.getInstance());

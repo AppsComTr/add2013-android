@@ -33,7 +33,7 @@ public class SpeakerListAdapter extends ArrayAdapter<Speaker>{
 		text=(TextView)view.findViewById(R.id.speaker_name);
 		text.setText(speaker.getName());
 		text=(TextView)view.findViewById(R.id.speaker_title);
-		text.setText(speaker.getTitle());
+//		text.setText(speaker.getTitle());
 		text.setTextSize(textSize);
 		return view;
 	}

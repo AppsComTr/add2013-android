@@ -5,7 +5,7 @@ import java.util.Locale;
 
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.SessionListAdapter;
-import org.gdgankara.app.io.SessionsHandler;
+import org.gdgankara.app.io.ProgramHandler;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;

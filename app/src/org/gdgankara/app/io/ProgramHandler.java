@@ -16,21 +16,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-public class SessionsHandler extends BaseHandler {
-	private static final String TAG = SessionsHandler.class.getSimpleName();
+public class ProgramHandler extends BaseHandler {
+	private static final String TAG = ProgramHandler.class.getSimpleName();
 
 	private static final String CACHE_FILE_SESSION = "SessionsJSON";
 	private static final String CACHE_FILE_SPEAKER = "SpeakersJSON";
 
-	private static final String BASE_URL_SESSION = "http://add-2013.appspot.com/api/sessions/";
-	private static final String BASE_URL_SPEAKER = "http://add-2013.appspot.com/api/speakers/";
+	private static final String BASE_URL_PROGRAM = "http://add-2013.appspot.com/api/program/";
 
 	protected Context context;
 	protected String lang;
 	protected ArrayList<Session> sessionList;
 	protected ArrayList<Speaker> speakerList;
 
-	public SessionsHandler(Context context) {
+	public ProgramHandler(Context context) {
 		super(context);
 		this.context = context;
 	}
@@ -51,7 +50,7 @@ public class SessionsHandler extends BaseHandler {
 		try {
 			sessionList = (ArrayList<Session>) readCacheFile(getSessionCacheFileName(lang));
 			if (sessionList == null) {
-				jsonObject = doGet(BASE_URL_SESSION + lang);
+				jsonObject = doGet(BASE_URL_PROGRAM + lang);
 				sessionList = parseJSONObjectToSessionList(jsonObject,
 						"sessions");
 				writeListToFile(sessionList, getSessionCacheFileName(lang));
@@ -60,7 +59,7 @@ public class SessionsHandler extends BaseHandler {
 			speakerList = (ArrayList<Speaker>) readCacheFile(getSpeakerCacheFileName(lang));
 			if (speakerList == null) {
 				if (jsonObject == null) {
-					jsonObject = doGet(BASE_URL_SPEAKER + lang);
+					jsonObject = doGet(BASE_URL_PROGRAM + lang);
 				}
 				speakerList = parseJSONObjectToSpeakerList(jsonObject,
 						"speakers");
@@ -83,7 +82,7 @@ public class SessionsHandler extends BaseHandler {
 		JSONObject jsonObject;
 		ArrayList<Session> sessionsList = new ArrayList<Session>();
 		try {
-			jsonObject = doGet(BASE_URL_SESSION + lang);
+			jsonObject = doGet(BASE_URL_PROGRAM + lang);
 			boolean isVersionUpdated = Util.isVersionUpdated(context,
 					jsonObject);
 			if (isVersionUpdated) {
@@ -107,7 +106,7 @@ public class SessionsHandler extends BaseHandler {
 		JSONObject jsonObject;
 		ArrayList<Speaker> speakerList = new ArrayList<Speaker>();
 		try {
-			jsonObject = doGet(BASE_URL_SPEAKER + lang);
+			jsonObject = doGet(BASE_URL_PROGRAM + lang);
 			boolean isVersionUpdated = Util.isVersionUpdated(context,
 					jsonObject);
 			if (isVersionUpdated) {
@@ -149,34 +148,37 @@ public class SessionsHandler extends BaseHandler {
 				speaker = new Speaker();
 				speaker.setId(speakerObject.getLong("id"));
 				speaker.setBiography(isObjectNull(speakerObject.getString("bio")));
-				speaker.setBlog(isObjectNull(speakerObject.getString("blog")));
-				speaker.setFacebook((speakerObject.getString("facebook")));
-				speaker.setGplus(isObjectNull(speakerObject.getString("gplus")));
 				speaker.setLanguage(isObjectNull(speakerObject.getString("lang")));
 				speaker.setName(isObjectNull(speakerObject.getString("name")));
 				speaker.setPhoto(isObjectNull(speakerObject.getString("photo")));
-				speaker.setTwitter(isObjectNull(speakerObject.getString("twitter")));
-				speaker.setTitle(isObjectNull(speakerObject.getString("title")));
 
 				JSONArray sessionIDArray;
 				List<Long> sessionIDList = new ArrayList<Long>();
-				try {
-					sessionIDList.add(speakerObject.getLong("sessionIDList"));
-				} catch (JSONException e) {
-					sessionIDArray = speakerObject
-							.getJSONArray("sessionIDList");
-					for (int k = 0; k < sessionIDArray.length(); k++) {
-						sessionIDList.add(sessionIDArray.getLong(k));
+				if (!speakerObject.isNull("sessionIDList")) {
+					try {
+						sessionIDList.add(speakerObject.getLong("sessionIDList"));
+					} catch (JSONException e) {
+						e.printStackTrace();
+						Log.e(TAG, e.toString());
+						sessionIDArray = speakerObject
+								.getJSONArray("sessionIDList");
+						for (int k = 0; k < sessionIDArray.length(); k++) {
+							sessionIDList.add(sessionIDArray.getLong(k));
+						}
 					}
-				}
 
-				speaker.setSessionIDList(sessionIDList);
-				speakerList.add(speaker);
+					speaker.setSessionIDList(sessionIDList);
+					speakerList.add(speaker);
+				}else {
+					speaker.setSessionIDList(null);
+					speakerList.add(speaker);
+				}
 			}
 		} catch (Exception e) {
 			Log.e(TAG, "Error: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}
+		System.out.println("size:" + speakerList.size());
 		return speakerList;
 	}
 
@@ -204,16 +206,16 @@ public class SessionsHandler extends BaseHandler {
 				session.setFavorite(false);
 
 				if (!session.isBreak()) {
-					session.setTags(sessionObject.getString("tags"));
-
 					// TODO REFACTOR
 					JSONArray speakerIDArray;
 					List<Long> speakerIDList = new ArrayList<Long>();
 					try {
-						speakerIDList.add(sessionObject
-								.getLong("speakerIDList"));
+						if (!sessionObject.isNull("speakerIDList")) {
+							speakerIDList.add(sessionObject
+									.getLong("speakerIDList"));
+						}
 					} catch (JSONException e) {
-						// e.printStackTrace();
+						//e.printStackTrace();
 						speakerIDArray = sessionObject
 								.getJSONArray("speakerIDList");
 						if (speakerIDArray.get(0) != null) {
@@ -228,8 +230,6 @@ public class SessionsHandler extends BaseHandler {
 					}
 
 					session.setSpeakerIDList(speakerIDList);
-				} else {
-					session.setTags("");
 				}
 
 				if (sessionObject.getString("lang").equals(Session.LANG_EN)) {
