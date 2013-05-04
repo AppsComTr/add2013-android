@@ -35,6 +35,7 @@ public class Util {
 	public static ArrayList<String> TagList = new ArrayList<String>();
 	public static ArrayList<Long> FavoritesList = new ArrayList<Long>();
 	public static int device_height;
+	public static int device_width;
 	
 	/**
 	 * Shared Preferences'ta tutulan versiyon numarasını verilen numara ile
@@ -85,6 +86,10 @@ public class Util {
 	
 	public static void setDeviceHeight(int height){
 		device_height=height;
+	}
+	
+	public static void setDeviceWidth(int width){
+		device_width=width;
 	}
 	
 	public static void addSessionFavorites(Context context, Long sessionID){

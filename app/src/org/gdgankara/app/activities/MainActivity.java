@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import org.gdgankara.app.R;
+import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.utils.Util;
 import android.app.Activity;
 import android.content.Intent;
@@ -38,7 +39,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Util.prepareStaticLists(this);
-		Util.setDeviceHeight(getDimensionsOfScreen());
+		setDeviceDimensions();
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		setUpButtons();
@@ -111,8 +112,27 @@ public class MainActivity extends Activity implements OnClickListener {
 		programButton.setOnClickListener(this);
 		konusmaciButton.setOnClickListener(this);
 		araButton.setOnClickListener(this);
+		newsFlipper.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				startAnnouncementList(newsFlipper.getDisplayedChild());
+			}
+
+		});
+	}
+	
+	private void startAnnouncementList(int index){
+		Intent intent=new Intent(this,AnnouncementListActivity.class);
+		Bundle b=new Bundle();
+		b.putInt("index", index);
+		intent.putExtras(b);
+		this.startActivity(intent);
 	}
 
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -128,7 +148,6 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		case R.id.tweetWall:
 			i = new Intent(MainActivity.this, TweetWallActivity.class);
-			startActivity(i);
 			break;
 
 		case R.id.program_button:
@@ -136,36 +155,30 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		case R.id.harita_button:
 			i = new Intent(MainActivity.this, MyMapActivity.class);
-			startActivity(i);
 			break;
 
 		case R.id.sponsor_button:
 			i = new Intent(MainActivity.this, SponsorListActivity.class);
-			startActivity(i);
 			break;
 
 		case R.id.oturum_button:
 			i = new Intent(MainActivity.this, TagListActivity.class);
-			startActivity(i);
 			break;
 
 		case R.id.favori_button:
 			i = new Intent(MainActivity.this, FavoriteListActivity.class);
-			startActivity(i);
 			break;
 
 		case R.id.speakers_button:
 			i = new Intent(MainActivity.this, SpeakerListActivity.class);
-			startActivity(i);
 			break;
 		case R.id.search_button:
 			i = new Intent(MainActivity.this, SearchActivity.class);
-			startActivity(i);
 			break;
 
 		}
 
-		// startActivity(i);
+		startActivity(i);
 
 	}
 
@@ -210,11 +223,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		return filepath;
 	}
 
-	private int getDimensionsOfScreen() {
+	private void setDeviceDimensions() {
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		return metrics.heightPixels;
-
+		Util.setDeviceHeight(metrics.heightPixels);
+		Util.setDeviceWidth(metrics.widthPixels);
 	}
 
 }
