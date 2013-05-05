@@ -351,7 +351,7 @@ public class ProgramHandler extends BaseHandler {
 								.getString("tags")));
 						String[] tags = session.getTags().split(",");
 						for (String string : tags) {
-							if (string != "" && string != null) {
+							if (string != "" && string != null && !tagList.contains(string)) {
 								tagList.add(string);
 							}
 						}
