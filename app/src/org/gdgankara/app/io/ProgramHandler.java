@@ -8,6 +8,7 @@ import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
 import org.gdgankara.app.model.Sponsor;
+import org.gdgankara.app.model.Tag;
 import org.gdgankara.app.services.ImageCacheService;
 import org.gdgankara.app.utils.Util;
 import org.json.JSONArray;
@@ -61,6 +62,8 @@ public class ProgramHandler extends BaseHandler {
 						"sessions");
 				writeListToFile(sessionList,
 						getCacheFileName(Session.KIND, lang));
+			}else {
+				tagList = (ArrayList<String>) readCacheFile(getCacheFileName(Tag.KIND, "en"));
 			}
 
 			speakerList = (ArrayList<Speaker>) readCacheFile(getCacheFileName(
@@ -99,11 +102,12 @@ public class ProgramHandler extends BaseHandler {
 				writeListToFile(announcementList,
 						getCacheFileName(Announcement.KIND, "en"));
 			}
-
+			
 			setAnnouncementList(announcementList);
 			setSessionList(sessionList);
 			setSpeakerList(speakerList);
 			setSponsorList(sponsorList);
+			setTagList(tagList);
 		} catch (Exception e) {
 			Log.e(TAG, "Error: " + e);
 			e.printStackTrace();
@@ -347,7 +351,9 @@ public class ProgramHandler extends BaseHandler {
 								.getString("tags")));
 						String[] tags = session.getTags().split(",");
 						for (String string : tags) {
-							tagList.add(string);
+							if (string != "" && string != null) {
+								tagList.add(string);
+							}
 						}
 					}
 
@@ -416,7 +422,6 @@ public class ProgramHandler extends BaseHandler {
 		updateFavoriteSessions(sessionList);
 		this.sessionList = sessionList;
 		Util.SessionList = sessionList;
-		Util.TagList = tagList;
 	}
 
 	public ArrayList<Speaker> getSpeakerList() {
@@ -444,6 +449,20 @@ public class ProgramHandler extends BaseHandler {
 	public void setSponsorList(ArrayList<Sponsor> sponsorList) {
 		this.sponsorList = sponsorList;
 		Util.SponsorList = sponsorList;
+	}
+
+	public ArrayList<String> getTagList() {
+		return tagList;
+	}
+
+	public void setTagList(ArrayList<String> tagList) {
+		this.tagList = tagList;
+		Util.TagList = tagList;
+		try {
+			writeListToFile(tagList,getCacheFileName(Tag.KIND, "en"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
