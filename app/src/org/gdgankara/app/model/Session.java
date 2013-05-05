@@ -5,24 +5,25 @@ import java.util.List;
 
 public class Session implements Serializable {
 	private static final long serialVersionUID = 1L;
+	public static final String KIND = "session";
 	public static final String LANG_TR = "tr";
 	public static final String LANG_EN = "en";
 	public static final int DAY_FRIDAY = 14;
 	public static final int DAY_SATURDAY = 15;
 
-	protected int day;
-	protected String language;
 	private long id;
+	private String date;
+	protected int day;
+	private String description;
+	private String end_hour;
+	private String hall;
 	private boolean isBreak;
 	private boolean isFavorite;
-	private String date;
-	private String description;
-	private String start_hour;
-	private String end_hour;
-	private String hall; 
-	private String title; 
+	protected String language;
 	private List<Long> speakerIDList;
+	private String start_hour;
 	private String tags;
+	private String title; 
 
 	public Session() {
 		super();

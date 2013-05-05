@@ -28,7 +28,7 @@ public class SponsorListAdapter extends ArrayAdapter<Sponsor>{
 		sponsor=sponsorlist.get(position);
 		view=inflater.inflate(R.layout.child_of_sponsorlist, null, false);
 		text=(TextView)view.findViewById(R.id.sponsor_name);
-		text.setText(sponsor.getName());
+//		text.setText(sponsor.getName());
 		
 		//Tam burada logoyu da set etmen gerek
 		

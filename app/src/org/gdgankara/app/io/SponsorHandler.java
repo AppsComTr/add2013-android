@@ -78,16 +78,16 @@ public class SponsorHandler extends BaseHandler {
 			for (int i = 0; i < length; i++) {
 				JSONObject sponsorObject = sponsorArray.getJSONObject(i);
 				sponsor = new Sponsor();
-				sponsor.setDescription(sponsorObject.getString("description"));
+//				sponsor.setDescription(sponsorObject.getString("description"));
 				sponsor.setId(sponsorObject.getLong("id"));
 				sponsor.setLogo(sponsorObject.getString("image"));
-				sponsor.setName(sponsorObject.getString("name"));
+//				sponsor.setName(sponsorObject.getString("name"));
 				sponsor.setLink(sponsorObject.getString("link"));
 
 				if (sponsorObject.getString("lang").equals(Sponsor.LANG_EN)) {
-					sponsor.setLang(Sponsor.LANG_EN);
+//					sponsor.setLang(Sponsor.LANG_EN);
 				}else {
-					sponsor.setLang(Sponsor.LANG_TR);
+//					sponsor.setLang(Sponsor.LANG_TR);
 				}
 				sponsorList.add(sponsor);
 			}

@@ -8,6 +8,7 @@ public class Announcement implements Serializable{
 	private static final long serialVersionUID = 1L;
 	public static final String LANG_TR = "tr";
 	public static final String LANG_EN = "en";
+	public static final String KIND = "announcement";
 	
 	private long id;
 	private String description;

@@ -7,23 +7,22 @@ public class Tag implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private long id;
-	private String tags;
+	private String tag;
 	private String lang;
-	private ArrayList<String> tagList;
 	
 	public Tag() {
 		super();
 	}
 	
-	public Tag(long id, String lang, String tags) {
+	public Tag(long id, String lang, String tag) {
 		this.id = id;
 		this.lang = lang;
-		this.tags = tags;
+		this.tag = tag;
 	}
 	
-	public Tag(long id, String tags) {
+	public Tag(long id, String tag) {
 		this.id = id;
-		this.tags = tags;
+		this.tag = tag;
 	}
 
 	public long getId() {
@@ -32,11 +31,11 @@ public class Tag implements Serializable{
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getTags() {
-		return tags;
+	public String getTag() {
+		return tag;
 	}
-	public void setTags(String tags) {
-		this.tags = tags;
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 	public String getLang() {
@@ -46,15 +45,5 @@ public class Tag implements Serializable{
 	public void setLang(String lang) {
 		this.lang = lang;
 	}
-
-	public ArrayList<String> getTagList() {
-		return tagList;
-	}
-
-	public void setTagList(ArrayList<String> tagList) {
-		this.tagList = tagList;
-	}
-	
-	
 	
 }

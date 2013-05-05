@@ -51,20 +51,20 @@ public class SponsorPageActivity  extends Activity{
 	private void setUpView() {
 		
 		
-		/*Sponsor logosu : view deðiþkeni ile ulaþ ve logoyu set et */
+		/*Sponsor logosu : view deï¿½iï¿½keni ile ulaï¿½ ve logoyu set et */
 		
-		/*Sponsor adý*/
+		/*Sponsor adï¿½*/
 		text=(TextView)findViewById(R.id.sponsorpage_name);
-		text.setText(sponsor.getName());
+//		text.setText(sponsor.getName());
 		setSponsorNameTextSize(text);
 		
-		/*Sponsor Özet*/
+		/*Sponsor ï¿½zet*/
 		text=(TextView)findViewById(R.id.sponsor_description);
-		text.setText(sponsor.getDescription());
+//		text.setText(sponsor.getDescription());
 		
-		/*Baþlýk Dili*/
+		/*Baï¿½lï¿½k Dili*/
 		text=(TextView)findViewById(R.id.sponsor_link_title);
-		text.setText(lang==1?"Ayrýntýlý bilgi için":"Fore more details");
+		text.setText(lang==1?"Ayrï¿½ntï¿½lï¿½ bilgi iï¿½in":"Fore more details");
 		
 		/*Sponsor web sitesi*/
 		text=(TextView)findViewById(R.id.sponsorpage_link);

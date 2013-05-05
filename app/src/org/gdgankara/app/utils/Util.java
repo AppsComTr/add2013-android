@@ -71,17 +71,11 @@ public class Util {
 	
 	public static void prepareStaticLists(Context context){
 		String lang = getDefaultLanguage();
-		ProgramHandler sessionsHandler = new ProgramHandler(context);
-		TagHandler tagHandler = new TagHandler(context);
+		ProgramHandler programHandler = new ProgramHandler(context);
 		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
-		AnnouncementHandler announcementHandler = new AnnouncementHandler(context);
-		SponsorHandler sponsorHandler = new SponsorHandler(context);
 		
 		FavoritesList = favoritesHandler.getFavoritesList(lang);
-		sessionsHandler.initializeLists(lang);
-		TagList = tagHandler.getTagList(lang);
-		AnnouncementList = announcementHandler.getAnnouncementList(lang);
-		SponsorList = sponsorHandler.getSponsorList(lang);
+		programHandler.initializeLists(lang);
 	}
 	
 	public static void setDeviceHeight(int height){

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Speaker implements Serializable {
 	private static final long serialVersionUID = 1L;
+	public static final String KIND = "speaker";
 	private long id;
 	private String biography;
 	private String language;
