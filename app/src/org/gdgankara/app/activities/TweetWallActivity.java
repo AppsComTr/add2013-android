@@ -73,7 +73,7 @@ public class TweetWallActivity extends ListActivity implements Runnable {
         @Override
         protected void onPostExecute(String[] result) {
             // Call onRefreshComplete when the list has been refreshed.
-        	pullToRefreshView.setAdapter(new UserItemAdapter(TweetWallActivity.this, R.layout.list1, tweets));
+        	pullToRefreshView.setAdapter(new UserItemAdapter(TweetWallActivity.this, R.layout.child_of_tweetwall, tweets));
             pullToRefreshView.onRefreshComplete();
             super.onPostExecute(result);
         }
@@ -99,7 +99,7 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 			View v = convertView;
 			if (v == null) {
 				LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				v = vi.inflate(R.layout.list1, null);
+				v = vi.inflate(R.layout.child_of_tweetwall, null);
 			}
 
 			Tweet tweet = tweets.get(position);
@@ -203,7 +203,7 @@ public class TweetWallActivity extends ListActivity implements Runnable {
         @Override
         public void handleMessage(Message msg) {
                 pd.dismiss();
-                pullToRefreshView.setAdapter(new UserItemAdapter(TweetWallActivity.this, R.layout.list1, tweets));
+                pullToRefreshView.setAdapter(new UserItemAdapter(TweetWallActivity.this, R.layout.child_of_tweetwall, tweets));
         }
 };
 }

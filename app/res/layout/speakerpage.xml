@@ -107,128 +107,128 @@
             android:textStyle="bold"
             android:layout_marginTop="10dp"/>
         
-        <ImageView 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/sessionpage_divider"
-            android:layout_marginTop="5dp"/>
+<!--         <ImageView  -->
+<!--             android:layout_width="match_parent" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:background="@drawable/sessionpage_divider" -->
+<!--             android:layout_marginTop="5dp"/> -->
         
-        <LinearLayout 
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="7dp">
+<!--         <LinearLayout  -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:layout_width="match_parent" -->
+<!--             android:orientation="vertical" -->
+<!--             android:layout_marginTop="5dp" -->
+<!--             android:paddingLeft="7dp"> -->
             
-            <RelativeLayout 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp">
+<!--             <RelativeLayout  -->
+<!--                 android:layout_width="match_parent" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:paddingLeft="2dp" -->
+<!--                 android:paddingRight="2dp" -->
+<!--                 android:paddingTop="4dp" -->
+<!--                 android:paddingBottom="4dp"> -->
                 
-                <ImageView 
-                    android:id="@+id/speakerpage_personalsite_image"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="@drawable/personalsite_image"/>
+<!--                 <ImageView  -->
+<!--                     android:id="@+id/speakerpage_personalsite_image" -->
+<!--                     android:layout_width="20dp" -->
+<!--                     android:layout_height="20dp" -->
+<!--                     android:background="@drawable/personalsite_image"/> -->
                 
-                <TextView 
-                    android:id="@+id/speakerpage_personalsite_link"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/speakerpage_personalsite_image"
-                    android:layout_marginLeft="5dp"
-            		android:layout_centerVertical="true"
-            		android:maxLines="1"
-            		android:ellipsize="end"/>
+<!--                 <TextView  -->
+<!--                     android:id="@+id/speakerpage_personalsite_link" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:layout_toRightOf="@+id/speakerpage_personalsite_image" -->
+<!--                     android:layout_marginLeft="5dp" -->
+<!--             		android:layout_centerVertical="true" -->
+<!--             		android:maxLines="1" -->
+<!--             		android:ellipsize="end"/> -->
                 	
                 
-            </RelativeLayout>
+<!--             </RelativeLayout> -->
             
-            <RelativeLayout 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp">
+<!--             <RelativeLayout  -->
+<!--                 android:layout_width="match_parent" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:paddingLeft="2dp" -->
+<!--                 android:paddingRight="2dp" -->
+<!--                 android:paddingTop="4dp" -->
+<!--                 android:paddingBottom="4dp"> -->
                 
-                <ImageView 
-                    android:id="@+id/speakerpage_gplussite_image"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="@drawable/gplus_image"/>
+<!--                 <ImageView  -->
+<!--                     android:id="@+id/speakerpage_gplussite_image" -->
+<!--                     android:layout_width="20dp" -->
+<!--                     android:layout_height="20dp" -->
+<!--                     android:background="@drawable/gplus_image"/> -->
                 
-                <TextView 
-                    android:id="@+id/speakerpage_gplussite_link"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/speakerpage_gplussite_image"
-                    android:layout_marginLeft="5dp"
-            		android:layout_centerVertical="true"
-            		android:maxLines="1"
-            		android:ellipsize="end"/>
+<!--                 <TextView  -->
+<!--                     android:id="@+id/speakerpage_gplussite_link" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:layout_toRightOf="@+id/speakerpage_gplussite_image" -->
+<!--                     android:layout_marginLeft="5dp" -->
+<!--             		android:layout_centerVertical="true" -->
+<!--             		android:maxLines="1" -->
+<!--             		android:ellipsize="end"/> -->
                 	
                 
-            </RelativeLayout>
+<!--             </RelativeLayout> -->
             
-            <RelativeLayout 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp">
+<!--             <RelativeLayout  -->
+<!--                 android:layout_width="match_parent" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:paddingLeft="2dp" -->
+<!--                 android:paddingRight="2dp" -->
+<!--                 android:paddingTop="4dp" -->
+<!--                 android:paddingBottom="4dp"> -->
                 
-                <ImageView 
-                    android:id="@+id/speakerpage_facebooksite_image"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="@drawable/facebook_image"/>
+<!--                 <ImageView  -->
+<!--                     android:id="@+id/speakerpage_facebooksite_image" -->
+<!--                     android:layout_width="20dp" -->
+<!--                     android:layout_height="20dp" -->
+<!--                     android:background="@drawable/facebook_image"/> -->
                 
-                <TextView 
-                    android:id="@+id/speakerpage_facebooksite_link"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/speakerpage_facebooksite_image"
-                    android:layout_marginLeft="5dp"
-            		android:layout_centerVertical="true"
-            		android:maxLines="1"
-            		android:ellipsize="end"/>
+<!--                 <TextView  -->
+<!--                     android:id="@+id/speakerpage_facebooksite_link" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:layout_toRightOf="@+id/speakerpage_facebooksite_image" -->
+<!--                     android:layout_marginLeft="5dp" -->
+<!--             		android:layout_centerVertical="true" -->
+<!--             		android:maxLines="1" -->
+<!--             		android:ellipsize="end"/> -->
                 	
                 
-            </RelativeLayout>
+<!--             </RelativeLayout> -->
             
-            <RelativeLayout 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp">
+<!--             <RelativeLayout  -->
+<!--                 android:layout_width="match_parent" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:paddingLeft="2dp" -->
+<!--                 android:paddingRight="2dp" -->
+<!--                 android:paddingTop="4dp" -->
+<!--                 android:paddingBottom="4dp"> -->
                 
-                <ImageView 
-                    android:id="@+id/speakerpage_twittersite_image"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="@drawable/twitter_image"/>
+<!--                 <ImageView  -->
+<!--                     android:id="@+id/speakerpage_twittersite_image" -->
+<!--                     android:layout_width="20dp" -->
+<!--                     android:layout_height="20dp" -->
+<!--                     android:background="@drawable/twitter_image"/> -->
                 
-                <TextView 
-                    android:id="@+id/speakerpage_twittersite_link"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/speakerpage_twittersite_image"
-                    android:layout_marginLeft="5dp"
-            		android:layout_centerVertical="true"
-            		android:maxLines="1"
-            		android:ellipsize="end"/>
+<!--                 <TextView  -->
+<!--                     android:id="@+id/speakerpage_twittersite_link" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:layout_toRightOf="@+id/speakerpage_twittersite_image" -->
+<!--                     android:layout_marginLeft="5dp" -->
+<!--             		android:layout_centerVertical="true" -->
+<!--             		android:maxLines="1" -->
+<!--             		android:ellipsize="end"/> -->
                 	
                 
-            </RelativeLayout>
+<!--             </RelativeLayout> -->
             
-        </LinearLayout>
+<!--         </LinearLayout> -->
         
         </LinearLayout>
         

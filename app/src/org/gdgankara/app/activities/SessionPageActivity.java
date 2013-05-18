@@ -2,7 +2,6 @@ package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Session;
