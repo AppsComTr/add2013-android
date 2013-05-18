@@ -42,54 +42,60 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 	private ArrayList<Tweet> tweets;
 	private TabListener tabListener;
 	private ProgressDialog pd;
-	
+
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tweet_wall);
-        tabAktif();
-        pullToRefreshView = (PullToRefreshListView) findViewById(R.id.tweetList);
-        pd = ProgressDialog.show(this,"Please Wait" , "Getting tweets from Twitter",true,false);
-        Thread thread = new Thread(this);
-        thread.start();
-        pullToRefreshView.setOnRefreshListener(new OnRefreshListener<ListView>() {
-            @Override
-            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-            	
-            	
-                // Do work to refresh the list here.
-                new GetDataTask().execute();
-            }
-        });
-    }
-	
-	public void tabAktif(){
-		tabListener=new TabListener(this);
-		((ImageView)findViewById(R.id.search_button)).setOnClickListener(tabListener);	
-		
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_tweet_wall);
+		tabAktif();
+		pullToRefreshView = (PullToRefreshListView) findViewById(R.id.tweetList);
+		pd = ProgressDialog.show(this, "Please Wait",
+				"Getting tweets from Twitter", true, false);
+		Thread thread = new Thread(this);
+		thread.start();
+		pullToRefreshView
+				.setOnRefreshListener(new OnRefreshListener<ListView>() {
+					@Override
+					public void onRefresh(
+							PullToRefreshBase<ListView> refreshView) {
+
+						// Do work to refresh the list here.
+						new GetDataTask().execute();
+					}
+				});
 	}
-	
+
+	public void tabAktif() {
+		tabListener = new TabListener(this);
+		((ImageView) findViewById(R.id.search_button))
+				.setOnClickListener(tabListener);
+
+	}
+
 	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
-        @Override
-        protected void onPostExecute(String[] result) {
-            // Call onRefreshComplete when the list has been refreshed.
-        	pullToRefreshView.setAdapter(new UserItemAdapter(TweetWallActivity.this, R.layout.child_of_tweetwall, tweets));
-            pullToRefreshView.onRefreshComplete();
-            super.onPostExecute(result);
-        }
+		@Override
+		protected void onPostExecute(String[] result) {
+			// Call onRefreshComplete when the list has been refreshed.
+			pullToRefreshView
+					.setAdapter(new UserItemAdapter(TweetWallActivity.this,
+							R.layout.child_of_tweetwall, tweets));
+			pullToRefreshView.onRefreshComplete();
+			super.onPostExecute(result);
+		}
 
 		@Override
 		protected String[] doInBackground(Void... arg0) {
 			// TODO Auto-generated method stub
-			tweets=getTweets("AndroidDevDays", 1);
+			tweets = getTweets("AndroidDevDays", 1, 100);
 			return null;
 		}
-    }
+	}
 
 	public class UserItemAdapter extends ArrayAdapter<Tweet> {
 		private ArrayList<Tweet> tweets;
 
-		public UserItemAdapter(Context context, int textViewResourceId, ArrayList<Tweet> tweets) {
+		public UserItemAdapter(Context context, int textViewResourceId,
+				ArrayList<Tweet> tweets) {
 			super(context, textViewResourceId, tweets);
 			this.tweets = tweets;
 		}
@@ -98,7 +104,7 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View v = convertView;
 			if (v == null) {
-				LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				v = vi.inflate(R.layout.child_of_tweetwall, null);
 			}
 
@@ -107,17 +113,23 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 				TextView username = (TextView) v.findViewById(R.id.username);
 				TextView message = (TextView) v.findViewById(R.id.message);
 				ImageView image = (ImageView) v.findViewById(R.id.avatar);
+				TextView screenname = (TextView) v
+						.findViewById(R.id.user_twitter_name);
 
 				if (username != null) {
-					username.setText(tweet.username);
+					String usrnamestr = "@" + tweet.username; 
+					username.setText(usrnamestr);
 				}
 
-				if(message != null) {
+				if (message != null) {
 					message.setText(tweet.message);
 				}
-				
-				if(image != null) {
+
+				if (image != null) {
 					image.setImageBitmap(getBitmap(tweet.image_url));
+				}
+				if (screenname != null) {
+					screenname.setText(tweet.screen_name);
 				}
 			}
 			return v;
@@ -127,83 +139,91 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 	public Bitmap getBitmap(String bitmapUrl) {
 		try {
 			URL url = new URL(bitmapUrl);
-			return BitmapFactory.decodeStream(url.openConnection() .getInputStream()); 
+			return BitmapFactory.decodeStream(url.openConnection()
+					.getInputStream());
+		} catch (Exception ex) {
+			return null;
 		}
-		catch(Exception ex) {return null;}
 	}
-	
-	public ArrayList<Tweet> getTweets(String searchTerm, int page) {
-		String searchUrl = "http://search.twitter.com/search.json?q=" 
-							+ searchTerm;
-		
+
+	public ArrayList<Tweet> getTweets(String searchTerm, int page, int rpp) {
+		String searchUrl = "http://search.twitter.com/search.json?rpp="
+				+ rpp + "&page="
+				+ page + "&q=" + searchTerm + "+exclude:retweets";
+
 		ArrayList<Tweet> tweets = new ArrayList<Tweet>();
-		
-		HttpClient client = new  DefaultHttpClient();
+
+		HttpClient client = new DefaultHttpClient();
 		HttpGet get = new HttpGet(searchUrl);
-	      
+
 		ResponseHandler<String> responseHandler = new BasicResponseHandler();
 
 		String responseBody = null;
-		try{
+		try {
 			responseBody = client.execute(get, responseHandler);
-		}catch(Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 
 		JSONObject jsonObject = null;
-		JSONParser parser=new JSONParser();
-		
+		JSONParser parser = new JSONParser();
+
 		try {
 			Object obj = parser.parse(responseBody);
-			jsonObject=(JSONObject)obj;
-			
-		}catch(Exception ex){
-			Log.v("TEST","Exception: " + ex.getMessage());
-		}
-		
-		JSONArray arr = null;
-		
-		try {
-			Object j = jsonObject.get("results");
-			arr = (JSONArray)j;
-		}catch(Exception ex){
-			Log.v("TEST","Exception: " + ex.getMessage());
+			jsonObject = (JSONObject) obj;
+
+		} catch (Exception ex) {
+			Log.v("TEST", "Exception: " + ex.getMessage());
 		}
 
-		for(Object t : arr) {
-			Tweet tweet = new Tweet(
-					((JSONObject)t).get("from_user").toString(),
-					((JSONObject)t).get("text").toString(),
-					((JSONObject)t).get("profile_image_url").toString()
-					);
+		JSONArray arr = null;
+
+		try {
+			Object j = jsonObject.get("results");
+			arr = (JSONArray) j;
+		} catch (Exception ex) {
+			Log.v("TEST", "Exception: " + ex.getMessage());
+		}
+
+		for (Object t : arr) {
+			Tweet tweet = new Tweet(((JSONObject) t).get("from_user")
+					.toString(), ((JSONObject) t).get("text").toString(),
+					((JSONObject) t).get("profile_image_url").toString(),
+					((JSONObject) t).get("from_user_name").toString());
 			tweets.add(tweet);
 		}
-		
+
 		return tweets;
 	}
-	
+
 	public class Tweet {
 		public String username;
 		public String message;
 		public String image_url;
-		
-		public Tweet(String username, String message, String url) {
+		public String screen_name;
+
+		public Tweet(String username, String message, String url,
+				String screen_name) {
 			this.username = username;
 			this.message = message;
 			this.image_url = url;
+			this.screen_name = screen_name;
 		}
 	}
 
 	@Override
 	public void run() {
-        tweets = getTweets("AndroidDevDays", 1);
-        handler.sendEmptyMessage(0);
+		tweets = getTweets("AndroidDevDays", 1, 100);
+		handler.sendEmptyMessage(0);
 	}
+
 	private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-                pd.dismiss();
-                pullToRefreshView.setAdapter(new UserItemAdapter(TweetWallActivity.this, R.layout.child_of_tweetwall, tweets));
-        }
-};
+		@Override
+		public void handleMessage(Message msg) {
+			pullToRefreshView
+					.setAdapter(new UserItemAdapter(TweetWallActivity.this,
+							R.layout.child_of_tweetwall, tweets));
+			pd.dismiss();
+		}
+	};
 }
