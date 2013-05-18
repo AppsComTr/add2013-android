@@ -97,11 +97,11 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		addSessionsToLayout();
 		
 		//Profil basligi
-		text=(TextView)findViewById(R.id.speakerpage_profiletitle);
+		/*text=(TextView)findViewById(R.id.speakerpage_profiletitle);
 		text.setText(lang==1?"Baðlantýlar":"Contact");
 		
 		//Baðlantýlar
-		/*String temp = "---";
+		String temp = "---";
 		text=(TextView)findViewById(R.id.speakerpage_personalsite_link);
 		temp=speaker.getBlog();
 		if(!temp.equals("null")){

@@ -3,16 +3,21 @@ package org.gdgankara.app.adapeters;
 import java.util.List;
 import org.gdgankara.app.R;
 import org.gdgankara.app.model.Speaker;
+
+import com.squareup.picasso.Picasso;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SpeakerListAdapter extends ArrayAdapter<Speaker>{
 	
+	private Context context;
 	private List<Speaker> speakerlist;
 	private LayoutInflater inflater ;
 	private View view;
@@ -22,6 +27,7 @@ public class SpeakerListAdapter extends ArrayAdapter<Speaker>{
 
 	public SpeakerListAdapter(Context context, List<Speaker> objects,int height) {
 		super(context,R.layout.child_of_speakerlist,objects);
+		this.context=context;
 		speakerlist=objects;
 		inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		setFeaturesTextSize(height);
@@ -29,13 +35,13 @@ public class SpeakerListAdapter extends ArrayAdapter<Speaker>{
 	
 	public View getView(int position, View convertView, ViewGroup parent) {
 		speaker=speakerlist.get(position);
-		view=inflater.inflate(R.layout.child_of_speakerlist, null, false);
-		text=(TextView)view.findViewById(R.id.speaker_name);
+		if(convertView==null){
+			convertView=inflater.inflate(R.layout.child_of_speakerlist, null, false);
+		}
+		Picasso.with(context).load(speaker.getPhoto()).resize(50, 50).into((ImageView)convertView.findViewById(R.id.speaker_image));
+		text=(TextView)convertView.findViewById(R.id.speaker_name);
 		text.setText(speaker.getName());
-		text=(TextView)view.findViewById(R.id.speaker_title);
-//		text.setText(speaker.getTitle());
-		text.setTextSize(textSize);
-		return view;
+		return convertView;
 	}
 	
 	private void setFeaturesTextSize(int height){

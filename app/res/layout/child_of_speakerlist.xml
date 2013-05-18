@@ -9,6 +9,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp">
         
+        
         <ImageView 
             android:id="@+id/speaker_image"
             android:layout_width="40dp"
@@ -30,16 +31,16 @@
             android:ellipsize="end"
             android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/speaker_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"           
-            android:layout_alignLeft="@+id/speaker_name"
-            android:layout_below="@+id/speaker_name"
-            android:layout_marginRight="20dp"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:textColor="#505050"/>
+<!--         <TextView -->
+<!--             android:id="@+id/speaker_title" -->
+<!--             android:layout_width="match_parent" -->
+<!--             android:layout_height="wrap_content"            -->
+<!--             android:layout_alignLeft="@+id/speaker_name" -->
+<!--             android:layout_below="@+id/speaker_name" -->
+<!--             android:layout_marginRight="20dp" -->
+<!--             android:maxLines="1" -->
+<!--             android:ellipsize="end" -->
+<!--             android:textColor="#505050"/> -->
         
     </RelativeLayout>
     

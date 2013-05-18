@@ -99,13 +99,13 @@
         </LinearLayout>
         
         
-        <TextView 
-            android:id="@+id/speakerpage_profiletitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#135800"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"/>
+<!--         <TextView  -->
+<!--             android:id="@+id/speakerpage_profiletitle" -->
+<!--             android:layout_width="match_parent" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:textColor="#135800" -->
+<!--             android:textStyle="bold" -->
+<!--             android:layout_marginTop="10dp"/> -->
         
 <!--         <ImageView  -->
 <!--             android:layout_width="match_parent" -->
