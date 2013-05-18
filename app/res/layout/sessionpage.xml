@@ -71,12 +71,15 @@
             android:id="@+id/session_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:textColor="#000"/>
         
         <TextView 
             android:id="@+id/speaker_title"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
             android:textColor="#135800"
             android:textStyle="bold"/>
         

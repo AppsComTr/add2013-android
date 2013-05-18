@@ -101,9 +101,9 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		
 		//Profil basligi
 		text=(TextView)findViewById(R.id.speakerpage_profiletitle);
-		text.setText(lang==1?"Baï¿½lantï¿½":"Contact");
+		text.setText(lang==1?"Baðlantýlar":"Contact");
 		
-		//Baï¿½latï¿½lar
+		//Baðlantýlar
 		String temp = "---";
 		text=(TextView)findViewById(R.id.speakerpage_personalsite_link);
 //		temp=speaker.getBlog();
@@ -187,7 +187,6 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 				}
 			}
 		}
-		
 	}
 
 	private void findSpeaker() {
