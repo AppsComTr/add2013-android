@@ -2,7 +2,6 @@ package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Session;
@@ -12,8 +11,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -104,9 +101,9 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		text.setText(lang==1?"Baðlantýlar":"Contact");
 		
 		//Baðlantýlar
-		String temp = "---";
+		/*String temp = "---";
 		text=(TextView)findViewById(R.id.speakerpage_personalsite_link);
-//		temp=speaker.getBlog();
+		temp=speaker.getBlog();
 		if(!temp.equals("null")){
 			text.setText(Html.fromHtml("<a href=\""+temp+"\">" +temp+ "</a>"));
 			text.setMovementMethod(LinkMovementMethod.getInstance());
@@ -117,7 +114,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		
 		
 		text=(TextView)findViewById(R.id.speakerpage_gplussite_link);
-//		temp=speaker.getGplus();
+		temp=speaker.getGplus();
 		if(!temp.equals("null")){
 			text.setText(Html.fromHtml("<a href=\""+temp+"\">" +temp+ "</a>"));
 			text.setMovementMethod(LinkMovementMethod.getInstance());
@@ -127,7 +124,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		}
 		
 		text=(TextView)findViewById(R.id.speakerpage_facebooksite_link);
-//		temp=speaker.getFacebook();
+		temp=speaker.getFacebook();
 		if(!temp.equals("null")){
 			text.setText(Html.fromHtml("<a href=\""+temp+"\">" +temp+ "</a>"));
 			text.setMovementMethod(LinkMovementMethod.getInstance());
@@ -137,14 +134,14 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		}
 		
 		text=(TextView)findViewById(R.id.speakerpage_twittersite_link);
-//		temp=speaker.getTwitter();
+		temp=speaker.getTwitter();
 		if(!temp.equals("null")){
 			text.setText(Html.fromHtml("<a href=\""+temp+"\">" +temp+ "</a>"));
 			text.setMovementMethod(LinkMovementMethod.getInstance());
 		}
 		else{
 			text.setText("---");
-		}
+		}*/
 		
 	}
 	
