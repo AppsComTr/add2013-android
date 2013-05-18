@@ -12,7 +12,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -24,11 +24,6 @@
         <activity
             android:name="org.gdgankara.app.activities.MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.TweetWallActivity"
@@ -63,7 +58,7 @@
             android:name="org.gdgankara.app.activities.SpeakerPageActivity"
             android:label="@string/title_activity_sessionlist" >
         </activity>
-         <activity
+        <activity
             android:name="org.gdgankara.app.activities.MyMapActivity"
             android:label="@string/title_activity_my_map_activity" >
         </activity>
@@ -91,13 +86,22 @@
         </service>
 
         <receiver
-            android:name=".ImageCacheReceiver"
+            android:name="org.gdgankara.app.ImageCacheReceiver"
             android:enabled="true"
             android:exported="false" >
             <intent-filter>
                 <action android:name=".ImageCacheService.CACHE_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name="org.gdgankara.app.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
