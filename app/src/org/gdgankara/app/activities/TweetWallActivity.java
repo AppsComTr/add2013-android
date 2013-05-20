@@ -49,8 +49,8 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 		setContentView(R.layout.activity_tweet_wall);
 		tabAktif();
 		pullToRefreshView = (PullToRefreshListView) findViewById(R.id.tweetList);
-		pd = ProgressDialog.show(this, "Please Wait",
-				"Getting tweets from Twitter", true, false);
+		pd = ProgressDialog.show(this, getResources().getString(R.string.loading),
+				getResources().getString(R.string.getting_tweets), true, false);
 		Thread thread = new Thread(this);
 		thread.start();
 		pullToRefreshView
@@ -85,7 +85,6 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 
 		@Override
 		protected String[] doInBackground(Void... arg0) {
-			// TODO Auto-generated method stub
 			tweets = getTweets("AndroidDevDays", 1, 100);
 			return null;
 		}

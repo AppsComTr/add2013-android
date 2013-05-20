@@ -18,5 +18,7 @@
 	<string name="tweet_wall">Tweet Wall</string>
 	<string name="speakers">Speakers</string>
 	<string name="map">Map</string>
+	<string name="please_wait">Please Wait</string>
+	<string name="getting_tweets">Getting tweets from Twitter</string>
 
 </resources>

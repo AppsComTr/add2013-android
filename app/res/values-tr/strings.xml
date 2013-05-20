@@ -17,4 +17,6 @@
 	<string name="sponsor">Sponsor</string>
 	<string name="tweet_wall">Tweet Duvarı</string>
 	<string name="speakers">Konuşmacılar</string>
-	<string name="map">Harita</string></resources>
+	<string name="map">Harita</string>
+	<string name="please_wait">Lütfen Bekleyin</string>
+	<string name="getting_tweets">Tweetler indiriliyor</string></resources>
