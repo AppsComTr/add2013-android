@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Android Developer Days 2013</string>
+    <string name="app_name">Android Geliştirici Günleri 2013</string>
     <string name="hello_world">Hello world!</string>
-    <string name="menu_settings">Settings</string>
+    <string name="menu_settings">Ayarlar</string>
     <string name="title_activity_tweet_wall">TweetWallActivity</string>
     <string name="title_activity_taglist">TagListActivity</string>
     <string name="title_activity_sessionlist">SessionListActivity</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="title_activity_my_map_activity">MyMapActivity</string>
-    <string name="action_settings">Settings</string>
-    <string name="loading">Loading...</string>
-    <string name="program">Program</string>
-	<string name="session">Session</string>
-	<string name="favorite">Favorite</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="loading">Yükleniyor...</string>
+	<string name="program">Program</string>
+	<string name="session">Oturum</string>
+	<string name="favorite">Favori</string>
 	<string name="sponsor">Sponsor</string>
-	<string name="tweet_wall">Tweet Wall</string>
-	<string name="speakers">Speakers</string>
-	<string name="map">Map</string>
-
-</resources>
+	<string name="tweet_wall">Tweet Duvarı</string>
+	<string name="speakers">Konuşmacılar</string>
+	<string name="map">Harita</string></resources>

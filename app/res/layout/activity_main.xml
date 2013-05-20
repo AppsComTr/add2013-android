@@ -72,7 +72,7 @@
                     android:layout_marginRight="2dp"
                     android:textColor="#3b3b3b"
                     android:background="#fff"
-                    android:text="Program"/>
+                    android:text="@string/program"/>
                 
                 <LinearLayout 
                     android:layout_width="0dip"
@@ -89,7 +89,7 @@
                         android:layout_marginBottom="2dp"
                         android:textColor="#3b3b3b"
                     	android:background="#fff"
-                    	android:text="Oturum"/>
+                    	android:text="@string/session"/>
                     
                     <LinearLayout 
                         android:orientation="horizontal"
@@ -106,7 +106,7 @@
                     		android:layout_marginRight="2dp"
                     		android:textColor="#3b3b3b"
                     		android:background="#fff"
-                    		android:text="Favori"/>
+                    		android:text="@string/favorite"/>
                         
                         <Button 
                             android:id="@+id/sponsor_button"
@@ -116,7 +116,7 @@
                     		android:layout_marginLeft="2dp"
                     		android:textColor="#3b3b3b"
                     		android:background="#fff"
-                    		android:text="Sponsor"/>
+                    		android:text="@string/sponsor"/>
                         
                     </LinearLayout>
                     
@@ -146,7 +146,7 @@
 	                    android:layout_marginBottom="2dp"
 	                    android:textColor="#3b3b3b"
 	                    android:background="#fff"
-	                    android:text="TweetWall"/>
+	                    android:text="@string/tweet_wall"/>
                     
                     <Button 
 	                    android:id="@+id/speakers_button"
@@ -156,7 +156,7 @@
 	                    android:layout_marginTop="2dp"
 	                    android:textColor="#3b3b3b"
 	                    android:background="#fff"
-	                    android:text="Konusmacılar"/>
+	                    android:text="@string/speakers"/>
                     
                 </LinearLayout>
                 
@@ -168,7 +168,7 @@
                     android:layout_marginLeft="2dp"
                     android:textColor="#3b3b3b"
                     android:background="#fff"
-                    android:text="Harita"/>
+                    android:text="@string/map"/>
                 
             </LinearLayout>
         	
