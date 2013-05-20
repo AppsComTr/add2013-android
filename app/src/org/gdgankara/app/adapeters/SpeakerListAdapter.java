@@ -3,11 +3,7 @@ package org.gdgankara.app.adapeters;
 import java.util.List;
 import org.gdgankara.app.R;
 import org.gdgankara.app.model.Speaker;
-
-import com.squareup.picasso.Picasso;
-
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +32,6 @@ public class SpeakerListAdapter extends ArrayAdapter<Speaker>{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		speaker=speakerlist.get(position);
 		view=inflater.inflate(R.layout.child_of_speakerlist, null, false);
-		Picasso.with(context).load(speaker.getPhoto()).placeholder(R.drawable.speaker_image).error(R.drawable.speaker_image).resize(50, 50).into((ImageView)convertView.findViewById(R.id.speaker_image));
 		text=(TextView)view.findViewById(R.id.speaker_name);
 		text.setText(speaker.getName());
 		return view;

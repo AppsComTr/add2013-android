@@ -2,7 +2,11 @@ package org.gdgankara.app.io;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.model.Session;
@@ -33,6 +37,8 @@ public class ProgramHandler extends BaseHandler {
 	protected ArrayList<Session> sessionList;
 	protected ArrayList<Speaker> speakerList;
 	protected ArrayList<String> tagList;
+	private ArrayList<Integer> tag_counter;
+	private Map<String,Integer> hashmap;
 
 	public ProgramHandler(Context context) {
 		super(context);
@@ -57,6 +63,8 @@ public class ProgramHandler extends BaseHandler {
 					Session.KIND, lang));
 			if (sessionList == null) {
 				tagList = new ArrayList<String>();
+				tag_counter=new ArrayList<Integer>();
+				hashmap=new HashMap<String, Integer>();
 				jsonObject = doGet(BASE_URL_PROGRAM + lang);
 				sessionList = parseJSONObjectToSessionList(jsonObject,
 						"sessions");
@@ -299,6 +307,9 @@ public class ProgramHandler extends BaseHandler {
 			JSONObject jsonObject, String objectName) {
 		JSONArray sessionArray;
 		ArrayList<Session> sessionsList = new ArrayList<Session>();
+		String[] tags;
+		int temp_index;
+		int tag_size=0;
 		try {
 			sessionArray = jsonObject.getJSONArray(objectName);
 			int length = sessionArray.length();
@@ -349,10 +360,20 @@ public class ProgramHandler extends BaseHandler {
 					if (!sessionObject.isNull("tags")) {
 						session.setTags(isObjectNull(sessionObject
 								.getString("tags")));
-						String[] tags = session.getTags().split(",");
+						 tags= session.getTags().split(",");
 						for (String string : tags) {
-							if (string != "" && string != null && !tagList.contains(string)) {
-								tagList.add(string);
+							if (string != "" && string != null) {
+								try{
+									temp_index=hashmap.get(string);
+									tag_counter.set(temp_index, tag_counter.get(temp_index)+1);
+								}
+								catch(NullPointerException e){ //Oyle bir tag yok
+									hashmap.put(string,tag_size);
+									tagList.add(string);
+									tag_counter.add(1);
+									tag_size++;
+								}
+								
 							}
 						}
 					}
@@ -378,8 +399,52 @@ public class ProgramHandler extends BaseHandler {
 			Log.e(TAG, "Error: " + e);
 			e.printStackTrace();
 		}
+		sortTagsByWeight(tag_size,(Integer[])tag_counter.toArray());
 		return sessionsList;
 	}
+
+	private void sortTagsByWeight(int size,Integer[] array) {
+		if (array ==null || array.length==0){
+		      return;
+		}
+		quicksort(0, size - 1,array);
+		
+	}
+
+	private void quicksort(int low, int high, Integer[] array) {
+		
+		int i = low, j = high;
+	    int pivot = array[low + (high-low)/2];
+
+	    while (i <= j) {
+
+	      while (array[i] < pivot) {
+	        i++;
+	      }
+	      while (array[j] > pivot) {
+	        j--;
+	      }
+	      if (i <= j) {
+	        exchange(i, j,array);
+	        i++;
+	        j--;
+	      }
+	    }
+	    // Recursion
+	    if (low < j)
+	      quicksort(low, j,array);
+	    if (i < high)
+	      quicksort(i, high,array);
+	  }
+
+	  private void exchange(int i, int j,Integer[] array) {
+	    int temp = array[i];
+	    array[i] = array[j];
+	    array[j] = temp;
+	    Collections.swap(tagList, i, j);
+	  }
+	
+	
 
 	private void startImageCacheService(String type) {
 		Intent imageCacheIntent = new Intent(context, ImageCacheService.class);
