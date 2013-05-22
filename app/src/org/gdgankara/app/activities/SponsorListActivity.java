@@ -68,13 +68,13 @@ public class SponsorListActivity extends Activity{
 				if(group_name.equals("Platin Sponsor")){
 					imageview.setImageDrawable(getResources().getDrawable(R.drawable.platin_sponsor));
 				}
-				if(group_name.equals("Gümüþ Sponsor")){
+				else if(group_name.equals("Gümüþ Sponsor")){
 					imageview.setImageDrawable(getResources().getDrawable(R.drawable.silver_sponsor));			
 				}
-				if(group_name.equals("Banka ve Finans Sponsoru")){
+				else if(group_name.equals("Banka ve Finans Sponsoru")){
 					imageview.setImageDrawable(getResources().getDrawable(R.drawable.finance_sponsor));
 				}
-				if(group_name.equals("Sponsorlar")){
+				else{
 					imageview.setImageDrawable(getResources().getDrawable(R.drawable.communication_sponsor));
 				}
 				
