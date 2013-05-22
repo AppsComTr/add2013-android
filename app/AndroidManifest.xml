@@ -67,10 +67,6 @@
             android:label="@string/title_activity_sessionlist" >
         </activity>
         <activity
-            android:name="org.gdgankara.app.activities.SponsorPageActivity"
-            android:label="@string/title_activity_sessionlist" >
-        </activity>
-        <activity
             android:name="org.gdgankara.app.activities.AnnouncementPageActivity"
             android:label="@string/title_activity_sessionlist" >
         </activity>

@@ -1,5 +1,6 @@
 package org.gdgankara.app.adapeters;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.gdgankara.app.R;
 import org.gdgankara.app.model.Sponsor;
@@ -8,31 +9,37 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class SponsorListAdapter extends ArrayAdapter<Sponsor>{
+public class SponsorListAdapter extends BaseAdapter{
 	
-	private List<Sponsor> sponsorlist;
-	private LayoutInflater inflater ;
-	private View view;
-	private TextView text;
-	private Sponsor sponsor;
-	
-	public SponsorListAdapter(Context context, List<Sponsor> objects) {
-		super(context,R.layout.child_of_sponsorlist,objects);
-		sponsorlist=objects;
-		inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	private ArrayList<View> view_list;
+
+	public SponsorListAdapter(ArrayList<View> view_list){
+		this.view_list=view_list;
 	}
 	
 	public View getView(int position, View convertView, ViewGroup parent) {
-		sponsor=sponsorlist.get(position);
-		view=inflater.inflate(R.layout.child_of_sponsorlist, null, false);
-		text=(TextView)view.findViewById(R.id.sponsor_name);
-//		text.setText(sponsor.getName());
-		
-		//Tam burada logoyu da set etmen gerek
-		
-		return view;
+		return view_list.get(position);
+	}
+
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return view_list.size();
+	}
+
+	@Override
+	public Object getItem(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long getItemId(int arg0) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

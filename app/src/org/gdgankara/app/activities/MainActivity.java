@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import org.gdgankara.app.R;
 import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.utils.Util;
+import org.gdgankara.app.utils.Util2;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,7 +40,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Util.prepareStaticLists(this);
+		Util2.arrayDoldur();
 		setDeviceDimensions();
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
