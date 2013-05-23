@@ -9,6 +9,13 @@
         android:background="@drawable/ust_tab_background">
     
     <ImageView 
+        	android:id="@+id/qr_decoder_button"
+        	android:layout_width="45dip"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/update_button"
+            android:background="@drawable/qrdecoder"/>
+    
+    <ImageView 
         	android:id="@+id/update_button"
         	android:layout_width="45dip"
             android:layout_height="match_parent"

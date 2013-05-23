@@ -34,6 +34,10 @@ public class TabListener implements OnClickListener {
 			context.startActivity(i);
 			break;
 			
+		case R.id.qr_decoder_button:
+			//Qr Decoder Activity baþlatýlacak
+			break;
+			
 		case R.id.update_button:
 			//Burada listeler update edilecek.
 			//Progress dialog eþliðinde olabilir.

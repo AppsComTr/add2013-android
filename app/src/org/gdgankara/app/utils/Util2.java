@@ -9,6 +9,7 @@ public class Util2 {
 	
 	public static ArrayList<Sponsor> SponsorList ;
 	public static ArrayList<Speaker> SpeakerList;
+	
 	public static void arrayDoldur(){
 		SponsorList = new ArrayList<Sponsor>();
 		SponsorList.add(new Sponsor(12341241,"Platin Sponsor","http://www.qualcomm.com/","http://www.androiddeveloperdays.com/wp-content/uploads/2013/04/qualcomm.png"));

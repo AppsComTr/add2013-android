@@ -61,35 +61,27 @@ public class SponsorListActivity extends Activity{
 				text=(TextView)view.findViewById(R.id.group_name_sponsorlist);
 				text.setText(group_name);
 				imageview=(ImageView)view.findViewById(R.id.group_image_sponsorlist);
-				if(group_name.equals("Platin Sponsor")){
-					imageview.setImageDrawable(getResources().getDrawable(R.drawable.platin_sponsor));
-				}
-				else if(group_name.equals("Gümüþ Sponsor")){
-					imageview.setImageDrawable(getResources().getDrawable(R.drawable.silver_sponsor));			
-				}
-				else if(group_name.equals("Banka ve Finans Sponsoru")){
-					imageview.setImageDrawable(getResources().getDrawable(R.drawable.finance_sponsor));
-				}
-				else{
-					imageview.setImageDrawable(getResources().getDrawable(R.drawable.communication_sponsor));
-				}
-				
-				
 				if(group_size==1){
+					imageview.setImageDrawable(getResources().getDrawable(R.drawable.platin_sponsor));
 					text.setTextSize(22);
 				}
 				else if(group_size==2){
+					imageview.setImageDrawable(getResources().getDrawable(R.drawable.silver_sponsor));
 					text.setTextSize(20);
 				}
 				else if(group_size==3){
+					imageview.setImageDrawable(getResources().getDrawable(R.drawable.finance_sponsor));
 					text.setTextSize(18);
 				}
 				else if(group_size==4){
+					imageview.setImageDrawable(getResources().getDrawable(R.drawable.communication_sponsor));
 					text.setTextSize(16);
 				}
 				else{
+					imageview.setImageDrawable(getResources().getDrawable(R.drawable.communication_sponsor));
 					text.setTextSize(15);
 				}
+				
 				view_list.add(view);
 				
 			}
