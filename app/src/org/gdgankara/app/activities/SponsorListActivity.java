@@ -17,14 +17,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Toast;
+import com.koushikdutta.urlimageviewhelper.*;
 
 public class SponsorListActivity extends Activity{
 
@@ -101,6 +97,7 @@ public class SponsorListActivity extends Activity{
 			view=inflater.inflate(R.layout.child_of_sponsorlist, null, false);
 			imageview=(ImageView)view.findViewById(R.id.child_image_sponsorlist);
 			goToLink(imageview,sponsor_list.get(i).getLink());
+			UrlImageViewHelper.setUrlDrawable(imageview, sponsor_list.get(i).getLogo(),R.drawable.loading);
 			view_list.add(view);
 		}
 	}

@@ -6,6 +6,8 @@ import org.gdgankara.app.adapeters.SpeakerListAdapter;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Speaker;
 import org.gdgankara.app.utils.Util;
+import org.gdgankara.app.utils.Util2;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -49,7 +51,7 @@ public class SpeakerListActivity extends Activity{
 	}
 	
 	private void getSpeakerList() {
-		speaker_list=Util.SpeakerList;
+		speaker_list=Util2.SpeakerList;
 	}
 	
 	

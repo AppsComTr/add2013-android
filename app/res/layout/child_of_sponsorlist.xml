@@ -9,7 +9,6 @@
 	    android:id="@+id/child_image_sponsorlist"
 	    android:layout_width="140dp"
 	    android:layout_height="70dp"
-	    android:layout_centerHorizontal="true"
-	    android:background="#4363" />
+	    android:layout_centerHorizontal="true" />
     
 </RelativeLayout>
