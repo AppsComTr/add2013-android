@@ -1,30 +1,19 @@
 package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
-import java.util.Locale;
-
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.SessionListAdapter;
-import org.gdgankara.app.io.ProgramHandler;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class SessionListActivity extends Activity{

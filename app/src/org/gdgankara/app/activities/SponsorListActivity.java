@@ -6,7 +6,6 @@ import org.gdgankara.app.adapeters.SponsorListAdapter;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Sponsor;
 import org.gdgankara.app.utils.Util;
-import org.gdgankara.app.utils.Util2;
 
 import android.app.Activity;
 import android.content.Context;
@@ -40,7 +39,7 @@ public class SponsorListActivity extends Activity{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setActivityTheme(Util.device_height);
 		setContentView(R.layout.sponsorlist);
-		sponsor_list=Util2.SponsorList;
+		sponsor_list=Util.SponsorList;
 		viewListHazirla();
 		setUpView();
 		tabAktif();

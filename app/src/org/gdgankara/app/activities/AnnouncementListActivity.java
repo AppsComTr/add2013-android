@@ -4,13 +4,9 @@ import java.util.ArrayList;
 
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.AnnouncementListAdapter;
-import org.gdgankara.app.adapeters.SessionListAdapter;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Announcement;
-import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;
-import org.gdgankara.app.utils.Util2;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +15,6 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class AnnouncementListActivity extends Activity{
@@ -41,7 +35,7 @@ public class AnnouncementListActivity extends Activity{
 		pressed_back_button=0;
 		setActivityTheme(Util.device_height);
 		setContentView(R.layout.announcementlist);
-		announcement_list=Util2.AnnouncementList;
+		announcement_list=Util.AnnouncementList;
 		setUpView();
 		childItemsActive();
 		tabAktif();

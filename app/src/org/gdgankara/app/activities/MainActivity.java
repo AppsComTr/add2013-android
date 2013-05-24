@@ -8,15 +8,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-
 import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.utils.Util;
-import org.gdgankara.app.utils.Util2;
-
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,7 +41,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Util2.arrayDoldur();
+		Util.prepareStaticLists(this);
 		setDeviceDimensions();
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
@@ -74,7 +70,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 	
 	private void setUpFlippingImages() {
-		AnnouncementList=Util2.AnnouncementList;
+		AnnouncementList=Util.AnnouncementList;
 		int size=AnnouncementList.size();
 		for(int i=0;i<size;i++){
 			tempImg = new ImageView(this);

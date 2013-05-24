@@ -6,14 +6,9 @@ import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.utils.Util;
-import org.gdgankara.app.utils.Util2;
-
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,7 +29,7 @@ public class AnnouncementPageActivity extends Activity{
 		setActivityTheme(Util.device_height);
 		setContentView(R.layout.announcementpage);
 		announcement_id=this.getIntent().getExtras().getLong("id");
-		announcement_list=Util2.AnnouncementList;
+		announcement_list=Util.AnnouncementList;
 		findAnnouncement();
 		setUpView();
 		tabAktif();
