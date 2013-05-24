@@ -24,6 +24,9 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.TextView;
 
 public class Util {
 	public static final String TAG = Util.class.getSimpleName();
@@ -167,5 +170,25 @@ public class Util {
             return totalBytesSkipped;
         }
     }
+    
+    /*public static void setMaxLinesWithEllipsize(TextView text,int max_line){
+    	
+    	ViewTreeObserver vto = text.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+
+            @Override
+            public void onGlobalLayout() {
+            ViewTreeObserver obs = snippet.getViewTreeObserver();
+            obs.removeGlobalOnLayoutListener(this);
+            if(snippet.getLineCount() > 3)
+            {
+                int lineEndIndex = snippet.getLayout().getLineEnd(2);
+                String text = snippet.getText().subSequence(0, lineEndIndex-3) +"...";
+                snippet.setText(text);
+            }
+            }
+        });
+    	
+    }*/
 
 }

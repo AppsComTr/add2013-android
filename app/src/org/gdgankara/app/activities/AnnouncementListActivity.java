@@ -9,6 +9,7 @@ import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;
+import org.gdgankara.app.utils.Util2;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -36,7 +37,7 @@ public class AnnouncementListActivity extends Activity{
 		pressed_index=this.getIntent().getExtras().getInt("index");
 		setActivityTheme(Util.device_height);
 		setContentView(R.layout.announcementlist);
-		announcement_list=Util.AnnouncementList;
+		announcement_list=Util2.AnnouncementList;
 		setUpView();
 		childItemsActive();
 		tabAktif();

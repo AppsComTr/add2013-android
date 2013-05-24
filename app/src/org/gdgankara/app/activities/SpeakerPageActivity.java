@@ -3,6 +3,7 @@ package org.gdgankara.app.activities;
 import java.util.ArrayList;
 import java.util.List;
 import org.gdgankara.app.R;
+import org.gdgankara.app.customview.EllipsizingTextView;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
@@ -78,7 +79,8 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		
 		
 		//Konusmaci adi
-		text=(TextView)findViewById(R.id.speakerpage_name);
+		text=(EllipsizingTextView)findViewById(R.id.speakerpage_name);
+		text.setMaxLines(2);
 		text.setText(speaker.getName());
 		setSpeakerNameTextSize(text);
 		

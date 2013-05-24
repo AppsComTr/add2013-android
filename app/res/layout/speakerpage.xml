@@ -33,7 +33,7 @@
 	        android:layout_alignParentTop="true"
 	        android:background="@drawable/speaker_image"/>
         
-        <TextView 
+        <org.gdgankara.app.customview.EllipsizingTextView 
             android:id="@+id/speakerpage_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

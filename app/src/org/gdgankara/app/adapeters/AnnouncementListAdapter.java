@@ -3,9 +3,12 @@ package org.gdgankara.app.adapeters;
 import java.util.List;
 
 import org.gdgankara.app.R;
+import org.gdgankara.app.customview.EllipsizingTextView;
 import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.model.Session;
 
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import android.text.TextUtils;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -34,7 +37,7 @@ public class AnnouncementListAdapter extends ArrayAdapter<Announcement>{
 		super(context,R.layout.child_of_announcementlist,objects);
 		announcementlist=objects;
 		this.pressed=pressed;
-		params=new RelativeLayout.LayoutParams((int)((width*3)/7),(int)((height*6)/49));
+		/*params=new RelativeLayout.LayoutParams((int)((width*3)/7),(int)((height*6)/49));*/
 		inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		setFeaturesTextSize(height);
 	}
@@ -44,15 +47,17 @@ public class AnnouncementListAdapter extends ArrayAdapter<Announcement>{
 		view=inflater.inflate(R.layout.child_of_announcementlist, null, false);
 		text=(TextView)view.findViewById(R.id.announcementlist_title);
 		text.setText(announcement.getTitle());
-		text=(TextView)view.findViewById(R.id.announcementlist_desc);
+		text=(EllipsizingTextView)view.findViewById(R.id.announcementlist_desc);
+		text.setMaxLines(3);
 		text.setText(announcement.getDescription());
 		text.setTextSize(textSize);
 		if(position==pressed){
 			layout=(RelativeLayout)view.findViewById(R.id.announcementchild_layout);
-			layout.setBackgroundColor(Color.parseColor("#9eceb7"));
+			layout.setBackgroundColor(Color.parseColor("#dadada"));
 		}
 		imageView=(ImageView)view.findViewById(R.id.announcementlist_announcement_image);
-		imageView.setLayoutParams(params);
+		UrlImageViewHelper.setUrlDrawable(imageView, announcement.getImage(),R.drawable.loading);
+		//imageView.setLayoutParams(params);
 		return view;
 	}
 	

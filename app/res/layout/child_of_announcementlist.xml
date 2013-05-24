@@ -9,11 +9,10 @@
     
     <ImageView 
         android:id="@+id/announcementlist_announcement_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="7dp"
-        android:background="#123456"/>
+        android:layout_marginLeft="7dp"/>
     
     <TextView 
         android:id="@+id/announcementlist_title"
@@ -25,13 +24,13 @@
         android:textStyle="bold"
         android:layout_toRightOf="@+id/announcementlist_announcement_image"
         android:layout_alignTop="@+id/announcementlist_announcement_image"
-        android:layout_marginLeft="4dp"/>
+        android:layout_marginLeft="7dp"/>
     
-    <TextView 
+    <org.gdgankara.app.customview.EllipsizingTextView 
         android:id="@+id/announcementlist_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="2"
+        android:maxLines="3"
         android:ellipsize="end"
         android:textColor="#636363"
         android:layout_alignLeft="@+id/announcementlist_title"
