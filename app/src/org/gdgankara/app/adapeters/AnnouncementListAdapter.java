@@ -51,7 +51,7 @@ public class AnnouncementListAdapter extends ArrayAdapter<Announcement>{
 		text.setMaxLines(3);
 		text.setText(announcement.getDescription());
 		text.setTextSize(textSize);
-		if(position==pressed){
+		if(pressed>=0 && position==pressed){
 			layout=(RelativeLayout)view.findViewById(R.id.announcementchild_layout);
 			layout.setBackgroundColor(Color.parseColor("#dadada"));
 		}
@@ -76,6 +76,10 @@ public class AnnouncementListAdapter extends ArrayAdapter<Announcement>{
 			textSize=13;
 		}
 		
+	}
+	
+	public void setPressed(int p){
+		this.pressed=p;
 	}
 
 }

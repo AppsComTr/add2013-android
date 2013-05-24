@@ -19,6 +19,8 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class AnnouncementListActivity extends Activity{
@@ -28,6 +30,7 @@ public class AnnouncementListActivity extends Activity{
 	private AnnouncementListAdapter announcementlist_adapter;
 	private TabListener tabListener;
 	private int pressed_index;
+	private int pressed_back_button;
 
 	
 	@Override
@@ -35,6 +38,7 @@ public class AnnouncementListActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		pressed_index=this.getIntent().getExtras().getInt("index");
+		pressed_back_button=0;
 		setActivityTheme(Util.device_height);
 		setContentView(R.layout.announcementlist);
 		announcement_list=Util2.AnnouncementList;
@@ -48,6 +52,10 @@ public class AnnouncementListActivity extends Activity{
 	protected void onResume(){
 		super.onResume();
 		tabListener.checkQRState();
+		if(pressed_back_button==1){
+			announcementlist_adapter.setPressed(-1);
+			announcementlist_adapter.notifyDataSetChanged();
+		}
 	}
 	
 	public void tabAktif(){
@@ -80,7 +88,7 @@ public class AnnouncementListActivity extends Activity{
 
 
 	private void startAnnouncementPage(int index) {
-		
+		pressed_back_button=1;
 		if(announcement_list.get(index).isSession()){
 			startSessionPage(announcement_list.get(index).getSessionId());
 		}

@@ -6,6 +6,9 @@ import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.utils.Util;
+import org.gdgankara.app.utils.Util2;
+
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -31,7 +34,7 @@ public class AnnouncementPageActivity extends Activity{
 		setActivityTheme(Util.device_height);
 		setContentView(R.layout.announcementpage);
 		announcement_id=this.getIntent().getExtras().getLong("id");
-		announcement_list=Util.AnnouncementList;
+		announcement_list=Util2.AnnouncementList;
 		findAnnouncement();
 		setUpView();
 		tabAktif();
@@ -51,7 +54,8 @@ public class AnnouncementPageActivity extends Activity{
 		text=(TextView)findViewById(R.id.announcementpage_description);
 		text.setText(announcement.getDescription());
 		
-		//News image'yi bagla
+		imageView=(ImageView)findViewById(R.id.news_image);
+		UrlImageViewHelper.setUrlDrawable(imageView, announcement.getImage(),R.drawable.loading);
 		
 	}
 	

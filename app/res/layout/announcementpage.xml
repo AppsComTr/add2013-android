@@ -25,8 +25,7 @@
             <ImageView 
                 android:id="@+id/news_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#432345"/>
+                android:layout_height="match_parent"/>
             
         </RelativeLayout>
         
@@ -59,8 +58,8 @@
 		            		android:layout_width="match_parent"
 		            		android:layout_height="wrap_content"
 		            		android:textStyle="bold"
-		            		android:layout_marginLeft="6dp"
-		            		android:minLines="2"
+		            		android:layout_marginLeft="10dp"
+		            		android:layout_marginRight="10dp"
 		            		android:layout_centerVertical="true"
 		            		android:layout_toRightOf="@+id/announcement_title_image"/>
             
@@ -72,9 +71,9 @@
                     android:layout_width="match_parent"
                     android:textColor="#2b2b2b"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="hadiiii asjj lsndlo asd"/>
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginRight="15dp"/>
                 
                 
             </LinearLayout>
