@@ -25,9 +25,9 @@ public class EmployeeIdActivity extends Activity{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		height=Util.device_height;
 		setActivityTheme();
-		setContentView(R.layout.speakerpage);
+		setContentView(R.layout.idpage);
 		message=this.getIntent().getExtras().getString("SCAN_RESULT");
-		temp=message.split("|");
+		temp=message.split("<#>");
 		setUpViews();
 		tabAktif();
 	}

@@ -1,5 +1,6 @@
 package org.gdgankara.app.listeners;
 
+import org.gdgankara.app.activities.DecoderActivity;
 import org.gdgankara.app.activities.MainActivity;
 import org.gdgankara.app.activities.SearchActivity;
 import org.gdgankara.app.utils.Util;
@@ -10,6 +11,7 @@ import com.google.zxing.client.android.CaptureActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
@@ -39,7 +41,8 @@ public class TabListener implements OnClickListener {
 			break;
 			
 		case R.id.qr_decoder_button:
-			i = new Intent(context, CaptureActivity.class);
+			Log.i("Sedat","Decoder butonuna basýldý");
+			i = new Intent(context, DecoderActivity.class);
 			i.putExtra("SCAN_MODE", "QR_CODE_MODE");
 			i.putExtra("return-data", true);
 			context.startActivity(i);
@@ -59,8 +62,8 @@ public class TabListener implements OnClickListener {
 	
 	public void checkQRState(){
 		if(Util.qr_state==0){
+			Toast.makeText(context,Util.getDefaultLanguage().equals("tr")?"Geçersiz QR Code":"Invalid QR Code", Toast.LENGTH_SHORT).show();
 			Util.qr_state=1;
-			Toast.makeText(context, Util.getDefaultLanguage().equals("tr")?"Geçersiz QR Code":"Invalid QR Code", 1000).show();
 		}
 	}
 	
