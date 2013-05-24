@@ -2,6 +2,7 @@ package org.gdgankara.app.utils;
 
 import java.util.ArrayList;
 
+import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.model.Speaker;
 import org.gdgankara.app.model.Sponsor;
 
@@ -9,6 +10,7 @@ public class Util2 {
 	
 	public static ArrayList<Sponsor> SponsorList ;
 	public static ArrayList<Speaker> SpeakerList;
+	public static ArrayList<Announcement> AnnouncementList;
 	
 	public static void arrayDoldur(){
 		SponsorList = new ArrayList<Sponsor>();
@@ -28,6 +30,18 @@ public class Util2 {
 		SpeakerList.add(new Speaker(1245253,"blablabla","Chris Tuttle","http://www.androiddeveloperdays.com/wp-content/uploads/2013/05/chris-e1369030091628.jpeg",null));
 		SpeakerList.add(new Speaker(1245253,"blablabla","Selin G�ler","http://www.gdgankara.org/wp-content/themes/alltuts2/images/ico_author.png",null));
 		SpeakerList.add(new Speaker(1245253,"blablabla","Naci Dai","http://www.gdgankara.org/wp-content/themes/alltuts2/images/ico_author.png",null));
+		
+		AnnouncementList=new ArrayList<Announcement>();
+		AnnouncementList.add(new Announcement(1235234,"TR_Cupcake ipsum dolor sit amet sweet chupa chups cupcake. Oat cake cookie I love sweet roll tart cookie wypas. Marshmallow I love fruitcake pudding apple pie. Croissant danish lemon drops fruitcake croissant. Chocolate cake marshmallow faworki powder apple pie bear claw oat cake. Gummi bears jujubes I love faworki I love I love fruitcake sweet roll pudding. Powder gingerbread soufflé donut liquorice powder sugar plum. Croissant gingerbread apple pie danish topping dragée gingerbread wafer. Chupa chups I love muffin. I love danish wypas candy cookie gingerbread pudding. Marshmallow marzipan powder wafer topping chocolate cake danish I love sweet roll. Brownie sweet roll macaroon cookie jelly-o. Gingerbread danish tootsie roll wypas dragée. Dessert halvah cheesecake gummies I love tiramisu I love.", "http://www.androiddeveloperdays.com/wp-content/themes/gtugtheme2/images/header.png", false, "tr",
+				"http://www.androiddeveloperdays.com/", "Android Developer Days"));
+		AnnouncementList.add(new Announcement(1235234,"TR_Cupcake ipsum dolor sit amet sweet chupa chups cupcake. Oat cake cookie I love sweet roll tart cookie wypas. Marshmallow I love fruitcake pudding apple pie. Croissant danish lemon drops fruitcake croissant. Chocolate cake marshmallow faworki powder apple pie bear claw oat cake. Gummi bears jujubes I love faworki I love I love fruitcake sweet roll pudding. Powder gingerbread soufflé donut liquorice powder sugar plum. Croissant gingerbread apple pie danish topping dragée gingerbread wafer. Chupa chups I love muffin. I love danish wypas candy cookie gingerbread pudding. Marshmallow marzipan powder wafer topping chocolate cake danish I love sweet roll. Brownie sweet roll macaroon cookie jelly-o. Gingerbread danish tootsie roll wypas dragée. Dessert halvah cheesecake gummies I love tiramisu I love.", "http://www.androiddeveloperdays.com/wp-content/themes/gtugtheme2/images/header.png", false, "tr",
+				"http://www.androiddeveloperdays.com/", "Android Developer Days"));
+		AnnouncementList.add(new Announcement(1235234,"TR_Cupcake ipsum dolor sit amet sweet chupa chups cupcake. Oat cake cookie I love sweet roll tart cookie wypas. Marshmallow I love fruitcake pudding apple pie. Croissant danish lemon drops fruitcake croissant. Chocolate cake marshmallow faworki powder apple pie bear claw oat cake. Gummi bears jujubes I love faworki I love I love fruitcake sweet roll pudding. Powder gingerbread soufflé donut liquorice powder sugar plum. Croissant gingerbread apple pie danish topping dragée gingerbread wafer. Chupa chups I love muffin. I love danish wypas candy cookie gingerbread pudding. Marshmallow marzipan powder wafer topping chocolate cake danish I love sweet roll. Brownie sweet roll macaroon cookie jelly-o. Gingerbread danish tootsie roll wypas dragée. Dessert halvah cheesecake gummies I love tiramisu I love.", "http://www.androiddeveloperdays.com/wp-content/themes/gtugtheme2/images/header.png", false, "tr",
+				"http://www.androiddeveloperdays.com/", "Android Developer Days"));
+		AnnouncementList.add(new Announcement(1235234,"TR_Cupcake ipsum dolor sit amet sweet chupa chups cupcake. Oat cake cookie I love sweet roll tart cookie wypas. Marshmallow I love fruitcake pudding apple pie. Croissant danish lemon drops fruitcake croissant. Chocolate cake marshmallow faworki powder apple pie bear claw oat cake. Gummi bears jujubes I love faworki I love I love fruitcake sweet roll pudding. Powder gingerbread soufflé donut liquorice powder sugar plum. Croissant gingerbread apple pie danish topping dragée gingerbread wafer. Chupa chups I love muffin. I love danish wypas candy cookie gingerbread pudding. Marshmallow marzipan powder wafer topping chocolate cake danish I love sweet roll. Brownie sweet roll macaroon cookie jelly-o. Gingerbread danish tootsie roll wypas dragée. Dessert halvah cheesecake gummies I love tiramisu I love.", "http://www.androiddeveloperdays.com/wp-content/themes/gtugtheme2/images/header.png", false, "tr",
+				"http://www.androiddeveloperdays.com/", "Android Developer Days"));
+		AnnouncementList.add(new Announcement(1235234,"TR_Cupcake ipsum dolor sit amet sweet chupa chups cupcake. Oat cake cookie I love sweet roll tart cookie wypas. Marshmallow I love fruitcake pudding apple pie. Croissant danish lemon drops fruitcake croissant. Chocolate cake marshmallow faworki powder apple pie bear claw oat cake. Gummi bears jujubes I love faworki I love I love fruitcake sweet roll pudding. Powder gingerbread soufflé donut liquorice powder sugar plum. Croissant gingerbread apple pie danish topping dragée gingerbread wafer. Chupa chups I love muffin. I love danish wypas candy cookie gingerbread pudding. Marshmallow marzipan powder wafer topping chocolate cake danish I love sweet roll. Brownie sweet roll macaroon cookie jelly-o. Gingerbread danish tootsie roll wypas dragée. Dessert halvah cheesecake gummies I love tiramisu I love.", "http://www.androiddeveloperdays.com/wp-content/themes/gtugtheme2/images/header.png", false, "tr",
+				"http://www.androiddeveloperdays.com/", "Android Developer Days"));
 	}
 	
 	

@@ -15,6 +15,8 @@ import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.utils.Util;
 import org.gdgankara.app.utils.Util2;
 
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,6 +40,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private String filepath;
 	private ArrayList<String> imagePaths;
 	private TabListener tabListener;
+	private ArrayList<Announcement> AnnouncementList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,24 +51,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 		setUpButtons();
 		buttonsActive();
+		setUpFlippingImages();
 		tabAktif();
-		
-		tempImg = new ImageView(this);
-		tempImg.setImageResource(R.drawable.one);
-		newsFlipper.addView(tempImg);
-		tempImg = new ImageView(this);
-		tempImg.setImageResource(R.drawable.two);
-		newsFlipper.addView(tempImg);
-		tempImg = new ImageView(this);
-		tempImg.setImageResource(R.drawable.three);
-		newsFlipper.addView(tempImg);
-		tempImg = new ImageView(this);
-		tempImg.setImageResource(R.drawable.four);
-		newsFlipper.addView(tempImg);
-		tempImg = new ImageView(this);
-		tempImg.setImageResource(R.drawable.five);
-		newsFlipper.addView(tempImg);
-
 		newsFlipper.startFlipping();
 
 		Thread thread = new Thread() {
@@ -86,6 +73,17 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	}
 	
+	private void setUpFlippingImages() {
+		AnnouncementList=Util2.AnnouncementList;
+		int size=AnnouncementList.size();
+		for(int i=0;i<size;i++){
+			tempImg = new ImageView(this);
+			UrlImageViewHelper.setUrlDrawable(tempImg, AnnouncementList.get(i).getImage(),R.drawable.loading);
+			newsFlipper.addView(tempImg);
+		}
+		
+	}
+
 	@Override
 	protected void onResume(){
 		super.onResume();
