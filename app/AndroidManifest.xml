@@ -13,6 +13,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
 
     <application
         android:allowBackup="true"
@@ -73,6 +75,25 @@
         <activity
             android:name="org.gdgankara.app.activities.AnnouncementListActivity"
             android:label="@string/title_activity_sessionlist" >
+        </activity>
+        <activity
+            android:name="org.gdgankara.app.activities.EmployeeIdActivity"
+            android:label="@string/title_activity_sessionlist" >
+        </activity>
+        <activity
+            android:name="com.google.zxing.client.android.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+            
+        </activity>
+        <activity
+            android:name="org.gdgankara.app.activities.DecoderActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
 
         <service

@@ -63,11 +63,14 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 				((ImageView)findViewById(R.id.favorite_session)).setImageDrawable(getResources().getDrawable(R.drawable.favorite_button_passive));
 			}
 		}
+		tabListener.checkQRState();
 	}
 	
 	public void tabAktif(){
 		tabListener=new TabListener(this);
 		((ImageView)findViewById(R.id.search_button)).setOnClickListener(tabListener);	
+		((ImageView)findViewById(R.id.update_button)).setOnClickListener(tabListener);
+		((ImageView)findViewById(R.id.qr_decoder_button)).setOnClickListener(tabListener);	
 		
 	}
 	

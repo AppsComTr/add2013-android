@@ -36,6 +36,7 @@ public class Util {
 	public static ArrayList<Long> FavoritesList = new ArrayList<Long>();
 	public static int device_height;
 	public static int device_width;
+	public static int qr_state=1;
 	
 	/**
 	 * Shared Preferences'ta tutulan versiyon numarasını verilen numara ile

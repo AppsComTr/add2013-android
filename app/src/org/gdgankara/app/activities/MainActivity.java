@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import org.gdgankara.app.R;
+import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.utils.Util;
 import org.gdgankara.app.utils.Util2;
@@ -36,6 +37,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private ImageView araButton, tempImg;
 	private String filepath;
 	private ArrayList<String> imagePaths;
+	private TabListener tabListener;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 		setUpButtons();
 		buttonsActive();
+		tabAktif();
 		
 		tempImg = new ImageView(this);
 		tempImg.setImageResource(R.drawable.one);
@@ -82,6 +85,12 @@ public class MainActivity extends Activity implements OnClickListener {
 		thread.start();
 
 	}
+	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		tabListener.checkQRState();
+	}
 
 	private void setUpButtons() {
 		tweetWallButton = (Button) findViewById(R.id.tweetWall);
@@ -93,6 +102,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		araButton = (ImageView) findViewById(R.id.search_button);
 		konusmaciButton = (Button) findViewById(R.id.speakers_button);
 		newsFlipper = (ViewFlipper) findViewById(R.id.highlights);
+	}
+	
+	public void tabAktif(){
+		tabListener=new TabListener(this);
+		((ImageView)findViewById(R.id.search_button)).setOnClickListener(tabListener);	
+		((ImageView)findViewById(R.id.update_button)).setOnClickListener(tabListener);
+		((ImageView)findViewById(R.id.qr_decoder_button)).setOnClickListener(tabListener);	
+		
 	}
 
 	private void setHighligths() {

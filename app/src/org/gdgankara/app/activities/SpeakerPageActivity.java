@@ -63,11 +63,14 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 				}
 			}
 		}
+		tabListener.checkQRState();
 	}
 	
 	public void tabAktif(){
 		tabListener=new TabListener(this);
 		((ImageView)findViewById(R.id.search_button)).setOnClickListener(tabListener);	
+		((ImageView)findViewById(R.id.update_button)).setOnClickListener(tabListener);
+		((ImageView)findViewById(R.id.qr_decoder_button)).setOnClickListener(tabListener);	
 		
 	}
 	

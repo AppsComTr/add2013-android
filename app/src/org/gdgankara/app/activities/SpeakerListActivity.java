@@ -37,6 +37,12 @@ public class SpeakerListActivity extends Activity{
 		tabAktif();
 	}
 	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		tabListener.checkQRState();
+	}
+	
 	private void setUpView() {
 		
 		speaker_listview=(ListView)findViewById(R.id.speakerlist);
@@ -47,6 +53,8 @@ public class SpeakerListActivity extends Activity{
 	public void tabAktif(){
 		tabListener=new TabListener(this);
 		((ImageView)findViewById(R.id.search_button)).setOnClickListener(tabListener);	
+		((ImageView)findViewById(R.id.update_button)).setOnClickListener(tabListener);
+		((ImageView)findViewById(R.id.qr_decoder_button)).setOnClickListener(tabListener);	
 		
 	}
 	

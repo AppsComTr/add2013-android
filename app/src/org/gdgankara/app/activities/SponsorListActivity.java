@@ -46,6 +46,12 @@ public class SponsorListActivity extends Activity{
 		tabAktif();
 	}
 	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		tabListener.checkQRState();
+	}
+	
 	private void viewListHazirla() {
 		
 		view_list=new ArrayList<View>();
@@ -114,6 +120,8 @@ public class SponsorListActivity extends Activity{
 	public void tabAktif(){
 		tabListener=new TabListener(this);
 		((ImageView)findViewById(R.id.search_button)).setOnClickListener(tabListener);	
+		((ImageView)findViewById(R.id.update_button)).setOnClickListener(tabListener);
+		((ImageView)findViewById(R.id.qr_decoder_button)).setOnClickListener(tabListener);	
 		
 	}
 	
