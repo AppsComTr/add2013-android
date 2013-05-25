@@ -50,8 +50,13 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 		setContentView(R.layout.activity_tweet_wall);
 		tabAktif();
 		pullToRefreshView = (PullToRefreshListView) findViewById(R.id.tweetList);
+		try{
 		pd = ProgressDialog.show(this, getResources().getString(R.string.loading),
 				getResources().getString(R.string.getting_tweets), true, false);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		Thread thread = new Thread(this);
 		thread.start();
 		pullToRefreshView
