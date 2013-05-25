@@ -27,11 +27,10 @@
          
         <ImageView 
 	        android:id="@+id/speakerpage_image"
-	        android:layout_width="50dp"
-	        android:layout_height="50dp"
+	        android:layout_width="60dp"
+	        android:layout_height="60dp"
 	        android:layout_alignParentLeft="true"
-	        android:layout_alignParentTop="true"
-	        android:background="@drawable/speaker_image"/>
+	        android:layout_alignParentTop="true"/>
         
         <org.gdgankara.app.customview.EllipsizingTextView 
             android:id="@+id/speakerpage_name"
@@ -45,14 +44,7 @@
             android:layout_centerVertical="true"
             android:textColor="#000"
             android:textStyle="bold"/>
-        
-        <TextView 
-            android:id="@+id/speakerpage_job"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/speakerpage_image"
-            android:layout_alignLeft="@+id/speakerpage_name"
-            android:textColor="#505050"/>       
+              
          
      </RelativeLayout>
      
@@ -64,6 +56,7 @@
          <LinearLayout 
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
+             android:paddingBottom="15dp"
              android:orientation="vertical">
         
         <TextView 

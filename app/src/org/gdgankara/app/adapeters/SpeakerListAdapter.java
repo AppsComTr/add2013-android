@@ -2,6 +2,7 @@ package org.gdgankara.app.adapeters;
 
 import java.util.List;
 import org.gdgankara.app.R;
+import org.gdgankara.app.customview.EllipsizingTextView;
 import org.gdgankara.app.model.Speaker;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -40,6 +41,10 @@ public class SpeakerListAdapter extends ArrayAdapter<Speaker>{
 		UrlImageViewHelper.setUrlDrawable(imageview, speaker.getPhoto(),R.drawable.loading);
 		text=(TextView)view.findViewById(R.id.speaker_name);
 		text.setText(speaker.getName());
+		text=(EllipsizingTextView)view.findViewById(R.id.speaker_bio);
+		text.setText(speaker.getBiography());
+		text.setTextSize(textSize);
+		text.setMaxLines(3);
 		return view;
 	}
 	
@@ -47,16 +52,16 @@ public class SpeakerListAdapter extends ArrayAdapter<Speaker>{
 		
 		
 		if(height<=320){
-			textSize=9;
-		}
-		else if(height<=480){
 			textSize=10;
 		}
-		else if(height<=800){
+		else if(height<=480){
 			textSize=11;
 		}
-		else{
+		else if(height<=800){
 			textSize=12;
+		}
+		else{
+			textSize=13;
 		}
 		
 	}

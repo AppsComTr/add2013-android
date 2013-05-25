@@ -3,10 +3,14 @@ package org.gdgankara.app.activities;
 import java.util.ArrayList;
 import java.util.List;
 import org.gdgankara.app.R;
+import org.gdgankara.app.customview.EllipsizingTextView;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
 import org.gdgankara.app.utils.Util;
+
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -33,6 +37,7 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 	private int height,lang,features_text_size,size,pressed_back_button;
 	private ImageView favorite_star;
 	private TabListener tabListener;
+	private ImageView speaker_image;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +136,7 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 	}
 
 	private void addSpeakersToLayout() {
+		String temp;
 		inflater=(LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		size=filtered_speaker_list.size();
 		speaker_viewlist=new View[size];
@@ -138,9 +144,13 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 			view=inflater.inflate(R.layout.child_of_speakerlist, null, false);
 			text=(TextView)view.findViewById(R.id.speaker_name);
 			text.setText(filtered_speaker_list.get(i).getName());
-			text=(TextView)view.findViewById(R.id.speaker_title);
-			text.setText(filtered_speaker_list.get(i).getBiography());
+			text=(EllipsizingTextView)view.findViewById(R.id.speaker_bio);
+			temp=filtered_speaker_list.get(i).getBiography();
+			text.setText(temp==null?"":temp);
+			text.setMaxLines(3);
 			text.setTextSize(features_text_size);
+			speaker_image=(ImageView)view.findViewById(R.id.speaker_image);
+			UrlImageViewHelper.setUrlDrawable(speaker_image, filtered_speaker_list.get(i).getPhoto(),R.drawable.loading);
 			speakerlist_layout.addView(view);
 			speaker_viewlist[i]=view;
 			view.setOnClickListener(this);
@@ -152,16 +162,16 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 
 	private void setFeaturesTextSize() {
 		if(height<=320){
-			features_text_size=9;
-		}
-		else if(height<=480){
 			features_text_size=10;
 		}
-		else if(height<=800){
+		else if(height<=480){
 			features_text_size=11;
 		}
-		else{
+		else if(height<=800){
 			features_text_size=12;
+		}
+		else{
+			features_text_size=13;
 		}
 	}
 

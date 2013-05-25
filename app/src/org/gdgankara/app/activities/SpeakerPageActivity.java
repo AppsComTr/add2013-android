@@ -8,6 +8,9 @@ import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
 import org.gdgankara.app.utils.Util;
+
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -33,6 +36,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 	private Speaker speaker;
 	private int height,lang,features_text_size,size,pressed_back_button;
 	private TabListener tabListener;
+	private ImageView imageview;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -84,11 +88,6 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		text.setText(speaker.getName());
 		setSpeakerNameTextSize(text);
 		
-		//Konusmaci unvan
-		text=(TextView)findViewById(R.id.speakerpage_job);
-//		text.setText(speaker.getTitle());
-		text.setTextSize(features_text_size);
-		
 		//Konusmaci biografi
 		text=(TextView)findViewById(R.id.speakerpage_bio);
 		text.setText(speaker.getBiography());
@@ -100,6 +99,10 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		//Oturumlari ekle
 		sessions_layout=(LinearLayout)findViewById(R.id.speakerpage_sessionlayout);
 		addSessionsToLayout();
+		
+		//Speaker image
+		imageview=(ImageView)findViewById(R.id.speakerpage_image);
+		UrlImageViewHelper.setUrlDrawable(imageview, speaker.getPhoto(),R.drawable.loading);
 		
 		//Profil basligi
 		/*text=(TextView)findViewById(R.id.speakerpage_profiletitle);
