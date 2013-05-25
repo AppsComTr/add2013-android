@@ -17,15 +17,15 @@ import android.widget.Toast;
 public class SplashActivity extends Activity {
 	private static final String TAG = SpeakerListActivity.class.getSimpleName();
 
-	private Context context;
-	boolean isInternetAvailable = true; // TODO Util.isInternetAvailable();
+	private Context context = this;
+	boolean isInternetAvailable = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
-		context = SplashActivity.this;
-
+		isInternetAvailable = Util.isInternetAvailable(context);
+		
 		try {
 			new getListsAsync().execute();
 		} catch (Exception e) {
@@ -41,7 +41,7 @@ public class SplashActivity extends Activity {
 			if (isInternetAvailable) {
 				Util.prepareStaticLists(context);
 			} else if (!isInternetAvailable) {
-				Toast.makeText(context, "Internet yok Cacheden alınıyor", Toast.LENGTH_LONG).show();
+				Log.d(TAG,"Internet yok, cacheden alınıyor");
 				Util.prepareStaticListsFromCache(context);
 			}
 			return null;

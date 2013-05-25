@@ -20,11 +20,13 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 public class Util {
 	public static final String TAG = Util.class.getSimpleName();
-	
+
 	public static ArrayList<Session> SessionList = new ArrayList<Session>();
 	public static ArrayList<Speaker> SpeakerList = new ArrayList<Speaker>();
 	public static ArrayList<Announcement> AnnouncementList = new ArrayList<Announcement>();
@@ -33,8 +35,8 @@ public class Util {
 	public static ArrayList<Long> FavoritesList = new ArrayList<Long>();
 	public static int device_height;
 	public static int device_width;
-	public static int qr_state=1;
-	
+	public static int qr_state = 1;
+
 	/**
 	 * Shared Preferences'ta tutulan versiyon numarasını verilen numara ile
 	 * karşılaştırır.
@@ -42,14 +44,14 @@ public class Util {
 	 * @param context
 	 * @param number
 	 * @return Boolean
-	 * @throws JSONException 
+	 * @throws JSONException
 	 */
-	public static Boolean isVersionUpdated(Context context,  JSONObject jsonObject) {
+	public static Boolean isVersionUpdated(Context context,
+			JSONObject jsonObject) {
 		long number;
 		Boolean state = false;
 		try {
-			number = jsonObject.getJSONObject("version")
-					.getLong("number");
+			number = jsonObject.getJSONObject("version").getLong("number");
 			SharedPreferences settings = context.getSharedPreferences(TAG, 0);
 			long mNumber = settings.getLong("version", 0);
 			if (mNumber == number) {
@@ -66,34 +68,57 @@ public class Util {
 		}
 		return state;
 	}
-	
-	public static void prepareStaticLists(Context context){
+
+	public static boolean isInternetAvailable(Context context) {
+		try {
+			ConnectivityManager nInfo = (ConnectivityManager) context
+					.getSystemService(Context.CONNECTIVITY_SERVICE);
+			nInfo.getActiveNetworkInfo().isConnectedOrConnecting();
+			Log.i(TAG, "Net avail:"
+					+ nInfo.getActiveNetworkInfo().isConnectedOrConnecting());
+			ConnectivityManager cm = (ConnectivityManager) context
+					.getSystemService(Context.CONNECTIVITY_SERVICE);
+			NetworkInfo netInfo = cm.getActiveNetworkInfo();
+			if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+				Log.i(TAG, "Network is available");
+				return true;
+			} else {
+				Log.i(TAG, "Network is not available");
+				return false;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+
+	}
+
+	public static void prepareStaticLists(Context context) {
 		String lang = getDefaultLanguage();
 		ProgramHandler programHandler = new ProgramHandler(context);
 		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
-		
+
 		FavoritesList = favoritesHandler.getFavoritesList(lang);
 		programHandler.initializeLists(lang);
 	}
-	
-	public static void prepareStaticListsFromCache(Context context){
+
+	public static void prepareStaticListsFromCache(Context context) {
 		String lang = getDefaultLanguage();
 		ProgramHandler programHandler = new ProgramHandler(context);
 		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
-		
+
 		FavoritesList = favoritesHandler.getFavoritesList(lang);
 		programHandler.initializeListsFromCache(lang);
 	}
-	
-	public static void setDeviceHeight(int height){
-		device_height=height;
+
+	public static void setDeviceHeight(int height) {
+		device_height = height;
 	}
-	
-	public static void setDeviceWidth(int width){
-		device_width=width;
+
+	public static void setDeviceWidth(int width) {
+		device_width = width;
 	}
-	
-	public static void addSessionFavorites(Context context, Long sessionID){
+
+	public static void addSessionFavorites(Context context, Long sessionID) {
 		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
 		if (FavoritesList == null) {
 			FavoritesList = new ArrayList<Long>();
@@ -101,22 +126,23 @@ public class Util {
 		if (!FavoritesList.contains(sessionID)) {
 			FavoritesList.add(sessionID);
 		}
-		favoritesHandler.updateFavoritesList(FavoritesList, getDefaultLanguage());
+		favoritesHandler.updateFavoritesList(FavoritesList,
+				getDefaultLanguage());
 	}
-	
-	public static void removeSessionFavorites(Context context, Long sessionID){
+
+	public static void removeSessionFavorites(Context context, Long sessionID) {
 		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
 		if (FavoritesList.contains(sessionID)) {
 			FavoritesList.remove(sessionID);
 		}
-		favoritesHandler.updateFavoritesList(FavoritesList, getDefaultLanguage());
+		favoritesHandler.updateFavoritesList(FavoritesList,
+				getDefaultLanguage());
 	}
-		
-	public static String getDefaultLanguage(){
-		if(Locale.getDefault().getLanguage().equals("tr")){
+
+	public static String getDefaultLanguage() {
+		if (Locale.getDefault().getLanguage().equals("tr")) {
 			return "tr";
-		}
-		else{
+		} else {
 			return "en";
 		}
 	}
@@ -146,52 +172,49 @@ public class Util {
 		}
 		return result;
 	}
-	
+
 	/*
-     * An InputStream that skips the exact number of bytes provided, unless it reaches EOF.
-     */
-    public static class FlushedInputStream extends FilterInputStream {
-        public FlushedInputStream(InputStream inputStream) {
-            super(inputStream);
-        }
+	 * An InputStream that skips the exact number of bytes provided, unless it
+	 * reaches EOF.
+	 */
+	public static class FlushedInputStream extends FilterInputStream {
+		public FlushedInputStream(InputStream inputStream) {
+			super(inputStream);
+		}
 
-        @Override
-        public long skip(long n) throws IOException {
-            long totalBytesSkipped = 0L;
-            while (totalBytesSkipped < n) {
-                long bytesSkipped = in.skip(n - totalBytesSkipped);
-                if (bytesSkipped == 0L) {
-                    int b = read();
-                    if (b < 0) {
-                        break;  // we reached EOF
-                    } else {
-                        bytesSkipped = 1; // we read one byte
-                    }
-                }
-                totalBytesSkipped += bytesSkipped;
-            }
-            return totalBytesSkipped;
-        }
-    }
-    
-    /*public static void setMaxLinesWithEllipsize(TextView text,int max_line){
-    	
-    	ViewTreeObserver vto = text.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+		@Override
+		public long skip(long n) throws IOException {
+			long totalBytesSkipped = 0L;
+			while (totalBytesSkipped < n) {
+				long bytesSkipped = in.skip(n - totalBytesSkipped);
+				if (bytesSkipped == 0L) {
+					int b = read();
+					if (b < 0) {
+						break; // we reached EOF
+					} else {
+						bytesSkipped = 1; // we read one byte
+					}
+				}
+				totalBytesSkipped += bytesSkipped;
+			}
+			return totalBytesSkipped;
+		}
+	}
 
-            @Override
-            public void onGlobalLayout() {
-            ViewTreeObserver obs = snippet.getViewTreeObserver();
-            obs.removeGlobalOnLayoutListener(this);
-            if(snippet.getLineCount() > 3)
-            {
-                int lineEndIndex = snippet.getLayout().getLineEnd(2);
-                String text = snippet.getText().subSequence(0, lineEndIndex-3) +"...";
-                snippet.setText(text);
-            }
-            }
-        });
-    	
-    }*/
+	/*
+	 * public static void setMaxLinesWithEllipsize(TextView text,int max_line){
+	 * 
+	 * ViewTreeObserver vto = text.getViewTreeObserver();
+	 * vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+	 * 
+	 * @Override public void onGlobalLayout() { ViewTreeObserver obs =
+	 * snippet.getViewTreeObserver(); obs.removeGlobalOnLayoutListener(this);
+	 * if(snippet.getLineCount() > 3) { int lineEndIndex =
+	 * snippet.getLayout().getLineEnd(2); String text =
+	 * snippet.getText().subSequence(0, lineEndIndex-3) +"...";
+	 * snippet.setText(text); } } });
+	 * 
+	 * }
+	 */
 
 }
