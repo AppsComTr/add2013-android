@@ -35,6 +35,7 @@ import android.widget.TextView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 public class TweetWallActivity extends ListActivity implements Runnable {
 
@@ -132,7 +133,7 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 				}
 
 				if (image != null) {
-					image.setImageBitmap(getBitmap(tweet.image_url));
+					UrlImageViewHelper.setUrlDrawable(image, tweet.image_url,R.drawable.loading);
 				}
 				if (screenname != null) {
 					screenname.setText(tweet.screen_name);
