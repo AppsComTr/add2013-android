@@ -89,7 +89,7 @@ public class MyMapActivity extends MapActivity {
 					5000, 25, locationListener);
 
 		} catch (Exception e) {
-			Toast.makeText(this, "Please, check your internet connection.",
+			Toast.makeText(this, getResources().getString(R.string.check_internet),
 					Toast.LENGTH_LONG).show();
 		}
 	}

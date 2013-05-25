@@ -94,7 +94,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		
 		//Oturumlari basligi
 		text=(TextView)findViewById(R.id.speakerpage_sessiontitle);
-		text.setText(lang==1?"Oturumlar":"Sessions");
+		text.setText(getResources().getString(R.string.sessions));
 		
 		//Oturumlari ekle
 		sessions_layout=(LinearLayout)findViewById(R.id.speakerpage_sessionlayout);
@@ -163,9 +163,9 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 			text=(TextView)view.findViewById(R.id.session_name);
 			text.setText(filtered_session_list.get(i).getTitle());
 			text=(TextView)view.findViewById(R.id.session_features);
-			temp=filtered_session_list.get(i).getDay()==14?lang==1?"Cuma":"Friday":lang==1?"Cumartesi":"Saturday";
+			temp=filtered_session_list.get(i).getDay()==14?getResources().getString(R.string.friday):getResources().getString(R.string.saturday);
 			temp+=" "+filtered_session_list.get(i).getStart_hour()+" - "+filtered_session_list.get(i).getEnd_hour()+" | ";
-			temp+=lang==1?filtered_session_list.get(i).getHall()+" Salonu":"Hall "+ filtered_session_list.get(i).getHall();
+			temp+=lang==1?filtered_session_list.get(i).getHall()+getResources().getString(R.string.hall):getResources().getString(R.string.hall)+ filtered_session_list.get(i).getHall();
 			text.setText(temp);
 			text.setTextSize(features_text_size);
 			if(filtered_session_list.get(i).isFavorite()){

@@ -59,7 +59,7 @@ public class FavoriteListActivity extends Activity{
 				inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				session_listview.setVisibility(View.GONE);
 				view=inflater.inflate(R.layout.blank_list, null, false);
-				((TextView)view.findViewById(R.id.blanklist_text)).setText(lang==1?"Favori oturumunuz bulunmamaktadýr":"There is no favorite session");
+				((TextView)view.findViewById(R.id.blanklist_text)).setText(getResources().getString(R.string.no_fav_session));
 				sessionlist_layout.addView(view);
 			}
 		}
@@ -106,7 +106,7 @@ public class FavoriteListActivity extends Activity{
 			inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			session_listview.setVisibility(View.GONE);
 			view=inflater.inflate(R.layout.blank_list, null, false);
-			((TextView)view.findViewById(R.id.blanklist_text)).setText(lang==1?"Favori oturumunuz bulunmamaktadýr":"There is no favorite session");
+			((TextView)view.findViewById(R.id.blanklist_text)).setText(getResources().getString(R.string.no_fav_session));
 			sessionlist_layout.addView(view);
 		}
 		else{

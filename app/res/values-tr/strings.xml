@@ -19,4 +19,13 @@
 	<string name="speakers">Konuşmacılar</string>
 	<string name="map">Harita</string>
 	<string name="please_wait">Lütfen Bekleyin</string>
-	<string name="getting_tweets">Tweetler indiriliyor</string></resources>
+	<string name="getting_tweets">Tweetler indiriliyor</string>
+	<string name="no_fav_session">Favori oturumunuz bulunmamaktadır</string>
+	<string name="check_internet">Lütfen internet bağlantınızı kontrol edin</string>
+	<string name="friday">Cuma</string>
+	<string name="saturday">Cumartesi</string>
+	<string name="hall"> Salonu</string>
+	<string name="requirements">Gereksinimler</string>
+	<string name="sessions">Oturumlar</string>
+	<string name="internet_fail">Internet bağlantısı olmadığı için program güncellenemiyor</string>
+	</resources>

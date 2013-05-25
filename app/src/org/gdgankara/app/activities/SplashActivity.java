@@ -51,7 +51,7 @@ public class SplashActivity extends Activity {
 		protected void onPostExecute(Void result) {
 			if (!isInternetAvailable && Util.SessionList.size() == 0) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
-				builder.setMessage("Internet bağlantısı olmadığı için program güncellenemiyor");
+				builder.setMessage(getResources().getString(R.string.internet_fail));
 				builder.setNeutralButton(R.string.button_ok,
 						new DialogInterface.OnClickListener() {
 

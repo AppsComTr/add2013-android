@@ -20,5 +20,13 @@
 	<string name="map">Map</string>
 	<string name="please_wait">Please Wait</string>
 	<string name="getting_tweets">Getting tweets from Twitter</string>
+	<string name="no_fav_session">There is no favorite session</string>
+	<string name="check_internet">Please, check your internet connection</string>
+	<string name="friday">Friday</string>
+	<string name="saturday">Saturday</string>
+	<string name="hall">Hall </string>
+	<string name="requirements">Requirements</string>
+	<string name="sessions">Sessions</string>
+	<string name="internet_fail"></string>
 
 </resources>

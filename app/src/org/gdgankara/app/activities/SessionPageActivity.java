@@ -104,9 +104,9 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 		
 		//Oturum yer zaman bilgisi
 		text=(TextView)findViewById(R.id.session_features);
-		temp=session.getDay()==14?lang==1?"Cuma":"Friday":lang==1?"Cumartesi":"Saturday";
+		temp=session.getDay()==14?getResources().getString(R.string.friday):getResources().getString(R.string.saturday);
 		temp+=" "+session.getStart_hour()+" - "+session.getEnd_hour()+" | ";
-		temp+=lang==1?session.getHall()+" Salonu":"Hall "+ session.getHall();
+		temp+=lang==1?session.getHall()+getResources().getString(R.string.hall):getResources().getString(R.string.hall)+ session.getHall();
 		text.setText(temp);
 		text.setTextSize(features_text_size);
 		
@@ -116,10 +116,10 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 		
 		//Baþlýklarýn dili
 		text=(TextView)findViewById(R.id.speaker_title);
-		text.setText(lang==1?"Konuþmacýlar":"Speakers");
+		text.setText(getResources().getString(R.string.speakers));
 		
 		text=(TextView)findViewById(R.id.requirement_title);
-		text.setText(lang==1?"Gereksinimler":"Requirements");
+		text.setText(getResources().getString(R.string.requirements));
 		
 		//favori yýldýzý butonu
 		favorite_star=(ImageView)findViewById(R.id.favorite_session);
