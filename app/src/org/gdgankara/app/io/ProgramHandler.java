@@ -113,29 +113,32 @@ public class ProgramHandler extends BaseHandler {
 				e.printStackTrace();
 			}
 		} else {
-			try {
-				sessionList = (ArrayList<Session>) readCacheFile(getCacheFileName(
-						Session.KIND, lang));
-				tagList = (ArrayList<String>) readCacheFile(getCacheFileName(Tag.KIND, "en"));
-				speakerList = (ArrayList<Speaker>) readCacheFile(getCacheFileName(
-						Speaker.KIND, lang));
-				sponsorList = (ArrayList<Sponsor>) readCacheFile(getCacheFileName(
-						Sponsor.KIND, "en"));
-				announcementList = (ArrayList<Announcement>) readCacheFile(getCacheFileName(
-						Announcement.KIND, lang));
-				
-				setAnnouncementList(announcementList);
-				setSessionList(sessionList);
-				setSpeakerList(speakerList);
-				setSponsorList(sponsorList);
-				setTagList(tagList);
-			} catch (Exception e) {
-				Log.e(TAG, "Error: " + e);
-				e.printStackTrace();
-			}
+			initializeListsFromCache(lang);
 		}
-		
-		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void initializeListsFromCache(String lang){
+		try {
+			sessionList = (ArrayList<Session>) readCacheFile(getCacheFileName(
+					Session.KIND, lang));
+			tagList = (ArrayList<String>) readCacheFile(getCacheFileName(Tag.KIND, "en"));
+			speakerList = (ArrayList<Speaker>) readCacheFile(getCacheFileName(
+					Speaker.KIND, lang));
+			sponsorList = (ArrayList<Sponsor>) readCacheFile(getCacheFileName(
+					Sponsor.KIND, "en"));
+			announcementList = (ArrayList<Announcement>) readCacheFile(getCacheFileName(
+					Announcement.KIND, lang));
+			
+			setAnnouncementList(announcementList);
+			setSessionList(sessionList);
+			setSpeakerList(speakerList);
+			setSponsorList(sponsorList);
+			setTagList(tagList);
+		} catch (Exception e) {
+			Log.e(TAG, "Error: " + e);
+			e.printStackTrace();
+		}
 	}
 
 	private ArrayList<Announcement> parseJSONObjectToAnnouncementList(

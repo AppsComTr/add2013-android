@@ -8,25 +8,19 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import org.gdgankara.app.io.AnnouncementHandler;
 import org.gdgankara.app.io.FavoritesHandler;
 import org.gdgankara.app.io.ProgramHandler;
-import org.gdgankara.app.io.SponsorHandler;
-import org.gdgankara.app.io.TagHandler;
 import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
 import org.gdgankara.app.model.Sponsor;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.ViewTreeObserver;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.widget.TextView;
 
 public class Util {
 	public static final String TAG = Util.class.getSimpleName();
@@ -80,6 +74,15 @@ public class Util {
 		
 		FavoritesList = favoritesHandler.getFavoritesList(lang);
 		programHandler.initializeLists(lang);
+	}
+	
+	public static void prepareStaticListsFromCache(Context context){
+		String lang = getDefaultLanguage();
+		ProgramHandler programHandler = new ProgramHandler(context);
+		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
+		
+		FavoritesList = favoritesHandler.getFavoritesList(lang);
+		programHandler.initializeListsFromCache(lang);
 	}
 	
 	public static void setDeviceHeight(int height){

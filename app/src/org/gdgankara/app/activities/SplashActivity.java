@@ -1,43 +1,75 @@
 package org.gdgankara.app.activities;
 
 import org.gdgankara.app.R;
-import org.gdgankara.app.R.layout;
-import org.gdgankara.app.R.menu;
+import org.gdgankara.app.utils.Util;
 
-import android.os.Bundle;
-import android.os.Handler;
 import android.app.Activity;
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
-import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public class SplashActivity extends Activity {
+	private static final String TAG = SpeakerListActivity.class.getSimpleName();
 
-	private static final int SPLASH_DISPLAY_TIME = 1000; /* 1 seconds */
-
-	private ProgressBar pdSpin;
+	private Context context;
+	boolean isInternetAvailable = true; // TODO Util.isInternetAvailable();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
+		context = SplashActivity.this;
 
-		Thread th = new Thread() {
-			public void run() {
+		try {
+			new getListsAsync().execute();
+		} catch (Exception e) {
+			Log.e(TAG, "Error: " + e.getMessage().toString());
+			e.printStackTrace();
+		}
+	}
 
-					try {
-						android.os.SystemClock.sleep(SPLASH_DISPLAY_TIME);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					startActivity(new Intent(SplashActivity.this,
-							MainActivity.class));
-					finish();
+	class getListsAsync extends AsyncTask<Void, Void, Void> {
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+			if (isInternetAvailable) {
+				Util.prepareStaticLists(context);
+			} else if (!isInternetAvailable) {
+				Toast.makeText(context, "Internet yok Cacheden alınıyor", Toast.LENGTH_LONG).show();
+				Util.prepareStaticListsFromCache(context);
 			}
-		};
+			return null;
+		}
 
-		th.start();
+		@Override
+		protected void onPostExecute(Void result) {
+			if (!isInternetAvailable && Util.SessionList.size() == 0) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setMessage("Internet bağlantısı olmadığı için program güncellenemiyor");
+				builder.setNeutralButton(R.string.button_ok,
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								finish();
+							}
+
+						});
+				builder.create().show();
+			} else {
+				startActivity(new Intent(SplashActivity.this,
+						MainActivity.class));
+				finish();
+			}
+			super.onPostExecute(result);
+		}
 
 	}
 
