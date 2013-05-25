@@ -12,20 +12,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.widget.Toast;
 
 public class SplashActivity extends Activity {
 	private static final String TAG = SpeakerListActivity.class.getSimpleName();
 
 	private Context context = this;
-	boolean isInternetAvailable = false;
+	boolean isInternetAvailable = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
-		isInternetAvailable = Util.isInternetAvailable(context);
-		
+				
 		try {
 			new getListsAsync().execute();
 		} catch (Exception e) {
