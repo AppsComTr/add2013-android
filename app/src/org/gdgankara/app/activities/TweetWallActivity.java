@@ -50,11 +50,19 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 		setContentView(R.layout.activity_tweet_wall);
 		tabAktif();
 		pullToRefreshView = (PullToRefreshListView) findViewById(R.id.tweetList);
-		try{
-		pd = ProgressDialog.show(this, getResources().getString(R.string.loading),
-				getResources().getString(R.string.getting_tweets), true, false);
-		}
-		catch (Exception e) {
+		try {
+			if (pd == null) {
+				// pd = ProgressDialog.show(this,
+				// getResources().getString(R.string.loading),
+				// getResources().getString(R.string.getting_tweets),
+				// true, false);
+				pd = new ProgressDialog(TweetWallActivity.this);
+				pd.setMessage(getResources().getString(R.string.getting_tweets));
+				pd.setTitle(getResources().getString(R.string.loading));
+				pd.setCancelable(false);
+				pd.show();
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		Thread thread = new Thread(this);
@@ -70,19 +78,22 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 					}
 				});
 	}
-	
+
 	@Override
-	protected void onResume(){
+	protected void onResume() {
 		super.onResume();
 		tabListener.checkQRState();
 	}
 
-	public void tabAktif(){
-		tabListener=new TabListener(this);
-		((ImageView)findViewById(R.id.search_button)).setOnClickListener(tabListener);	
-		((ImageView)findViewById(R.id.update_button)).setOnClickListener(tabListener);
-		((ImageView)findViewById(R.id.qr_decoder_button)).setOnClickListener(tabListener);	
-		
+	public void tabAktif() {
+		tabListener = new TabListener(this);
+		((ImageView) findViewById(R.id.search_button))
+				.setOnClickListener(tabListener);
+		((ImageView) findViewById(R.id.update_button))
+				.setOnClickListener(tabListener);
+		((ImageView) findViewById(R.id.qr_decoder_button))
+				.setOnClickListener(tabListener);
+
 	}
 
 	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
@@ -129,7 +140,7 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 						.findViewById(R.id.user_twitter_name);
 
 				if (username != null) {
-					String usrnamestr = "@" + tweet.username; 
+					String usrnamestr = "@" + tweet.username;
 					username.setText(usrnamestr);
 				}
 
@@ -138,7 +149,8 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 				}
 
 				if (image != null) {
-					UrlImageViewHelper.setUrlDrawable(image, tweet.image_url,R.drawable.loading);
+					UrlImageViewHelper.setUrlDrawable(image, tweet.image_url,
+							R.drawable.loading);
 				}
 				if (screenname != null) {
 					screenname.setText(tweet.screen_name);
@@ -159,9 +171,8 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 	}
 
 	public ArrayList<Tweet> getTweets(String searchTerm, int page, int rpp) {
-		String searchUrl = "http://search.twitter.com/search.json?rpp="
-				+ rpp + "&page="
-				+ page + "&q=" + searchTerm + "+exclude:retweets";
+		String searchUrl = "http://search.twitter.com/search.json?rpp=" + rpp
+				+ "&page=" + page + "&q=" + searchTerm + "+exclude:retweets";
 
 		ArrayList<Tweet> tweets = new ArrayList<Tweet>();
 
@@ -235,7 +246,12 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 			pullToRefreshView
 					.setAdapter(new UserItemAdapter(TweetWallActivity.this,
 							R.layout.child_of_tweetwall, tweets));
-			pd.dismiss();
+			try {
+				if (pd != null)
+					pd.dismiss();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	};
 }
