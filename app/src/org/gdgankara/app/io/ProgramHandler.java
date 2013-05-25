@@ -2,7 +2,6 @@ package org.gdgankara.app.io;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -13,21 +12,20 @@ import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
 import org.gdgankara.app.model.Sponsor;
 import org.gdgankara.app.model.Tag;
-import org.gdgankara.app.services.ImageCacheService;
 import org.gdgankara.app.utils.Util;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 
 public class ProgramHandler extends BaseHandler {
 	private static final String TAG = ProgramHandler.class.getSimpleName();
 
 	private static final String CACHE_FILE = "cache_";
-
+	private static final String ACTION_INITIALIZE = "action_initialize";
+	private static final String ACTION_REFRESH = "action_refresh";
 	private static final String BASE_URL_PROGRAM = "http://add-2013.appspot.com/api/program/";
 
 	protected Context context;
@@ -58,131 +56,86 @@ public class ProgramHandler extends BaseHandler {
 	public void initializeLists(String lang) {
 		this.lang = lang;
 		JSONObject jsonObject = null;
+		boolean isVersionUpdated;
+		
 		try {
-			sessionList = (ArrayList<Session>) readCacheFile(getCacheFileName(
-					Session.KIND, lang));
-			if (sessionList == null) {
-				tagList = new ArrayList<String>();
-				tag_counter=new int[100];
-				hashmap=new HashMap<String, Integer>();
-				jsonObject = doGet(BASE_URL_PROGRAM + lang);
-				sessionList = parseJSONObjectToSessionList(jsonObject,
-						"sessions");
-				writeListToFile(sessionList,
-						getCacheFileName(Session.KIND, lang));
-			}else {
-				tagList = (ArrayList<String>) readCacheFile(getCacheFileName(Tag.KIND, "en"));
-			}
-
-			speakerList = (ArrayList<Speaker>) readCacheFile(getCacheFileName(
-					Speaker.KIND, lang));
-			if (speakerList == null) {
-				if (jsonObject == null) {
-					jsonObject = doGet(BASE_URL_PROGRAM + lang);
+			jsonObject = doGet(BASE_URL_PROGRAM + lang);
+			isVersionUpdated = Util.isVersionUpdated(context,
+					jsonObject);
+		} catch (Exception e) {
+			isVersionUpdated = false;
+			Log.e(TAG, "Error: " + e);
+			e.printStackTrace();
+		}
+		
+		if (isVersionUpdated) {
+			try {
+				if (sessionList == null) {
+					tagList = new ArrayList<String>();
+					tag_counter=new int[100];
+					hashmap=new HashMap<String, Integer>();
+					sessionList = parseJSONObjectToSessionList(jsonObject,
+							"sessions");
+					writeListToFile(sessionList,
+							getCacheFileName(Session.KIND, lang));
+				}else {
+					tagList = (ArrayList<String>) readCacheFile(getCacheFileName(Tag.KIND, "en"));
 				}
-				speakerList = parseJSONObjectToSpeakerList(jsonObject,
-						"speakers");
+
+				if (speakerList == null) {
+					speakerList = parseJSONObjectToSpeakerList(jsonObject,
+							"speakers");
+					setSpeakerList(speakerList);
+					writeListToFile(speakerList,getCacheFileName(Speaker.KIND, lang));
+				}
+				
+				if (sponsorList == null) {
+					sponsorList = parseJSONObjectToSponsorList(jsonObject,
+							"sponsors");
+					writeListToFile(sponsorList,
+							getCacheFileName(Sponsor.KIND, lang));
+				}
+
+				if (announcementList == null) {
+					announcementList = parseJSONObjectToAnnouncementList(
+							jsonObject, "announcements");
+					writeListToFile(announcementList,
+							getCacheFileName(Announcement.KIND, lang));
+				}
+				
+				setAnnouncementList(announcementList);
+				setSessionList(sessionList);
 				setSpeakerList(speakerList);
-				// startImageCacheService(ImageCacheService.CACHE_SPEAKER_IMAGES);
-				writeListToFile(speakerList,getCacheFileName(Speaker.KIND, lang));
+				setSponsorList(sponsorList);
+				setTagList(tagList);
+			} catch (Exception e) {
+				Log.e(TAG, "Error: " + e);
+				e.printStackTrace();
 			}
-
-			sponsorList = (ArrayList<Sponsor>) readCacheFile(getCacheFileName(
-					Sponsor.KIND, "en"));
-			if (sponsorList == null) {
-				if (jsonObject == null) {
-					jsonObject = doGet(BASE_URL_PROGRAM + lang);
-				}
-				sponsorList = parseJSONObjectToSponsorList(jsonObject,
-						"sponsors");
-				writeListToFile(sponsorList,
-						getCacheFileName(Sponsor.KIND, lang));
-			}
-
-			announcementList = (ArrayList<Announcement>) readCacheFile(getCacheFileName(
-					Announcement.KIND, "en"));
-			if (announcementList == null) {
-				if (jsonObject == null) {
-					jsonObject = doGet(BASE_URL_PROGRAM + lang);
-				}
-				announcementList = parseJSONObjectToAnnouncementList(
-						jsonObject, "announcements");
-				writeListToFile(announcementList,
-						getCacheFileName(Announcement.KIND, "en"));
-			}
-			
-			setAnnouncementList(announcementList);
-			setSessionList(sessionList);
-			setSpeakerList(speakerList);
-			setSponsorList(sponsorList);
-			setTagList(tagList);
-		} catch (Exception e) {
-			Log.e(TAG, "Error: " + e);
-			e.printStackTrace();
-		}
-	}
-
-	@SuppressWarnings("unchecked")
-	public ArrayList<Session> updateSessionList(String lang) {
-		this.lang = lang;
-		JSONObject jsonObject;
-		ArrayList<Session> sessionsList = new ArrayList<Session>();
-		try {
-			jsonObject = doGet(BASE_URL_PROGRAM + lang);
-			boolean isVersionUpdated = Util.isVersionUpdated(context,
-					jsonObject);
-			if (isVersionUpdated) {
-				sessionsList = parseJSONObjectToSessionList(jsonObject,
-						"sessions");
-				writeListToFile(sessionsList,
-						getCacheFileName(Session.KIND, lang));
-			} else {
-				sessionsList = (ArrayList<Session>) readCacheFile(getCacheFileName(
+		} else {
+			try {
+				sessionList = (ArrayList<Session>) readCacheFile(getCacheFileName(
 						Session.KIND, lang));
-			}
-		} catch (Exception e) {
-			Log.e(TAG, "Error: " + e);
-			e.printStackTrace();
-		}
-		setSessionList(sessionsList);
-		return sessionsList;
-	}
-
-	@SuppressWarnings("unchecked")
-	public ArrayList<Speaker> updateSpeakerList(String lang) {
-		this.lang = lang;
-		JSONObject jsonObject;
-		ArrayList<Speaker> speakerList = new ArrayList<Speaker>();
-		try {
-			jsonObject = doGet(BASE_URL_PROGRAM + lang);
-			boolean isVersionUpdated = Util.isVersionUpdated(context,
-					jsonObject);
-			if (isVersionUpdated) {
-				speakerList = parseJSONObjectToSpeakerList(jsonObject,
-						"speakers");
-				startImageCacheService(ImageCacheService.CACHE_SPEAKER_IMAGES);
-				writeListToFile(speakerList,
-						getCacheFileName(Speaker.KIND, lang));
-			} else {
+				tagList = (ArrayList<String>) readCacheFile(getCacheFileName(Tag.KIND, "en"));
 				speakerList = (ArrayList<Speaker>) readCacheFile(getCacheFileName(
 						Speaker.KIND, lang));
+				sponsorList = (ArrayList<Sponsor>) readCacheFile(getCacheFileName(
+						Sponsor.KIND, "en"));
+				announcementList = (ArrayList<Announcement>) readCacheFile(getCacheFileName(
+						Announcement.KIND, lang));
+				
+				setAnnouncementList(announcementList);
+				setSessionList(sessionList);
+				setSpeakerList(speakerList);
+				setSponsorList(sponsorList);
+				setTagList(tagList);
+			} catch (Exception e) {
+				Log.e(TAG, "Error: " + e);
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			Log.e(TAG, "Error: " + e);
-			e.printStackTrace();
 		}
-		setSpeakerList(speakerList);
-		return speakerList;
-	}
-
-	public void updateSpeakerListCacheFile(String lang) {
-		try {
-			writeListToFile(Util.SpeakerList,
-					getCacheFileName(Speaker.KIND, lang));
-		} catch (IOException e) {
-			Log.e(TAG, "Error: " + e);
-			e.printStackTrace();
-		}
+		
+		
 	}
 
 	private ArrayList<Announcement> parseJSONObjectToAnnouncementList(
@@ -444,15 +397,6 @@ public class ProgramHandler extends BaseHandler {
 	    Collections.swap(tagList, i, j);
 	  }
 	
-	
-
-	private void startImageCacheService(String type) {
-		Intent imageCacheIntent = new Intent(context, ImageCacheService.class);
-		imageCacheIntent.setAction(ImageCacheService.CACHE_STARTED);
-		imageCacheIntent.putExtra(ImageCacheService.CACHE_TYPE, type);
-		context.startService(imageCacheIntent);
-	}
-
 	private void updateFavoriteSessions(ArrayList<Session> sessionList) {
 		if (Util.FavoritesList != null) {
 			for (Session session : sessionList) {
