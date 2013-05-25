@@ -37,7 +37,7 @@ public class ProgramHandler extends BaseHandler {
 	protected ArrayList<Session> sessionList;
 	protected ArrayList<Speaker> speakerList;
 	protected ArrayList<String> tagList;
-	private ArrayList<Integer> tag_counter;
+	private int[] tag_counter;
 	private Map<String,Integer> hashmap;
 
 	public ProgramHandler(Context context) {
@@ -63,7 +63,7 @@ public class ProgramHandler extends BaseHandler {
 					Session.KIND, lang));
 			if (sessionList == null) {
 				tagList = new ArrayList<String>();
-				tag_counter=new ArrayList<Integer>();
+				tag_counter=new int[100];
 				hashmap=new HashMap<String, Integer>();
 				jsonObject = doGet(BASE_URL_PROGRAM + lang);
 				sessionList = parseJSONObjectToSessionList(jsonObject,
@@ -365,12 +365,12 @@ public class ProgramHandler extends BaseHandler {
 							if (string != "" && string != null) {
 								try{
 									temp_index=hashmap.get(string);
-									tag_counter.set(temp_index, tag_counter.get(temp_index)+1);
+									tag_counter[temp_index]++;
 								}
 								catch(NullPointerException e){ //Oyle bir tag yok
 									hashmap.put(string,tag_size);
 									tagList.add(string);
-									tag_counter.add(1);
+									tag_counter[tag_size]=1;
 									tag_size++;
 								}
 								
@@ -399,11 +399,11 @@ public class ProgramHandler extends BaseHandler {
 			Log.e(TAG, "Error: " + e);
 			e.printStackTrace();
 		}
-		sortTagsByWeight(tag_size,(Integer[])tag_counter.toArray());
+		sortTagsByWeight(tag_size,tag_counter);
 		return sessionsList;
 	}
 
-	private void sortTagsByWeight(int size,Integer[] array) {
+	private void sortTagsByWeight(int size,int[] array) {
 		if (array ==null || array.length==0){
 		      return;
 		}
@@ -411,7 +411,7 @@ public class ProgramHandler extends BaseHandler {
 		
 	}
 
-	private void quicksort(int low, int high, Integer[] array) {
+	private void quicksort(int low, int high, int[]  array) {
 		
 		int i = low, j = high;
 	    int pivot = array[low + (high-low)/2];
@@ -437,7 +437,7 @@ public class ProgramHandler extends BaseHandler {
 	      quicksort(i, high,array);
 	  }
 
-	  private void exchange(int i, int j,Integer[] array) {
+	  private void exchange(int i, int j,int[]  array) {
 	    int temp = array[i];
 	    array[i] = array[j];
 	    array[j] = temp;

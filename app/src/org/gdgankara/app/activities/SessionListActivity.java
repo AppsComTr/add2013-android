@@ -93,17 +93,22 @@ public class SessionListActivity extends Activity{
 	private void sessionListFilter() {
 		int i,j;
 		String[] tags;
+		String temp;
 		filtered_session_list=new ArrayList<Session>();
 		int size=total_session_list.size();
 		int size2;
 		for(i=0;i<size;i++){
-			tags=total_session_list.get(i).getTags().split(",");
-			size2=tags.length;
-			for(j=0;j<size2;j++){
-				if(tags[j].equals(aranan_tag)){
-					filtered_session_list.add(total_session_list.get(i));
+			temp=total_session_list.get(i).getTags();
+			if(temp!=null){
+				tags=temp.split(",");
+				size2=tags.length;
+				for(j=0;j<size2;j++){
+					if(tags[j].equals(aranan_tag)){
+						filtered_session_list.add(total_session_list.get(i));
+					}
 				}
 			}
+			
 		}
 	}
 	
