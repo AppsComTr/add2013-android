@@ -3,6 +3,7 @@ package org.gdgankara.app.listeners;
 import org.gdgankara.app.activities.DecoderActivity;
 import org.gdgankara.app.activities.MainActivity;
 import org.gdgankara.app.activities.SearchActivity;
+import org.gdgankara.app.tasks.PrepareListsTask;
 import org.gdgankara.app.utils.Util;
 import org.gdgankara.app.R;
 
@@ -17,14 +18,14 @@ import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 /**************************************************************************************
- *      Bu sýnýf her activity içerisinde tablarýn ne yapacaðýný implement etmek
- *      yerine , sadece burada yazýp her activity içerisinde bu sýnýfýn nesnesini
- *      kullanmak için oluþturuldu.
+ *      Bu sï¿½nï¿½f her activity iï¿½erisinde tablarï¿½n ne yapacaï¿½ï¿½nï¿½ implement etmek
+ *      yerine , sadece burada yazï¿½p her activity iï¿½erisinde bu sï¿½nï¿½fï¿½n nesnesini
+ *      kullanmak iï¿½in oluï¿½turuldu.
  * 
  **************************************************************************************/
 
 public class TabListener implements OnClickListener {
-
+	private static final String TAG = TabListener.class.getSimpleName();
 	private Context context;
 	
 	public TabListener(Context context){
@@ -41,7 +42,7 @@ public class TabListener implements OnClickListener {
 			break;
 			
 		case R.id.qr_decoder_button:
-			Log.i("Sedat","Decoder butonuna basýldý");
+			Log.i("Sedat","Decoder butonuna basï¿½ldï¿½");
 			i = new Intent(context, DecoderActivity.class);
 			i.putExtra("SCAN_MODE", "QR_CODE_MODE");
 			i.putExtra("return-data", true);
@@ -49,9 +50,13 @@ public class TabListener implements OnClickListener {
 			break;
 			
 		case R.id.update_button:
-			//Burada listeler update edilecek.
-			//Progress dialog eþliðinde olabilir.
-			//Listeler yenilenince Intent.FLAG_ACTIVITY_CLEAR_TOP flagi ile MainActivity'nin baþlatýlmasýnda yarar var
+			try {
+				PrepareListsTask prepareListsTask = new PrepareListsTask(context);
+				prepareListsTask.execute();
+			} catch (Exception e) {
+				Log.e(TAG, "Error: " + e.getMessage().toString());
+				e.printStackTrace();
+			}
 			break;
 		}
 	
@@ -62,7 +67,7 @@ public class TabListener implements OnClickListener {
 	
 	public void checkQRState(){
 		if(Util.qr_state==0){
-			Toast.makeText(context,Util.getDefaultLanguage().equals("tr")?"Geçersiz QR Code":"Invalid QR Code", Toast.LENGTH_SHORT).show();
+			Toast.makeText(context,Util.getDefaultLanguage().equals("tr")?"Geï¿½ersiz QR Code":"Invalid QR Code", Toast.LENGTH_SHORT).show();
 			Util.qr_state=1;
 		}
 	}

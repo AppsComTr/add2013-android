@@ -70,26 +70,13 @@ public class Util {
 	}
 
 	public static boolean isInternetAvailable(Context context) {
-		try {
-			ConnectivityManager nInfo = (ConnectivityManager) context
-					.getSystemService(Context.CONNECTIVITY_SERVICE);
-			nInfo.getActiveNetworkInfo().isConnectedOrConnecting();
-			Log.i(TAG, "Net avail:"
-					+ nInfo.getActiveNetworkInfo().isConnectedOrConnecting());
-			ConnectivityManager cm = (ConnectivityManager) context
-					.getSystemService(Context.CONNECTIVITY_SERVICE);
-			NetworkInfo netInfo = cm.getActiveNetworkInfo();
-			if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-				Log.i(TAG, "Network is available");
-				return true;
-			} else {
-				Log.i(TAG, "Network is not available");
-				return false;
-			}
-		} catch (Exception e) {
+		ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+		if (activeNetwork != null && activeNetwork.isConnected()) {
+			return true;
+		}else {
 			return false;
 		}
-
 	}
 
 	public static void prepareStaticLists(Context context) {
