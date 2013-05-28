@@ -29,7 +29,7 @@ import android.widget.ViewFlipper;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-	private Button tweetWallButton, programButton, haritaButton, oturumButton,
+	private ImageView tweetWallButton, programButton, haritaButton, oturumButton,
 			sponsorButton, favoriButton, konusmaciButton;
 	private ViewFlipper newsFlipper;
 	private ImageView araButton, tempImg;
@@ -83,15 +83,33 @@ public class MainActivity extends Activity implements OnClickListener {
 
 
 	private void setUpButtons() {
-		tweetWallButton = (Button) findViewById(R.id.tweetWall);
-		favoriButton = (Button) findViewById(R.id.favori_button);
-		haritaButton = (Button) findViewById(R.id.harita_button);
-		sponsorButton = (Button) findViewById(R.id.sponsor_button);
-		oturumButton = (Button) findViewById(R.id.oturum_button);
-		programButton = (Button) findViewById(R.id.program_button);
+		tweetWallButton = (ImageView) findViewById(R.id.tweetWall);
+		favoriButton = (ImageView) findViewById(R.id.favori_button);
+		haritaButton = (ImageView) findViewById(R.id.harita_button);
+		sponsorButton = (ImageView) findViewById(R.id.sponsor_button);
+		oturumButton = (ImageView) findViewById(R.id.oturum_button);
+		programButton = (ImageView) findViewById(R.id.program_button);
 		araButton = (ImageView) findViewById(R.id.search_button);
-		konusmaciButton = (Button) findViewById(R.id.speakers_button);
+		konusmaciButton = (ImageView) findViewById(R.id.speakers_button);
 		newsFlipper = (ViewFlipper) findViewById(R.id.highlights);
+		if(Util.getDefaultLanguage().equals("tr")){
+			tweetWallButton.setImageDrawable(getResources().getDrawable(R.drawable.tweet_image_tr));
+			favoriButton.setImageDrawable(getResources().getDrawable(R.drawable.favori_image_tr));
+			haritaButton.setImageDrawable(getResources().getDrawable(R.drawable.harita_image_tr));
+			sponsorButton.setImageDrawable(getResources().getDrawable(R.drawable.sponsor_image));
+			oturumButton.setImageDrawable(getResources().getDrawable(R.drawable.oturum_image_tr));
+			programButton.setImageDrawable(getResources().getDrawable(R.drawable.program_image_tr));
+			konusmaciButton.setImageDrawable(getResources().getDrawable(R.drawable.konusmacilar_image_tr));
+		}
+		else{
+			tweetWallButton.setImageDrawable(getResources().getDrawable(R.drawable.tweet_image_en));
+			favoriButton.setImageDrawable(getResources().getDrawable(R.drawable.favori_image_en));
+			haritaButton.setImageDrawable(getResources().getDrawable(R.drawable.harita_image_en));
+			sponsorButton.setImageDrawable(getResources().getDrawable(R.drawable.sponsor_image));
+			oturumButton.setImageDrawable(getResources().getDrawable(R.drawable.oturum_image_en));
+			programButton.setImageDrawable(getResources().getDrawable(R.drawable.program_image_en));
+			konusmaciButton.setImageDrawable(getResources().getDrawable(R.drawable.konusmacilar_image_en));
+		}
 	}
 	
 	public void tabAktif(){

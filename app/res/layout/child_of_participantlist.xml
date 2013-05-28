@@ -20,7 +20,7 @@
         android:layout_below="@+id/participantname"
         android:ellipsize="end"
         android:maxLines="1"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:textColor="#616161"/>
     
@@ -32,7 +32,7 @@
         android:layout_below="@+id/participantcompany"
         android:ellipsize="end"
         android:maxLines="1"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:textColor="#616161"/>
     
 

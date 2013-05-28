@@ -374,10 +374,10 @@ public class ProgramHandler extends BaseHandler {
 
 	    while (i <= j) {
 
-	      while (array[i] < pivot) {
+	      while (array[i] > pivot) {
 	        i++;
 	      }
-	      while (array[j] > pivot) {
+	      while (array[j] < pivot) {
 	        j--;
 	      }
 	      if (i <= j) {
