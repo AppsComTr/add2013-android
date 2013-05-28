@@ -9,14 +9,18 @@
         layout="@layout/usttab"
         />
     
-    <RelativeLayout 
+    <ScrollView 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="45dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/id_background">
+        android:layout_marginRight="20dp">
+        
+        <RelativeLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/id_background">
         
         <ImageView 
             android:id="@+id/top_image_idpage"
@@ -26,111 +30,209 @@
             android:layout_alignParentTop="true"
             android:background="@drawable/member_id"/>
         
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/top_image_idpage"
-            android:layout_above="@+id/bottom_image_idpage"
-            android:orientation="vertical">
-            
-            <LinearLayout 
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1">
-                
-            </LinearLayout>
-            <LinearLayout 
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-                
-                <LinearLayout 
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3">
-                </LinearLayout>
-                <TextView 
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:text="İsim:"/>
-                <TextView 
-                    android:id="@+id/name_idpage"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6"/>
-                <LinearLayout 
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2">
-                </LinearLayout>
-                
-            </LinearLayout>
-            <LinearLayout 
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-                
-                <LinearLayout 
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3">
-                </LinearLayout>
-                <TextView 
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:text="Email:"/>
-                <TextView 
-                    android:id="@+id/email_idpage"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6"/>
-                <LinearLayout 
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2">
-                </LinearLayout>
-                
-            </LinearLayout>
-            <LinearLayout 
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-                
-                <LinearLayout 
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3">
-                </LinearLayout>
-                <TextView 
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:text="TelNo:"/>
-                <TextView 
-                    android:id="@+id/tel_idpage"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6"/>
-                <LinearLayout 
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2">
-                </LinearLayout>
-                
-            </LinearLayout>
-            <LinearLayout 
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1">
-                
-            </LinearLayout>
-            
-        </LinearLayout>
+		       <LinearLayout 
+		           android:id="@+id/idpage_layout"
+		           android:layout_width="match_parent"
+		           android:layout_height="wrap_content"
+		           android:orientation="vertical"
+		           android:layout_marginTop="80dp"
+		           android:paddingLeft="15dp">
+		           
+				           <LinearLayout 
+				               android:layout_width="match_parent"
+				               android:layout_height="wrap_content"
+				               android:paddingLeft="10dp"
+				               android:layout_marginTop="25dp"
+				               android:orientation="horizontal">
+				               
+				               <ImageView 
+				                   android:layout_width="20dp"
+				                   android:layout_height="20dp"
+				                   android:background="@drawable/name_idpage"/>
+				               
+				               <TextView 
+				                   android:layout_width="match_parent"
+				                   android:layout_height="wrap_content"
+				                   android:layout_marginLeft="10dp"
+				                   android:gravity="left|center"
+				                   android:textStyle="bold"
+				                   android:text="İsim"/>
+				               
+				           </LinearLayout>
+				           
+				           <TextView 
+				               android:id="@+id/idpage_name"
+				               android:layout_width="match_parent"
+				               android:layout_height="wrap_content"
+				               android:paddingLeft="35dp"
+				               android:layout_marginTop="10dp"
+				               android:paddingRight="15dp"/>
+				           
+				           
+				           
+						       <LinearLayout 
+				               android:layout_width="match_parent"
+				               android:layout_height="wrap_content"
+				               android:paddingLeft="10dp"
+				               android:layout_marginTop="25dp"
+				               android:orientation="horizontal">
+				               
+				               <ImageView 
+				                   android:layout_width="20dp"
+				                   android:layout_height="20dp"
+				                   android:background="@drawable/idpage_mail"/>
+				               
+				               <TextView 
+				                   android:layout_width="match_parent"
+				                   android:layout_height="wrap_content"
+				                   android:layout_marginLeft="10dp"
+				                   android:gravity="left|center"
+				                   android:textStyle="bold"
+				                   android:text="Email"/>
+				               
+				           </LinearLayout>
+				           
+				           <TextView 
+				               android:id="@+id/idpage_email"
+				               android:layout_width="match_parent"
+				               android:layout_height="wrap_content"
+				               android:paddingLeft="35dp"
+				               android:layout_marginTop="10dp"
+				               android:paddingRight="15dp"/>
+				           
+				           
+				           <LinearLayout 
+		               android:layout_width="match_parent"
+		               android:layout_height="wrap_content"
+		               android:paddingLeft="10dp"
+		               android:layout_marginTop="25dp"
+		               android:orientation="horizontal">
+		               
+		               <ImageView 
+		                   android:layout_width="20dp"
+		                   android:layout_height="20dp"
+		                   android:background="@drawable/idpage_website"/>
+		               
+		               <TextView 
+		                   android:layout_width="match_parent"
+		                   android:layout_height="wrap_content"
+		                   android:layout_marginLeft="10dp"
+		                   android:gravity="left|center"
+		                   android:textStyle="bold"
+		                   android:text="Website"/>
+		               
+		           </LinearLayout>
+		           
+		           <TextView 
+		               android:id="@+id/idpage_website"
+		               android:layout_width="match_parent"
+		               android:layout_height="wrap_content"
+		               android:paddingLeft="35dp"
+				               android:layout_marginTop="10dp"
+		               android:paddingRight="15dp"/>
+		           
+		           
+		           <LinearLayout 
+		               android:layout_width="match_parent"
+		               android:layout_height="wrap_content"
+		               android:paddingLeft="10dp"
+		               android:layout_marginTop="25dp"
+		               android:orientation="horizontal">
+		               
+		               <ImageView 
+		                   android:layout_width="20dp"
+		                   android:layout_height="20dp"
+		                   android:background="@drawable/idpage_phone"/>
+		               
+		               <TextView 
+		                   android:layout_width="match_parent"
+		                   android:layout_height="wrap_content"
+		                   android:layout_marginLeft="10dp"
+		                   android:gravity="left|center"
+		                   android:textStyle="bold"
+		                   android:text="Telefon"/>
+		               
+		           </LinearLayout>
+		           
+		           <TextView 
+		               android:id="@+id/idpage_telephone"
+		               android:layout_width="match_parent"
+		               android:layout_height="wrap_content"
+		               android:paddingLeft="35dp"
+				               android:layout_marginTop="10dp"
+		               android:paddingRight="15dp"/>
+		           
+		           
+		           <LinearLayout 
+		               android:layout_width="match_parent"
+		               android:layout_height="wrap_content"
+		               android:paddingLeft="10dp"
+		               android:layout_marginTop="25dp"
+		               android:orientation="horizontal">
+		               
+		               <ImageView 
+		                   android:layout_width="20dp"
+		                   android:layout_height="20dp"
+		                   android:background="@drawable/idpage_case"/>
+		               
+		               <TextView 
+		                   android:layout_width="match_parent"
+		                   android:layout_height="wrap_content"
+		                   android:layout_marginLeft="10dp"
+		                   android:gravity="left|center"
+		                   android:textStyle="bold"
+		                   android:text="Şirket"/>
+		               
+		           </LinearLayout>
+		           
+		           <TextView 
+		               android:id="@+id/idpage_company"
+		               android:layout_width="match_parent"
+		               android:layout_height="wrap_content"
+		               android:paddingLeft="35dp"
+				               android:layout_marginTop="10dp"
+		               android:paddingRight="15dp"/>
+		           
+		           
+		           <LinearLayout 
+		               android:layout_width="match_parent"
+		               android:layout_height="wrap_content"
+		               android:paddingLeft="10dp"
+		               android:layout_marginTop="25dp"
+		               android:orientation="horizontal">
+		               
+		               <ImageView 
+		                   android:layout_width="20dp"
+		                   android:layout_height="20dp"
+		                   android:background="@drawable/idpage_interested"/>
+		               
+		               <TextView 
+		                   android:layout_width="match_parent"
+		                   android:layout_height="wrap_content"
+		                   android:layout_marginLeft="10dp"
+		                   android:gravity="left|center"
+		                   android:textStyle="bold"
+		                   android:text="İlgilendikleri"/>
+		               
+		           </LinearLayout>
+		           
+		           <TextView 
+		               android:id="@+id/idpage_interested"
+		               android:layout_width="match_parent"
+		               android:layout_height="wrap_content"
+		               android:paddingLeft="35dp"
+				       android:layout_marginTop="10dp"
+		               android:paddingRight="15dp"/>
+		           
+		           <ImageView 
+		           android:id="@+id/add_contact_button"
+		           android:layout_width="100dp"
+		           android:layout_height="50dp"
+		           android:layout_marginTop="20dp"
+		           android:layout_marginBottom="48dp"
+		           android:layout_gravity="center_horizontal"/>
+		           
+		       </LinearLayout>
         
         <ImageView 
             android:id="@+id/bottom_image_idpage"
@@ -142,8 +244,9 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/anddevdays13"/>
         
-    </RelativeLayout>
-    
+        </RelativeLayout>
+        
+    </ScrollView>
     
     
     <include
