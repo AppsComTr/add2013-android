@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import org.gdgankara.app.io.FavoritesHandler;
+import org.gdgankara.app.io.ParticipantHandler;
 import org.gdgankara.app.io.ProgramHandler;
 import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.model.Session;
@@ -84,7 +85,9 @@ public class Util {
 		String lang = getDefaultLanguage();
 		ProgramHandler programHandler = new ProgramHandler(context);
 		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
+		ParticipantHandler participantHandler = new ParticipantHandler(context);
 
+		ParticipantList = participantHandler.getParticipantList();
 		FavoritesList = favoritesHandler.getFavoritesList(lang);
 		programHandler.initializeLists(lang);
 	}
@@ -93,7 +96,9 @@ public class Util {
 		String lang = getDefaultLanguage();
 		ProgramHandler programHandler = new ProgramHandler(context);
 		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
+		ParticipantHandler participantHandler = new ParticipantHandler(context);
 
+		ParticipantList = participantHandler.getParticipantList();
 		FavoritesList = favoritesHandler.getFavoritesList(lang);
 		programHandler.initializeListsFromCache(lang);
 	}
@@ -118,10 +123,6 @@ public class Util {
 				getDefaultLanguage());
 	}
 	
-	public static void addParticipantToList(String profile){
-		
-	}
-
 	public static void removeSessionFavorites(Context context, Long sessionID) {
 		FavoritesHandler favoritesHandler = new FavoritesHandler(context);
 		if (FavoritesList.contains(sessionID)) {
@@ -129,6 +130,17 @@ public class Util {
 		}
 		favoritesHandler.updateFavoritesList(FavoritesList,
 				getDefaultLanguage());
+	}
+		
+	public static void addParticipantToList(Context context, String profile){
+		ParticipantHandler participantHandler = new ParticipantHandler(context);
+		if (ParticipantList == null) {
+			ParticipantList = new ArrayList<String>();
+		}
+		if (!ParticipantList.contains(profile)) {
+			ParticipantList.add(profile);
+		}
+		participantHandler.updateParticipantList(ParticipantList);
 	}
 
 	public static String getDefaultLanguage() {
