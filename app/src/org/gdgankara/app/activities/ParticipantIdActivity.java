@@ -1,15 +1,11 @@
 package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
-
 import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
-import org.gdgankara.app.model.Participant;
 import org.gdgankara.app.utils.Util;
-
 import android.app.Activity;
 import android.content.ContentProviderOperation;
-import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.Html;
@@ -52,7 +48,7 @@ public class ParticipantIdActivity extends Activity{
 			}
 		}
 		if(i==size){
-			Util.addParticipantToList(message);
+			Util.addParticipantToList(this,message);
 		}
 	}
 	

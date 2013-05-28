@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <include
+        android:id="@+id/ust_tab" 
+        layout="@layout/usttab"
+        />
+    
+    <ListView 
+        android:id="@+id/participantlist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:cacheColorHint="@android:color/transparent"
+        android:groupIndicator="@android:color/transparent"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="30dp">
+        
+    </ListView>
+    
+    <include
+        android:id="@+id/alt_tab" 
+        layout="@layout/alttab"
+    />
+
+</RelativeLayout>

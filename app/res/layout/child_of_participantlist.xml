@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp" >
+    
+    <TextView 
+        android:id="@+id/participantname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginLeft="15dp"/>
+    
+    <TextView 
+        android:id="@+id/participantcompany"
+        android:layout_alignLeft="@+id/participantname"
+        android:layout_below="@+id/participantname"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#616161"/>
+    
+    <TextView 
+        android:id="@+id/participanttitle"
+        android:layout_alignLeft="@+id/participantcompany"
+        android:layout_below="@+id/participantcompany"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#616161"/>
+    
+
+</RelativeLayout>
