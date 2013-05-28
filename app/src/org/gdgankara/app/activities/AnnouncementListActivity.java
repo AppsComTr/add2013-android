@@ -45,7 +45,6 @@ public class AnnouncementListActivity extends Activity{
 	@Override
 	protected void onResume(){
 		super.onResume();
-		tabListener.checkQRState();
 		if(pressed_back_button==1){
 			announcementlist_adapter.setPressed(-1);
 			announcementlist_adapter.notifyDataSetChanged();

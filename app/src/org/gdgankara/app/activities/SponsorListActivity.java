@@ -45,11 +45,7 @@ public class SponsorListActivity extends Activity{
 		tabAktif();
 	}
 	
-	@Override
-	protected void onResume(){
-		super.onResume();
-		tabListener.checkQRState();
-	}
+
 	
 	private void viewListHazirla() {
 		

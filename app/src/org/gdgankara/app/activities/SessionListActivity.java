@@ -47,7 +47,6 @@ public class SessionListActivity extends Activity{
 			sessionlist_adapter=new SessionListAdapter(this, filtered_session_list, Util.device_height);
 			session_listview.setAdapter(sessionlist_adapter);
 		}
-		tabListener.checkQRState();
 		
 	}
 	

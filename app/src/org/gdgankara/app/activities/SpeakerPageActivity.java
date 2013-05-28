@@ -68,7 +68,6 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 				}
 			}
 		}
-		tabListener.checkQRState();
 	}
 	
 	public void tabAktif(){

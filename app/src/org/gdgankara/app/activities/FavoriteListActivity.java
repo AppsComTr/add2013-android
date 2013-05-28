@@ -63,7 +63,6 @@ public class FavoriteListActivity extends Activity{
 				sessionlist_layout.addView(view);
 			}
 		}
-		tabListener.checkQRState();
 	}
 	
 	public void tabAktif(){

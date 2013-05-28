@@ -80,11 +80,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 	}
 
-	@Override
-	protected void onResume(){
-		super.onResume();
-		tabListener.checkQRState();
-	}
+
 
 	private void setUpButtons() {
 		tweetWallButton = (Button) findViewById(R.id.tweetWall);

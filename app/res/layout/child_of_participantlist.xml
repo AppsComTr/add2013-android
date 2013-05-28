@@ -14,6 +14,8 @@
     
     <TextView 
         android:id="@+id/participantcompany"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/participantname"
         android:layout_below="@+id/participantname"
         android:ellipsize="end"
@@ -24,12 +26,13 @@
     
     <TextView 
         android:id="@+id/participanttitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/participantcompany"
         android:layout_below="@+id/participantcompany"
         android:ellipsize="end"
         android:maxLines="1"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
         android:textColor="#616161"/>
     
 

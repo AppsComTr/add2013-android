@@ -79,11 +79,7 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 				});
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		tabListener.checkQRState();
-	}
+
 
 	public void tabAktif() {
 		tabListener = new TabListener(this);

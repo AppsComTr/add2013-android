@@ -36,11 +36,6 @@ public class SpeakerListActivity extends Activity{
 		tabAktif();
 	}
 	
-	@Override
-	protected void onResume(){
-		super.onResume();
-		tabListener.checkQRState();
-	}
 	
 	private void setUpView() {
 		

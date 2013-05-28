@@ -11,12 +11,16 @@ import org.gdgankara.app.utils.Util;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class ParticipantListActivity extends Activity{
@@ -25,17 +29,32 @@ public class ParticipantListActivity extends Activity{
 	private ListView participant_listview;
 	private ParticipantListAdapter participantlist_adapter;
 	private TabListener tabListener;
+	private ImageView imageview;
+	private TextView text;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setActivityTheme(Util.device_height);
-		setContentView(R.layout.speakerlist);
+		setContentView(R.layout.participantlist);
 		ParticipantList=Util.ParticipantList;
 		setUpView();
 		childItemsActive();
 		tabAktif();
+	}
+	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		if(Util.qr_state==0){
+			Toast.makeText(this,Util.getDefaultLanguage().equals("tr")?"Geçersiz QR Code":"Invalid QR Code",Toast.LENGTH_SHORT).show();
+			Util.qr_state=1;
+		}
+		if(ParticipantList.size()>0){
+			text.setVisibility(View.INVISIBLE);
+			participantlist_adapter.notifyDataSetChanged();
+		}
 	}
 	
 	private void setUpView() {
@@ -43,6 +62,34 @@ public class ParticipantListActivity extends Activity{
 		participant_listview=(ListView)findViewById(R.id.participantlist);
 		participantlist_adapter=new ParticipantListAdapter(this, ParticipantList, Util.device_height);
 		participant_listview.setAdapter(participantlist_adapter);
+		
+		imageview=(ImageView)findViewById(R.id.participantlist_scan_button);
+		if(Util.getDefaultLanguage().equals("tr")){
+			imageview.setImageDrawable(getResources().getDrawable(R.drawable.qrscantr));
+		}
+		else{
+			imageview.setImageDrawable(getResources().getDrawable(R.drawable.qrscanen));
+		}
+		imageview.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				startQRDecoder();
+			}
+
+		});
+		
+		text=(TextView)findViewById(R.id.participantlist_decodeddata_ready);
+		if(ParticipantList.size()==0){
+			text.setText(Util.getDefaultLanguage().equals("tr")?"Henüz taranmýþ bir veriniz bulunmamaktadýr":"There is no scanned code");
+		}
+	}
+	
+	private void startQRDecoder(){
+		Intent i = new Intent(this, DecoderActivity.class);
+		i.putExtra("SCAN_MODE", "QR_CODE_MODE");
+		i.putExtra("return-data", true);
+		startActivity(i);
 	}
 	
 	public void tabAktif(){

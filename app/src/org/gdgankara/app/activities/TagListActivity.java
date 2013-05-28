@@ -34,11 +34,7 @@ public class TagListActivity extends Activity{
 		tabAktif();
 	}
 	
-	@Override
-	protected void onResume(){
-		super.onResume();
-		tabListener.checkQRState();
-	}
+	
 
 	private void setUpView(){
 		tag_listview=(ListView)findViewById(R.id.taglist);

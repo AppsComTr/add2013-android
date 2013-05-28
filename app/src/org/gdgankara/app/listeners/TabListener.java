@@ -2,7 +2,9 @@ package org.gdgankara.app.listeners;
 
 import org.gdgankara.app.activities.DecoderActivity;
 import org.gdgankara.app.activities.MainActivity;
+import org.gdgankara.app.activities.ParticipantListActivity;
 import org.gdgankara.app.activities.SearchActivity;
+import org.gdgankara.app.adapeters.ParticipantListAdapter;
 import org.gdgankara.app.tasks.PrepareListsTask;
 import org.gdgankara.app.utils.Util;
 import org.gdgankara.app.R;
@@ -42,10 +44,7 @@ public class TabListener implements OnClickListener {
 			break;
 			
 		case R.id.qr_decoder_button:
-			Log.i("Sedat","Decoder butonuna bas�ld�");
-			i = new Intent(context, DecoderActivity.class);
-			i.putExtra("SCAN_MODE", "QR_CODE_MODE");
-			i.putExtra("return-data", true);
+			i = new Intent(context, ParticipantListActivity.class);
 			context.startActivity(i);
 			break;
 			
@@ -64,12 +63,5 @@ public class TabListener implements OnClickListener {
 	
 	/*******************************************************************************************/
 	
-	
-	public void checkQRState(){
-		if(Util.qr_state==0){
-			Toast.makeText(context,Util.getDefaultLanguage().equals("tr")?"Ge�ersiz QR Code":"Invalid QR Code", Toast.LENGTH_SHORT).show();
-			Util.qr_state=1;
-		}
-	}
 	
 }
