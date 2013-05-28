@@ -17,7 +17,7 @@ public class DecoderActivity extends CaptureActivity {
 				this, rawResult);
 		if(checkQRMessage(resultHandler.getResult().toString())){
 		
-			Intent intent = new Intent(this,EmployeeIdActivity.class);
+			Intent intent = new Intent(this,ParticipantIdActivity.class);
 			intent.putExtra("SCAN_RESULT",resultHandler.getResult().toString() );
 			startActivity(intent);
 		}
@@ -30,7 +30,7 @@ public class DecoderActivity extends CaptureActivity {
 	
 	private boolean checkQRMessage(String message){
 		String[] temp=message.split("<#>");
-		if(temp.length==7){
+		if(temp.length==8){
 			return true;
 		}
 		return false;

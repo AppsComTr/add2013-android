@@ -80,7 +80,7 @@
             android:label="@string/title_activity_sessionlist" >
         </activity>
         <activity
-            android:name="org.gdgankara.app.activities.EmployeeIdActivity"
+            android:name="org.gdgankara.app.activities.ParticipantIdActivity"
             android:label="@string/title_activity_sessionlist" >
         </activity>
         <activity

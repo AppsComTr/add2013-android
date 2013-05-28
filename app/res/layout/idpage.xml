@@ -193,6 +193,36 @@
 				               android:layout_marginTop="10dp"
 		               android:paddingRight="15dp"/>
 		           
+		            <LinearLayout 
+				               android:layout_width="match_parent"
+				               android:layout_height="wrap_content"
+				               android:paddingLeft="10dp"
+				               android:layout_marginTop="25dp"
+				               android:orientation="horizontal">
+				               
+				               <ImageView 
+				                   android:layout_width="20dp"
+				                   android:layout_height="20dp"
+				                   android:background="@drawable/idpage_jobtitle"/>
+				               
+				               <TextView 
+				                   android:layout_width="match_parent"
+				                   android:layout_height="wrap_content"
+				                   android:layout_marginLeft="10dp"
+				                   android:gravity="left|center"
+				                   android:textStyle="bold"
+				                   android:text="Unvan"/>
+				               
+				           </LinearLayout>
+				           
+				           <TextView 
+				               android:id="@+id/idpage_jobtitle"
+				               android:layout_width="match_parent"
+				               android:layout_height="wrap_content"
+				               android:paddingLeft="35dp"
+				               android:layout_marginTop="10dp"
+				               android:paddingRight="15dp"/>
+		           
 		           
 		           <LinearLayout 
 		               android:layout_width="match_parent"
@@ -223,6 +253,8 @@
 		               android:paddingLeft="35dp"
 				       android:layout_marginTop="10dp"
 		               android:paddingRight="15dp"/>
+		           
+		          
 		           
 		           <ImageView 
 		           android:id="@+id/add_contact_button"
