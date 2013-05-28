@@ -33,6 +33,7 @@ public class Util {
 	public static ArrayList<Sponsor> SponsorList = new ArrayList<Sponsor>();
 	public static ArrayList<String> TagList = new ArrayList<String>();
 	public static ArrayList<Long> FavoritesList = new ArrayList<Long>();
+	public static ArrayList<String> ParticipantList = new ArrayList<String>();
 	public static int device_height;
 	public static int device_width;
 	public static int qr_state = 1;
@@ -115,6 +116,10 @@ public class Util {
 		}
 		favoritesHandler.updateFavoritesList(FavoritesList,
 				getDefaultLanguage());
+	}
+	
+	public static void addParticipantToList(String profile){
+		
 	}
 
 	public static void removeSessionFavorites(Context context, Long sessionID) {

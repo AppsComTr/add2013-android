@@ -149,26 +149,26 @@
 	                    android:text="@string/tweet_wall"/>
                     
                     <Button 
-	                    android:id="@+id/speakers_button"
+	                    android:id="@+id/harita_button"
 	                    android:layout_width="match_parent"
 	                    android:layout_height="0dip"
 	                    android:layout_weight="1"
 	                    android:layout_marginTop="2dp"
 	                    android:textColor="#3b3b3b"
 	                    android:background="#fff"
-	                    android:text="@string/speakers"/>
+	                    android:text="@string/map"/>
                     
                 </LinearLayout>
                 
                 <Button 
-                    android:id="@+id/harita_button"
+                    android:id="@+id/speakers_button"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
                     android:layout_marginLeft="2dp"
                     android:textColor="#3b3b3b"
                     android:background="#fff"
-                    android:text="@string/map"/>
+                    android:text="@string/speakers"/>
                 
             </LinearLayout>
         	

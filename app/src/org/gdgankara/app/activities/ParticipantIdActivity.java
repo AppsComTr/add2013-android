@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
+import org.gdgankara.app.model.Participant;
 import org.gdgankara.app.utils.Util;
 
 import android.app.Activity;
@@ -29,18 +30,30 @@ public class ParticipantIdActivity extends Activity{
 	private String[] temp;
 	private TextView text;
 	private ImageView imageview;
+	private ArrayList<String> ParticipantList;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		height=Util.device_height;
+		ParticipantList=Util.ParticipantList;
 		setActivityTheme();
 		setContentView(R.layout.idpage);
 		message=this.getIntent().getExtras().getString("SCAN_RESULT");
 		temp=message.split("<#>");
 		setUpViews();
 		tabAktif();
+		int size=ParticipantList.size();
+		int i;
+		for(i=0;i<size;i++){
+			if(ParticipantList.get(i).equals(message)){
+				break;
+			}
+		}
+		if(i==size){
+			Util.addParticipantToList(message);
+		}
 	}
 	
 	public void tabAktif(){
