@@ -28,4 +28,10 @@
 	<string name="requirements">Gereksinimler</string>
 	<string name="sessions">Oturumlar</string>
 	<string name="internet_fail">Internet bağlantısı olmadığı için program güncellenemiyor</string>
+	<string name="AndroidDevDays13">Android Geliştirici Günleri 2013</string>
+	<string name="ready_decoded_qr">Henüz taranmış bir veriniz bulunmamaktadır</string>
+	<string name="invalid_qr_code">Geçersiz QR Code</string>
+	<string name="message_of_save_contact">rehberinize kaydedildi</string>
+	<string name="sorry_cant_save_contact">Üzgünüz,kişi kaydedilemedi</string>
+	
 	</resources>

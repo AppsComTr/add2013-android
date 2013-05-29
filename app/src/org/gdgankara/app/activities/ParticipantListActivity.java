@@ -48,7 +48,7 @@ public class ParticipantListActivity extends Activity{
 	protected void onResume(){
 		super.onResume();
 		if(Util.qr_state==0){
-			Toast.makeText(this,Util.getDefaultLanguage().equals("tr")?"Geçersiz QR Code":"Invalid QR Code",Toast.LENGTH_SHORT).show();
+			Toast.makeText(this,R.string.invalid_qr_code,Toast.LENGTH_SHORT).show();
 			Util.qr_state=1;
 		}
 		if(ParticipantList.size()>0){
@@ -81,7 +81,7 @@ public class ParticipantListActivity extends Activity{
 		
 		text=(TextView)findViewById(R.id.participantlist_decodeddata_ready);
 		if(ParticipantList.size()==0){
-			text.setText(Util.getDefaultLanguage().equals("tr")?"Henüz taranmýþ bir veriniz bulunmamaktadýr":"There is no scanned code");
+			text.setText(R.string.ready_decoded_qr);
 		}
 	}
 	

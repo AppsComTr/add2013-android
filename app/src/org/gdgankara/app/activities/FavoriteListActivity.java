@@ -29,7 +29,7 @@ public class FavoriteListActivity extends Activity{
 	private LinearLayout sessionlist_layout;
 	private LayoutInflater inflater ;
 	private View view;
-	private int lang,pressed_back_button;
+	private int pressed_back_button;
 	private org.gdgankara.app.listeners.TabListener tabListener;
 	
 	@Override
@@ -38,7 +38,6 @@ public class FavoriteListActivity extends Activity{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setActivityTheme(Util.device_height);
 		setContentView(R.layout.sessionlist);
-		lang=Util.getDefaultLanguage().equals("tr")?1:0;
 		total_session_list=Util.SessionList;
 		findFavorites();
 		setUpView();

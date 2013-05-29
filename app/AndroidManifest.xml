@@ -83,6 +83,11 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="org.gdgankara.app.activities.ProgramActivity"
+            android:label="@string/title_activity_sessionlist"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="org.gdgankara.app.activities.AnnouncementPageActivity"
             android:label="@string/title_activity_sessionlist"
             android:screenOrientation="portrait" >

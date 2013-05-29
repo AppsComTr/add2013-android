@@ -184,9 +184,9 @@ public class ParticipantIdActivity extends Activity{
 		 // Asking the Contact provider to create a new contact                 
 		 try {
 		     getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
-		     Toast.makeText(this, Util.getDefaultLanguage().equals("tr")?temp[0]+" "+temp[1]+" rehberinize kaydedildi.":temp[0]+" "+temp[1]+" added your phonebook", Toast.LENGTH_SHORT).show();
+		     Toast.makeText(this,temp[0]+" "+temp[1]+" "+R.string.message_of_save_contact, Toast.LENGTH_SHORT).show();
 		 } catch (Exception e) {
-		    Toast.makeText(this, Util.getDefaultLanguage().equals("tr")?"Üzgünüz,kiþi kaydedilemedi":"Sorry,can't add new contact", Toast.LENGTH_SHORT).show();
+		     Toast.makeText(this, R.string.sorry_cant_save_contact, Toast.LENGTH_SHORT).show();
 		 } 
 	}
 

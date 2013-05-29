@@ -178,6 +178,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			break;
 
 		case R.id.program_button:
+			i = new Intent(MainActivity.this, ProgramActivity.class);
 			break;
 
 		case R.id.harita_button:
