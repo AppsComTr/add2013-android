@@ -60,20 +60,5 @@
   		<item name="android:textSize">15sp</item>
   		<item name="android:textColor">#000000</item>
 	 </style>
-	 
-     <style name="StyledIndicators" parent="@android:style/Theme.Light">
-        <item name="vpiTitlePageIndicatorStyle">@style/CustomTitlePageIndicator</item>
-    </style>
-
-    <style name="CustomTitlePageIndicator">
-        <item name="android:background">#18FF0000</item>
-        <item name="footerColor">#FFAA2222</item>
-        <item name="footerLineHeight">1dp</item>
-        <item name="footerIndicatorHeight">3dp</item>
-        <item name="footerIndicatorStyle">underline</item>
-        <item name="android:textColor">#AA000000</item>
-        <item name="selectedColor">#FF000000</item>
-        <item name="selectedBold">true</item>
-    </style>
 
 </resources>

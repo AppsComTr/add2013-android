@@ -10,15 +10,27 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+import com.emilsjolander.components.stickylistheaders.*;
 
 public class TestFragment extends Fragment {
 
+	private StickyListHeadersListView programlist;
+	private int day;
+	private View view;
 	
-
+	public void setDay(int day){
+		this.day=day;
+	}
+	
+	public void listeleriHazirla(){
+		
+	}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    	return inflater.inflate(R.layout.deneme, container, false);
+    	 /*view=inflater.inflate(R.layout.programlist, container, false);
+    	 programlist=(StickyListHeadersListView)view.findViewById(R.id.programlist);*/
+    	 return inflater.inflate(R.layout.programlist, container, false);
     }
 
 }
