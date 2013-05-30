@@ -27,7 +27,7 @@ public class ProgramFragmentAdapter extends FragmentPagerAdapter{
 
 	    @Override
 	    public Fragment getItem(int position) {
-	        return TestFragment.newInstance(CONTENT[position % CONTENT.length]);
+	        return new TestFragment();
 	    }
 
 	    @Override
