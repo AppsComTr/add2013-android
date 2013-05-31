@@ -18,14 +18,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.provider.UserDictionary.Words;
 import android.util.Log;
 
 public class ProgramHandler extends BaseHandler {
 	private static final String TAG = ProgramHandler.class.getSimpleName();
 
 	private static final String CACHE_FILE = "cache_";
-	private static final String ACTION_INITIALIZE = "action_initialize";
-	private static final String ACTION_REFRESH = "action_refresh";
 	private static final String BASE_URL_PROGRAM = "http://add-2013.appspot.com/api/program/";
 
 	protected Context context;
@@ -126,7 +125,7 @@ public class ProgramHandler extends BaseHandler {
 			speakerList = (ArrayList<Speaker>) readCacheFile(getCacheFileName(
 					Speaker.KIND, lang));
 			sponsorList = (ArrayList<Sponsor>) readCacheFile(getCacheFileName(
-					Sponsor.KIND, "en"));
+					Sponsor.KIND, lang));
 			announcementList = (ArrayList<Announcement>) readCacheFile(getCacheFileName(
 					Announcement.KIND, lang));
 			
@@ -196,9 +195,12 @@ public class ProgramHandler extends BaseHandler {
 				sponsor = new Sponsor();
 				sponsor.setId(sponsorObject.getLong("id"));
 				sponsor.setLogo(sponsorObject.getString("image"));
-				sponsor.setCategory(sponsorObject.getString("category"));
+				sponsor.setCategory(sponsorObject.getString("category").toLowerCase());
 				sponsor.setLink(sponsorObject.getString("link"));
-
+				
+				StringBuilder category = new StringBuilder(sponsor.getCategory());
+				category.setCharAt(0, Character.toTitleCase(category.charAt(0)));
+				sponsor.setCategory(category.toString());
 				sponsorList.add(sponsor);
 			}
 		} catch (Exception e) {

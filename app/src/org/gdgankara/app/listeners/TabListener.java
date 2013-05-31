@@ -11,6 +11,7 @@ import org.gdgankara.app.R;
 
 import com.google.zxing.client.android.CaptureActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import android.widget.Toast;
 public class TabListener implements OnClickListener {
 	private static final String TAG = TabListener.class.getSimpleName();
 	private Context context;
+	ProgressDialog progressDialog;
 	
 	public TabListener(Context context){
 		this.context=context;
@@ -50,8 +52,8 @@ public class TabListener implements OnClickListener {
 			
 		case R.id.update_button:
 			try {
-				PrepareListsTask prepareListsTask = new PrepareListsTask(context);
-				prepareListsTask.execute();
+				PrepareListsTask prepareListsTask = new PrepareListsTask(context, ProgressDialog.show(context, context.getText(R.string.loading), context.getText(R.string.please_wait),true));
+				prepareListsTask.execute().get();
 			} catch (Exception e) {
 				Log.e(TAG, "Error: " + e.getMessage().toString());
 				e.printStackTrace();

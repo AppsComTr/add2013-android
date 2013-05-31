@@ -24,52 +24,13 @@ public class SplashActivity extends Activity {
 		setContentView(R.layout.activity_splash);
 
 		try {
-			PrepareListsTask prepareListsTask = new PrepareListsTask(context);
+			PrepareListsTask prepareListsTask = new PrepareListsTask(context, null);
 			prepareListsTask.execute();
 		} catch (Exception e) {
 			Log.e(TAG, "Error: " + e.getMessage().toString());
 			e.printStackTrace();
 		}
 	}
-
-	// class getListsAsync extends AsyncTask<Void, Void, Void> {
-	//
-	// @Override
-	// protected Void doInBackground(Void... params) {
-	// if (isInternetAvailable) {
-	// Util.prepareStaticLists(context);
-	// } else if (!isInternetAvailable) {
-	// Log.d(TAG,"Internet yok, cacheden alınıyor");
-	// Util.prepareStaticListsFromCache(context);
-	// }
-	// return null;
-	// }
-	//
-	// @Override
-	// protected void onPostExecute(Void result) {
-	// if (!isInternetAvailable && Util.SessionList.size() == 0) {
-	// AlertDialog.Builder builder = new AlertDialog.Builder(context);
-	// builder.setMessage(getResources().getString(R.string.internet_fail));
-	// builder.setNeutralButton(R.string.button_ok,
-	// new DialogInterface.OnClickListener() {
-	//
-	// @Override
-	// public void onClick(DialogInterface dialog,
-	// int which) {
-	// finish();
-	// }
-	//
-	// });
-	// builder.create().show();
-	// } else {
-	// startActivity(new Intent(context,
-	// MainActivity.class));
-	// finish();
-	// }
-	// super.onPostExecute(result);
-	// }
-	//
-	// }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
