@@ -22,6 +22,7 @@ public class ParticipantListAdapter extends ArrayAdapter<String>{
 	private TextView text;
 	private String[] temp; 
 	private int textSize;
+	private String name,organization,title;
 
 	public ParticipantListAdapter(Context context, List<String> objects,int height) {
 		super(context,R.layout.child_of_participantlist, objects);
@@ -31,17 +32,36 @@ public class ParticipantListAdapter extends ArrayAdapter<String>{
 	}
 	
 	public View getView(int position, View convertView, ViewGroup parent) {
-		temp=participantlist.get(position).split("<#>");
+		alanlaraAyikla(participantlist.get(position));
 		view=inflater.inflate(R.layout.child_of_participantlist, null, false);
 		text=(TextView)view.findViewById(R.id.participantname);
-		text.setText(temp[0]+" "+temp[1]);
+		text.setText(name);
 		text=(TextView)view.findViewById(R.id.participantcompany);
-		text.setText(temp[5]);
+		text.setText(organization);
 		text.setTextSize(textSize);
 		text=(TextView)view.findViewById(R.id.participanttitle);
-		text.setText(temp[6]);
+		text.setText(title);
 		text.setTextSize(textSize);
 		return view;
+	}
+	
+	private void alanlaraAyikla(String message) {
+		String[] temp,temp2,temp3;
+		temp=message.split("\n");
+		int size=temp.length;
+		for(int i=0;i<size;i++){
+			temp2=temp[i].split(":");
+			temp3=temp2[0].split(";");
+			if(temp3[0].equals("FN")){
+				name=temp2.length==2?temp2[1]:"";
+			}
+			else if(temp3[0].equals("ORG")){
+				organization=temp2.length==2?temp2[1]:"";
+			}
+			else if(temp3[0].equals("TITLE")){
+				title=temp2.length==2?temp2[1]:"";
+			}
+		}
 	}
 	
 	private void setFeaturesTextSize(int height){

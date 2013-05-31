@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -22,7 +23,7 @@ public class ParticipantIdActivity extends Activity{
 	
 	private int height;
 	private TabListener tabListener;
-	private String message;
+	private String message,name,organization,telephone,email,website,title;
 	private String[] temp;
 	private TextView text;
 	private ImageView imageview;
@@ -37,7 +38,8 @@ public class ParticipantIdActivity extends Activity{
 		setActivityTheme();
 		setContentView(R.layout.idpage);
 		message=this.getIntent().getExtras().getString("SCAN_RESULT");
-		temp=message.split("<#>");
+		temp=message.split("\n");
+		alanlaraAyikla();
 		setUpViews();
 		tabAktif();
 		int size=ParticipantList.size();
@@ -52,6 +54,37 @@ public class ParticipantIdActivity extends Activity{
 		}
 	}
 	
+	private void alanlaraAyikla() {
+		String[] temp2,temp3;
+		int size=temp.length;
+		for(int i=0;i<size;i++){
+			temp2=temp[i].split(":");
+			temp3=temp2[0].split(";");
+			if(temp3[0].equals("FN")){
+				name=temp2.length==2?temp2[1]:"";
+			}
+			else if(temp3[0].equals("TEL")){
+				telephone=temp2.length==2?temp2[1]:"";
+				telephone=telephone.replace(" ","");
+			}
+			else if(temp3[0].equals("EMAIL")){
+				email=temp2.length==2?temp2[1]:"";
+			}
+			else if(temp3[0].equals("URL")){
+				website=temp2.length==2?temp2[1]:"";
+				if(!website.equals("")&&!website.contains("http://")){
+					website="http://"+website;
+				}
+			}
+			else if(temp3[0].equals("ORG")){
+				organization=temp2.length==2?temp2[1]:"";
+			}
+			else if(temp3[0].equals("TITLE")){
+				title=temp2.length==2?temp2[1]:"";
+			}
+		}
+	}
+
 	public void tabAktif(){
 		tabListener=new TabListener(this);
 		((ImageView)findViewById(R.id.search_button)).setOnClickListener(tabListener);	
@@ -61,20 +94,18 @@ public class ParticipantIdActivity extends Activity{
 	
 	private void setUpViews() {
 		text=(TextView)findViewById(R.id.idpage_name);
-		text.setText(temp[0]+" "+temp[1]);
+		text.setText(name);
 		text=(TextView)findViewById(R.id.idpage_email);
-		text.setText(temp[2]);
+		text.setText(email);
 		text=(TextView)findViewById(R.id.idpage_website);
-		text.setText(Html.fromHtml("<a href=\""+temp[3]+"\">" +temp[3]+ "</a>"));
+		text.setText(Html.fromHtml("<a href=\""+website+"\">" +website+ "</a>"));
 		text.setMovementMethod(LinkMovementMethod.getInstance());
 		text=(TextView)findViewById(R.id.idpage_telephone);
-		text.setText(temp[4]);
+		text.setText(telephone);
 		text=(TextView)findViewById(R.id.idpage_company);
-		text.setText(temp[5]);
+		text.setText(organization);
 		text=(TextView)findViewById(R.id.idpage_jobtitle);
-		text.setText(temp[6]);
-		text=(TextView)findViewById(R.id.idpage_interested);
-		text.setText(temp[7]);
+		text.setText(title);
 		imageview=(ImageView)findViewById(R.id.add_contact_button);
 		imageview.setOnClickListener(new OnClickListener() {
 			
@@ -92,13 +123,13 @@ public class ParticipantIdActivity extends Activity{
 	}
 	
 	private void addContact() {
-		String DisplayName = temp[0]+" "+temp[1]+"(ADD)";
-		 String MobileNumber = temp[4].replace(" ","");
-		 String HomeNumber = "";
-		 String WorkNumber = "";
-		 String emailID = temp[2];
-		 String company = temp[5];
-		 String jobTitle = "";
+		String DisplayName = name+"(ADD)";
+		 String MobileNumber = telephone;
+		 String emailID = email;
+		 String company = organization;
+		 String jobTitle = title;
+		 String Website = website;
+		 String toast_message = null;
 
 		 ArrayList < ContentProviderOperation > ops = new ArrayList < ContentProviderOperation > ();
 
@@ -119,6 +150,18 @@ public class ParticipantIdActivity extends Activity{
 		     ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME,
 		     DisplayName).build());
 		 }
+		 
+		//------------------------------------------------------ Names
+		 if (website != null) {
+		     ops.add(ContentProviderOperation.newInsert(
+		     ContactsContract.Data.CONTENT_URI)
+		         .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
+		         .withValue(ContactsContract.Data.MIMETYPE,
+		     ContactsContract.CommonDataKinds.Website.CONTENT_ITEM_TYPE)
+		         .withValue(
+		     ContactsContract.CommonDataKinds.Website.URL,
+		     Website).build());
+		 }
 
 		 //------------------------------------------------------ Mobile Number                     
 		 if (MobileNumber != null) {
@@ -133,29 +176,6 @@ public class ParticipantIdActivity extends Activity{
 		         .build());
 		 }
 
-		 //------------------------------------------------------ Home Numbers
-		 if (HomeNumber != null) {
-		     ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
-		         .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
-		         .withValue(ContactsContract.Data.MIMETYPE,
-		     ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
-		         .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, HomeNumber)
-		         .withValue(ContactsContract.CommonDataKinds.Phone.TYPE,
-		     ContactsContract.CommonDataKinds.Phone.TYPE_HOME)
-		         .build());
-		 }
-
-		 //------------------------------------------------------ Work Numbers
-		 if (WorkNumber != null) {
-		     ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
-		         .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
-		         .withValue(ContactsContract.Data.MIMETYPE,
-		     ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
-		         .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, WorkNumber)
-		         .withValue(ContactsContract.CommonDataKinds.Phone.TYPE,
-		     ContactsContract.CommonDataKinds.Phone.TYPE_WORK)
-		         .build());
-		 }
 
 		 //------------------------------------------------------ Email
 		 if (emailID != null) {
@@ -183,10 +203,12 @@ public class ParticipantIdActivity extends Activity{
 
 		 // Asking the Contact provider to create a new contact                 
 		 try {
+			 toast_message=Util.getDefaultLanguage().equals("tr")?"Sorry,can\'t add new contact":"Sorry,can't add new contact";
 		     getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
-		     Toast.makeText(this,temp[0]+" "+temp[1]+" "+R.string.message_of_save_contact, Toast.LENGTH_SHORT).show();
+		     toast_message=Util.getDefaultLanguage().equals("tr")?"rehberinize eklendi":"added your phonebook";
+		     Toast.makeText(this,name+" "+toast_message, Toast.LENGTH_LONG).show();
 		 } catch (Exception e) {
-		     Toast.makeText(this, R.string.sorry_cant_save_contact, Toast.LENGTH_SHORT).show();
+		     Toast.makeText(this, toast_message, Toast.LENGTH_LONG).show();
 		 } 
 	}
 

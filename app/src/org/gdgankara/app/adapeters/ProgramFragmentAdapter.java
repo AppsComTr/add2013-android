@@ -27,7 +27,10 @@ public class ProgramFragmentAdapter extends FragmentPagerAdapter{
 
 	    @Override
 	    public Fragment getItem(int position) {
-	        return new TestFragment();
+	        TestFragment f=new TestFragment();
+	        f.setDay(14+position);
+	        f.listeleriHazirla();
+	        return f;
 	    }
 
 	    @Override
