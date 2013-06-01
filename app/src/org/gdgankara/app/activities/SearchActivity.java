@@ -120,11 +120,13 @@ public class SearchActivity extends Activity implements TextWatcher {
 		int size = total_session_list.size();
 		int size2;
 		for (i = 0; i < size; i++) {
-			tags = total_session_list.get(i).getTags().split(",");
-			size2 = tags.length;
-			for (j = 0; j < size2; j++) {
-				if (tags[j].equals(search)) {
-					filtered_session_list.add(total_session_list.get(i));
+			if(total_session_list.get(i).getTags()!=null){
+				tags = total_session_list.get(i).getTags().split(",");
+				size2 = tags.length;
+				for (j = 0; j < size2; j++) {
+					if (tags[j].equals(search)) {
+						filtered_session_list.add(total_session_list.get(i));
+					}
 				}
 			}
 		}
