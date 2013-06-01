@@ -117,9 +117,6 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 		text=(TextView)findViewById(R.id.speaker_title);
 		text.setText(getResources().getString(R.string.speakers));
 		
-		text=(TextView)findViewById(R.id.requirement_title);
-		text.setText(getResources().getString(R.string.requirements));
-		
 		//favori yýldýzý butonu
 		favorite_star=(ImageView)findViewById(R.id.favorite_session);
 		if(session.isFavorite()){

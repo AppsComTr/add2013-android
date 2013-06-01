@@ -19,6 +19,7 @@ public class ProgramActivity extends FragmentActivity{
 	private int height;
 	private TabListener tabListener;
 	private ProgramFragmentAdapter program_adapter;
+	private int pressed_back_button;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class ProgramActivity extends FragmentActivity{
 		setContentView(R.layout.program);
 		setUpViews();
 		tabAktif();
+		pressed_back_button=0;
 	}
 	
 	public void tabAktif(){
@@ -38,10 +40,24 @@ public class ProgramActivity extends FragmentActivity{
 		((ImageView)findViewById(R.id.qr_decoder_button)).setOnClickListener(tabListener);	
 		
 	}
+	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		if(pressed_back_button==1){
+			program_adapter.listeleriYenile();
+		}
+	}
+	
+	@Override
+	public void onPause() {
+	    super.onPause();
+	    pressed_back_button=1;
+	}
 
 	private void setUpViews() {
 		
-		program_adapter = new ProgramFragmentAdapter(getSupportFragmentManager());
+		program_adapter = new ProgramFragmentAdapter(getSupportFragmentManager(),this);
 
 		viewpager = (ViewPager)findViewById(R.id.program_pager);
 		viewpager.setAdapter(program_adapter);

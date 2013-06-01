@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
@@ -21,13 +22,17 @@ import com.emilsjolander.components.stickylistheaders.StickyListHeadersAdapter;
 public class StickyListAdapter extends BaseAdapter implements StickyListHeadersAdapter,SectionIndexer{
 
 	private ArrayList<Session> sessions;
-	private Integer[] sectionIndex;
+	private int[] sectionIndex;
 	private Integer[] saatKesimleri;
 	private String[] saatKesimStringleri;
 	private LayoutInflater inflater ;
 	private Context context;
 	private int textSize;
 	private int lang;
+	private Session session;
+	private View view;
+	private TextView text;
+	private ImageView image;
 	
 	public StickyListAdapter(Context context,ArrayList<Session> sessions,int height){
 		this.context=context;
@@ -56,11 +61,11 @@ public class StickyListAdapter extends BaseAdapter implements StickyListHeadersA
 		saatKesimStringleri[0]="09:00am - 10:00am";
 		saatKesimStringleri[1]="10:00am - 11:00am";
 		saatKesimStringleri[2]="11:00am - 12:30pm";
-		saatKesimStringleri[3]="12:30am - 13:30pm";
-		saatKesimStringleri[4]="13:30pm - 15:00pm";
-		saatKesimStringleri[5]="15:00pm - 16:00pm";
-		saatKesimStringleri[6]="16:00pm - 17:00am";
-		saatKesimStringleri[7]="17:00am - 18:30am";
+		saatKesimStringleri[3]="12:30pm - 13:30pm";
+		saatKesimStringleri[4]="01:30pm - 03:00pm";
+		saatKesimStringleri[5]="03:00pm - 04:00pm";
+		saatKesimStringleri[6]="04:00pm - 05:00pm";
+		saatKesimStringleri[7]="05:00pm - 06:30pm";
 	}
 
 	private void sessionlariBolumle() {
@@ -77,9 +82,8 @@ public class StickyListAdapter extends BaseAdapter implements StickyListHeadersA
 			}
 		}
 		size=temp.size();
-		sectionIndex=new Integer[size];
+		sectionIndex=new int[size];
 		for(int i=0;i<size;i++){
-			Log.i("Sedattttt****", "index"+i+"="+temp.get(i));
 			sectionIndex[i]=temp.get(i);
 		}
 	}
@@ -112,19 +116,35 @@ public class StickyListAdapter extends BaseAdapter implements StickyListHeadersA
 
 	@Override
 	public View getView(int arg0, View arg1, ViewGroup arg2) {
-		Session session=sessions.get(arg0);
-		View view=inflater.inflate(R.layout.child_of_sessionlist, null, false);
+		session=sessions.get(arg0);
+		view=inflater.inflate(R.layout.child_of_sessionlist, null, false);
 		TextView text=(TextView)view.findViewById(R.id.session_name);
 		text.setText(session.getTitle());
 		text=(TextView)view.findViewById(R.id.session_features);
 		String temp=session.getDay()==14?lang==1?"Cuma":"Friday":lang==1?"Cumartesi":"Saturday";
-		temp+=" "+session.getStart_hour()+" - "+session.getEnd_hour()+" | ";
-		temp+=lang==1?session.getHall()+" Salonu":"Hall "+ session.getHall();
-		text.setText(temp);
-		text.setTextSize(textSize);
+		temp+=" "+session.getStart_hour()+" - "+session.getEnd_hour();
+		
 		if(session.isFavorite()){
 			view.findViewById(R.id.isfavorite).setVisibility(View.VISIBLE);
 		}
+		if(session.isBreak()){
+			if(session.getTitle().equals("Ara") || session.getTitle().equals("Break")){
+				image=(ImageView)view.findViewById(R.id.breaktype);
+				image.setImageDrawable(context.getResources().getDrawable(R.drawable.coffee_break));
+				image.setVisibility(View.VISIBLE);
+			}
+			else if(session.getTitle().equals("Öðle Arasý") || session.getTitle().equals("Lunch Break")){
+				image=(ImageView)view.findViewById(R.id.breaktype);
+				image.setImageDrawable(context.getResources().getDrawable(R.drawable.lunch_break));
+				image.setVisibility(View.VISIBLE);
+			}
+		}
+		else{
+			temp+=" | ";
+			temp+=lang==1?session.getHall()+" Salonu":"Hall "+ session.getHall();
+		}
+		text.setText(temp);
+		text.setTextSize(textSize);
 		return view;
 	}
 
@@ -135,7 +155,6 @@ public class StickyListAdapter extends BaseAdapter implements StickyListHeadersA
 		}else if(arg0 < 0){
 			arg0 = 0;
 		}
-		Log.i("///////sedat\\\\\\\\", "Bir bölgenin hangi indeksten baþladýðý method gelen veri="+arg0+" dönen veri="+sectionIndex[arg0]);
 		return sectionIndex[arg0];
 	}
 
@@ -144,11 +163,9 @@ public class StickyListAdapter extends BaseAdapter implements StickyListHeadersA
 		int size=sectionIndex.length;
 		for(int i=0;i<size;i++){
 			if(sectionIndex[i]>arg0){
-				Log.i("///////sedat\\\\\\\\", "Bir pozisyonun hangi bölümde olduðunu gösteren method gelen veri="+arg0+" dönen veri="+(i-1));
 				return i-1;
 			}
 		}
-		Log.i("///////sedat\\\\\\\\", "Bir pozisyonun hangi bölümde olduðunu gösteren method gelen veri="+arg0+" dönen veri="+(size-1));
 		return size-1;
 	}
 
@@ -161,13 +178,13 @@ public class StickyListAdapter extends BaseAdapter implements StickyListHeadersA
 	public View getHeaderView(int position, View convertView, ViewGroup parent) {
 		
 		View view=inflater.inflate(R.layout.stickyheader, null, false);
-		((TextView)view.findViewById(R.id.programlist_header)).setText(saatKesimStringleri[position]);
+		((TextView)view.findViewById(R.id.programlist_header)).setText(saatKesimStringleri[getSectionForPosition(position)]);
 		return view;
 	}
 
 	@Override
 	public long getHeaderId(int position) { //Bir pozisyondaki item'in header'ýný tanýmlayan id dön
-		return saatKesimleri[position];
+		return saatKesimleri[getSectionForPosition(position)];
 	}
 	
 	private void setFeaturesTextSize(int height){

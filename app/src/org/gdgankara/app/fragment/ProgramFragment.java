@@ -1,34 +1,42 @@
-package org.gdgankara.app;
+package org.gdgankara.app.fragment;
 
 import java.util.ArrayList;
+
+import org.gdgankara.app.activities.SessionPageActivity;
 import org.gdgankara.app.adapeters.StickyListAdapter;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;
 import org.gdgankara.app.utils.Util2;
-
+import org.gdgankara.app.R;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Toast;
 import com.emilsjolander.components.stickylistheaders.*;
 
-public class TestFragment extends Fragment implements AdapterView.OnItemClickListener{
+public class ProgramFragment extends Fragment implements AdapterView.OnItemClickListener{
 
 	private StickyListHeadersListView programlist;
 	private int day;
 	private View view;
 	private ArrayList<Session> sessions;
+	private Context context;
+	private StickyListAdapter sticky_adapter;
 	
 	public void setDay(int day){
 		this.day=day;
 	}
 	
+	public void setContext(Context context){
+		this.context=context;
+	}
+	
 	public void listeleriHazirla(){
-		Util2.arrayDoldur();
-		ArrayList<Session> total=Util2.SessionList;
+		ArrayList<Session> total=Util.SessionList;
 		sessions=new ArrayList<Session>();
 		int size=total.size();
 		for(int i=0;i<size;i++){
@@ -42,7 +50,8 @@ public class TestFragment extends Fragment implements AdapterView.OnItemClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     	 view=inflater.inflate(R.layout.programlist, container, false);
     	 programlist=(StickyListHeadersListView)view.findViewById(R.id.programlist);
-    	 programlist.setAdapter(new StickyListAdapter(getActivity(), sessions, Util.device_height));
+    	 sticky_adapter=new StickyListAdapter(getActivity(), sessions, Util.device_height);
+    	 programlist.setAdapter(sticky_adapter);
     	 programlist.setOnItemClickListener(this);
     	 return view;
     }
@@ -50,7 +59,23 @@ public class TestFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		Toast.makeText(getActivity(), "Item " + position + " clicked!", Toast.LENGTH_SHORT).show();
+    	startSessionPage(position);
 	}
+    
+    public void listeleriYenile(){
+    	sticky_adapter.notifyDataSetChanged();
+    }
+
+	private void startSessionPage(int position) {
+		if(!sessions.get(position).isBreak()){
+			Intent intent=new Intent(context,SessionPageActivity.class);
+			Bundle b=new Bundle();
+			Long id=sessions.get(position).getId();
+			b.putLong("id", id);
+			intent.putExtras(b);
+			this.startActivity(intent);
+		}
+	}
+    
 
 }

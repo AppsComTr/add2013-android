@@ -24,7 +24,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.Toast;
-
+import org.gdgankara.app.map.LocationFinder;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
@@ -38,6 +38,7 @@ public class MyMapActivity extends MapActivity {
 	private MapView mapView = null;
 	private LocationManager locationManager = null;
 	private MyOwnLocationOverlay myLocationOverlay = null;
+	private Location location;
 
 	private final LocationListener locationListener = new LocationListener() {
 
@@ -82,15 +83,14 @@ public class MyMapActivity extends MapActivity {
 			mapView.invalidate();
 
 			/* get current location and destinatin location */
-			Location location = getCurrentLocation();
-			
+			location = getCurrentLocation();
+
 			updateWithNewLocation(location);
+
 			locationManager.requestLocationUpdates(location.getProvider(),
 					5000, 25, locationListener);
-
 		} catch (Exception e) {
-			Toast.makeText(this, getResources().getString(R.string.check_internet),
-					Toast.LENGTH_LONG).show();
+			Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -107,8 +107,12 @@ public class MyMapActivity extends MapActivity {
 		super.onResume();
 		if (myLocationOverlay != null)
 			myLocationOverlay.enableMyLocation();
+		if (location != null)
+			locationManager.requestLocationUpdates(location.getProvider(),
+					5000, 25, locationListener);
 
 	}
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_S) {
@@ -124,12 +128,15 @@ public class MyMapActivity extends MapActivity {
 
 		return (super.onKeyDown(keyCode, event));
 	}
+
 	@Override
 	public void onAttachedToWindow() {
 		super.onAttachedToWindow();
 		this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);
 	}
+
 	private void updateWithNewLocation(Location location) {
+
 		if (location != null) {
 
 			/* choose marker from resources to show locations on map */
@@ -159,7 +166,7 @@ public class MyMapActivity extends MapActivity {
 					getPoint(location.getLatitude(), location.getLongitude()));
 			mapView.setBuiltInZoomControls(true);
 
-//			mapView.setStreetView(true);
+			mapView.setStreetView(true);
 			mapView.setSatellite(false);
 			mapView.invalidate();
 		}
@@ -274,8 +281,15 @@ public class MyMapActivity extends MapActivity {
 
 		bestProvider = locationManager.getBestProvider(criteria, false);
 		if (bestProvider != null) {
-			Location location = locationManager
-					.getLastKnownLocation(bestProvider);
+			LocationFinder finder = new LocationFinder(this);
+			Location location = finder.getLastBestLocation(25, 200);
+			// = locationManager
+			// .getLastKnownLocation(bestProvider);
+			Toast.makeText(
+					this,
+					(location != null) ? location.getLatitude() + " : "
+							+ location.getLongitude() : "Olmadý!",
+					Toast.LENGTH_LONG).show();
 			return location;
 		}
 		return null;
@@ -285,7 +299,6 @@ public class MyMapActivity extends MapActivity {
 	protected boolean isRouteDisplayed() {
 		return (false);
 	}
-
 
 	/* get a geopoint according to latitude and longitude */
 	protected GeoPoint getPoint(double lat, double lon) {
@@ -339,7 +352,5 @@ public class MyMapActivity extends MapActivity {
 			return (items.size());
 		}
 	}
-
-
 
 }
