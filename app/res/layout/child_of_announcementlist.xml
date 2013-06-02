@@ -18,8 +18,6 @@
         android:id="@+id/announcementlist_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:ellipsize="end"
         android:textColor="#1c1c1c"
         android:textStyle="bold"
         android:layout_toRightOf="@+id/announcementlist_announcement_image"

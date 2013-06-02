@@ -82,7 +82,10 @@ public class AnnouncementListActivity extends Activity{
 
 	private void startAnnouncementPage(int index) {
 		pressed_back_button=1;
-		if(announcement_list.get(index).isSession()){
+		if(announcement_list.get(index).getId()==1321){
+			startSponsorPage();
+		}
+		else if(announcement_list.get(index).isSession()){
 			startSessionPage(announcement_list.get(index).getSessionId());
 		}
 		else{
@@ -94,6 +97,11 @@ public class AnnouncementListActivity extends Activity{
 			this.startActivity(intent);
 		}
 		
+	}
+	
+	private void startSponsorPage(){
+		Intent intent=new Intent(this,SponsorListActivity.class);
+		this.startActivity(intent);
 	}
 	
 	private void startSessionPage(Long session_id){

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Android Geliştirici Günleri 2013</string>
+    <string name="app_name">AGG13</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Ayarlar</string>
     <string name="title_activity_tweet_wall">TweetWallActivity</string>
@@ -30,7 +30,7 @@
 	<string name="internet_fail">Internet bağlantısı olmadığı için program güncellenemiyor</string>
 	<string name="AndroidDevDays13">Android Geliştirici Günleri 2013</string>
 	<string name="ready_decoded_qr">Henüz taranmış bir veriniz bulunmamaktadır</string>
-	<string name="invalid_qr_code">Geçersiz QR Code</string>
+	<string name="invalid_qr_code">vCard formatında olmalı !</string>
 	<string name="message_of_save_contact">rehberinize kaydedildi</string>
 	<string name="sorry_cant_save_contact">Üzgünüz,kişi kaydedilemedi</string>
 	
