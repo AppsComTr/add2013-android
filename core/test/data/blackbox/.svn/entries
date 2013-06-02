@@ -1,0 +1,212 @@
+10
+
+dir
+2592
+http://zxing.googlecode.com/svn/trunk/core/test/data/blackbox
+http://zxing.googlecode.com/svn
+
+
+
+2013-03-13T10:26:16.931241Z
+2591
+srowen@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+59b500cc-1b3d-0410-9834-0bbf25fbcc57
+
+rssexpanded-2
+dir
+
+qrcode-5
+dir
+
+itf-1
+dir
+
+qrcode-6
+dir
+
+rssexpanded-3
+dir
+
+itf-2
+dir
+
+code39-1
+dir
+
+code93-1
+dir
+
+code39-2
+dir
+
+code39-3
+dir
+
+unsupported
+dir
+
+ean8-1
+dir
+
+falsepositives-2
+dir
+
+falsepositives
+dir
+
+ean13-1
+dir
+
+ean13-2
+dir
+
+ean13-3
+dir
+
+ean13-4
+dir
+
+ean13-5
+dir
+
+upcean-extension-1
+dir
+
+upca-1
+dir
+
+upca-2
+dir
+
+upca-3
+dir
+
+upca-4
+dir
+
+codabar-1
+dir
+
+upce-1
+dir
+
+upca-5
+dir
+
+upce-2
+dir
+
+upca-6
+dir
+
+upce-3
+dir
+
+partial
+dir
+
+datamatrix-1
+dir
+
+datamatrix-2
+dir
+
+README
+file
+
+
+
+
+2013-03-21T11:06:16.697265Z
+5b89384fc697c3aad43d02bd68c940f5
+2008-02-13T23:28:52.149055Z
+180
+srowen
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+70
+
+code128-1
+dir
+
+code128-2
+dir
+
+aztec-1
+dir
+
+pdf417-2
+dir
+
+pdf417
+dir
+
+pdf417-3
+dir
+
+aztec-2
+dir
+
+code128-3
+dir
+
+rss14-1
+dir
+
+qrcode-1
+dir
+
+rss14-2
+dir
+
+qrcode-2
+dir
+
+qrcode-3
+dir
+
+rssexpandedstacked-1
+dir
+
+rssexpanded-1
+dir
+
+rssexpandedstacked-2
+dir
+
+qrcode-4
+dir
+

@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2586/trunk/core/test/src/com/google/zxing/client/result
+END
+CalendarParsedResultTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/2583/trunk/core/test/src/com/google/zxing/client/result/CalendarParsedResultTestCase.java
+END
+ExpandedProductParsedResultTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/2002/trunk/core/test/src/com/google/zxing/client/result/ExpandedProductParsedResultTestCase.java
+END
+GeoParsedResultTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/2002/trunk/core/test/src/com/google/zxing/client/result/GeoParsedResultTestCase.java
+END
+ISBNParsedResultTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/1611/trunk/core/test/src/com/google/zxing/client/result/ISBNParsedResultTestCase.java
+END
+EmailAddressParsedResultTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/2002/trunk/core/test/src/com/google/zxing/client/result/EmailAddressParsedResultTestCase.java
+END
+WifiParsedResultTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/2583/trunk/core/test/src/com/google/zxing/client/result/WifiParsedResultTestCase.java
+END
+SMSMMSParsedResultTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/2583/trunk/core/test/src/com/google/zxing/client/result/SMSMMSParsedResultTestCase.java
+END
+URIParsedResultTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/2586/trunk/core/test/src/com/google/zxing/client/result/URIParsedResultTestCase.java
+END
+ProductParsedResultTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/1611/trunk/core/test/src/com/google/zxing/client/result/ProductParsedResultTestCase.java
+END
+AddressBookParsedResultTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/2583/trunk/core/test/src/com/google/zxing/client/result/AddressBookParsedResultTestCase.java
+END
+ParsedReaderResultTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/2586/trunk/core/test/src/com/google/zxing/client/result/ParsedReaderResultTestCase.java
+END
+TelParsedResultTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/1611/trunk/core/test/src/com/google/zxing/client/result/TelParsedResultTestCase.java
+END

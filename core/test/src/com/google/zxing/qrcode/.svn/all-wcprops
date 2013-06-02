@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/qrcode
+END
+QRCodeBlackBox1TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/1973/trunk/core/test/src/com/google/zxing/qrcode/QRCodeBlackBox1TestCase.java
+END
+QRCodeBlackBox2TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/2494/trunk/core/test/src/com/google/zxing/qrcode/QRCodeBlackBox2TestCase.java
+END
+QRCodeBlackBox3TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/1973/trunk/core/test/src/com/google/zxing/qrcode/QRCodeBlackBox3TestCase.java
+END
+QRCodeBlackBox4TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/1973/trunk/core/test/src/com/google/zxing/qrcode/QRCodeBlackBox4TestCase.java
+END
+QRCodeBlackBox5TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/1973/trunk/core/test/src/com/google/zxing/qrcode/QRCodeBlackBox5TestCase.java
+END
+QRCodeBlackBox6TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/1973/trunk/core/test/src/com/google/zxing/qrcode/QRCodeBlackBox6TestCase.java
+END
+QRCodeWriterTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/qrcode/QRCodeWriterTestCase.java
+END

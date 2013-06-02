@@ -288,7 +288,7 @@ public class MyMapActivity extends MapActivity {
 			Toast.makeText(
 					this,
 					(location != null) ? location.getLatitude() + " : "
-							+ location.getLongitude() : "Olmadý!",
+							+ location.getLongitude() : "Olmadï¿½!",
 					Toast.LENGTH_LONG).show();
 			return location;
 		}

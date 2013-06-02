@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2002/trunk/core/test/src/com/google/zxing/qrcode/decoder
+END
+ModeTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/1611/trunk/core/test/src/com/google/zxing/qrcode/decoder/ModeTestCase.java
+END
+VersionTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/2002/trunk/core/test/src/com/google/zxing/qrcode/decoder/VersionTestCase.java
+END
+DataMaskTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/2002/trunk/core/test/src/com/google/zxing/qrcode/decoder/DataMaskTestCase.java
+END
+ErrorCorrectionLevelTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/1611/trunk/core/test/src/com/google/zxing/qrcode/decoder/ErrorCorrectionLevelTestCase.java
+END
+FormatInformationTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/1937/trunk/core/test/src/com/google/zxing/qrcode/decoder/FormatInformationTestCase.java
+END
+DecodedBitStreamParserTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/1623/trunk/core/test/src/com/google/zxing/qrcode/decoder/DecodedBitStreamParserTestCase.java
+END

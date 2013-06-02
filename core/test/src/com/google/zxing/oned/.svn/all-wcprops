@@ -1,0 +1,191 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/oned
+END
+EAN13WriterTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/1611/trunk/core/test/src/com/google/zxing/oned/EAN13WriterTestCase.java
+END
+ITFBlackBox2TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/1398/trunk/core/test/src/com/google/zxing/oned/ITFBlackBox2TestCase.java
+END
+UPCABlackBox2TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2116/trunk/core/test/src/com/google/zxing/oned/UPCABlackBox2TestCase.java
+END
+CodabarBlackBox1TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/2158/trunk/core/test/src/com/google/zxing/oned/CodabarBlackBox1TestCase.java
+END
+UPCABlackBox4TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2116/trunk/core/test/src/com/google/zxing/oned/UPCABlackBox4TestCase.java
+END
+UPCEBlackBox2TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2116/trunk/core/test/src/com/google/zxing/oned/UPCEBlackBox2TestCase.java
+END
+UPCAWriterTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/1625/trunk/core/test/src/com/google/zxing/oned/UPCAWriterTestCase.java
+END
+Code128BlackBox1TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/832/trunk/core/test/src/com/google/zxing/oned/Code128BlackBox1TestCase.java
+END
+Code128BlackBox3TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/832/trunk/core/test/src/com/google/zxing/oned/Code128BlackBox3TestCase.java
+END
+EAN13BlackBox2TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/2116/trunk/core/test/src/com/google/zxing/oned/EAN13BlackBox2TestCase.java
+END
+EAN13BlackBox4TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/2116/trunk/core/test/src/com/google/zxing/oned/EAN13BlackBox4TestCase.java
+END
+EAN13BlackBox5BlurryTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/1721/trunk/core/test/src/com/google/zxing/oned/EAN13BlackBox5BlurryTestCase.java
+END
+ITFBlackBox1TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/1564/trunk/core/test/src/com/google/zxing/oned/ITFBlackBox1TestCase.java
+END
+Code93BlackBox1TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/1398/trunk/core/test/src/com/google/zxing/oned/Code93BlackBox1TestCase.java
+END
+Code39BlackBox1TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/1195/trunk/core/test/src/com/google/zxing/oned/Code39BlackBox1TestCase.java
+END
+UPCABlackBox1TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2116/trunk/core/test/src/com/google/zxing/oned/UPCABlackBox1TestCase.java
+END
+Code39BlackBox3TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/1195/trunk/core/test/src/com/google/zxing/oned/Code39BlackBox3TestCase.java
+END
+EAN8BlackBox1TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/1195/trunk/core/test/src/com/google/zxing/oned/EAN8BlackBox1TestCase.java
+END
+UPCABlackBox5TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2494/trunk/core/test/src/com/google/zxing/oned/UPCABlackBox5TestCase.java
+END
+UPCEBlackBox1TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/1195/trunk/core/test/src/com/google/zxing/oned/UPCEBlackBox1TestCase.java
+END
+UPCABlackBox6BlurryTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/1721/trunk/core/test/src/com/google/zxing/oned/UPCABlackBox6BlurryTestCase.java
+END
+CodaBarWriterTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/1908/trunk/core/test/src/com/google/zxing/oned/CodaBarWriterTestCase.java
+END
+EAN8WriterTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/1611/trunk/core/test/src/com/google/zxing/oned/EAN8WriterTestCase.java
+END
+EANManufacturerOrgSupportTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/1611/trunk/core/test/src/com/google/zxing/oned/EANManufacturerOrgSupportTest.java
+END
+UPCABlackBox3ReflectiveTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/2116/trunk/core/test/src/com/google/zxing/oned/UPCABlackBox3ReflectiveTestCase.java
+END
+Code128BlackBox2TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/1564/trunk/core/test/src/com/google/zxing/oned/Code128BlackBox2TestCase.java
+END
+UPCEBlackBox3ReflectiveTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/1398/trunk/core/test/src/com/google/zxing/oned/UPCEBlackBox3ReflectiveTestCase.java
+END
+EAN13BlackBox1TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/2494/trunk/core/test/src/com/google/zxing/oned/EAN13BlackBox1TestCase.java
+END
+Code39ExtendedBlackBox2TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/1195/trunk/core/test/src/com/google/zxing/oned/Code39ExtendedBlackBox2TestCase.java
+END
+UPCEANExtensionBlackBox1TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/1436/trunk/core/test/src/com/google/zxing/oned/UPCEANExtensionBlackBox1TestCase.java
+END
+EAN13BlackBox3TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/1398/trunk/core/test/src/com/google/zxing/oned/EAN13BlackBox3TestCase.java
+END

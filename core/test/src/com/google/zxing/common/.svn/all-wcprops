@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/common
+END
+SummaryResults.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2002/trunk/core/test/src/com/google/zxing/common/SummaryResults.java
+END
+BitMatrixTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/1795/trunk/core/test/src/com/google/zxing/common/BitMatrixTestCase.java
+END
+PerspectiveTransformTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/1611/trunk/core/test/src/com/google/zxing/common/PerspectiveTransformTestCase.java
+END
+StringUtilsTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2157/trunk/core/test/src/com/google/zxing/common/StringUtilsTestCase.java
+END
+AbstractBlackBoxTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/common/AbstractBlackBoxTestCase.java
+END
+BitSourceBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/706/trunk/core/test/src/com/google/zxing/common/BitSourceBuilder.java
+END
+AbstractNegativeBlackBoxTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/common/AbstractNegativeBlackBoxTestCase.java
+END
+BitArrayTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2051/trunk/core/test/src/com/google/zxing/common/BitArrayTestCase.java
+END
+BitSourceTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/1611/trunk/core/test/src/com/google/zxing/common/BitSourceTestCase.java
+END
+TestResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2116/trunk/core/test/src/com/google/zxing/common/TestResult.java
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2281/trunk/core/test/src/com/google/zxing/pdf417/decoder/ec
+END
+AbstractErrorCorrectionTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/2280/trunk/core/test/src/com/google/zxing/pdf417/decoder/ec/AbstractErrorCorrectionTestCase.java
+END
+ErrorCorrectionTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/2281/trunk/core/test/src/com/google/zxing/pdf417/decoder/ec/ErrorCorrectionTestCase.java
+END

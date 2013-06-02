@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/2592/trunk/core/src/com/google/zxing
+END
+MultiFormatWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2581/trunk/core/src/com/google/zxing/MultiFormatWriter.java
+END
+Reader.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2002/trunk/core/src/com/google/zxing/Reader.java
+END
+ResultPointCallback.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/1125/trunk/core/src/com/google/zxing/ResultPointCallback.java
+END
+FormatException.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1195/trunk/core/src/com/google/zxing/FormatException.java
+END
+BarcodeFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2002/trunk/core/src/com/google/zxing/BarcodeFormat.java
+END
+DecodeHintType.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2002/trunk/core/src/com/google/zxing/DecodeHintType.java
+END
+NotFoundException.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/1195/trunk/core/src/com/google/zxing/NotFoundException.java
+END
+Writer.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2002/trunk/core/src/com/google/zxing/Writer.java
+END
+Result.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2002/trunk/core/src/com/google/zxing/Result.java
+END
+ResultMetadataType.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/2186/trunk/core/src/com/google/zxing/ResultMetadataType.java
+END
+ChecksumException.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/1195/trunk/core/src/com/google/zxing/ChecksumException.java
+END
+ReaderException.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2002/trunk/core/src/com/google/zxing/ReaderException.java
+END
+BinaryBitmap.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2314/trunk/core/src/com/google/zxing/BinaryBitmap.java
+END
+EncodeHintType.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2587/trunk/core/src/com/google/zxing/EncodeHintType.java
+END
+Binarizer.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2344/trunk/core/src/com/google/zxing/Binarizer.java
+END
+Dimension.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2569/trunk/core/src/com/google/zxing/Dimension.java
+END
+MultiFormatReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2158/trunk/core/src/com/google/zxing/MultiFormatReader.java
+END
+RGBLuminanceSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/2394/trunk/core/src/com/google/zxing/RGBLuminanceSource.java
+END
+ResultPoint.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2344/trunk/core/src/com/google/zxing/ResultPoint.java
+END
+WriterException.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2097/trunk/core/src/com/google/zxing/WriterException.java
+END
+LuminanceSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2576/trunk/core/src/com/google/zxing/LuminanceSource.java
+END
+InvertedLuminanceSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/2576/trunk/core/src/com/google/zxing/InvertedLuminanceSource.java
+END
+PlanarYUVLuminanceSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/2561/trunk/core/src/com/google/zxing/PlanarYUVLuminanceSource.java
+END

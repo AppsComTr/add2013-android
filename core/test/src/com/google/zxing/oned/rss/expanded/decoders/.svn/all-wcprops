@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2344/trunk/core/test/src/com/google/zxing/oned/rss/expanded/decoders
+END
+FieldParserTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/2344/trunk/core/test/src/com/google/zxing/oned/rss/expanded/decoders/FieldParserTest.java
+END
+AI01_3103_DecoderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/2344/trunk/core/test/src/com/google/zxing/oned/rss/expanded/decoders/AI01_3103_DecoderTest.java
+END
+AnyAIDecoderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/2344/trunk/core/test/src/com/google/zxing/oned/rss/expanded/decoders/AnyAIDecoderTest.java
+END
+AI01_3X0X_1X_DecoderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/2344/trunk/core/test/src/com/google/zxing/oned/rss/expanded/decoders/AI01_3X0X_1X_DecoderTest.java
+END
+AbstractDecoderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/2002/trunk/core/test/src/com/google/zxing/oned/rss/expanded/decoders/AbstractDecoderTest.java
+END
+AI01_3202_3203_DecoderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/2344/trunk/core/test/src/com/google/zxing/oned/rss/expanded/decoders/AI01_3202_3203_DecoderTest.java
+END

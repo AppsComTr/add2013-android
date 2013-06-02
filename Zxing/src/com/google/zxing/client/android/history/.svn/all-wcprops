@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2581/trunk/android/src/com/google/zxing/client/android/history
+END
+HistoryItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/2106/trunk/android/src/com/google/zxing/client/android/history/HistoryItem.java
+END
+HistoryItemAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/2106/trunk/android/src/com/google/zxing/client/android/history/HistoryItemAdapter.java
+END
+DBHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/1873/trunk/android/src/com/google/zxing/client/android/history/DBHelper.java
+END
+HistoryManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/2581/trunk/android/src/com/google/zxing/client/android/history/HistoryManager.java
+END
+HistoryActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/2447/trunk/android/src/com/google/zxing/client/android/history/HistoryActivity.java
+END

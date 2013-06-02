@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/oned/rss/expanded
+END
+RSSExpandedImage2resultTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/oned/rss/expanded/RSSExpandedImage2resultTestCase.java
+END
+RSSExpandedStackedBlackBox1TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/2510/trunk/core/test/src/com/google/zxing/oned/rss/expanded/RSSExpandedStackedBlackBox1TestCase.java
+END
+RSSExpandedStackedBlackBox2TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/2510/trunk/core/test/src/com/google/zxing/oned/rss/expanded/RSSExpandedStackedBlackBox2TestCase.java
+END
+RSSExpandedBlackBox1TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/2497/trunk/core/test/src/com/google/zxing/oned/rss/expanded/RSSExpandedBlackBox1TestCase.java
+END
+RSSExpandedBlackBox2TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/2500/trunk/core/test/src/com/google/zxing/oned/rss/expanded/RSSExpandedBlackBox2TestCase.java
+END
+RSSExpandedBlackBox3TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/2497/trunk/core/test/src/com/google/zxing/oned/rss/expanded/RSSExpandedBlackBox3TestCase.java
+END
+RSSExpandedImage2binaryTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/oned/rss/expanded/RSSExpandedImage2binaryTestCase.java
+END
+RSSExpandedStackedInternalTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/!svn/ver/2510/trunk/core/test/src/com/google/zxing/oned/rss/expanded/RSSExpandedStackedInternalTestCase.java
+END
+RSSExpandedInternalTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/oned/rss/expanded/RSSExpandedInternalTestCase.java
+END
+TestCaseUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/oned/rss/expanded/TestCaseUtil.java
+END
+BinaryUtilTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/2002/trunk/core/test/src/com/google/zxing/oned/rss/expanded/BinaryUtilTest.java
+END
+BinaryUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/2002/trunk/core/test/src/com/google/zxing/oned/rss/expanded/BinaryUtil.java
+END
+ExpandedInformationDecoderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/1611/trunk/core/test/src/com/google/zxing/oned/rss/expanded/ExpandedInformationDecoderTest.java
+END
+BitArrayBuilderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/2002/trunk/core/test/src/com/google/zxing/oned/rss/expanded/BitArrayBuilderTest.java
+END
+RSSExpandedImage2stringTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/oned/rss/expanded/RSSExpandedImage2stringTestCase.java
+END

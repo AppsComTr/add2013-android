@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/2583/trunk/android/src/com/google/zxing/client/android/result
+END
+SMSResultHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/2581/trunk/android/src/com/google/zxing/client/android/result/SMSResultHandler.java
+END
+ResultButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/2002/trunk/android/src/com/google/zxing/client/android/result/ResultButtonListener.java
+END
+TextResultHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/1685/trunk/android/src/com/google/zxing/client/android/result/TextResultHandler.java
+END
+TelResultHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/2282/trunk/android/src/com/google/zxing/client/android/result/TelResultHandler.java
+END
+ResultHandlerFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/2081/trunk/android/src/com/google/zxing/client/android/result/ResultHandlerFactory.java
+END
+CalendarResultHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/2428/trunk/android/src/com/google/zxing/client/android/result/CalendarResultHandler.java
+END
+GeoResultHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/1058/trunk/android/src/com/google/zxing/client/android/result/GeoResultHandler.java
+END
+ISBNResultHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/2129/trunk/android/src/com/google/zxing/client/android/result/ISBNResultHandler.java
+END
+EmailAddressResultHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/1931/trunk/android/src/com/google/zxing/client/android/result/EmailAddressResultHandler.java
+END
+WifiResultHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/2524/trunk/android/src/com/google/zxing/client/android/result/WifiResultHandler.java
+END
+URIResultHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/1937/trunk/android/src/com/google/zxing/client/android/result/URIResultHandler.java
+END
+ResultHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/2583/trunk/android/src/com/google/zxing/client/android/result/ResultHandler.java
+END
+ProductResultHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/2562/trunk/android/src/com/google/zxing/client/android/result/ProductResultHandler.java
+END
+AddressBookResultHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/2583/trunk/android/src/com/google/zxing/client/android/result/AddressBookResultHandler.java
+END

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/qrcode/encoder
+END
+MaskUtilTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/1611/trunk/core/test/src/com/google/zxing/qrcode/encoder/MaskUtilTestCase.java
+END
+QRCodeTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/2342/trunk/core/test/src/com/google/zxing/qrcode/encoder/QRCodeTestCase.java
+END
+EncoderTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/qrcode/encoder/EncoderTestCase.java
+END
+BitVectorTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/2344/trunk/core/test/src/com/google/zxing/qrcode/encoder/BitVectorTestCase.java
+END
+MatrixUtilTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/qrcode/encoder/MatrixUtilTestCase.java
+END

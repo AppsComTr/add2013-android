@@ -43,7 +43,7 @@ public class PrepareListsTask extends AsyncTask<Void, Void, Void> {
 			AlertDialog.Builder builder = new AlertDialog.Builder(context);
 			builder.setMessage(context.getResources().getString(
 					R.string.internet_fail));
-			builder.setNeutralButton(R.string.button_ok,
+			builder.setNeutralButton(R.string.ok,
 					new DialogInterface.OnClickListener() {
 
 						@Override

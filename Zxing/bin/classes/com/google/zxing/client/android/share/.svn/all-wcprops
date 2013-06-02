@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/2584/trunk/android/src/com/google/zxing/client/android/share
+END
+ShareActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/2581/trunk/android/src/com/google/zxing/client/android/share/ShareActivity.java
+END
+LoadPackagesAsyncTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/2526/trunk/android/src/com/google/zxing/client/android/share/LoadPackagesAsyncTask.java
+END
+BookmarkPickerActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/2584/trunk/android/src/com/google/zxing/client/android/share/BookmarkPickerActivity.java
+END
+BookmarkAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/2363/trunk/android/src/com/google/zxing/client/android/share/BookmarkAdapter.java
+END
+AppPickerActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/2381/trunk/android/src/com/google/zxing/client/android/share/AppPickerActivity.java
+END

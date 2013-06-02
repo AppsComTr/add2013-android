@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/2581/trunk/android/src/com/google/zxing/client/android/result/supplement
+END
+URIResultInfoRetriever.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/!svn/ver/2581/trunk/android/src/com/google/zxing/client/android/result/supplement/URIResultInfoRetriever.java
+END
+ProductResultInfoRetriever.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/!svn/ver/2523/trunk/android/src/com/google/zxing/client/android/result/supplement/ProductResultInfoRetriever.java
+END
+TitleRetriever.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/2414/trunk/android/src/com/google/zxing/client/android/result/supplement/TitleRetriever.java
+END
+BookResultInfoRetriever.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/2397/trunk/android/src/com/google/zxing/client/android/result/supplement/BookResultInfoRetriever.java
+END
+SupplementalInfoRetriever.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/!svn/ver/2526/trunk/android/src/com/google/zxing/client/android/result/supplement/SupplementalInfoRetriever.java
+END

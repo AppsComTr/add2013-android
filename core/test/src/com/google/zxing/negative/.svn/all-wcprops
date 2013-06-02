@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2494/trunk/core/test/src/com/google/zxing/negative
+END
+FalsePositivesBlackBoxTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/2116/trunk/core/test/src/com/google/zxing/negative/FalsePositivesBlackBoxTestCase.java
+END
+FalsePositives2BlackBoxTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/2494/trunk/core/test/src/com/google/zxing/negative/FalsePositives2BlackBoxTestCase.java
+END
+UnsupportedBlackBoxTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/1567/trunk/core/test/src/com/google/zxing/negative/UnsupportedBlackBoxTestCase.java
+END
+PartialBlackBoxTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/2116/trunk/core/test/src/com/google/zxing/negative/PartialBlackBoxTestCase.java
+END

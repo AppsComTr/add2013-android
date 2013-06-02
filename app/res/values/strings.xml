@@ -33,5 +33,6 @@
 	<string name="invalid_qr_code">Not vCard format !</string>
 	<string name="message_of_save_contact">added your phonebook</string>
 	<string name="sorry_cant_save_contact">Sorry,can\'t add new contact</string>
-
+	<string name="ok">Ok</string>
+	
 </resources>

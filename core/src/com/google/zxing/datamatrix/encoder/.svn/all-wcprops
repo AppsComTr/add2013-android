@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2581/trunk/core/src/com/google/zxing/datamatrix/encoder
+END
+EdifactEncoder.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/2569/trunk/core/src/com/google/zxing/datamatrix/encoder/EdifactEncoder.java
+END
+Encoder.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2569/trunk/core/src/com/google/zxing/datamatrix/encoder/Encoder.java
+END
+SymbolInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/2569/trunk/core/src/com/google/zxing/datamatrix/encoder/SymbolInfo.java
+END
+ErrorCorrection.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/2569/trunk/core/src/com/google/zxing/datamatrix/encoder/ErrorCorrection.java
+END
+TextEncoder.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/2569/trunk/core/src/com/google/zxing/datamatrix/encoder/TextEncoder.java
+END
+EncoderContext.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/2569/trunk/core/src/com/google/zxing/datamatrix/encoder/EncoderContext.java
+END
+C40Encoder.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/2581/trunk/core/src/com/google/zxing/datamatrix/encoder/C40Encoder.java
+END
+HighLevelEncoder.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/2569/trunk/core/src/com/google/zxing/datamatrix/encoder/HighLevelEncoder.java
+END
+Base256Encoder.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/2569/trunk/core/src/com/google/zxing/datamatrix/encoder/Base256Encoder.java
+END
+ASCIIEncoder.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2569/trunk/core/src/com/google/zxing/datamatrix/encoder/ASCIIEncoder.java
+END
+SymbolShapeHint.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/2569/trunk/core/src/com/google/zxing/datamatrix/encoder/SymbolShapeHint.java
+END
+DataMatrixSymbolInfo144.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/2569/trunk/core/src/com/google/zxing/datamatrix/encoder/DataMatrixSymbolInfo144.java
+END
+X12Encoder.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/2569/trunk/core/src/com/google/zxing/datamatrix/encoder/X12Encoder.java
+END
+DefaultPlacement.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/2569/trunk/core/src/com/google/zxing/datamatrix/encoder/DefaultPlacement.java
+END

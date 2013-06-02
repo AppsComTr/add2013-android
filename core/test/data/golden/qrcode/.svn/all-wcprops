@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/752/trunk/core/test/data/golden/qrcode
+END
+renderer-test-01.png
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/752/trunk/core/test/data/golden/qrcode/renderer-test-01.png
+END
+renderer-test-02.png
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/752/trunk/core/test/data/golden/qrcode/renderer-test-02.png
+END
+renderer-test-03.png
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/752/trunk/core/test/data/golden/qrcode/renderer-test-03.png
+END

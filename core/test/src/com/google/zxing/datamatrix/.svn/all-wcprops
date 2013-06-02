@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/datamatrix
+END
+DataMatrixBlackBox1TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/1761/trunk/core/test/src/com/google/zxing/datamatrix/DataMatrixBlackBox1TestCase.java
+END
+DataMatrixBlackBox2TestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/2241/trunk/core/test/src/com/google/zxing/datamatrix/DataMatrixBlackBox2TestCase.java
+END
+DataMatrixWriterTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/2581/trunk/core/test/src/com/google/zxing/datamatrix/DataMatrixWriterTestCase.java
+END

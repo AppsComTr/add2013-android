@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/2569/trunk/core/test/src/com/google/zxing/datamatrix/encoder
+END
+DebugPlacement.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/2569/trunk/core/test/src/com/google/zxing/datamatrix/encoder/DebugPlacement.java
+END
+HighLevelEncodeTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/2569/trunk/core/test/src/com/google/zxing/datamatrix/encoder/HighLevelEncodeTestCase.java
+END
+PlacementTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/2569/trunk/core/test/src/com/google/zxing/datamatrix/encoder/PlacementTestCase.java
+END
+SymbolInfoTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/2569/trunk/core/test/src/com/google/zxing/datamatrix/encoder/SymbolInfoTestCase.java
+END
+ErrorCorrectionTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/2569/trunk/core/test/src/com/google/zxing/datamatrix/encoder/ErrorCorrectionTestCase.java
+END

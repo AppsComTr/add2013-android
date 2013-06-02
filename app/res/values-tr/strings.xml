@@ -33,5 +33,5 @@
 	<string name="invalid_qr_code">vCard formatında olmalı !</string>
 	<string name="message_of_save_contact">rehberinize kaydedildi</string>
 	<string name="sorry_cant_save_contact">Üzgünüz,kişi kaydedilemedi</string>
-	
+	<string name="ok">Tamam</string>
 	</resources>
