@@ -164,7 +164,7 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 			text=(TextView)view.findViewById(R.id.session_features);
 			temp=filtered_session_list.get(i).getDay()==14?getResources().getString(R.string.friday):getResources().getString(R.string.saturday);
 			temp+=" "+filtered_session_list.get(i).getStart_hour()+" - "+filtered_session_list.get(i).getEnd_hour()+" | ";
-			temp+=lang==1?filtered_session_list.get(i).getHall()+getResources().getString(R.string.hall):getResources().getString(R.string.hall)+ filtered_session_list.get(i).getHall();
+			temp+=lang==1?filtered_session_list.get(i).getHall()+" Salonu":"Hall "+ filtered_session_list.get(i).getHall();
 			text.setText(temp);
 			text.setTextSize(features_text_size);
 			if(filtered_session_list.get(i).isFavorite()){

@@ -61,26 +61,62 @@ public class ParticipantIdActivity extends Activity{
 			temp2=temp[i].split(":");
 			temp3=temp2[0].split(";");
 			if(temp3[0].equals("FN")){
-				name=temp2.length==2?temp2[1]:"";
+				name="";
+				for(int k=1;k<temp2.length;k++){
+					name+=temp2[k];
+					if(k+1<temp2.length){
+						name+=":";
+					}
+				}
 			}
 			else if(temp3[0].equals("TEL")){
-				telephone=temp2.length==2?temp2[1]:"";
+				telephone="";
+				for(int k=1;k<temp2.length;k++){
+					telephone+=temp2[k];
+					if(k+1<temp2.length){
+						telephone+=":";
+					}
+				}
 				telephone=telephone.replace(" ","");
 			}
 			else if(temp3[0].equals("EMAIL")){
-				email=temp2.length==2?temp2[1]:"";
+				email="";
+				for(int k=1;k<temp2.length;k++){
+					email+=temp2[k];
+					if(k+1<temp2.length){
+						email+=":";
+					}
+				}
 			}
 			else if(temp3[0].equals("URL")){
-				website=temp2.length==2?temp2[1]:"";
+				website="";
+				for(int k=1;k<temp2.length;k++){
+					website+=temp2[k];
+					if(k+1<temp2.length){
+						website+=":";
+					}
+				}
 				if(!website.equals("")&&!website.contains("http://")){
 					website="http://"+website;
 				}
 			}
 			else if(temp3[0].equals("ORG")){
-				organization=temp2.length==2?temp2[1]:"";
+				organization="";
+				for(int k=1;k<temp2.length;k++){
+					organization+=temp2[k];
+					if(k+1<temp2.length){
+						organization+=":";
+					}
+				}
 			}
 			else if(temp3[0].equals("TITLE")){
-				title=temp2.length==2?temp2[1]:"";
+				title="";
+				for(int k=1;k<temp2.length;k++){
+					title+=temp2[k];
+					if(k+1<temp2.length){
+						title+=":";
+					}
+				}
 			}
 		}
 	}

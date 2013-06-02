@@ -24,10 +24,10 @@
 	<string name="check_internet">Please, check your internet connection</string>
 	<string name="friday">Friday</string>
 	<string name="saturday">Saturday</string>
-	<string name="hall">Hall </string>
+	<string name="hall">Hall</string>
 	<string name="requirements">Requirements</string>
 	<string name="sessions">Sessions</string>
-	<string name="internet_fail"></string>
+	<string name="internet_fail">Internet connection is necessary for initialization</string>
 	<string name="AndroidDevDays13">Android Developer Days 2013</string>
 	<string name="ready_decoded_qr">There is no scanned code</string>
 	<string name="invalid_qr_code">Invalid QR Code</string>

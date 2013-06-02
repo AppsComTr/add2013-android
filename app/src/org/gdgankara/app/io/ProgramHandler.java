@@ -84,6 +84,7 @@ public class ProgramHandler extends BaseHandler {
 				if (speakerList == null) {
 					speakerList = parseJSONObjectToSpeakerList(jsonObject,
 							"speakers");
+					alphabeticalOrder(speakerList.size(), speakerList);
 					setSpeakerList(speakerList);
 					writeListToFile(speakerList,getCacheFileName(Speaker.KIND, lang));
 				}
@@ -359,6 +360,38 @@ public class ProgramHandler extends BaseHandler {
 		}
 		sortTagsByWeight(tag_size,tag_counter);
 		return sessionsList;
+	}
+	
+	private void alphabeticalOrder(int size,ArrayList<Speaker> arr){
+		if(arr==null||arr.size()==0){
+			return;
+		}
+		quicksortAlphabetical(0, size-1, arr);
+	}
+	
+	private void quicksortAlphabetical(int low, int high, ArrayList<Speaker>  arr){
+		int i = low, j = high;
+	    String pivot = arr.get(low + (high-low)/2).getName();
+
+	    while (i <= j) {
+
+	      while (arr.get(i).getName().compareToIgnoreCase(pivot) < 0) {
+	        i++;
+	      }
+	      while (arr.get(j).getName().compareToIgnoreCase(pivot) > 0) {
+	        j--;
+	      }
+	      if (i <= j) {
+	    	Collections.swap(arr, i, j);
+	        i++;
+	        j--;
+	      }
+	    }
+	    // Recursion
+	    if (low < j)
+	      quicksortAlphabetical(low, j,arr);
+	    if (i < high)
+	      quicksortAlphabetical(i, high,arr);
 	}
 
 	private void sortTagsByWeight(int size,int[] array) {
