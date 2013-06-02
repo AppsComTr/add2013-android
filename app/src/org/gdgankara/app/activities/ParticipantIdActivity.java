@@ -109,6 +109,7 @@ public class ParticipantIdActivity extends Activity{
 					}
 				}
 			}
+			
 			else if(temp3[0].equals("TITLE")){
 				title="";
 				for(int k=1;k<temp2.length;k++){

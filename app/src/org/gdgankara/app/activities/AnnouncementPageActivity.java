@@ -9,6 +9,8 @@ import org.gdgankara.app.utils.Util;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,6 +45,12 @@ public class AnnouncementPageActivity extends Activity{
 		
 		text=(TextView)findViewById(R.id.announcementpage_description);
 		text.setText(announcement.getDescription());
+		
+		if(announcement.getLink()!=null && !announcement.getLink().equals("")){
+			text=(TextView)findViewById(R.id.announcementpage_link);
+			text.setText(Html.fromHtml("<a href=\""+announcement.getLink()+"\">" +announcement.getLink()+ "</a>"));
+			text.setMovementMethod(LinkMovementMethod.getInstance());
+		}
 		
 		imageView=(ImageView)findViewById(R.id.news_image);
 		UrlImageViewHelper.setUrlDrawable(imageView, announcement.getImage(),R.drawable.loading);

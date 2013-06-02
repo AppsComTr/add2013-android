@@ -31,8 +31,6 @@ public class TagListAdapter extends ArrayAdapter<String>{
 		view=inflater.inflate(R.layout.child_of_taglist, null, false);
 		text=(TextView)view.findViewById(R.id.tag_name);
 		text.setText(taglist.get(position));
-		a=AnimationUtils.loadAnimation(context, R.anim.list_item_animation);
-		view.startAnimation(a);
 		return view;
 	}
 
