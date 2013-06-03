@@ -6,8 +6,7 @@ import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.utils.Util;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-import android.app.Activity;
+
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -15,7 +14,9 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class AnnouncementPageActivity extends Activity{
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
+public class AnnouncementPageActivity extends BaseActivity{
 	
 	private Announcement announcement;
 	private ArrayList<Announcement> announcement_list;

@@ -2,15 +2,12 @@ package org.gdgankara.app.activities;
 
 
 import org.gdgankara.app.utils.Util;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.util.Log;
 
 import com.google.zxing.Result;
 import com.google.zxing.client.android.CaptureActivity;
-import com.google.zxing.client.android.result.AddressBookResultHandler;
-import com.google.zxing.client.android.result.ResultHandler;
-import com.google.zxing.client.android.result.ResultHandlerFactory;
 
 public class DecoderActivity extends CaptureActivity {
 

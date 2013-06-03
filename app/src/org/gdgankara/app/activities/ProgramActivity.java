@@ -1,16 +1,18 @@
 package org.gdgankara.app.activities;
 
+import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.ProgramFragmentAdapter;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.utils.Util;
-import org.gdgankara.app.R;
-import com.viewpagerindicator.TitlePageIndicator;
-import android.app.Activity;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Window;
 import android.widget.ImageView;
+
+import com.google.analytics.tracking.android.EasyTracker;
+import com.viewpagerindicator.TitlePageIndicator;
 
 public class ProgramActivity extends FragmentActivity{ 
 	
@@ -83,6 +85,18 @@ public class ProgramActivity extends FragmentActivity{
 			setTheme(R.style.tagList_XHigh);
 		}
 		
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		EasyTracker.getInstance().activityStart(this);
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		EasyTracker.getInstance().activityStop(this);
 	}
 
 }

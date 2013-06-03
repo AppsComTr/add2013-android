@@ -1,22 +1,23 @@
 package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
+
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.SessionListAdapter;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
 
-public class SessionListActivity extends Activity{
+public class SessionListActivity extends BaseActivity{
 	
 	private ArrayList<Session> total_session_list,filtered_session_list;
 	private ListView session_listview;

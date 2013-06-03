@@ -1,16 +1,16 @@
 package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
+
 import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.utils.Util;
-import android.app.Activity;
+
 import android.content.ContentProviderOperation;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ParticipantIdActivity extends Activity{
+public class ParticipantIdActivity extends BaseActivity{
 	
 	
 	private int height;

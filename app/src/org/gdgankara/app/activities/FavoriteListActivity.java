@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.SessionListAdapter;
+import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;
-import org.gdgankara.app.listeners.TabListener;
-import android.app.Activity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,13 +15,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
-public class FavoriteListActivity extends Activity{
+public class FavoriteListActivity extends BaseActivity{
 	
 	private ArrayList<Session> total_session_list,favorite_session_list;
 	private ListView session_listview;

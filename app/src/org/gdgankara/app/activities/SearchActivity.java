@@ -1,11 +1,12 @@
 package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
+
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.SessionListAdapter;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,13 +14,13 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
 
-public class SearchActivity extends Activity implements TextWatcher {
+public class SearchActivity extends BaseActivity implements TextWatcher {
 
 	private AutoCompleteTextView searchText;
 	private ArrayList<String> tags;

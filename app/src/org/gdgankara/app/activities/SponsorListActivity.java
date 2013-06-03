@@ -1,13 +1,13 @@
 package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
+
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.SponsorListAdapter;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Sponsor;
 import org.gdgankara.app.utils.Util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -19,9 +19,10 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.koushikdutta.urlimageviewhelper.*;
 
-public class SponsorListActivity extends Activity{
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
+public class SponsorListActivity extends BaseActivity{
 
 	private ArrayList<Sponsor> sponsor_list;
 	private ListView sponsor_listview;

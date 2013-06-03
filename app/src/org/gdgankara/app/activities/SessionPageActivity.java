@@ -2,6 +2,7 @@ package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.gdgankara.app.R;
 import org.gdgankara.app.customview.EllipsizingTextView;
 import org.gdgankara.app.listeners.TabListener;
@@ -9,9 +10,6 @@ import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
 import org.gdgankara.app.utils.Util;
 
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +21,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class SessionPageActivity extends Activity implements OnClickListener{
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
+public class SessionPageActivity extends BaseActivity implements OnClickListener{
 	
 	private ArrayList<Session> total_session_list;
 	private ArrayList<Speaker> total_speaker_list,filtered_speaker_list;
@@ -96,7 +96,7 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 	private void setUpView() {
 		String temp;
 		
-		//Oturum baþligi
+		//Oturum baï¿½ligi
 		text=(TextView)findViewById(R.id.session_title);
 		text.setText(session.getTitle());
 		setSessionTitleTextSize(text);
@@ -113,11 +113,11 @@ public class SessionPageActivity extends Activity implements OnClickListener{
 		text=(TextView)findViewById(R.id.session_description);
 		text.setText(session.getDescription());
 		
-		//Baþlýklarýn dili
+		//Baï¿½lï¿½klarï¿½n dili
 		text=(TextView)findViewById(R.id.speaker_title);
 		text.setText(getResources().getString(R.string.speakers));
 		
-		//favori yýldýzý butonu
+		//favori yï¿½ldï¿½zï¿½ butonu
 		favorite_star=(ImageView)findViewById(R.id.favorite_session);
 		if(session.isFavorite()){
 			favorite_star.setImageDrawable(getResources().getDrawable(R.drawable.favorite_button_active));

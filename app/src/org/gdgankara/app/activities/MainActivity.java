@@ -8,12 +8,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+
 import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.utils.Util;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -23,11 +23,12 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
-public class MainActivity extends Activity implements OnClickListener {
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
+public class MainActivity extends BaseActivity implements OnClickListener {
 
 	private ImageView tweetWallButton, programButton, haritaButton, oturumButton,
 			sponsorButton, favoriButton, konusmaciButton;

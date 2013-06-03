@@ -7,17 +7,17 @@ import org.gdgankara.app.adapeters.AnnouncementListAdapter;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.utils.Util;
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
 
-public class AnnouncementListActivity extends Activity{
+public class AnnouncementListActivity extends BaseActivity{
 	
 	private ArrayList<Announcement> announcement_list;
 	private ListView announcement_listview;

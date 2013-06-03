@@ -2,6 +2,7 @@ package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.gdgankara.app.R;
 import org.gdgankara.app.customview.EllipsizingTextView;
 import org.gdgankara.app.listeners.TabListener;
@@ -9,21 +10,20 @@ import org.gdgankara.app.model.Session;
 import org.gdgankara.app.model.Speaker;
 import org.gdgankara.app.utils.Util;
 
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class SpeakerPageActivity extends Activity implements OnClickListener{
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
+public class SpeakerPageActivity extends BaseActivity implements OnClickListener{
 
 	private Long speaker_id;
 	private ArrayList<Speaker> total_speaker_list;
@@ -105,9 +105,9 @@ public class SpeakerPageActivity extends Activity implements OnClickListener{
 		
 		//Profil basligi
 		/*text=(TextView)findViewById(R.id.speakerpage_profiletitle);
-		text.setText(lang==1?"Baðlantýlar":"Contact");
+		text.setText(lang==1?"Baï¿½lantï¿½lar":"Contact");
 		
-		//Baðlantýlar
+		//Baï¿½lantï¿½lar
 		String temp = "---";
 		text=(TextView)findViewById(R.id.speakerpage_personalsite_link);
 		temp=speaker.getBlog();

@@ -1,11 +1,12 @@
 package org.gdgankara.app.activities;
 
 import java.util.ArrayList;
+
 import org.gdgankara.app.R;
 import org.gdgankara.app.adapeters.TagListAdapter;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.utils.Util;
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +16,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-public class TagListActivity extends Activity{
+public class TagListActivity extends BaseActivity{
 	
 	private ArrayList<String> tag_list;
 	private ListView tag_listview;
