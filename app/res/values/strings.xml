@@ -34,5 +34,6 @@
 	<string name="message_of_save_contact">added your phonebook</string>
 	<string name="sorry_cant_save_contact">Sorry,can\'t add new contact</string>
 	<string name="ok">Ok</string>
-	
+	<string name="tweet_wall_internet_title">Internet connection!</string>
+	<string name="tweet_wall_internet_message">Please check your internet connection to get tweets.</string>
 </resources>

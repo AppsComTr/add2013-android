@@ -34,4 +34,5 @@
 	<string name="message_of_save_contact">rehberinize kaydedildi</string>
 	<string name="sorry_cant_save_contact">Üzgünüz,kişi kaydedilemedi</string>
 	<string name="ok">Tamam</string>
-	</resources>
+	<string name="tweet_wall_internet_title">İnternet Bağlantısı!</string>
+	<string name="tweet_wall_internet_message">Tweet\'leri görebilmek için lütfen internet bağlantınızı kontrol edin.</string></resources>

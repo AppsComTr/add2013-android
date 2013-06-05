@@ -10,13 +10,16 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
+import org.gdgankara.app.utils.Util;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -44,6 +47,7 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 	private ArrayList<Tweet> tweets;
 	private TabListener tabListener;
 	private ProgressDialog pd;
+	private AlertDialog alertDialog;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -51,36 +55,49 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 		setContentView(R.layout.activity_tweet_wall);
 		tabAktif();
 		pullToRefreshView = (PullToRefreshListView) findViewById(R.id.tweetList);
-		try {
-			if (pd == null) {
-				// pd = ProgressDialog.show(this,
-				// getResources().getString(R.string.loading),
-				// getResources().getString(R.string.getting_tweets),
-				// true, false);
-				pd = new ProgressDialog(TweetWallActivity.this);
-				pd.setMessage(getResources().getString(R.string.getting_tweets));
-				pd.setTitle(getResources().getString(R.string.loading));
-				pd.setCancelable(false);
-				pd.show();
+		if (Util.isInternetAvailable(this)) {
+			try {
+				if (pd == null) {
+					// pd = ProgressDialog.show(this,
+					// getResources().getString(R.string.loading),
+					// getResources().getString(R.string.getting_tweets),
+					// true, false);
+					pd = new ProgressDialog(TweetWallActivity.this);
+					pd.setMessage(getResources().getString(
+							R.string.getting_tweets));
+					pd.setTitle(getResources().getString(R.string.loading));
+					pd.setCancelable(false);
+					pd.show();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		Thread thread = new Thread(this);
-		thread.start();
-		pullToRefreshView
-				.setOnRefreshListener(new OnRefreshListener<ListView>() {
-					@Override
-					public void onRefresh(
-							PullToRefreshBase<ListView> refreshView) {
+			Thread thread = new Thread(this);
+			thread.start();
+			pullToRefreshView
+					.setOnRefreshListener(new OnRefreshListener<ListView>() {
+						@Override
+						public void onRefresh(
+								PullToRefreshBase<ListView> refreshView) {
 
-						// Do work to refresh the list here.
-						new GetDataTask().execute();
+							// Do work to refresh the list here.
+							new GetDataTask().execute();
+						}
+					});
+		} else {
+			alertDialog = new AlertDialog.Builder(this).create();
+			alertDialog.setTitle(getResources().getString(R.string.tweet_wall_internet_title));
+			alertDialog.setMessage(getResources().getString(R.string.tweet_wall_internet_message));
+			alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, getResources().getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					alertDialog.cancel();
+					finish();
 					}
-				});
+					});
+			alertDialog.setIcon(R.drawable.launcher_icon);
+			alertDialog.show();
+		}
 	}
-
-
 
 	public void tabAktif() {
 		tabListener = new TabListener(this);
@@ -257,8 +274,6 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 		super.onStart();
 		EasyTracker.getInstance().activityStart(this);
 	}
-
-
 
 	@Override
 	protected void onStop() {
