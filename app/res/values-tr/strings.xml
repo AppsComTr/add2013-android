@@ -35,4 +35,5 @@
 	<string name="sorry_cant_save_contact">Üzgünüz,kişi kaydedilemedi</string>
 	<string name="ok">Tamam</string>
 	<string name="tweet_wall_internet_title">İnternet Bağlantısı!</string>
-	<string name="tweet_wall_internet_message">Tweet\'leri görebilmek için lütfen internet bağlantınızı kontrol edin.</string></resources>
+	<string name="tweet_wall_internet_message">Tweet\'leri görebilmek için lütfen internet bağlantınızı kontrol edin.</string>
+	<string name="is_map_ready">Hazır değil</string></resources>

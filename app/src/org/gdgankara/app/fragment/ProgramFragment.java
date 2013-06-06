@@ -6,7 +6,6 @@ import org.gdgankara.app.activities.SessionPageActivity;
 import org.gdgankara.app.adapeters.StickyListAdapter;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;
-import org.gdgankara.app.utils.Util2;
 import org.gdgankara.app.R;
 import android.content.Context;
 import android.content.Intent;

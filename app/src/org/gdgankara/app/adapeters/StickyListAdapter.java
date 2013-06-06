@@ -1,14 +1,10 @@
 package org.gdgankara.app.adapeters;
 
 import java.util.ArrayList;
-
 import org.gdgankara.app.R;
 import org.gdgankara.app.model.Session;
 import org.gdgankara.app.utils.Util;
-import org.gdgankara.app.utils.Util2;
-
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +12,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
-
 import com.emilsjolander.components.stickylistheaders.StickyListHeadersAdapter;
 
 public class StickyListAdapter extends BaseAdapter implements StickyListHeadersAdapter,SectionIndexer{
@@ -118,7 +113,7 @@ public class StickyListAdapter extends BaseAdapter implements StickyListHeadersA
 	public View getView(int arg0, View arg1, ViewGroup arg2) {
 		session=sessions.get(arg0);
 		view=inflater.inflate(R.layout.child_of_sessionlist, null, false);
-		TextView text=(TextView)view.findViewById(R.id.session_name);
+		text=(TextView)view.findViewById(R.id.session_name);
 		text.setText(session.getTitle());
 		text=(TextView)view.findViewById(R.id.session_features);
 		String temp=session.getDay()==14?lang==1?"Cuma":"Friday":lang==1?"Cumartesi":"Saturday";
@@ -205,11 +200,5 @@ public class StickyListAdapter extends BaseAdapter implements StickyListHeadersA
 		
 	}
 	
-	
-	public void restore(){
-		sessions = Util2.SessionList;
-		saatKesimleriDoldur();
-		notifyDataSetChanged();
-	}
 
 }
