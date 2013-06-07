@@ -30,6 +30,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -52,6 +53,8 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		overridePendingTransition(0, 0);
 		setContentView(R.layout.activity_tweet_wall);
 		tabAktif();
 		pullToRefreshView = (PullToRefreshListView) findViewById(R.id.tweetList);

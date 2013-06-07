@@ -27,6 +27,7 @@ public class ProgramActivity extends FragmentActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		overridePendingTransition(0, 0);
 		height=Util.device_height;
 		setActivityTheme();
 		setContentView(R.layout.program);

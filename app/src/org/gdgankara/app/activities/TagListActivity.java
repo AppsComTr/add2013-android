@@ -27,6 +27,7 @@ public class TagListActivity extends BaseActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		overridePendingTransition(0, 0);
 		setActivityTheme(Util.device_height);
 		setContentView(R.layout.taglist);
 		tag_list=Util.TagList;

@@ -36,6 +36,7 @@ public class FavoriteListActivity extends BaseActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		overridePendingTransition(0, 0);
 		setActivityTheme(Util.device_height);
 		setContentView(R.layout.sessionlist);
 		total_session_list=Util.SessionList;
