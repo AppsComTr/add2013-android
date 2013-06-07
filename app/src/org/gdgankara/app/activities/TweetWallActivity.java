@@ -50,6 +50,7 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 	private ProgressDialog pd;
 	private AlertDialog alertDialog;
 
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
