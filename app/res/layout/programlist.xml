@@ -13,5 +13,4 @@
         android:background="@android:color/transparent"
         android:drawSelectorOnTop="true"/>
     
-    
 </RelativeLayout>
