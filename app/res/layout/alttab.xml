@@ -11,6 +11,7 @@
 	        android:background="@drawable/alt_tab_background">
 	        
 	    <TextView 
+	        android:id="@+id/alttab_text"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:textColor="#94a839"

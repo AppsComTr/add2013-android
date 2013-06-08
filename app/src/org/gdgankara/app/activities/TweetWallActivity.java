@@ -2,7 +2,6 @@ package org.gdgankara.app.activities;
 
 import java.net.URL;
 import java.util.ArrayList;
-
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
@@ -14,7 +13,6 @@ import org.gdgankara.app.utils.Util;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -58,6 +56,7 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 		overridePendingTransition(0, 0);
 		setContentView(R.layout.activity_tweet_wall);
 		tabAktif();
+		((TextView)findViewById(R.id.alttab_text)).setText("#AndroidDevDays");
 		pullToRefreshView = (PullToRefreshListView) findViewById(R.id.tweetList);
 		if (Util.isInternetAvailable(this)) {
 			try {
