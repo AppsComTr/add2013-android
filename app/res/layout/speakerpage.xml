@@ -37,7 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/speakerpage_image"
-            android:layout_above="@+id/speakerpage_job"
             android:layout_marginLeft="10dp"
             android:maxLines="2"
             android:ellipsize="end"

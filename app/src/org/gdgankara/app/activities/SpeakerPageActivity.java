@@ -184,11 +184,13 @@ public class SpeakerPageActivity extends BaseActivity implements OnClickListener
 	private void findSessions() {
 		filtered_session_list=new ArrayList<Session>();
 		List<Long> sessionIdList=speaker.getSessionIDList();
-		for(Long id:sessionIdList){
-			for(Session session:total_session_list){
-				if(id==session.getId()){
-					filtered_session_list.add(session);
-					break;
+		if(sessionIdList!=null){
+			for(Long id:sessionIdList){
+				for(Session session:total_session_list){
+					if(id==session.getId()){
+						filtered_session_list.add(session);
+						break;
+					}
 				}
 			}
 		}

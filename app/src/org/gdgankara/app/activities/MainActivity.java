@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -183,7 +184,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			break;
 
 		case R.id.harita_button:
-//			Toast.makeText(this, getResources().getString(R.string.is_map_ready),Toast.LENGTH_SHORT).show();
+			//Toast.makeText(this, getResources().getString(R.string.is_map_ready),Toast.LENGTH_SHORT).show();
 			i = new Intent(MainActivity.this, MapActivity.class);
 			break;
 

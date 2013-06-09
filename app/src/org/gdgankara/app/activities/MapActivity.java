@@ -3,28 +3,12 @@ package org.gdgankara.app.activities;
 import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.gdgankara.app.R;
 import org.gdgankara.app.map.GPSTracker;
 import org.gdgankara.app.map.JSONParser;
-import org.gdgankara.app.map.LocationFinder;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.graphics.Color;
-import android.location.Location;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -34,22 +18,36 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import android.graphics.Color;
+import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.util.Log;
+import android.view.Menu;
+import android.widget.Toast;
+
 @SuppressLint("NewApi")
 public class MapActivity extends Activity {
 
 	protected static final LatLng odtuKKM = new LatLng(39.894073, 32.786068);
-	protected static final LatLng aKapisi = new LatLng(39.908018, 32.784263);
+	protected static final LatLng a1_gate = new LatLng(39.908018, 32.784263);
 	protected static final LatLng internalPointsOfA_Kapisi[] = {
 			new LatLng(39.908018, 32.784263), new LatLng(39.904041, 32.782985),
 			new LatLng(39.894872, 32.784616) };
-	protected static final LatLng bKapisi = new LatLng(39.891145, 32.793723);
+	protected static final LatLng a4_gate = new LatLng(39.891145, 32.793723);
 	protected static final LatLng internalPointsOfB_Kapisi[] = {
 			new LatLng(39.891145, 32.793723), new LatLng(39.891059, 32.792738),
 			new LatLng(39.890507, 32.791743), new LatLng(39.890157, 32.790423),
 			new LatLng(39.890371, 32.790115), new LatLng(39.891036, 32.789961),
 			new LatLng(39.891460, 32.789270), new LatLng(39.892754, 32.789015),
 			new LatLng(39.893415, 32.785638), };
-	private LatLng nearestGate = null;
+	private LatLng nearestGate = a1_gate;// by default
 	private GoogleMap map = null;
 	private GPSTracker tracker = null;
 
@@ -60,17 +58,17 @@ public class MapActivity extends Activity {
 		try {
 			if (!isOnline())
 				throw new ConnectException(
-						"Lï¿½tfen internet baï¿½lantï¿½nï¿½zï¿½ kontrol ediniz...");
+						"Lütfen internet baðlantýnýzý kontrol ediniz...");
 
 			map = ((MapFragment) getFragmentManager()
 					.findFragmentById(R.id.map)).getMap();
 
 			map.setMyLocationEnabled(true);
-			map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+//			map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 			map.addMarker(new MarkerOptions()
 					.position(odtuKKM)
-					.title("ODTï¿½ Kï¿½ltï¿½r ve Kongre Merkezi")
-					.snippet("Android Geliï¿½tirici Gï¿½nleri")
+					.title("ODTÜ Kültür ve Kongre Merkezi")
+					.snippet("Android Geliþtirici Günleri")
 					.icon(BitmapDescriptorFactory
 							.fromResource(R.drawable.dev_days)));
 
@@ -79,25 +77,17 @@ public class MapActivity extends Activity {
 			Location location = tracker.getLocation();
 
 			if (location == null)
-				throw new NullPointerException("Konumunuz Bulunumadï¿½...");
+				throw new NullPointerException("Konumunuz Bulunumadý...");
 
 			LatLng currentLocation = new LatLng(location.getLatitude(),
 					location.getLongitude());
 
-			/**
-			 * TODO 1. asynctask baï¿½lamadan ï¿½nce kï¿½sa olan mesafeyi bulman
-			 * gerekiyor. 2.burada location finder sï¿½nï¿½fï¿½nï¿½n static methodunu
-			 * ï¿½alï¿½ï¿½tï¿½racaksï¿½n
-			 * 
-			 * */
-
-			nearestGate = LocationFinder.getNearestLocation(currentLocation,
-					aKapisi, bKapisi);
-
-			if (nearestGate != null)
+			if (currentLocation != null)
 				new connectAsyncTask(this.makeURL(currentLocation.latitude,
-						currentLocation.longitude, nearestGate.latitude,
-						nearestGate.longitude)).execute();
+						currentLocation.longitude, a1_gate.latitude,
+						a1_gate.longitude), this.makeURL(
+						currentLocation.latitude, currentLocation.longitude,
+						a4_gate.latitude, a4_gate.longitude)).execute();
 
 			// Move the camera instantly to burgu with a zoom of 15
 			map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,
@@ -110,6 +100,7 @@ public class MapActivity extends Activity {
 		} catch (Exception e) {
 			Log.e("Error", e.getMessage());
 		}
+
 	}
 
 	@Override
@@ -203,6 +194,7 @@ public class MapActivity extends Activity {
 			String encodedString = overviewPolylines.getString("points");
 			List<LatLng> list = decodePoly(encodedString);
 
+
 			for (int z = 0; z < list.size() - 1; z++) {
 				LatLng src = list.get(z);
 				LatLng dest = list.get(z + 1);
@@ -212,8 +204,8 @@ public class MapActivity extends Activity {
 						.width(2).color(Color.BLUE).geodesic(true));
 			}
 
-			if (nearestGate.latitude == aKapisi.latitude
-					&& nearestGate.longitude == aKapisi.longitude) {
+			if (nearestGate.latitude == a1_gate.latitude
+					&& nearestGate.longitude == a1_gate.longitude) {
 				for (int z = 0; z < internalPointsOfA_Kapisi.length - 1; z++) {
 					LatLng src = internalPointsOfA_Kapisi[z];
 					LatLng dest = internalPointsOfA_Kapisi[z + 1];
@@ -222,14 +214,14 @@ public class MapActivity extends Activity {
 									new LatLng(dest.latitude, dest.longitude))
 							.width(2).color(Color.BLUE).geodesic(true));
 					map.addMarker(new MarkerOptions()
-							.position(aKapisi)
-							.title("Nizamiyeden geï¿½iï¿½ yapmanï¿½z gerekmekedir.")
+							.position(a1_gate)
+							.title("Nizamiyeden geçiþ yapmanýz gerekmekedir.")
 							.icon(BitmapDescriptorFactory
 									.fromResource(R.drawable.marker)));
 				}
 
-			} else if (nearestGate.latitude == bKapisi.latitude
-					&& nearestGate.latitude == bKapisi.longitude) {
+			} else if (nearestGate.latitude == a4_gate.latitude
+					&& nearestGate.latitude == a4_gate.longitude) {
 				for (int z = 0; z < internalPointsOfB_Kapisi.length - 1; z++) {
 					LatLng src = internalPointsOfB_Kapisi[z];
 					LatLng dest = internalPointsOfB_Kapisi[z + 1];
@@ -239,8 +231,8 @@ public class MapActivity extends Activity {
 							.width(2).color(Color.BLUE).geodesic(true));
 
 					map.addMarker(new MarkerOptions()
-							.position(bKapisi)
-							.title("Nizamiyeden geï¿½iï¿½ yapmanï¿½z gerekmekedir.")
+							.position(a4_gate)
+							.title("Nizamiyeden geçiþ yapmanýz gerekmekedir.")
 							.icon(BitmapDescriptorFactory
 									.fromResource(R.drawable.marker)));
 				}
@@ -254,23 +246,25 @@ public class MapActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		// agetMenuInflater().inflate(R.menu.activity_map, menu);
+		getMenuInflater().inflate(R.menu.activity_map, menu);
 		return true;
 	}
 
 	private class connectAsyncTask extends AsyncTask<Void, Void, String> {
 		private ProgressDialog progressDialog;
-		String url;
+		String url0;
+		String url1;
 
-		connectAsyncTask(String urlPass) {
-			url = urlPass;
+		connectAsyncTask(String url0, String url1) {
+			this.url0 = url0;
+			this.url1 = url1;
 		}
 
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
 			progressDialog = new ProgressDialog(MapActivity.this);
-			progressDialog.setMessage("Rota ï¿½iziliyor, Lï¿½tfen bekleyiniz...");
+			progressDialog.setMessage("Rota çiziliyor, Lütfen bekleyiniz...");
 			progressDialog.setIndeterminate(true);
 			progressDialog.show();
 		}
@@ -278,8 +272,36 @@ public class MapActivity extends Activity {
 		@Override
 		protected String doInBackground(Void... params) {
 			JSONParser jParser = new JSONParser();
-			String json = jParser.getJSONFromUrl(url);
-			return json;
+			String json0 = jParser.getJSONFromUrl(url0);
+			String json1 = jParser.getJSONFromUrl(url1);
+			try {
+				JSONObject jobj0 = new JSONObject(json0);
+				JSONObject jobj1 = new JSONObject(json1);
+				
+				//get distance to a1 gate of path
+				int distanceto_a1 = jobj0.getJSONArray("routes").getJSONObject(0)
+						.getJSONArray("legs").getJSONObject(0)
+						.getJSONObject("distance").getInt("value");
+				
+				//get distance to a1 gate of path
+				int distanceto_a4 = jobj1.getJSONArray("routes").getJSONObject(0)
+						.getJSONArray("legs").getJSONObject(0)
+						.getJSONObject("distance").getInt("value");
+				
+				if (distanceto_a1 <= distanceto_a4) {
+					//set nearest gate to a1 
+					nearestGate = a1_gate;
+					return json0;
+				} else {
+					//set nearest gate to a4
+					nearestGate = a4_gate;
+					return json1;
+				}
+
+			} catch (JSONException e) {
+				
+			}
+			return json0;
 		}
 
 		@Override

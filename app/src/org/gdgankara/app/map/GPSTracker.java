@@ -89,7 +89,7 @@ public class GPSTracker extends Service implements LocationListener {
                                 MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
                         Log.d("GPS Enabled", "GPS Enabled");
                         if (locationManager != null) {
-                            System.out.println("LocationManager null deÄŸil");
+                            System.out.println("LocationManager null deðil");
                             location = locationManager
                                     .getLastKnownLocation(LocationManager.GPS_PROVIDER);
                             if (location != null) {
@@ -98,7 +98,7 @@ public class GPSTracker extends Service implements LocationListener {
 
                             }
                             else {
-                                // Daha Ã¶nce yoksa
+                                // Daha önce yoksa
                                 locationManager.requestLocationUpdates(
                                         LocationManager.PASSIVE_PROVIDER,
                                         MIN_TIME_BW_UPDATES,
@@ -188,11 +188,11 @@ public class GPSTracker extends Service implements LocationListener {
         alertDialog = new AlertDialog.Builder(mContext);
 
         // Setting Dialog Title
-        alertDialog.setTitle("Konum eriÅŸim izni");
+        alertDialog.setTitle("Konum eriþim izni");
 
         // Setting Dialog Message
         alertDialog
-                .setMessage("Bu iÅŸlemin gerÃ§ekleÅŸtirilebilmesi iÃ§in konumunuza ihtiyaÃ§ duyulmaktadÄ±r. LÃ¼tfen ayarlar menÃ¼sÃ¼ne giderek, ayarlayÄ±nÄ±z.");
+                .setMessage("Bu iþlemin gerçekleþtirilebilmesi için konumunuza ihtiyaç duyulmaktadýr. Lütfen ayarlar menüsüne giderek, ayarlayýnýz.");
 
         // Setting Icon to Dialog
         // alertDialog.setIcon(R.drawable.delete);
@@ -206,7 +206,7 @@ public class GPSTracker extends Service implements LocationListener {
         });
 
         // on pressing cancel button
-        alertDialog.setNegativeButton("Ä°ptal", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton("Ýptal", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
