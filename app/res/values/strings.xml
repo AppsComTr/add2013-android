@@ -37,4 +37,5 @@
 	<string name="tweet_wall_internet_title">Internet connection!</string>
 	<string name="tweet_wall_internet_message">Please check your internet connection to get tweets.</string>
 	<string name="is_map_ready">Not ready</string>
+	<string name="only_vCard_format_is_valid">Only vCard format is valid</string>
 </resources>

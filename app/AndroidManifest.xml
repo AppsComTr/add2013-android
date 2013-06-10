@@ -46,79 +46,64 @@
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.TweetWallActivity"
-            android:label="@string/title_activity_tweet_wall"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_tweet_wall">
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.TagListActivity"
-            android:label="@string/title_activity_taglist"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_taglist">
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.SessionListActivity"
-            android:label="@string/title_activity_sessionlist"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_sessionlist">
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.SearchActivity"
             android:label="@string/title_activity_search"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.SpeakerListActivity"
-            android:label="@string/title_activity_sessionlist"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_sessionlist">
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.FavoriteListActivity"
-            android:label="@string/title_activity_sessionlist"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_sessionlist">
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.SessionPageActivity"
-            android:label="@string/title_activity_sessionlist"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_sessionlist">
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.SpeakerPageActivity"
-            android:label="@string/title_activity_sessionlist"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_sessionlist">
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.MapActivity"
-            android:label="@string/title_activity_my_map_activity"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_my_map_activity">
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.SponsorListActivity"
-            android:label="@string/title_activity_sessionlist"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_sessionlist">
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.ProgramActivity"
-            android:label="@string/title_activity_sessionlist"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_sessionlist">
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.AnnouncementPageActivity"
-            android:label="@string/title_activity_sessionlist"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_sessionlist">
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.AnnouncementListActivity"
-            android:label="@string/title_activity_sessionlist"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_sessionlist">
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.ParticipantIdActivity"
-            android:label="@string/title_activity_sessionlist"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_sessionlist">
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.ParticipantListActivity"
-            android:label="@string/title_activity_sessionlist"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_sessionlist">
         </activity>
         <activity
             android:name="com.google.zxing.client.android.CaptureActivity"

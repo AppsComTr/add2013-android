@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">AGG13</string>
@@ -36,4 +35,5 @@
 	<string name="ok">Tamam</string>
 	<string name="tweet_wall_internet_title">İnternet Bağlantısı!</string>
 	<string name="tweet_wall_internet_message">Tweet\'leri görebilmek için lütfen internet bağlantınızı kontrol edin.</string>
-	<string name="is_map_ready">Hazır değil</string></resources>
+	<string name="is_map_ready">Hazır değil</string>
+	<string name="only_vCard_format_is_valid">Sadece vCard formatı geçerlidir</string></resources>

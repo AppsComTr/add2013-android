@@ -80,6 +80,8 @@ public class ParticipantListActivity extends BaseActivity{
 		if(ParticipantList.size()==0){
 			text.setText(R.string.ready_decoded_qr);
 		}
+		
+		((TextView)findViewById(R.id.alttab_text)).setText(getResources().getString(R.string.only_vCard_format_is_valid));
 	}
 	
 	private void startQRDecoder(){
