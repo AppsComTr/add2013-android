@@ -73,7 +73,6 @@ public class ParticipantListActivity extends BaseActivity{
 			public void onClick(View arg0) {
 				startQRDecoder();
 			}
-
 		});
 		
 		text=(TextView)findViewById(R.id.participantlist_decodeddata_ready);
