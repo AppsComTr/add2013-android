@@ -40,6 +40,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	private TabListener tabListener;
 	private ArrayList<Announcement> AnnouncementList;
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
