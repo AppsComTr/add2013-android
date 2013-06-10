@@ -68,7 +68,6 @@ public class ParticipantListActivity extends BaseActivity{
 			imageview.setImageDrawable(getResources().getDrawable(R.drawable.qrscanen));
 		}
 		imageview.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View arg0) {
 				startQRDecoder();
