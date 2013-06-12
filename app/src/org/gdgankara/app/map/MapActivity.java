@@ -1,23 +1,19 @@
-package org.gdgankara.app.activities;
+package org.gdgankara.app.map;
 
 import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
-import org.gdgankara.app.R;
-import org.gdgankara.app.map.GPSTracker;
-import org.gdgankara.app.map.JSONParser;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import org.gdgankara.app.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
-
 import android.graphics.Color;
 import android.location.Location;
 import android.net.ConnectivityManager;
@@ -25,15 +21,14 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.widget.Toast;
 
 @SuppressLint("NewApi")
-public class MapActivity extends Activity {
+public class MapActivity extends FragmentActivity {
 
 	protected static final LatLng odtuKKM = new LatLng(39.894073, 32.786068);
 	protected static final LatLng a1_gate = new LatLng(39.908018, 32.784263);
@@ -60,8 +55,7 @@ public class MapActivity extends Activity {
 				throw new ConnectException(
 						"Lütfen internet baðlantýnýzý kontrol ediniz...");
 
-			map = ((MapFragment) getFragmentManager()
-					.findFragmentById(R.id.map)).getMap();
+			map = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 
 			map.setMyLocationEnabled(true);
 //			map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
@@ -242,6 +236,8 @@ public class MapActivity extends Activity {
 
 		}
 	}
+
+
 
 	private class connectAsyncTask extends AsyncTask<Void, Void, String> {
 		private ProgressDialog progressDialog;

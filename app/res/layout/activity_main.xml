@@ -139,12 +139,12 @@
 	                    android:scaleType="fitXY" />
                     
                     <ImageView 
-	                    android:id="@+id/harita_button"
 	                    android:layout_width="match_parent"
 	                    android:layout_height="0dip"
 	                    android:layout_weight="1"
 	                    android:layout_marginTop="2dp"
-	                    android:scaleType="fitXY" />
+	                    android:scaleType="fitXY" 
+	                    android:background="@drawable/gdg_logo"/>
                     
                 </LinearLayout>
                 

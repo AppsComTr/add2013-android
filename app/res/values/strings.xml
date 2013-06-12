@@ -38,4 +38,5 @@
 	<string name="tweet_wall_internet_message">Please check your internet connection to get tweets.</string>
 	<string name="is_map_ready">Not ready</string>
 	<string name="only_vCard_format_is_valid">Only vCard format is valid</string>
+	<string name="any_exception_in_twitter">Sorry,TweetWall can not used now</string>
 </resources>

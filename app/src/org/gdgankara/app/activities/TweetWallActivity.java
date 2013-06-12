@@ -2,6 +2,7 @@ package org.gdgankara.app.activities;
 
 import java.net.URL;
 import java.util.ArrayList;
+
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
@@ -13,6 +14,7 @@ import org.gdgankara.app.utils.Util;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -48,7 +50,6 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 	private ProgressDialog pd;
 	private AlertDialog alertDialog;
 
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,8 +60,10 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 		((TextView)findViewById(R.id.alttab_text)).setText("#AndroidDevDays");
 		pullToRefreshView = (PullToRefreshListView) findViewById(R.id.tweetList);
 		if (Util.isInternetAvailable(this)) {
-			try {
-				if (pd == null) {
+
+			if (pd == null) {
+				try {
+
 					// pd = ProgressDialog.show(this,
 					// getResources().getString(R.string.loading),
 					// getResources().getString(R.string.getting_tweets),
@@ -71,9 +74,11 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 					pd.setTitle(getResources().getString(R.string.loading));
 					pd.setCancelable(false);
 					pd.show();
+
+				} catch (Exception e) {
+					pd = null;
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
 			Thread thread = new Thread(this);
 			thread.start();
@@ -89,13 +94,17 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 					});
 		} else {
 			alertDialog = new AlertDialog.Builder(this).create();
-			alertDialog.setTitle(getResources().getString(R.string.tweet_wall_internet_title));
-			alertDialog.setMessage(getResources().getString(R.string.tweet_wall_internet_message));
-			alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, getResources().getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					alertDialog.cancel();
-					finish();
-					}
+			alertDialog.setTitle(getResources().getString(
+					R.string.tweet_wall_internet_title));
+			alertDialog.setMessage(getResources().getString(
+					R.string.tweet_wall_internet_message));
+			alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL,
+					getResources().getString(android.R.string.ok),
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							alertDialog.cancel();
+							finish();
+						}
 					});
 			alertDialog.setIcon(R.drawable.launcher_icon);
 			alertDialog.show();
@@ -225,14 +234,21 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 			Log.v("TEST", "Exception: " + ex.getMessage());
 		}
 
-		for (Object t : arr) {
-			Tweet tweet = new Tweet(((JSONObject) t).get("from_user")
-					.toString(), ((JSONObject) t).get("text").toString(),
-					((JSONObject) t).get("profile_image_url").toString(),
-					((JSONObject) t).get("from_user_name").toString());
-			tweets.add(tweet);
+		try {
+			for (Object t : arr) {
+				Tweet tweet = new Tweet(((JSONObject) t).get("from_user")
+						.toString(), ((JSONObject) t).get("text").toString(),
+						((JSONObject) t).get("profile_image_url").toString(),
+						((JSONObject) t).get("from_user_name").toString());
+				tweets.add(tweet);
+			}
+		} catch (Exception e) {
+			tweets = new ArrayList<Tweet>();
+			tweets.add(new Tweet("gdgankara", getResources().getString(
+					R.string.tweet_wall_internet_message),
+					"http://www.androiddeveloperdays.com", "GDG Ankara"));
+			e.printStackTrace();
 		}
-
 		return tweets;
 	}
 

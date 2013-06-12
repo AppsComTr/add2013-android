@@ -1,25 +1,14 @@
 package org.gdgankara.app.activities;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-
 import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
+import org.gdgankara.app.map.MapActivity;
 import org.gdgankara.app.model.Announcement;
 import org.gdgankara.app.utils.Util;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -31,12 +20,10 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 public class MainActivity extends BaseActivity implements OnClickListener {
 
-	private ImageView tweetWallButton, programButton, haritaButton, oturumButton,
+	private ImageView tweetWallButton, programButton, oturumButton,
 			sponsorButton, favoriButton, konusmaciButton;
 	private ViewFlipper newsFlipper;
 	private ImageView araButton, tempImg;
-	private String filepath;
-	private ArrayList<String> imagePaths;
 	private TabListener tabListener;
 	private ArrayList<Announcement> AnnouncementList;
 
@@ -88,7 +75,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	private void setUpButtons() {
 		tweetWallButton = (ImageView) findViewById(R.id.tweetWall);
 		favoriButton = (ImageView) findViewById(R.id.favori_button);
-		haritaButton = (ImageView) findViewById(R.id.harita_button);
 		sponsorButton = (ImageView) findViewById(R.id.sponsor_button);
 		oturumButton = (ImageView) findViewById(R.id.oturum_button);
 		programButton = (ImageView) findViewById(R.id.program_button);
@@ -96,22 +82,20 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		konusmaciButton = (ImageView) findViewById(R.id.speakers_button);
 		newsFlipper = (ViewFlipper) findViewById(R.id.highlights);
 		if(Util.getDefaultLanguage().equals("tr")){
-			tweetWallButton.setImageDrawable(getResources().getDrawable(R.drawable.tweet_image_tr));
-			favoriButton.setImageDrawable(getResources().getDrawable(R.drawable.favori_image_tr));
-			haritaButton.setImageDrawable(getResources().getDrawable(R.drawable.harita_image_tr));
-			sponsorButton.setImageDrawable(getResources().getDrawable(R.drawable.sponsor_image));
-			oturumButton.setImageDrawable(getResources().getDrawable(R.drawable.oturum_image_tr));
-			programButton.setImageDrawable(getResources().getDrawable(R.drawable.program_image_tr));
-			konusmaciButton.setImageDrawable(getResources().getDrawable(R.drawable.konusmacilar_image_tr));
+			tweetWallButton.setImageDrawable(getResources().getDrawable(R.drawable.tweetwall_tr_selector));
+			favoriButton.setImageDrawable(getResources().getDrawable(R.drawable.favori_tr_selector));
+			sponsorButton.setImageDrawable(getResources().getDrawable(R.drawable.sponsor_selector));
+			oturumButton.setImageDrawable(getResources().getDrawable(R.drawable.oturum_tr_selector));
+			programButton.setImageDrawable(getResources().getDrawable(R.drawable.program_tr_selector));
+			konusmaciButton.setImageDrawable(getResources().getDrawable(R.drawable.konusmacilar_tr_selector));
 		}
 		else{
-			tweetWallButton.setImageDrawable(getResources().getDrawable(R.drawable.tweet_image_en));
-			favoriButton.setImageDrawable(getResources().getDrawable(R.drawable.favori_image_en));
-			haritaButton.setImageDrawable(getResources().getDrawable(R.drawable.harita_image_en));
-			sponsorButton.setImageDrawable(getResources().getDrawable(R.drawable.sponsor_image));
-			oturumButton.setImageDrawable(getResources().getDrawable(R.drawable.oturum_image_en));
-			programButton.setImageDrawable(getResources().getDrawable(R.drawable.program_image_en));
-			konusmaciButton.setImageDrawable(getResources().getDrawable(R.drawable.konusmacilar_image_en));
+			tweetWallButton.setImageDrawable(getResources().getDrawable(R.drawable.tweetwall_en_selector));
+			favoriButton.setImageDrawable(getResources().getDrawable(R.drawable.favori_en_selector));
+			sponsorButton.setImageDrawable(getResources().getDrawable(R.drawable.sponsor_selector));
+			oturumButton.setImageDrawable(getResources().getDrawable(R.drawable.oturum_en_selector));
+			programButton.setImageDrawable(getResources().getDrawable(R.drawable.program_en_selector));
+			konusmaciButton.setImageDrawable(getResources().getDrawable(R.drawable.konusmacilar_en_selector));
 		}
 	}
 	
@@ -123,9 +107,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		
 	}
 
-	private void setHighligths() {
-
-	}
 
 	private void refreshView() {
 		// imagePaths = new ArrayList<String>();
@@ -136,7 +117,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	private void buttonsActive() {
 		tweetWallButton.setOnClickListener(this);
 		favoriButton.setOnClickListener(this);
-		haritaButton.setOnClickListener(this);
 		sponsorButton.setOnClickListener(this);
 		oturumButton.setOnClickListener(this);
 		programButton.setOnClickListener(this);
@@ -171,15 +151,16 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
 		case R.id.tweetWall:
 			i = new Intent(MainActivity.this, TweetWallActivity.class);
-			break;
+			try{
+				startActivity(i);
+			}
+			catch(Exception e){
+				Toast.makeText(this,getResources().getString(R.string.any_exception_in_twitter), Toast.LENGTH_SHORT).show();
+			}
+			return;
 
 		case R.id.program_button:
 			i = new Intent(MainActivity.this, ProgramActivity.class);
-			break;
-
-		case R.id.harita_button:
-			//Toast.makeText(this, getResources().getString(R.string.is_map_ready),Toast.LENGTH_SHORT).show();
-			i = new Intent(MainActivity.this, MapActivity.class);
 			break;
 
 		case R.id.sponsor_button:
@@ -206,47 +187,6 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			startActivity(i);
 		}
 
-	}
-
-	private String getImagesFromWeb(String urlString, String filename) {
-		try {
-			URL url = new URL(urlString);
-			HttpURLConnection urlConnection = (HttpURLConnection) url
-					.openConnection();
-			urlConnection.setRequestMethod("GET");
-			urlConnection.setDoOutput(true);
-			urlConnection.connect();
-			File SDCardRoot = Environment.getExternalStorageDirectory()
-					.getAbsoluteFile();
-			Log.i("Yol", SDCardRoot.getAbsolutePath());
-			Log.i("Local filename:", "" + filename);
-			File file = new File(SDCardRoot, filename);
-			if (file.createNewFile()) {
-				file.createNewFile();
-			}
-			FileOutputStream fileOutput = new FileOutputStream(file);
-			InputStream inputStream = urlConnection.getInputStream();
-			int totalSize = urlConnection.getContentLength();
-			int downloadedSize = 0;
-			byte[] buffer = new byte[1024];
-			int bufferLength = 0;
-			while ((bufferLength = inputStream.read(buffer)) > 0) {
-				fileOutput.write(buffer, 0, bufferLength);
-				downloadedSize += bufferLength;
-				Log.i("Progress:", "downloadedSize:" + downloadedSize
-						+ "totalSize:" + totalSize);
-			}
-			fileOutput.close();
-			if (downloadedSize == totalSize)
-				filepath = file.getPath();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			filepath = null;
-			e.printStackTrace();
-		}
-		Log.i("filepath:", " " + filepath);
-		return filepath;
 	}
 
 	private void setDeviceDimensions() {

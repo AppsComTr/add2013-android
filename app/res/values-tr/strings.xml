@@ -36,4 +36,5 @@
 	<string name="tweet_wall_internet_title">İnternet Bağlantısı!</string>
 	<string name="tweet_wall_internet_message">Tweet\'leri görebilmek için lütfen internet bağlantınızı kontrol edin.</string>
 	<string name="is_map_ready">Hazır değil</string>
-	<string name="only_vCard_format_is_valid">Sadece vCard formatı geçerlidir</string></resources>
+	<string name="only_vCard_format_is_valid">Sadece vCard formatı geçerlidir</string>
+	<string name="any_exception_in_twitter">Üzgünüz,TweetWall şu anda kullanılamıyor</string></resources>
