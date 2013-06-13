@@ -125,7 +125,7 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 	
 	private void startTwitterApp(int index){
 		   Intent i = new Intent(Intent.ACTION_VIEW);
-	       i.setData(Uri.parse((tweets.get(index).tweetAdress).contains("http://")?tweets.get(index).tweetAdress:"http://"+tweets.get(index).tweetAdress));
+	       i.setData(Uri.parse((tweets.get(index-1).tweetAdress)));
 //	       i.setType("application/twitter");
 	       startActivity(i);
 	}
@@ -143,11 +143,11 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 
 	private void initTwitter() {
 		twitterObject = new TwitterFactory().getInstance();
-		twitterObject.setOAuthConsumer("*************",
-				"************");
+		twitterObject.setOAuthConsumer("******",
+				"*****");
 		twitterObject.setOAuthAccessToken(new AccessToken(
-				"************",
-				"************"));
+				"****",
+				"****"));
 		try {
 			twitterObject.getAccountSettings();
 		} catch (TwitterException e) {
@@ -240,18 +240,23 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 		} catch (TwitterException e) {
 			e.printStackTrace();
 		}
-		for (Status status : result.getTweets()) {
-			StringBuffer address = new StringBuffer();
-	    	address.append("http://twitter.com/#!/");
-	    	address.append(status.getUser().getScreenName());
-	    	address.append("/status/");
-	    	address.append(status.getId());
-
-	    	String tweetAdress = address.toString();
-	    	
-			tweets.add(new Tweet(status.getUser().getScreenName(),
-					status.getText(), status.getUser().getProfileImageURL(),
-					status.getUser().getName(),tweetAdress));
+		try{
+			for (Status status : result.getTweets()) {
+				StringBuffer address = new StringBuffer();
+		    	address.append("http://twitter.com/#!/");
+		    	address.append(status.getUser().getScreenName());
+		    	address.append("/status/");
+		    	address.append(status.getId());
+	
+		    	String tweetAdress = address.toString();
+		    	
+				tweets.add(new Tweet(status.getUser().getScreenName(),
+						status.getText(), status.getUser().getProfileImageURL(),
+						status.getUser().getName(),tweetAdress));
+				
+			}
+		}
+		catch(NullPointerException e){
 			
 		}
 		return tweets;
