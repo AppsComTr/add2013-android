@@ -50,7 +50,8 @@
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.TweetWallActivity"
-            android:label="@string/title_activity_tweet_wall">
+            android:label="@string/title_activity_tweet_wall"
+            android:configChanges="orientation|screenSize">
         </activity>
         <activity
             android:name="org.gdgankara.app.activities.TagListActivity"

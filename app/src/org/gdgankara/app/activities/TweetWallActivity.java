@@ -3,34 +3,36 @@ package org.gdgankara.app.activities;
 import java.net.URL;
 import java.util.ArrayList;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.gdgankara.app.R;
 import org.gdgankara.app.listeners.TabListener;
 import org.gdgankara.app.utils.Util;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
+import twitter4j.Query;
+import twitter4j.QueryResult;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.auth.AccessToken;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -49,6 +51,7 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 	private TabListener tabListener;
 	private ProgressDialog pd;
 	private AlertDialog alertDialog;
+	private Twitter twitterObject;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -57,17 +60,13 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 		overridePendingTransition(0, 0);
 		setContentView(R.layout.activity_tweet_wall);
 		tabAktif();
-		((TextView)findViewById(R.id.alttab_text)).setText("#AndroidDevDays");
+
 		pullToRefreshView = (PullToRefreshListView) findViewById(R.id.tweetList);
+		childItemsActive();
 		if (Util.isInternetAvailable(this)) {
 
 			if (pd == null) {
 				try {
-
-					// pd = ProgressDialog.show(this,
-					// getResources().getString(R.string.loading),
-					// getResources().getString(R.string.getting_tweets),
-					// true, false);
 					pd = new ProgressDialog(TweetWallActivity.this);
 					pd.setMessage(getResources().getString(
 							R.string.getting_tweets));
@@ -110,6 +109,26 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 			alertDialog.show();
 		}
 	}
+	
+	private void childItemsActive() {
+		pullToRefreshView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				startTwitterApp(arg2);
+				
+			}
+		});
+		
+	}
+	
+	private void startTwitterApp(int index){
+		   Intent i = new Intent(Intent.ACTION_VIEW);
+	       i.setData(Uri.parse((tweets.get(index).tweetAdress).contains("http://")?tweets.get(index).tweetAdress:"http://"+tweets.get(index).tweetAdress));
+//	       i.setType("application/twitter");
+	       startActivity(i);
+	}
 
 	public void tabAktif() {
 		tabListener = new TabListener(this);
@@ -120,6 +139,20 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 		((ImageView) findViewById(R.id.qr_decoder_button))
 				.setOnClickListener(tabListener);
 
+	}
+
+	private void initTwitter() {
+		twitterObject = new TwitterFactory().getInstance();
+		twitterObject.setOAuthConsumer("*************",
+				"************");
+		twitterObject.setOAuthAccessToken(new AccessToken(
+				"************",
+				"************"));
+		try {
+			twitterObject.getAccountSettings();
+		} catch (TwitterException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
@@ -197,57 +230,29 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 	}
 
 	public ArrayList<Tweet> getTweets(String searchTerm, int page, int rpp) {
-		String searchUrl = "http://search.twitter.com/search.json?rpp=" + rpp
-				+ "&page=" + page + "&q=" + searchTerm + "+exclude:retweets";
-
+		initTwitter();
 		ArrayList<Tweet> tweets = new ArrayList<Tweet>();
-
-		HttpClient client = new DefaultHttpClient();
-		HttpGet get = new HttpGet(searchUrl);
-
-		ResponseHandler<String> responseHandler = new BasicResponseHandler();
-
-		String responseBody = null;
+		Query query = new Query("AndroidDevDays");
+		query.setCount(100);
+		QueryResult result = null;
 		try {
-			responseBody = client.execute(get, responseHandler);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-		JSONObject jsonObject = null;
-		JSONParser parser = new JSONParser();
-
-		try {
-			Object obj = parser.parse(responseBody);
-			jsonObject = (JSONObject) obj;
-
-		} catch (Exception ex) {
-			Log.v("TEST", "Exception: " + ex.getMessage());
-		}
-
-		JSONArray arr = null;
-
-		try {
-			Object j = jsonObject.get("results");
-			arr = (JSONArray) j;
-		} catch (Exception ex) {
-			Log.v("TEST", "Exception: " + ex.getMessage());
-		}
-
-		try {
-			for (Object t : arr) {
-				Tweet tweet = new Tweet(((JSONObject) t).get("from_user")
-						.toString(), ((JSONObject) t).get("text").toString(),
-						((JSONObject) t).get("profile_image_url").toString(),
-						((JSONObject) t).get("from_user_name").toString());
-				tweets.add(tweet);
-			}
-		} catch (Exception e) {
-			tweets = new ArrayList<Tweet>();
-			tweets.add(new Tweet("gdgankara", getResources().getString(
-					R.string.tweet_wall_internet_message),
-					"http://www.androiddeveloperdays.com", "GDG Ankara"));
+			result = twitterObject.search(query);
+		} catch (TwitterException e) {
 			e.printStackTrace();
+		}
+		for (Status status : result.getTweets()) {
+			StringBuffer address = new StringBuffer();
+	    	address.append("http://twitter.com/#!/");
+	    	address.append(status.getUser().getScreenName());
+	    	address.append("/status/");
+	    	address.append(status.getId());
+
+	    	String tweetAdress = address.toString();
+	    	
+			tweets.add(new Tweet(status.getUser().getScreenName(),
+					status.getText(), status.getUser().getProfileImageURL(),
+					status.getUser().getName(),tweetAdress));
+			
 		}
 		return tweets;
 	}
@@ -257,13 +262,15 @@ public class TweetWallActivity extends ListActivity implements Runnable {
 		public String message;
 		public String image_url;
 		public String screen_name;
-
+		public String tweetAdress;
+		
 		public Tweet(String username, String message, String url,
-				String screen_name) {
+				String screen_name, String tweetAdress) {
 			this.username = username;
 			this.message = message;
 			this.image_url = url;
 			this.screen_name = screen_name;
+			this.tweetAdress = tweetAdress;
 		}
 	}
 
